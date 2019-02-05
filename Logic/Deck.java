@@ -6,6 +6,11 @@ class Deck implements DeckInterface, LogicInterface{
 	private ArrayList<FlashcardInterface> deck;
 	private String deckName;
 
+	public Deck() {
+		this.deckName = null;
+		this.deck = new ArrayList<FlashcardInterface>();
+	}
+
 	public Deck(String name, ArrayList<FlashcardInterface> deck) {
 		this.deckName = name;
 		this.deck = deck;
@@ -14,6 +19,7 @@ class Deck implements DeckInterface, LogicInterface{
 	/**
 	 * Mutators
 	 */
+
 	public String getDeckName()
 	{
 		return this.deckName;

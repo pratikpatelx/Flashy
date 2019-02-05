@@ -5,13 +5,19 @@ import java.util.Hashtable;
 public class DeckManager implements DeckManagerInterface, LogicInterface {
     private Hashtable<String, DeckInterface> deckList;
 
-    public DeckManager()
-    {
+    /**
+     * Constructors
+     */
+
+    public DeckManager() {
         deckList = new Hashtable<>();
     }
 
-    public Hashtable<String, DeckInterface> getDeckList()
-    {
+    /**
+     * Mutators
+     */
+
+    public Hashtable<String, DeckInterface> getDeckList() {
         return deckList;
     }
 
@@ -19,6 +25,10 @@ public class DeckManager implements DeckManagerInterface, LogicInterface {
     {
         this.deckList = newDeckList;
     }
+
+    /**
+     * Methods
+     */
 
     @Override
     public void addDeck(String deckName, DeckInterface newDeck) {

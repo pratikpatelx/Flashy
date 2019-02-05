@@ -14,6 +14,7 @@ public class Flashcard implements FlashcardInterface, LogicInterface{
 	/**
 	 * Mutators
 	 */
+
 	public String getAnswer() {
 		return answer;
 	}
