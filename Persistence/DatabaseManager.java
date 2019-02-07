@@ -113,7 +113,7 @@ public class DatabaseManager implements DatabaseManagerInterface {
         ArrayList temp = getDeck(defaultDeck);
 
         if (temp != null) {
-            cardDataGenerator(deckSize, temp);
+            result = cardDataGenerator(deckSize, temp);
         }
 
         return result;
@@ -126,7 +126,7 @@ public class DatabaseManager implements DatabaseManagerInterface {
         ArrayList temp = getDeck(identifier);
 
         if (temp != null) {
-            cardDataGenerator(deckSize, temp);
+            result = cardDataGenerator(deckSize, temp);
         }
 
         return result;
