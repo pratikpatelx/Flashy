@@ -33,11 +33,16 @@ public class LogicManager implements LogicMangerInterface {
         database.removeCardFromDeck(deckName, cardName);
     }
 
+    @Override
+    public void removeCardFromAll(String cardName) {
+        database.removeCardFromAll(cardName);
+    }
+
     //Shuffles the deck randomly
     @Override
-    public String[][] shuffleDeck(String deckname) {
+    public String[][] shuffleDeck(String deckName) {
         Random rand = new Random();
-        String[][] result = database.getDeckContents(deckname);
+        String[][] result = database.getDeckContents(deckName);
         int deckLength = result.length;
         int n;
 
@@ -58,7 +63,7 @@ public class LogicManager implements LogicMangerInterface {
 
         }
 
-        database.inputDeck(deckname, result);
+        database.inputDeck(deckName, result);
         return result;
     }
 }

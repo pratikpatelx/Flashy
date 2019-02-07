@@ -9,6 +9,8 @@ import DomainLogic.Flashcard;
 //Will act as a buffer between the class containing the HSQLDB and the logic layer. For now though, it is itself the acting database.
 public class DatabaseManager implements DatabaseManagerInterface {
     private Hashtable<String, ArrayList> storage;
+
+    //The Oracle Deck contains all flashcards currently in existence.
     private String defaultDeck = "THE_ORACLE_DECK";
 
     /**
@@ -91,6 +93,16 @@ public class DatabaseManager implements DatabaseManagerInterface {
     public void removeCardFromDeck(String identifier, String cardName) {
         ArrayList temp = storage.get(identifier);
         temp.remove(cardName);
+    }
+
+    @Override
+    public void removeCardFromAll(String cardName) {
+        ArrayList temp;
+        Enumeration enu = storage.keys();
+
+        while (enu.hasMoreElements()) {
+            removeCardFromDeck(enu.toString(), cardName);
+        }
     }
 
     @Override

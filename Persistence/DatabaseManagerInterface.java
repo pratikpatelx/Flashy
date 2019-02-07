@@ -5,7 +5,7 @@ import DomainLogic.Flashcard;
 public interface DatabaseManagerInterface {
 
     //Deck Methods
-    public void inputDeck(String identifier, String[][] inputDeck);
+    void inputDeck(String identifier, String[][] inputDeck);
 
     void renameDeck(String identifier, String newName);
 
@@ -17,9 +17,11 @@ public interface DatabaseManagerInterface {
 
     void addCardToDeck(String identifier, Flashcard newCard);
 
+    void editCard(String cardName, String newQuestion, String newAnswer);
+
     void removeCardFromDeck(String identifier, String cardName);
 
-    void editCard(String cardName, String newQuestion, String newAnswer);
+    void removeCardFromAll(String cardName);
 
     //Get Data Methods
 

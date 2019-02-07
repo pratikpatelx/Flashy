@@ -13,5 +13,7 @@ public interface LogicMangerInterface {
 
     void removeFlashcardFromDeck(String deckName, String cardName);
 
+    void removeCardFromAll(String cardName);
+
     String[][] shuffleDeck(String deckname);
 }
