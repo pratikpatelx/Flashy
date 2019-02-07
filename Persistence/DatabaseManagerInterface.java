@@ -7,6 +7,8 @@ public interface DatabaseManagerInterface {
     //Deck Methods
     void inputDeck(String identifier, String[][] inputDeck);
 
+    String[] getallDeckNames();
+
     void renameDeck(String identifier, String newName);
 
     void removeDeck(String identifier);

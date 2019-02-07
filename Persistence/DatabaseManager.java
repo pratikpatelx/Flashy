@@ -55,6 +55,22 @@ public class DatabaseManager implements DatabaseManagerInterface {
     }
 
     @Override
+    public String[] getallDeckNames() {
+        String[] result = new String[storage.size()];
+        Enumeration enu = storage.keys();
+
+        int i = 0;
+        if (enu.hasMoreElements()) {
+            do {
+                result[i] = enu.toString();
+                i++;
+            } while (enu.hasMoreElements());
+        }
+
+        return result;
+    }
+
+    @Override
     public void renameDeck(String identifier, String newName) {
         ArrayList temp = getDeck(defaultDeck);
         storage.remove(identifier);
