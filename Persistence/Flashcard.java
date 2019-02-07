@@ -1,12 +1,12 @@
-package Logic;
+package Persistence;
 
-//This might need to be changed before Due date
-
-public class Flashcard implements FlashcardInterface, LogicInterface{
+public class Flashcard implements FlashcardInterface {
+	private String cardName;
 	private String answer;
 	private String question;
 
-	public Flashcard(String question, String answer) {
+	public Flashcard(String name, String question, String answer) {
+		this.cardName = name;
 		this.question = question;
 		this.answer = answer;
 	}
@@ -29,6 +29,14 @@ public class Flashcard implements FlashcardInterface, LogicInterface{
 
 	public void setQuesion(String newQuestion) {
 		this.question = newQuestion;
+	}
+
+	public String getCardName() {
+		return cardName;
+	}
+
+	public void setCardName(String newName) {
+		cardName = newName;
 	}
 
 }

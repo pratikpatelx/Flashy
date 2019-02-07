@@ -1,4 +1,4 @@
-package Logic;
+package Persistence;
 
 interface FlashcardInterface {
     /**
