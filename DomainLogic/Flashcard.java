@@ -27,7 +27,7 @@ public class Flashcard implements FlashcardInterface {
 		return question;
 	}
 
-	public void setQuesion(String newQuestion) {
+	public void setQuestion(String newQuestion) {
 		this.question = newQuestion;
 	}
 
