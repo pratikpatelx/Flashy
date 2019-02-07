@@ -5,6 +5,7 @@ import DomainLogic.Flashcard;
 public interface DatabaseManagerInterface {
 
     //Deck Methods
+    public void inputDeck(String identifier, String[][] inputDeck);
 
     void renameDeck(String identifier, String newName);
 
