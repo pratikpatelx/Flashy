@@ -1,4 +1,4 @@
-package Persistence;
+package DomainLogic;
 
 interface FlashcardInterface {
     /**

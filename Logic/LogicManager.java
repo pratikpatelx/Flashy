@@ -2,8 +2,8 @@ package Logic;
 
 import java.util.Random;
 
+import DomainLogic.Flashcard;
 import Persistence.DatabaseManager;
-import Persistence.Flashcard;
 
 public class LogicManager implements LogicMangerInterface {
     private DatabaseManager database = new DatabaseManager();

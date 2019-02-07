@@ -1,6 +1,6 @@
-package Logic;
+package Persistence;
 
-import Persistence.Flashcard;
+import DomainLogic.Flashcard;
 
 public interface DatabaseManagerInterface {
 

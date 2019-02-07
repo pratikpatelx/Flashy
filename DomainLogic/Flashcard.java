@@ -1,4 +1,4 @@
-package Persistence;
+package DomainLogic;
 
 public class Flashcard implements FlashcardInterface {
 	private String cardName;

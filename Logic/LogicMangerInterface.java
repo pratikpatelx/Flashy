@@ -1,6 +1,6 @@
 package Logic;
 
-import Persistence.Flashcard;
+import DomainLogic.Flashcard;
 
 public interface LogicMangerInterface {
     void addFlashcard(String cardName, String question, String answer);
