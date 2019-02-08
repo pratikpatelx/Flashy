@@ -2,7 +2,7 @@ package Logic;
 
 import DomainLogic.Flashcard;
 
-public interface LogicMangerInterface {
+public interface LogicManagerInterface {
     void addFlashcard(String cardName, String question, String answer);
 
     void putFlashcardIntoDeck(String deckName, String cardName, String question, String answer);
