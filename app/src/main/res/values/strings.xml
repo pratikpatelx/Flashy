@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Flashy</string>
+    <string name="app_name">FLASHY</string>
+    <string name="log_in">Log In</string>
+    <string name="user_name"></string>
+    <string name="username">Username</string>
+    <string name="deckname1">Deck1</string>
+    <string name="FlashCardHeader">Title Test</string>
+    <string name="card_back_description">Back SIde</string>
+    <string name="card_back_title">Back title</string>
+    <string name="description_image_1">Image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
