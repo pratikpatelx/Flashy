@@ -5,7 +5,7 @@ import java.util.Random;
 import DomainLogic.Flashcard;
 import Persistence.DatabaseManager;
 
-public class LogicManager implements LogicMangerInterface {
+public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
 
     @Override
