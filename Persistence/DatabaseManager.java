@@ -19,6 +19,7 @@ public class DatabaseManager implements DatabaseManagerInterface {
 
     public DatabaseManager() {
         storage = new Hashtable<>();
+        storage.put(defaultDeck, new ArrayList());
     }
 
     /**
