@@ -109,7 +109,7 @@ public class DatabaseManager implements DatabaseManagerInterface {
     @Override
     public void removeCardFromDeck(String identifier, String cardName) {
         ArrayList temp = storage.get(identifier);
-        temp.remove(cardName);
+        temp.remove(getFlashcard(temp, cardName));
     }
 
     @Override
@@ -128,9 +128,22 @@ public class DatabaseManager implements DatabaseManagerInterface {
 
         while (keyList.hasMoreElements()) {
             ArrayList temp = getDeck(keyList.toString());
-            temp.remove(cardName);
+            temp.remove(getFlashcard(temp, cardName));
             temp.add(new Flashcard(cardName, newQuestion, newAnswer));
         }
+    }
+    
+    private Flashcard getFlashcard(ArrayList deck, String cardName) {
+        Flashcard result = null;
+
+        for (int i = 0; i < deck.size(); i++) {
+            Flashcard temp = (Flashcard) deck.get(i);
+            if ((temp.getCardName()).equals(cardName)) {
+                result = temp;
+            }
+        }
+
+        return result;
     }
 
     //Get Data Methods
