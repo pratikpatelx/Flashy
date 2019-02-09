@@ -18,6 +18,7 @@ public class DatabaseManager {
 
     public DatabaseManager() {
         storage = new Hashtable<>();
+        storage.put(defaultDeck, new ArrayList());
     }
 
     /**
