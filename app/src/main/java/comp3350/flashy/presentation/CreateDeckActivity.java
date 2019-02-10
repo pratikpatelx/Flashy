@@ -36,14 +36,6 @@ public class CreateDeckActivity extends AppCompatActivity {
             }
         });
 
-//        deck1 = (ImageView) findViewById(R.id.random_image);
-//        deck1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-        //openFlashCardActivity();
-//                System.out.println("Deck pressed");
-//            }
-//        });
 
     }
 

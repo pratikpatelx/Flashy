@@ -24,14 +24,6 @@ public class uiHandler {
 
     }
 
-//    public void made(){
-//        System.out.println("made handler");
-//    }
-//
-//    public void print(String a){
-//        System.out.println(a);
-//    }
-
     public void saveCard(String title, String body) {
 
     }
@@ -68,9 +60,5 @@ public class uiHandler {
         }
 
     }
-
-
-    // public
-
 
 }

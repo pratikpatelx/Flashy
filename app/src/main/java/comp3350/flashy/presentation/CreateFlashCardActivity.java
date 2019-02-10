@@ -24,7 +24,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
     private EditText toShow;
     private ImageView flash;
-    private FloatingActionButton test;
+    private FloatingActionButton save;
     private uiHandler uiManager = new uiHandler();
 
     @Override
@@ -35,7 +35,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         //getting body, title and save button.
         textViewFlashBody = (TextView) findViewById(R.id.body);
         textViewFlashTitle = (TextView) findViewById(R.id.title);
-        test = (FloatingActionButton) findViewById(R.id.saveButton);
+        save = (FloatingActionButton) findViewById(R.id.saveButton);
         toShow = new EditText(this);
 
 
@@ -62,14 +62,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         });
 
 
-        //this is the testing, button will probably make this the cancel button
-        userInput.setButton(DialogInterface.BUTTON_NEUTRAL, "test button", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String b = "enter";
-                textViewFlashBody.setText(b);
-            }
-        });
 
         //when clicking the textfields, we can edit the
         textViewFlashBody.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +86,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             }
         });
 
-        test.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println(title + " :: title saved");
