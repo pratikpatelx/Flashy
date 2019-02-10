@@ -1,48 +1,47 @@
 package comp3350.flashy.logic;
 
-import java.util.HashMap;
+import comp3350.flashy.persistence.DatabaseManager;
 
 public class uiHandler {
 
-    private HashMap<Integer, Flashcard> test = new HashMap<Integer, Flashcard>();
-    private int index;
+    private int index; // for now, we will use the index to name the flashcards within the master deck
+    private DatabaseManager flashCardDB;
+    //implemented with string id, should be integer.
 
-    private String body;
-    private String title;
+    private String cardName = "c";
+    private int dbSize; // this is to hold max index
 
+    //TODO add checks and error handling.
 
     public uiHandler() {
-        test.put(1, new Flashcard("body1", "title1"));
-        test.put(2, new Flashcard("body2", "title2"));
-        test.put(3, new Flashcard("body3", "title3"));
-        test.put(4, new Flashcard("body4", "title4"));
-        test.put(5, new Flashcard("body5", "title5"));
         index = 1;
-
-        body = test.get(index).getAnswer();
-        title = test.get(index).getQuestion();
-
+        dbSize = 1;
+        flashCardDB = new DatabaseManager();
     }
 
-    public void saveCard(String title, String body) {
-
+    public void saveCard(String head, String content) {
+        flashCardDB.addCard(new Flashcard((cardName + dbSize), head, content));
+        dbSize++;
     }
 
     public String[] getContent() {
+        Flashcard curr = flashCardDB.getCard((cardName + index));
+        System.out.println(index);
+
         String[] result = new String[2];
 
-        result[0] = body;
-        result[1] = title;
+        result[0] = curr.getQuestion();
+        result[1] = curr.getAnswer();
 
         return result;
     }
 
+
     public void setNextCardContent() {
-        Flashcard nextCard;
+        //Flashcard nextCard;
         index++;
-        if ((nextCard = test.get(index)) != null) {
-            body = nextCard.getAnswer();
-            title = nextCard.getQuestion();
+        if (index < dbSize) {
+            return;
         } else {
             index--;
         }
@@ -50,15 +49,24 @@ public class uiHandler {
     }
 
     public void setPrevCardContent() {
-        Flashcard nextCard;
+        //Flashcard nextCard;
         index--;
-        if ((nextCard = test.get(index)) != null) {
-            body = nextCard.getAnswer();
-            title = nextCard.getQuestion();
+        if (index > 0) {
+            return;
         } else {
             index++;
         }
 
+    }
+
+    //for now we'll use a test stub for the viewer
+    public void addStub() {
+        saveCard("test1", "test1");
+        saveCard("test2", "test2");
+        saveCard("test3", "test3");
+        saveCard("test4", "test4");
+        saveCard("test5", "test5");
+        saveCard("test6", "test6");
     }
 
 }

@@ -45,7 +45,7 @@ class Deck implements DeckInterface, LogicInterface{
     //Adds a card to the deck with the given parameters
     @Override
     public void addCard(String newQuestion, String newAnswer) {
-        deck.add(new Flashcard(newQuestion, newAnswer));
+        //deck.add(new Flashcard(newQuestion, newAnswer));
     }
 
     //Deletes a given card from the deck

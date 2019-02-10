@@ -37,6 +37,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         exit = (Button) findViewById(R.id.exitButton);
         //toShow = new EditText(this);
 
+        uiManager.addStub(); //added sample stub for testing
         String[] content = uiManager.getContent();
 
         title = content[0];
