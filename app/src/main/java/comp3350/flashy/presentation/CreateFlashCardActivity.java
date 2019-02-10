@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import comp3350.flashy.R;
@@ -21,9 +20,8 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private String title = "";
     private String body = "";
     private boolean bodySelected;
-
     private EditText toShow;
-    private ImageView flash;
+
     private FloatingActionButton save;
     private uiHandler uiManager = new uiHandler();
 
@@ -38,8 +36,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         save = (FloatingActionButton) findViewById(R.id.saveButton);
         toShow = new EditText(this);
 
-
-        flash = (ImageView) findViewById(R.id.imageView); //not really sure what this is for...
         userInput = new AlertDialog.Builder(this).create();
 
         userInput.setTitle("");
@@ -62,8 +58,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         });
 
 
-
-        //when clicking the textfields, we can edit the
+        //when clicking the textfields, we can edit them
         textViewFlashBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
