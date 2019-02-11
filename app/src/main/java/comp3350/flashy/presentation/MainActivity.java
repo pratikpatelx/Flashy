@@ -11,9 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import comp3350.flashy.R;
+import comp3350.flashy.logic.uiHandler;
+
+
 
 public class MainActivity extends AppCompatActivity {
     private Button giveAccess;
+    public static uiHandler ui = new uiHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    public static uiHandler getHandler() {
+
+        return ui;
+    }
     public void openCreateDeckActivity(){
         Intent intent = new Intent(this, CreateDeckActivity.class);
         startActivity(intent);

@@ -61,12 +61,11 @@ public class uiHandler {
 
     //for now we'll use a test stub for the viewer
     public void addStub() {
-        saveCard("test1", "test1");
-        saveCard("test2", "test2");
-        saveCard("test3", "test3");
-        saveCard("test4", "test4");
-        saveCard("test5", "test5");
-        saveCard("test6", "test6");
+        String arr[][] = DatabaseManager.getStub();
+
+        for (int i = 0; i < arr.length; i++) {
+            saveCard(arr[i][0], arr[i][1]);
+        }
     }
 
 }

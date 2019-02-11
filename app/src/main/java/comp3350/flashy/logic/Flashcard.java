@@ -2,7 +2,7 @@ package comp3350.flashy.logic;
 
 //This might need to be changed before Due date
 
-public class Flashcard implements FlashcardInterface, LogicInterface{
+public class Flashcard implements FlashcardInterface {
     private String cardName;
     private String answer;
     private String question;

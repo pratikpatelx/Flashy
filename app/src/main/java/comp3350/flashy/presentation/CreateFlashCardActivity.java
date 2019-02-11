@@ -23,7 +23,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private EditText toShow;
 
     private FloatingActionButton save;
-    private uiHandler uiManager = new uiHandler();
+    private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

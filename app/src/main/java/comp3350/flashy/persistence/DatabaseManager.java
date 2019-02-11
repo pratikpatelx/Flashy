@@ -262,4 +262,10 @@ public class DatabaseManager {
     private int getDeckSize(String identifier) {
         return storage.get(identifier).size();
     }
+
+    public static String[][] getStub() {
+        Stub stub = new Stub();
+
+        return stub.getStub();
+    }
 }

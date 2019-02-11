@@ -19,7 +19,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private String title;
 
     private FloatingActionButton test;
-    private uiHandler uiManager = new uiHandler();
+    private uiHandler uiManager = MainActivity.getHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
     private Button exit;
