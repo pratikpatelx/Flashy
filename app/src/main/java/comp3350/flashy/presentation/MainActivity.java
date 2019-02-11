@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
     private Button giveAccess;
     public static uiHandler ui = new uiHandler();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ui.addStub(); //added sample stub for testing
         giveAccess = (Button)findViewById(R.id.login_button);
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
