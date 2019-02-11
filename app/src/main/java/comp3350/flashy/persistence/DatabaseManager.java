@@ -75,7 +75,7 @@ public class DatabaseManager {
 
     // @Override
     public void renameDeck(String identifier, String newName) {
-        ArrayList temp = getDeck(defaultDeck);
+        ArrayList temp = getDeck(identifier);
         storage.remove(identifier);
         storage.put(newName, temp);
     }
