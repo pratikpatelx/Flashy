@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import comp3350.flashy.logic.Flashcard;
+import comp3350.flashy.DomainLogic.Flashcard;
 
 //Will act as a buffer between the class containing the HSQLDB and the logic layer. For now though, it is itself the acting database.
 public class DatabaseManager {

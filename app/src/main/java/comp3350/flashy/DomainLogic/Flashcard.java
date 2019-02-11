@@ -1,4 +1,4 @@
-package comp3350.flashy.logic;
+package comp3350.flashy.DomainLogic;
 
 //This might need to be changed before Due date
 

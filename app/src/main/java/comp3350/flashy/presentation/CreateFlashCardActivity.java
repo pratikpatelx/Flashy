@@ -17,8 +17,8 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private TextView textViewFlashTitle;
 
     private AlertDialog userInput;
-    private String title = "";
-    private String body = "";
+    private String title = "Title";
+    private String body = "Example of front side of flash card";
     private boolean bodySelected;
     private EditText toShow;
 

@@ -1,5 +1,6 @@
 package comp3350.flashy.logic;
 
+import comp3350.flashy.DomainLogic.Flashcard;
 import comp3350.flashy.persistence.DatabaseManager;
 
 public class uiHandler {
