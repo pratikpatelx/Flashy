@@ -3,8 +3,8 @@
 |         Presentation              |               Logic                 |             Persistence             |
 +---------------------------------------------------------------------------------------------------------------+
 | * CreateDeckActivity.java         | * LogicManager.java                 | * DatabaseManager.java              |
-| * CreateFlashcardActivity.java    | * LogicTestingSuite.java            |                                     |
-| * MainActivity                    | * UIHandler.java                    |                                     |
+| * CreateFlashcardActivity.java    | * LogicTestingSuite.java            | * Stub.java                         |
+| * MainActivity.java               | * UIHandler.java                    |                                     |
 | * ViewFlashcardActivity.java      |                                     |                                     |
 |                                   |                                     |                                     |
 |                                   |                                     |                                     |
