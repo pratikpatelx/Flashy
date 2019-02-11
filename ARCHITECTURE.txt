@@ -1,11 +1,11 @@
 +-----------------------------------+-------------------------------------+-------------------------------------+
 |                                   |                                     |                                     |
-|         Presentation              |             Logic                   |             Persistence             |
+|         Presentation              |               Logic                 |             Persistence             |
 +---------------------------------------------------------------------------------------------------------------+
-| * ReadInput                       | * DeckManager                       | * MainPersistenceInterface          |
-| * HomeActivity                    | * FlashcardManager                  | * DeckPersistenceInterface          |
-| * DeckActivity                    |                                     | * Stub package                      |
-| * FlashcardActivity               |                                     |     * DeckPersistence               |
+| * CreateDeckActivity.java         | * LogicManager.java                 | * DatabaseManager.java              |
+| * CreateFlashcardActivity.java    | * LogicTestingSuite.java            |                                     |
+| * MainActivity                    | * UIHandler.java                    |                                     |
+| * ViewFlashcardActivity.java      |                                     |                                     |
 |                                   |                                     |                                     |
 |                                   |                                     |                                     |
 |                                   |                                     |                                     |
@@ -25,8 +25,8 @@
 |                                                                                                               |
 | Domain Logic                                                                                                  |
 +---------------------------------------------------------------------------------------------------------------+
-|  * Main                                                                                                       |
-|  * Deck                                                                                                       |
-|  * Flashcard                                                                                                  |
+|  * Flashcards.java                                                                                            |
+|  * FlashcardInterface.java                                                                                    |
+|                                                                                                               |
 |                                                                                                               |
 +---------------------------------------------------------------------------------------------------------------+
