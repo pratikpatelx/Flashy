@@ -1,4 +1,4 @@
-package Tests;
+package comp3350.flashy;
 
 //import junit.framework.*;
 import org.junit.Test;
