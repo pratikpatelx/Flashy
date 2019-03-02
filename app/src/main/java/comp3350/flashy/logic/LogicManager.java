@@ -2,7 +2,7 @@ package comp3350.flashy.logic;
 
 import java.util.Random;
 
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {

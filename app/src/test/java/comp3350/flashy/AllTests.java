@@ -124,7 +124,7 @@ public class AllTests {
                     }
                     System.out.println("Test encountered "+ result.getFailureCount() + " failures");
                 }
-                
+                /*
                 else if(token.equals("editcard")){
                     Result result = JUnitCore.runClasses(EditCardTest.class);
                     for (Failure failure : result.getFailures()) {
@@ -132,6 +132,7 @@ public class AllTests {
                     }
                     System.out.println("Test encountered "+ result.getFailureCount() + " failures");
                 }
+                */
                 
                 else if(token.equals("shuffledeck")){
                     Result result = JUnitCore.runClasses(ShuffleDeckTest.class);
@@ -162,7 +163,7 @@ public class AllTests {
                     Result result = JUnitCore.runClasses(PrintDeckTest.class, 
                             PutCardIntoDeckTest.class, 
                             PrintDeckTest.class,
-                            EditCardTest.class,
+                            //EditCardTest.class,
                             GetCardTest.class,
                             RemoveCardTest.class,
                             ShuffleDeckTest.class);
