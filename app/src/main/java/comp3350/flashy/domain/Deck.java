@@ -30,6 +30,10 @@ public class Deck{
     public void setDeck(Deck other) {
             this.cards = other.getCards();
     }
+    
+    public String getDeckName(){
+        return this.name;
+    }
 
 
     /*
