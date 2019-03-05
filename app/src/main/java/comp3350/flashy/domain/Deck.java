@@ -1,4 +1,4 @@
-package main.java.comp3350.flashy.domain;
+package comp3350.flashy.domain;
 import java.util.ArrayList;
 
 public class Deck{
