@@ -8,6 +8,11 @@ import comp3350.flashy.persistence.DatabaseManager;
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
 
+    //getting the db for the list view
+    public DatabaseManager getDatabase(){
+        return this.database;
+    }
+
     @Override
     public void addFlashcard(String cardName, String question, String answer) {
         database.addCard(new Flashcard(cardName, question, answer));

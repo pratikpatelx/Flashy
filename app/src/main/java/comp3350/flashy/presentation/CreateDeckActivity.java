@@ -12,6 +12,7 @@ import comp3350.flashy.R;
 public class CreateDeckActivity extends AppCompatActivity {
     private Button createFlashCard;
     private Button viewFlashCard;
+    private Button listFlashCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class CreateDeckActivity extends AppCompatActivity {
 
         createFlashCard = (Button) findViewById(R.id.createFlashCard);
         viewFlashCard = (Button) findViewById(R.id.viewFlashCard);
+        listFlashCards = (Button) findViewById(R.id.listFlashCards);
 
 
         createFlashCard.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +38,13 @@ public class CreateDeckActivity extends AppCompatActivity {
             }
         });
 
+        listFlashCards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFlashCardListActivity();
+            }
+        });
+
 
     }
 
@@ -46,6 +55,11 @@ public class CreateDeckActivity extends AppCompatActivity {
 
     public void openViewFlashCardActivity() {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        startActivity(intent);
+    }
+
+    public void openFlashCardListActivity() {
+        Intent intent = new Intent(this, FlashCardListActivity.class);
         startActivity(intent);
     }
 }

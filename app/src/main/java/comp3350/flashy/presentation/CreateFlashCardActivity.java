@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import comp3350.flashy.R;
-import comp3350.flashy.logic.uiHandler;
 
 public class CreateFlashCardActivity extends AppCompatActivity {
     private TextView textViewFlashBody;

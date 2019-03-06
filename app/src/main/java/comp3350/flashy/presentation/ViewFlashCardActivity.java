@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import comp3350.flashy.R;
-import comp3350.flashy.logic.uiHandler;
 
 public class ViewFlashCardActivity extends AppCompatActivity {
 
@@ -49,8 +48,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setPrevCardContent();
-                String[] content = uiManager.getContent();
+
+                String[] content = uiManager.getPrevCard();
 
                 title = content[0];
                 body = content[1];
@@ -63,8 +62,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setNextCardContent();
-                String[] content = uiManager.getContent();
+                //uiManager.setNextCardContent();
+                String[] content = uiManager.getNextCard();
+
+
 
                 title = content[0];
                 body = content[1];

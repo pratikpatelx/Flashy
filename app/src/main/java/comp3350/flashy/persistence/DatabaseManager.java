@@ -249,7 +249,7 @@ public class DatabaseManager {
         return result;
     }
 
-    private ArrayList getDeck(String identifier) {
+    public ArrayList getDeck(String identifier) {
         ArrayList deck = storage.get(identifier);
 
         if (deck == null) {

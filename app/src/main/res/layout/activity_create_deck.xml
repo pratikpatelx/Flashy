@@ -15,7 +15,9 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-80dp" />
+        android:layout_marginBottom="-80dp" >
+
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/createFlashCard"
@@ -39,6 +41,20 @@
         android:layout_marginTop="296dp"
         android:background="@android:drawable/alert_light_frame"
         android:text="View Flashcards"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/listFlashCards"
+        android:layout_width="475dp"
+        android:layout_height="187dp"
+        android:layout_below="@+id/viewFlashCard"
+        android:layout_alignStart="@+id/viewFlashCard"
+        android:layout_alignEnd="@+id/viewFlashCard"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="FLASHCARD LIST"
         android:textSize="30sp" />
 
 </RelativeLayout>
