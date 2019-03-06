@@ -36,13 +36,13 @@ public class FlashCardListActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView flashCard = (TextView) view.findViewById(android.R.id.text1);
 
-                text1.setTextSize(35);
-                text1.setText(items.get(position).getQuestion());
+                flashCard.setTextSize(35);
+                flashCard.setText(items.get(position).getQuestion());
 
 
-                text1.setOnClickListener(new View.OnClickListener(){
+                flashCard.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         uiManager.setContentByFlashCard(items.get(position).getCardName());
