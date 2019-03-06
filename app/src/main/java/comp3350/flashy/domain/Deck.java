@@ -1,8 +1,9 @@
-package comp3350.flashy.domain;
+package comp3350.flashy.DomainLogic;
+
 import java.util.ArrayList;
 
 public class Deck{
-    
+
     private static final String DUMMYNAME = "DUMMY";
     private static final String DUMMYQUESTION = "There are no cards in this deck.";
     private static final String DUMMYANSWER = "You need to create add a card.";
@@ -18,21 +19,17 @@ public class Deck{
     }
 
     public Deck(String name, Deck other) {
-            this.name = name;
-            this.cards = other.getCards();
+        this.name = name;
+        this.cards = other.getCards();
     }
-    
 
-    protected ArrayList getCards() {
-            return cards;
+
+    public ArrayList getCards() {
+        return cards;
     }
 
     public void setDeck(Deck other) {
-            this.cards = other.getCards();
-    }
-    
-    public String getDeckName(){
-        return this.name;
+        this.cards = other.getCards();
     }
 
 
@@ -43,7 +40,7 @@ public class Deck{
      *  String question: The Question on the flashcard
      *  String answer: The answer to the question, no it's not 42, well not neccesarily
      *
-     * This function will execute the process for putting a new "Flashcard" to 
+     * This function will execute the process for putting a new "Flashcard" to
      * the deck
      * This function will be called when the "Add Card/Done" button is pressed in the
      * card creation GUI.
@@ -66,7 +63,7 @@ public class Deck{
      * Since ArrayLists automatically shift their elements to fill in gaps we should
      * only need special handeling for the case that the card being deleted is the last
      * card in the deck.
-     * 
+     *
      * This function should be called when pressing the delete card button on the
      * deck viewer GUI.
      */
@@ -82,11 +79,11 @@ public class Deck{
 
     /**
      * editCard()
-     * This method will change the card with the same name as the parameter changed 
+     * This method will change the card with the same name as the parameter changed
      * to be the same as the parameter changed.
      * Parameters: Flashcard changed
      *
-     * 
+     *
      * @return returns weather or not the card was successfully edited;
      */
     public boolean editCard(Flashcard changed){
@@ -103,7 +100,7 @@ public class Deck{
      * nextCard()
      *
      * Parameters: None
-     * 
+     *
      * This function changes the card currently being displayed to the next card
      * in the deck
      *
@@ -120,7 +117,7 @@ public class Deck{
      * prevCard()
      *
      * Parameters: None
-     * 
+     *
      * This function changes the card currently being displayed to the previous card
      * in the deck
      *
@@ -139,7 +136,7 @@ public class Deck{
 
     /*
      * getCard()
-     * 
+     *
      * this function returns the Flash object in "deck" with the index equal to "curr"
      * if there are no cards in the deck then then a dummy card will be returned
      */
@@ -153,9 +150,9 @@ public class Deck{
         }
         return currCard;
     }
-    
-    
-    
+
+
+
     /**
      * getNumCards()
      * @return the number of flashcards in this Deck
@@ -167,7 +164,7 @@ public class Deck{
 
     /**
      * toString()
-     * 
+     *
      * will return a string containing information on the deck
      * along with its contents
      */
