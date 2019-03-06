@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.ViewDecksActivity"></activity>
-        <activity android:name=".presentation.NewFlashcardActivity" />
-        <activity android:name=".presentation.EditDeckActivity" />
-        <activity android:name=".presentation.NewDeckActivity" />
-        <activity android:name=".presentation.MenuActivity" />
+        <activity
+            android:name=".presentation.DeckMenuActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--<activity android:name=".presentation.ViewFlashCardActivity$MenuActivity" />-->
+        <!--<activity android:name=".presentation.CreateFlashCardActivity" />-->
+        <!--<activity android:name=".presentation.ViewFlashCardActivity" />-->
+        <activity android:name=".presentation.NewDeckActivity" /> <!-- android:theme="@style/NoActionBar"/> -->
         <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
