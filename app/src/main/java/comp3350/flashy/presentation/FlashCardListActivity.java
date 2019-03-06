@@ -26,19 +26,24 @@ public class FlashCardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card_list);
 
+        TextView title = (TextView) findViewById(R.id.Title);
+
         DatabaseManager db = uiManager.getDb();
+
+        title.setText("THE_ORACLE_DECK");
 
         final ArrayList<Flashcard> items = db.getDeck("THE_ORACLE_DECK");
 
-        final ArrayAdapter<Flashcard> scArrayAdapter = new ArrayAdapter<Flashcard>(this, android.R.layout.simple_list_item_2, android.R.id.text1, items)
+        final ArrayAdapter<Flashcard> scArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = (TextView) view.findViewById(android.R.id.text1);
+                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
 
                 flashCard.setTextSize(35);
+
                 flashCard.setText(items.get(position).getQuestion());
 
 
@@ -57,6 +62,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         ListView listView = (ListView)findViewById(R.id.flashcardList);
         listView.setAdapter(scArrayAdapter);
+        //listView.addFooterView();
 
     }
 
