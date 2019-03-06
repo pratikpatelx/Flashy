@@ -2,11 +2,49 @@ package comp3350.flashy.logic;
 
 import java.util.Random;
 
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
+
+
+    /* old methods, determining what to keep/toss
+
+    @Override
+    public void addFlashcard(String cardName, String question, String answer) {
+        database.addCard(new Flashcard(cardName, question, answer));
+    }
+
+    @Override
+    public void putFlashcardIntoDeck(String deckName, String cardName, String question, String answer) {
+        database.addCardToDeck(deckName, new Flashcard(cardName, question, answer));
+    }
+
+    @Override
+    public void putFlashcardIntoDeck(String deckName, Flashcard flashcard) {
+        database.addCardToDeck(deckName, flashcard);
+    }
+
+    @Override
+    public void editFlashcard(String cardName, String newQuestion, String newAnswer) {
+        database.editCard(cardName, newQuestion, newAnswer);
+    }
+
+    @Override
+    public void removeFlashcardFromDeck(String deckName, String cardName) {
+        database.removeCardFromDeck(deckName, cardName);
+    }
+
+    @Override
+    public void removeCardFromAll(String cardName) {
+        database.removeCardFromAll(cardName);
+    }
+
+    public Flashcard getCard(String cardName){
+        return database.getCard(cardName);
+    }
+*/
+
 
     /**
      * printDeck()
@@ -42,8 +80,10 @@ public class LogicManager implements LogicManagerInterface {
      * deck requested
      */
     protected int queryDeckSize(String deckName){
-        String[][] deck = database.getDeckContents(deckName);
-        return deck.length;
+        Deck currDeck = database.getDeck(deckName);
+        if(currDeck!=null){ return deck.length;}
+        return 0;
+
     }
 
 
