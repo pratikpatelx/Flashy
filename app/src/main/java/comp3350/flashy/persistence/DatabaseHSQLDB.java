@@ -98,25 +98,22 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(1, identifier);
             ResultSet resultSet =  statement.executeQuery();
 
-            int counter = 0;
             while (resultSet.next()) {
+
                 result = new Deck(identifier);
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-
-                if (counter == 0) {
-                    /*
-                    Delete the Deck from the list
-                     */
-                    statement = connection.prepareStatement(
-                            "delete from DeckList where deckName=?;");
-                    statement.setString(1, identifier);
-                    statement.executeUpdate();
-                    counter = 1;
-                }
             }
+
+            /*
+            Delete the Deck from the list
+            */
+            statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
 
             resultSet.close();
             statement.close();
