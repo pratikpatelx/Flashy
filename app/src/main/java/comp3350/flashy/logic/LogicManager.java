@@ -82,7 +82,7 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public ArrayList<Deck> getAllDecks(){
-        return(new ArrayList<Deck>(database.getAllDecks()));
+        return(new ArrayList<Deck>(database.getDeckCollection()));
     }
 
 }
