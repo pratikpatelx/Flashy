@@ -1,5 +1,7 @@
 package comp3350.flashy.logic;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.domain.Deck;
 
 
@@ -18,4 +20,6 @@ public interface LogicManagerInterface {
     void printDeck(String deckName);
 
     int queryDeckSize(String deckName);
+
+    ArrayList<Deck> getAllDecks();
 }
