@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 
 
 
-import DomainLogic.Flashcard;
-import Logic.LogicManager;
+import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.logic.LogicManager;
 //import Persistence.DatabaseManager;
 
 
