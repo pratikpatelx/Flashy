@@ -31,7 +31,7 @@ public class RemoveCardTest {
         else{
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
-        
+
         lgc.removeFlashcardFromDeck("THE_ORACLE_DECK", "Jack");
         System.out.println("\nTest to ensure there is 1 cards in the deck.");
         
