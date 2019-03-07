@@ -1,25 +1,20 @@
 package comp3350.flashy.logic;
 
-import java.util.ArrayList;
-
-import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 
 public interface LogicManagerInterface {
+    void addFlashcard(String cardName, String question, String answer);
 
-    Deck getDeck(String deckName);
+    void putFlashcardIntoDeck(String deckName, String cardName, String question, String answer);
 
-    void insertDeck(Deck updated);
+    void putFlashcardIntoDeck(String deckName, Flashcard flashcard);
 
-    void putFlashcardInDeck(String deckName, String cardName, String question, String answer);
+    void editFlashcard(String cardName, String newQuestion, String newAnswer);
 
-    void copyFlashcard(Deck orig, String destDeck);
+    void removeFlashcardFromDeck(String deckName, String cardName);
 
-    void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer);
+    void removeCardFromAll(String cardName);
 
-    void printDeck(String deckName);
-
-    int queryDeckSize(String deckName);
-
-    ArrayList<Deck> getAllDecks();
+    String[][] shuffleDeck(String deckName);
 }

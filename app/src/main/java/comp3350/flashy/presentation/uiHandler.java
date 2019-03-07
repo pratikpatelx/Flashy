@@ -20,7 +20,6 @@ public class uiHandler {
     public uiHandler() {
         dbSize = 1;
         logic = new LogicManager();
-        db = logic.getDatabase();
     }
 
     public DatabaseManager getDb(){
