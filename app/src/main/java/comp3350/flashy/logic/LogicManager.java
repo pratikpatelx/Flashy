@@ -28,13 +28,11 @@ public class LogicManager implements LogicManagerInterface {
     /**
     * Copying a flashcard from one deck to another, or a new one
     *
-    * SUBJECT TO CHANGE BASED ON WHATEVER NAMING CONVENTION
-    * ENDS UP BEING USED FOR CARD NAMES
     *
     */
 
     @Override
-    public void copyFlashcard(Deck orig, String destDeck, String cardName) {
+    public void copyFlashcard(Deck orig, String destDeck) {
         Flashcard copy = orig.getCard();
         Deck dest = database.getDeck(destDeck);
         if(dest == null){dest = new Deck(destDeck);}
