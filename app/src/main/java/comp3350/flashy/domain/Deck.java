@@ -21,9 +21,9 @@ public class Deck{
     }
 
     public Deck(String name, Deck other) {
-            this.name = name;
-            this.cards = other.getCards();
-            this.validateNames();
+        this.name = name;
+        this.cards = other.getCards();
+        this.validateNames();
     }
     
 
@@ -32,8 +32,8 @@ public class Deck{
     }
 
     public void setDeck(Deck other) {
-            this.cards = other.getCards();
-            this.validateNames();
+        this.cards = other.getCards();
+        this.validateNames();
     }
 
 
@@ -86,25 +86,30 @@ public class Deck{
 
 
 
-    /*
+    /**
      * deleteCard()
      *
-     * Parameters: None
-     *
-     * This card removes the card in the ArrayList variable "Deck" at the index "curr"
-     * Since ArrayLists automatically shift their elements to fill in gaps we should
-     * only need special handeling for the case that the card being deleted is the last
-     * card in the deck.
+     * This method removes the card in the ArrayList specified by the card to be 
+     * removed.
      * 
-     * This function should be called when pressing the delete card button on the
-     * deck viewer GUI.
+     * @param cardName
+     *      The name of the card to be removed
+     * 
+     * @return 
+     *      a boolean of weather a card was actually removed from the deck
      */
-    public void deleteCard(){
-        if(this.curr == this.cards.size()-1){
-            this.curr = this.cards.size() -1;
+    public boolean deleteCard(String cardName){
+        boolean success = false;
+        int pos = this.findCard(cardName);
+        if(pos >= 0){
+            this.cards.remove(pos);
+            this.validateNames();
+            success = true;
+            if(this.curr == this.cards.size()-1){
+                this.curr--;
+            }
         }
-        this.cards.remove(curr);
-        validateNames();
+        return success;
     }
 
 
@@ -203,6 +208,18 @@ public class Deck{
         return card;
     }
     
+    
+    private int findCard(String cardName){
+        int pos = -1;
+        
+        this.validateNames();
+        int number = this.extractNumber(cardName);
+        if(number >= 0 && number < this.cards.size()){
+            pos = number;
+        }
+        
+        return pos;
+    }
     
     
     private Flashcard makeDummy(){
