@@ -1,5 +1,6 @@
 package comp3350.flashy.presentation;
 
+import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.persistence.DatabaseManager;
@@ -7,35 +8,33 @@ import comp3350.flashy.persistence.DatabaseManager;
 public class uiHandler {
 
     private LogicManager logic;
-    private DatabaseManager db;
+    private Deck currDeck;
 
-    private String deckName = "c";
-    //this will be the deckname
-
-    //deck name deckname-index
-    private int dbSize; // this is to hold max index
+    private String deckName;
+    private int deckSize; // this is to hold max index
 
     //TODO add checks and error handling.
 
     public uiHandler() {
-        dbSize = 1;
+        currDeck = new Deck("default");
+        deckSize = currDeck.getNumCards();
         logic = new LogicManager();
-    }
-
-    public DatabaseManager getDb(){
-        return this.db;
+        logic.insertDeck(currDeck);
+        deckName = currDeck.getName();
     }
 
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content) {
 
-        logic.addFlashcard((deckName + dbSize), head, content);
-        dbSize++;
+        logic.putFlashcardInDeck(deckName,(deckName +"-"+ deckSize), head, content);
+        deckSize= currDeck.getNumCards();
+        System.out.println(deckSize);
     }
 
     public String[] getContent(int index) {
-        Flashcard curr = logic.getCard((deckName + index));
+
+        Flashcard curr = currDeck.getCard(deckName +"-"+ index);
 
         String[] result = new String[2];
         result[0] = curr.getQuestion();
@@ -45,17 +44,18 @@ public class uiHandler {
     }
 
     public void editContent(int index, String newQuestion,String newAnswer){
-        Flashcard curr = logic.getCard((deckName + index));
+        Flashcard curr = logic.getDeck("default").getCard(deckName +"-"+ index);
 
         curr.setQuestion(newQuestion);
         curr.setAnswer(newAnswer);
     }
 
     public int getIndexByFlashCard(String name){
-        Flashcard curr = logic.getCard(name);
+        Flashcard curr = logic.getDeck("default").getCard(name);
 
         //change this when changing (deckName + index) to (deckName +"-"+ index)
-        int index = Integer.parseInt(curr.getCardName().substring(1));
+        String[] token = curr.getCardName().split("-");
+        int index = Integer.parseInt(token[1]);
 
         return index;
     }
@@ -63,7 +63,27 @@ public class uiHandler {
 
     public int getDeckSize() {
         //change this to get deck size
-        return dbSize;
+        return deckSize;
+    }
+
+    public Deck getCurrDeck(){
+        return currDeck;
+    }
+
+    public void setCurrDeck(String name){
+        Deck newDeck = logic.getDeck(name);
+
+        if(newDeck !=null){
+            currDeck=newDeck;
+            deckName = newDeck.getName();
+            System.out.println("found deck");
+        }else {
+            currDeck = new Deck(name);
+            logic.insertDeck(currDeck);
+            deckName = currDeck.getName();
+            deckSize = currDeck.getNumCards();
+            System.out.println("created new deck");
+        }
     }
 
 

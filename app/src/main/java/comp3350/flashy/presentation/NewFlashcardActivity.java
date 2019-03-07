@@ -27,8 +27,8 @@ public class NewFlashcardActivity extends AppCompatActivity {
 
         Add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(NewFlashcardActivity.this, EditDeckActivity.class);
-                startActivity(intent);
+               // Intent intent = new Intent(NewFlashcardActivity.this, EditDeckActivity.class);
+                //startActivity(intent);
             }
         });
 

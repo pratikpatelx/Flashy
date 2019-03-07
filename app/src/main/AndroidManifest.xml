@@ -11,11 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.FlashCardListActivity"
-            android:label="@string/title_activity_flash_card_list"
+            android:label="title_activity_flash_card_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".presentation.CreateFlashCardActivity" />
         <activity android:name=".presentation.ViewFlashCardActivity" />
         <activity android:name=".presentation.CreateDeckActivity" />
+        <activity android:name=".presentation.DeckMenuActivity" />
+        <activity android:name=".presentation.NewDeckActivity" />
         <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

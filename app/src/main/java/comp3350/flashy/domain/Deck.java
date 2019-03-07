@@ -2,9 +2,9 @@ package comp3350.flashy.domain;
 import java.util.ArrayList;
 
 public class Deck{
-    
-    
-    
+
+
+
     private static final String DUMMYNAME = "DUMMY";
     private static final String DUMMYQUESTION = "Why did you give me this dummy?";
     private static final String DUMMYANSWER = "There are either no cards in the "
@@ -25,7 +25,7 @@ public class Deck{
         this.cards = other.getCards();
         this.validateNames();
     }
-    
+
 
     public ArrayList getCards() {
             return cards;
@@ -37,16 +37,16 @@ public class Deck{
     }
 
 
-    public String getDeckName(){
+    public String getName(){
         return this.name;
     }
-    
+
     public void setDeckName(String newName){
         this.name = newName;
         this.validateNames();
     }
-    
-    
+
+
     /**
      * validateNames()
      * This function will iterate through the cards and ensures each one has the
@@ -63,8 +63,8 @@ public class Deck{
             }
         }
     }
-    
-    
+
+
     /*
      * addCard()
      *
@@ -72,7 +72,7 @@ public class Deck{
      *  String question: The Question on the flashcard
      *  String answer: The answer to the question, no it's not 42, well not neccesarily
      *
-     * This function will execute the process for putting a new "Flashcard" to 
+     * This function will execute the process for putting a new "Flashcard" to
      * the deck
      * This function will be called when the "Add Card/Done" button is pressed in the
      * card creation GUI.
@@ -89,13 +89,13 @@ public class Deck{
     /**
      * deleteCard()
      *
-     * This method removes the card in the ArrayList specified by the card to be 
+     * This method removes the card in the ArrayList specified by the card to be
      * removed.
-     * 
+     *
      * @param cardName
      *      The name of the card to be removed
-     * 
-     * @return 
+     *
+     * @return
      *      a boolean of weather a card was actually removed from the deck
      */
     public boolean deleteCard(String cardName){
@@ -117,12 +117,12 @@ public class Deck{
 
     /**
      * editCard()
-     * This method will change the card with the same name as the parameter changed 
+     * This method will change the card with the same name as the parameter changed
      * to be the same as the parameter changed.
-     * 
+     *
      * @param changed
      *
-     * 
+     *
      * @return returns weather or not the card was successfully edited;
      */
     public boolean editCard(Flashcard changed){
@@ -133,7 +133,7 @@ public class Deck{
                 cards.get(idx).editCard(changed);
                 success = true;
             }
-            
+
         }
         return success;
     }
@@ -143,7 +143,7 @@ public class Deck{
      * nextCard()
      *
      * Parameters: None
-     * 
+     *
      * This function changes the card currently being displayed to the next card
      * in the deck
      *
@@ -160,7 +160,7 @@ public class Deck{
      * prevCard()
      *
      * Parameters: None
-     * 
+     *
      * This function changes the card currently being displayed to the previous card
      * in the deck
      *
@@ -179,14 +179,14 @@ public class Deck{
 
     /**
      * getCard()
-     * 
+     *
      * this function returns the Flash object in "deck" with the index equal to "curr"
      * if there are no cards in the deck then then a dummy card will be returned.
-     * 
+     *
      * @param cardName
      *      The name of the card to search for
-     * 
-     * @return 
+     *
+     * @return
      *      the Flashcard object with the specified name the method will return
      *      a dummy card if it can't find the card requested
      */
@@ -207,27 +207,27 @@ public class Deck{
         }
         return card;
     }
-    
-    
+
+
     private int findCard(String cardName){
         int pos = -1;
-        
+
         this.validateNames();
         int number = this.extractNumber(cardName);
         if(number >= 0 && number < this.cards.size()){
             pos = number;
         }
-        
+
         return pos;
     }
-    
-    
+
+
     private Flashcard makeDummy(){
         return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
     }
-    
-    
-    
+
+
+
     private int extractNumber(String cardName){
         int number = -1;
         int pos = cardName.lastIndexOf('-');
@@ -242,8 +242,8 @@ public class Deck{
         }
         return number;
     }
-    
-    
+
+
     /**
      * getNumCards()
      * @return the number of flashcards in this Deck
@@ -255,13 +255,13 @@ public class Deck{
 
     /**
      * toString()
-     * 
+     *
      * will return a string containing information on the deck
      * along with its contents
-     * 
-     * @return 
-     * 
-     * 
+     *
+     * @return
+     *
+     *
      */
     @Override
     public String toString(){
