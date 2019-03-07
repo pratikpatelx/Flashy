@@ -6,19 +6,18 @@ import comp3350.flashy.persistence.DatabaseManager;
 
 public class uiHandler {
 
-    private int index; // for now, we will use the index to name the flashcards within the master deck
     private LogicManager logic;
     private DatabaseManager db;
-    //implemented with string id, should be integer.
 
-    private String cardName = "c";
+    private String deckName = "c";
+    //this will be the deckname
+
+    //deck name deckname-index
     private int dbSize; // this is to hold max index
-    //change dbsize to deck size and get deck size for specific viewer.
 
     //TODO add checks and error handling.
 
     public uiHandler() {
-        index = 1;
         dbSize = 1;
         logic = new LogicManager();
         db = logic.getDatabase();
@@ -28,66 +27,48 @@ public class uiHandler {
         return this.db;
     }
 
+
+    //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content) {
 
-        logic.addFlashcard((cardName + dbSize), head, content);
-        //flashCardDB.addCard(new Flashcard((cardName + dbSize), head, content));
+        logic.addFlashcard((deckName + dbSize), head, content);
         dbSize++;
     }
 
-    public String[] getContent() {
-        //Flashcard curr = flashCardDB.getCard((cardName + index));
-
-        Flashcard curr = logic.getCard((cardName + index));
-        System.out.println(index);
+    public String[] getContent(int index) {
+        Flashcard curr = logic.getCard((deckName + index));
 
         String[] result = new String[2];
-
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
 
         return result;
     }
 
-    public void setContentByFlashCard(String name){
+    public void editContent(int index, String newQuestion,String newAnswer){
+        Flashcard curr = logic.getCard((deckName + index));
+
+        curr.setQuestion(newQuestion);
+        curr.setAnswer(newAnswer);
+    }
+
+    public int getIndexByFlashCard(String name){
         Flashcard curr = logic.getCard(name);
-        index = Integer.parseInt(curr.getCardName().substring(1));
+
+        //change this when changing (deckName + index) to (deckName +"-"+ index)
+        int index = Integer.parseInt(curr.getCardName().substring(1));
+
+        return index;
     }
 
-    public String[] getNextCard(){
-        setNextCardContent();
-        return getContent();
+
+    public int getDeckSize() {
+        //change this to get deck size
+        return dbSize;
     }
 
-    public String[] getPrevCard(){
-        setPrevCardContent();
-        return getContent();
-    }
 
-    //clamping methods for flashcard viewer
-    private void setNextCardContent() {
-        //Flashcard nextCard;
-        index++;
-        if (index < dbSize) {
-            return;
-        } else {
-            index--;
-        }
-
-    }
-
-    private void setPrevCardContent() {
-        //Flashcard nextCard;
-        index--;
-        if (index > 0) {
-            return;
-        } else {
-            index++;
-        }
-
-    }
-
-    //test stub for now
+    //test stub for now remove later
     public void addStub(){
         for(int i = 0;i<4;i++)
             saveCard("test"+i,"test"+i);

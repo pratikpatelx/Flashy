@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import comp3350.flashy.persistence.DatabaseManager;
 
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
+    ArrayAdapter<Flashcard> fcArrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,9 @@ public class FlashCardListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flash_card_list);
 
         TextView title = (TextView) findViewById(R.id.Title);
+        Button exit = (Button) findViewById(R.id.exitFlashList);
+        Button add = (Button) findViewById(R.id.addCard);
+        Button edit = (Button) findViewById(R.id.editCard);
 
         DatabaseManager db = uiManager.getDb();
 
@@ -34,7 +40,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         final ArrayList<Flashcard> items = db.getDeck("THE_ORACLE_DECK");
 
-        final ArrayAdapter<Flashcard> scArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
+        fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
@@ -50,8 +56,7 @@ public class FlashCardListActivity extends AppCompatActivity {
                 flashCard.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        uiManager.setContentByFlashCard(items.get(position).getCardName());
-                        openViewFlashCardActivity();
+                        openViewFlashCardActivity(items.get(position).getCardName());
                     }
                 });
 
@@ -61,14 +66,47 @@ public class FlashCardListActivity extends AppCompatActivity {
         };
 
         ListView listView = (ListView)findViewById(R.id.flashcardList);
-        listView.setAdapter(scArrayAdapter);
-        //listView.addFooterView();
+        listView.setAdapter(fcArrayAdapter);
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //edit deck
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCreateFlashCardActivity();
+            }
+        });
 
     }
 
-    public void openViewFlashCardActivity() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fcArrayAdapter.notifyDataSetChanged();
+    }
+
+    public void openViewFlashCardActivity(String cardName) {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        intent.putExtra("FLASHCARD",cardName);
         startActivity(intent);
     }
+
+    public void openCreateFlashCardActivity() {
+        Intent intent = new Intent(this, CreateFlashCardActivity.class);
+        startActivity(intent);
+    }
+
 
 }

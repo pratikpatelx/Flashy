@@ -7,6 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".presentation.FlashCardListActivity">
 
+    <Button
+        android:id="@+id/editCard"
+        android:layout_width="206dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Edit Cards"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/addCard"
+        app:layout_constraintStart_toEndOf="@+id/exitFlashList"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardList" />
+
+    <Button
+        android:id="@+id/addCard"
+        android:layout_width="164dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Add card"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardList"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardList" />
+
+    <Button
+        android:id="@+id/exitFlashList"
+        android:layout_width="164dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Exit"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/flashcardList"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardList" />
+
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
@@ -26,10 +62,10 @@
     <ListView
         android:id="@+id/flashcardList"
         android:layout_width="568dp"
-        android:layout_height="687dp"
-        android:layout_marginTop="172dp"
+        android:layout_height="634dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

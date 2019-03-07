@@ -22,6 +22,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private EditText toShow;
 
     private FloatingActionButton save;
+    private FloatingActionButton cancel;
     private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
@@ -33,12 +34,14 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         textViewFlashBody = (TextView) findViewById(R.id.body);
         textViewFlashTitle = (TextView) findViewById(R.id.title);
         save = (FloatingActionButton) findViewById(R.id.saveButton);
+        cancel = (FloatingActionButton) findViewById(R.id.cancelButton);
         toShow = new EditText(this);
 
         userInput = new AlertDialog.Builder(this).create();
 
         userInput.setTitle("");
         userInput.setView(toShow);
+        this.getSupportActionBar().hide();
 
         //the save button for user popup interface
         userInput.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener() {
@@ -86,6 +89,13 @@ public class CreateFlashCardActivity extends AppCompatActivity {
                 System.out.println(title + " :: title saved");
                 System.out.println(body + " :: body saved");
                 uiManager.saveCard(title, body);
+                finish();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
