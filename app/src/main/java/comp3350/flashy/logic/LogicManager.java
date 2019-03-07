@@ -13,6 +13,11 @@ public class LogicManager implements LogicManagerInterface {
         database.addCard(new Flashcard(cardName, question, answer));
     }
 
+    public Deck getDeck(String deckName){
+        return(database.getDeck(deckName));
+    }
+
+
     @Override
     public void putFlashcardIntoDeck(String deckName, String cardName, String question, String answer) {
         database.addCardToDeck(deckName, new Flashcard(cardName, question, answer));
