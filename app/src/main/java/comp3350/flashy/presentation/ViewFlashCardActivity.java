@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import comp3350.flashy.R;
-import comp3350.flashy.logic.uiHandler;
 
 public class ViewFlashCardActivity extends AppCompatActivity {
 
@@ -17,8 +16,9 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
     private String body;
     private String title;
+    private int index=1;
+    private int deckSize;
 
-    private FloatingActionButton test;
     private uiHandler uiManager = MainActivity.getHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
@@ -29,16 +29,24 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_flash_card);
+        this.getSupportActionBar().hide();
+
 
         textViewFlashBody = (TextView) findViewById(R.id.body);
         textViewFlashTitle = (TextView) findViewById(R.id.title);
         prev = (FloatingActionButton) findViewById(R.id.prevButton);
         next = (FloatingActionButton) findViewById(R.id.nextButton);
         exit = (Button) findViewById(R.id.exitButton);
-        //toShow = new EditText(this);
+        deckSize = uiManager.getDeckSize();
 
+        Bundle extra = getIntent().getExtras();
+        String[] content;
 
-        String[] content = uiManager.getContent();
+        if(extra!=null){
+            index = uiManager.getIndexByFlashCard(extra.getString("FLASHCARD"));
+        }
+
+        content = uiManager.getContent(index);
 
         title = content[0];
         body = content[1];
@@ -49,8 +57,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setPrevCardContent();
-                String[] content = uiManager.getContent();
+                prevUpdateIndex();
+                String[] content = uiManager.getContent(index);
 
                 title = content[0];
                 body = content[1];
@@ -63,8 +71,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setNextCardContent();
-                String[] content = uiManager.getContent();
+                nextUpdateIndex();
+                String[] content = uiManager.getContent(index);
 
                 title = content[0];
                 body = content[1];
@@ -81,6 +89,29 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    //clamping methods for flashcard viewer
+    private void nextUpdateIndex() {
+        //Flashcard nextCard;
+        index++;
+        if (index < deckSize) {
+            return;
+        } else {
+            index--;
+        }
+
+    }
+
+    private void prevUpdateIndex() {
+        //Flashcard nextCard;
+        index--;
+        if (index > 0) {
+            return;
+        } else {
+            index++;
+        }
 
     }
 }

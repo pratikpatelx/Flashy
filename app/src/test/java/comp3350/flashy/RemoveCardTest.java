@@ -1,4 +1,4 @@
-package Tests;
+package comp3350.flashy;
 
 //import junit.framework.*;
 import org.junit.Test;
@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 
 
 
-import DomainLogic.Flashcard;
-import Logic.LogicManager;
+import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.logic.LogicManager;
 
 public class RemoveCardTest {
     

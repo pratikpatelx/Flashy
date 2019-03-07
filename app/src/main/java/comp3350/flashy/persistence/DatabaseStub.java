@@ -1,7 +1,7 @@
 package comp3350.flashy.persistence;
 import java.util.Hashtable;
 
-import comp3350.flashy.DomainLogic.Deck;
+import comp3350.flashy.domain.Deck;
 
 public class DatabaseStub implements DatabaseImplementation{
     private Hashtable<String, Deck> storage;
