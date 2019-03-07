@@ -3,9 +3,12 @@ import java.util.ArrayList;
 
 public class Deck{
     
+    
+    
     private static final String DUMMYNAME = "DUMMY";
-    private static final String DUMMYQUESTION = "There are no cards in this deck.";
-    private static final String DUMMYANSWER = "You need to create add a card.";
+    private static final String DUMMYQUESTION = "Why did you give me this dummy?";
+    private static final String DUMMYANSWER = "There are either no cards in the "
+            + "deck or you asked for a specific card that does not exist";
 
     private ArrayList<Flashcard> cards;
     private String name;
@@ -20,22 +23,48 @@ public class Deck{
     public Deck(String name, Deck other) {
             this.name = name;
             this.cards = other.getCards();
+            this.validateNames();
     }
     
 
-    protected ArrayList getCards() {
+    public ArrayList getCards() {
             return cards;
     }
 
     public void setDeck(Deck other) {
             this.cards = other.getCards();
+            this.validateNames();
     }
-    
+
+
     public String getDeckName(){
         return this.name;
     }
-
-
+    
+    public void setDeckName(String newName){
+        this.name = newName;
+        this.validateNames();
+    }
+    
+    
+    /**
+     * validateNames()
+     * This function will iterate through the cards and ensures each one has the
+     * correct name
+     */
+    public final void validateNames(){
+        String correct;
+        Flashcard card;
+        for(int i = 0; i < this.cards.size(); i++){
+            correct = this.name+ "-" + (i);
+            card = this.cards.get(i);
+            if(!card.getCardName().equals(correct)){
+                card.setCardName(correct);
+            }
+        }
+    }
+    
+    
     /*
      * addCard()
      *
@@ -75,6 +104,7 @@ public class Deck{
             this.curr = this.cards.size() -1;
         }
         this.cards.remove(curr);
+        validateNames();
     }
 
 
@@ -84,7 +114,8 @@ public class Deck{
      * editCard()
      * This method will change the card with the same name as the parameter changed 
      * to be the same as the parameter changed.
-     * Parameters: Flashcard changed
+     * 
+     * @param changed
      *
      * 
      * @return returns weather or not the card was successfully edited;
@@ -93,13 +124,17 @@ public class Deck{
         boolean success = false;
         if(cards.size() >= 0){
             int idx = cards.indexOf(changed);
-            cards.get(idx).editCard(changed);
+            if(idx >= 0){
+                cards.get(idx).editCard(changed);
+                success = true;
+            }
+            
         }
         return success;
     }
 
 
-    /*
+    /**
      * nextCard()
      *
      * Parameters: None
@@ -137,23 +172,59 @@ public class Deck{
     }
 
 
-    /*
+    /**
      * getCard()
      * 
      * this function returns the Flash object in "deck" with the index equal to "curr"
-     * if there are no cards in the deck then then a dummy card will be returned
+     * if there are no cards in the deck then then a dummy card will be returned.
+     * 
+     * @param cardName
+     *      The name of the card to search for
+     * 
+     * @return 
+     *      the Flashcard object with the specified name the method will return
+     *      a dummy card if it can't find the card requested
      */
-    public Flashcard getCard(){
-        Flashcard currCard;
-        if(this.cards.size() <= 0){
-            currCard = new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
+    public Flashcard getCard(String cardName){
+        Flashcard card;
+        if(this.cards.size() < 0){
+            card = makeDummy();
         }
         else{
-            currCard = this.cards.get(curr);
+            this.validateNames();
+            int pos = extractNumber(cardName);
+            if(pos >= 0){
+                card = this.cards.get(pos);
+            }
+            else{
+                card = makeDummy();
+            }
         }
-        return currCard;
+        return card;
     }
     
+    
+    
+    private Flashcard makeDummy(){
+        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
+    }
+    
+    
+    
+    private int extractNumber(String cardName){
+        int number = -1;
+        int pos = cardName.lastIndexOf('-');
+        if(pos >= 0){
+            try{
+                number = Integer.valueOf(cardName.substring(pos+1));
+            }
+            catch(NumberFormatException nfe){
+                System.err.println("Could not extract card number from " + cardName);
+                System.err.println(nfe.getMessage());
+            }
+        }
+        return number;
+    }
     
     
     /**
@@ -170,7 +241,12 @@ public class Deck{
      * 
      * will return a string containing information on the deck
      * along with its contents
+     * 
+     * @return 
+     * 
+     * 
      */
+    @Override
     public String toString(){
         String info = "Deck: " + this.name + "\n";
         for(int i = 0; i < this.cards.size(); i++){
