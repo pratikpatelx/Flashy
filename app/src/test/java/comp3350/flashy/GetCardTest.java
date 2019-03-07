@@ -16,10 +16,11 @@ public class GetCardTest {
     public void getCardTest(){
         System.out.println("\n Running getCard test\n");
         LogicManager lgc = new LogicManager();
-        String cardName = "newCard";
+        String deckName = "Test_Deck";
+        String cardName = deckName + "-" + 0;
         Flashcard newCard = new Flashcard(cardName,"defaultQ","defaultA");
-        lgc.addFlashcard(cardName,"defaultQ","defaultQ");
-        assertEquals("getCardTest failed.",newCard,lgc.getCard(cardName));
+        lgc.putFlashcardInDeck("Test_Deck", cardName, "defaultQ", "defaultQ");
+        assertEquals("getCardTest failed.",newCard,lgc.getDeck(deckName).getCard(cardName));
     }
     
 
