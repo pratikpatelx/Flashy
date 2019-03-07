@@ -1,7 +1,7 @@
 package comp3350.flashy.persistence;
 
-import comp3350.flashy.DomainLogic.Deck;
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 public class DatabaseManager {
     DatabaseImplementation storage;

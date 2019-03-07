@@ -9,12 +9,25 @@ import comp3350.flashy.persistence.DatabaseManager;
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
 
+    @Override
     public Deck getDeck(String deckName){
         return(database.getDeck(deckName));
     }
 
+    @Override
     public void insertDeck(Deck updated){
         database.inputDeck(updated.getName(), updated);
+    }
+
+    @Override
+    public void deleteDeck(Deck curr){
+        database.getDeck(curr.getName());
+    }
+
+    @Override
+    public Deck removeCard(Deck curr, int index){
+        curr.deleteCard(curr.getName()+"-"+index);
+        return curr;
     }
 
     @Override

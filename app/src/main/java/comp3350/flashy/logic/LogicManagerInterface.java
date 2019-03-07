@@ -11,6 +11,10 @@ public interface LogicManagerInterface {
 
     void insertDeck(Deck updated);
 
+    void deleteDeck(Deck curr);
+
+    Deck removeCard(Deck curr, int index);
+
     void putFlashcardInDeck(String deckName, String cardName, String question, String answer);
 
     void copyFlashcard(Deck orig, String destDeck);
