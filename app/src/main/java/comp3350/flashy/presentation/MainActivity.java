@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ui.addStub(); //added sample stub for testing
-        giveAccess = (Button)findViewById(R.id.login_button);
+        giveAccess = (Button)findViewById(R.id.btnMainEnter);
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

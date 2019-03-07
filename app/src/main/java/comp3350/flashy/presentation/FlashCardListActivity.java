@@ -15,13 +15,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.R;
 import comp3350.flashy.persistence.DatabaseManager;
 
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
     ArrayAdapter<Flashcard> fcArrayAdapter;
+
+    private Deck currDeck = new Deck("THE_ORACLE_DECK");
 
 
     @Override
@@ -34,11 +37,11 @@ public class FlashCardListActivity extends AppCompatActivity {
         Button add = (Button) findViewById(R.id.addCard);
         Button edit = (Button) findViewById(R.id.editCard);
 
-        DatabaseManager db = uiManager.getDb();
+
 
         title.setText("THE_ORACLE_DECK");
 
-        final ArrayList<Flashcard> items = db.getDeck("THE_ORACLE_DECK");
+        final ArrayList<Flashcard> items = currDeck.getCards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {

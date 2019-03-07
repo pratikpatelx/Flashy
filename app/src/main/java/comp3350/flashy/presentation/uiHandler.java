@@ -1,6 +1,6 @@
 package comp3350.flashy.presentation;
 
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.persistence.DatabaseManager;
 
