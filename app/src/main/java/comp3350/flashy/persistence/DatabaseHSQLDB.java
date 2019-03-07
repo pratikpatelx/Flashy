@@ -2,14 +2,13 @@ package comp3350.flashy.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import comp3350.flashy.DomainLogic.Deck;
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
     static Connection connection;
