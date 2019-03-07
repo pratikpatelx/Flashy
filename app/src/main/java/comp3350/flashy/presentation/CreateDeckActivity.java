@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.R;
 
 public class CreateDeckActivity extends AppCompatActivity {
@@ -53,6 +55,12 @@ public class CreateDeckActivity extends AppCompatActivity {
             }
         });
 
+
+        ArrayList<String> names = uiManager.getNames();
+
+        for(String name: names){
+            System.out.println(name);
+        }
 
     }
 
