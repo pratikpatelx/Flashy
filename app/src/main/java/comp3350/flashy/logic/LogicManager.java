@@ -14,6 +14,11 @@ public class LogicManager implements LogicManagerInterface {
         return(database.getDeck(deckName));
     }
 
+    public Deck getDeck(String deckName){
+        return(database.getDeck(deckName));
+    }
+
+
     @Override
     public void insertDeck(Deck updated){
         database.inputDeck(updated.getName(), updated);
