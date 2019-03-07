@@ -1,6 +1,4 @@
-package comp3350.flashy.DomainLogic;
-
-import comp3350.flashy.DomainLogic.FlashcardInterface;
+package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
     private String cardName;
