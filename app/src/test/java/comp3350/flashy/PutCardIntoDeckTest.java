@@ -1,19 +1,9 @@
-
 package comp3350.flashy;
 
-import junit.framework.*;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
 import static org.junit.Assert.*;
-
-
-
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
-//import Persistence.DatabaseManager;
-
 
 public class PutCardIntoDeckTest {
     

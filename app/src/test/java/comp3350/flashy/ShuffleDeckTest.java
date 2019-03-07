@@ -1,21 +1,13 @@
-
 package comp3350.flashy;
 
-import junit.framework.*;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
 import static org.junit.Assert.*;
-
 import java.util.Arrays;
 
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
 public class ShuffleDeckTest {
-    
-    
+
     /**shuffleDeckTest
      *
      * This test will confirm that the shuffleDeck method is returning a shuffled deck.
@@ -32,6 +24,4 @@ public class ShuffleDeckTest {
         assertFalse("shuffleDeck test failed",Arrays.deepEquals(initial,lgc.shuffleDeck(testDeck)));
         System.out.println("shuffleDeck test complete.");
     }
-
-    
 }

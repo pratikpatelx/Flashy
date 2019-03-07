@@ -1,15 +1,8 @@
 package comp3350.flashy;
 
-//import junit.framework.*;
 import org.junit.Test;
-//import org.junit.runner.JUnitCore;
-//import org.junit.runner.Result;
-//import org.junit.runner.notification.Failure;
 import static org.junit.Assert.*;
 
-
-
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
 public class RemoveCardTest {
@@ -24,8 +17,7 @@ public class RemoveCardTest {
         lgc.addFlashcard("Bob", question, "It was a basket filled with corgi puppies. =D");
         lgc.addFlashcard("Jack", question, "It was a basket filled with schnauzer puppies. =D");
         lgc.addFlashcard("Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
-        
-        
+
         System.out.println("Test to ensure there are 3 cards.");
         int numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
         
