@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.DomainLogic.Deck;
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
     private static Connection connection;
