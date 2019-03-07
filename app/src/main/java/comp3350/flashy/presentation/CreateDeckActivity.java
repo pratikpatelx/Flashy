@@ -13,6 +13,7 @@ public class CreateDeckActivity extends AppCompatActivity {
     private Button createFlashCard;
     private Button viewFlashCard;
     private Button listFlashCards;
+    private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,13 @@ public class CreateDeckActivity extends AppCompatActivity {
         createFlashCard = (Button) findViewById(R.id.createFlashCard);
         viewFlashCard = (Button) findViewById(R.id.viewFlashCard);
         listFlashCards = (Button) findViewById(R.id.listFlashCards);
+
+        Bundle extra = super.getIntent().getExtras();
+
+        if(extra != null){
+            uiManager.setCurrDeck(extra.getString("DECK"));
+            System.out.println(extra.getString("DECK"));
+        }
 
 
         createFlashCard.setOnClickListener(new View.OnClickListener() {

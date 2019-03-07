@@ -24,7 +24,7 @@ public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
     ArrayAdapter<Flashcard> fcArrayAdapter;
 
-    private Deck currDeck = new Deck("THE_ORACLE_DECK");
+    private Deck currDeck = uiManager.getCurrDeck();
 
 
     @Override

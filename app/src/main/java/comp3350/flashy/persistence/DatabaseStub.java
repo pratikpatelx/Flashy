@@ -16,7 +16,7 @@ public class DatabaseStub implements DatabaseImplementation{
 
     public Deck getDeck(String identifier) {
         Deck result = storage.get(identifier);
-        storage.remove(identifier);
+       // storage.remove(identifier);
         return result;
     }
 }
