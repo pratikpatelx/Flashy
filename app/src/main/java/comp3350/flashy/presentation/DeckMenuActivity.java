@@ -1,0 +1,51 @@
+package comp3350.flashy.presentation;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import comp3350.flashy.R;
+
+public class DeckMenuActivity extends AppCompatActivity {
+    private Button newDeck;
+    private Button viewDeck;
+    private Button logOut;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_deck_menu);
+
+        newDeck = (Button) findViewById(R.id.newDeck);
+        newDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCreateNewDeckActivity();
+                Log.d("Flashy", "new deck button clicked");
+            }
+        });
+
+        logOut = (Button) findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHomeActivity();
+                Log.d("Flashy", "log out button clciked");
+            }
+        });
+
+    }
+
+    public void openCreateNewDeckActivity(){
+        Intent intent = new Intent(this, NewDeckActivity.class);
+        startActivity(intent);
+    }
+
+    public void openHomeActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+}

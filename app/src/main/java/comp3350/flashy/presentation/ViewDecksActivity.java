@@ -33,8 +33,8 @@ public class ViewDecksActivity extends AppCompatActivity {
 
         EditDeck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ViewDecksActivity.this, EditDeckActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ViewDecksActivity.this, EditDeckActivity.class);
+//                startActivity(intent);
             }
         });
 
