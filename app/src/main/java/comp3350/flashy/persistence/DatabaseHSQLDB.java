@@ -29,7 +29,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists Deck ("
+                    "create table if not exists DeckList ("
                             + "deckName varChar(180), "
                             + "Primary Key (deckName)");
             statement.execute();
