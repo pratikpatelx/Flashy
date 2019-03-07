@@ -11,12 +11,14 @@ public class RemoveCardTest {
     public void removeCardTest(){
         System.out.println("\nrunning RemoveCard test\n");
         LogicManager lgc = new LogicManager();
-        
+        String deckName = "Test_Deck";
+        String firstCardName = deckName + "-" + 0;
+        String secondCardName = deckName + "-" + 1;
         String question = "I'm thinking of something cute guess what it is.";
         
-        lgc.addFlashcard("Bob", question, "It was a basket filled with corgi puppies. =D");
-        lgc.addFlashcard("Jack", question, "It was a basket filled with schnauzer puppies. =D");
-        lgc.addFlashcard("Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
+        lgc.putFlashcardInDeck(deckName,"Bob", question, "It was a basket filled with corgi puppies. =D");
+        lgc.putFlashcardInDeck(deckName,"Jack", question, "It was a basket filled with schnauzer puppies. =D");
+        lgc.putFlashcardInDeck(deckName,"Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
 
         System.out.println("Test to ensure there are 3 cards.");
         int numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
@@ -28,19 +30,6 @@ public class RemoveCardTest {
         }
         else{
             System.out.println("There are " + numCards + " cards in the deck; test failed");
-        }
-        
-        lgc.removeCardFromAll("Bob");
-        
-        System.out.println("\nTest to ensure there is 2 cards in the deck.");
-        
-        numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
-        assertTrue(numCards == 2);
-        if(numCards == 2){
-            System.out.println("There are 2 cards in the Deck, test passed");
-        }
-        else{
-            System.out.println("There are " + numCards + " cards in the deck, test failed");
         }
         
         lgc.removeFlashcardFromDeck("THE_ORACLE_DECK", "Jack");
