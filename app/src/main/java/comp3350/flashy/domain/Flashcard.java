@@ -1,6 +1,4 @@
-package comp3350.flashy.DomainLogic;
-
-import comp3350.flashy.DomainLogic.FlashcardInterface;
+package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
     private String cardName;
@@ -56,12 +54,12 @@ public class Flashcard implements FlashcardInterface {
     public void setCardName(String newName) {
         cardName = newName;
     }
-
+    
     /**
      * editCard()
      * This method will change question and answer to be the same as that of
      * mimic
-     *
+     * 
      * @param mimic
      * @return true if and only if mimic has the same name as this
      */

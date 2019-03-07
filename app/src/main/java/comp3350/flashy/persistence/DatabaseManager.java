@@ -1,6 +1,6 @@
 package comp3350.flashy.persistence;
 
-import comp3350.flashy.DomainLogic.Deck;
+import comp3350.flashy.domain.Deck;
 
 //Will act as a buffer between the class containing the HSQLDB and the logic layer. For now though, it is itself the acting database.
 public class DatabaseManager {

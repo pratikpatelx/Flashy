@@ -1,4 +1,4 @@
-package comp3350.flashy.DomainLogic;
+package comp3350.flashy.domain;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,7 @@ public class Deck{
         this.cards = other.getCards();
     }
 
+    public String getName(){return this.name;}
 
     /*
      * addCard()

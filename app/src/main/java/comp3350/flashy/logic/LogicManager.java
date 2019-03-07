@@ -1,12 +1,52 @@
 package comp3350.flashy.logic;
 
-import java.util.Random;
+import java.util.ArrayList;
 
-import comp3350.flashy.DomainLogic.Flashcard;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
+
+    public Deck getDeck(String deckName){
+        return(database.getDeck(deckName));
+    }
+
+    public void insertDeck(Deck updated){
+        database.inputDeck(updated.getName(), updated);
+    }
+
+    @Override
+    public void putFlashcardInDeck(String deckName, String cardName, String question, String answer) {
+        Deck currDeck = database.getDeck(deckName);
+        if(currDeck == null){currDeck = new Deck(deckName);}
+        currDeck.addCard(new Flashcard(cardName,question,answer));
+        database.inputDeck(deckName, currDeck);
+    }
+
+    /**
+    * Copying a flashcard from one deck to another, or a new one
+    *
+    *
+    */
+
+    @Override
+    public void copyFlashcard(Deck orig, String destDeck) {
+        Flashcard copy = orig.getCard();
+        Deck dest = database.getDeck(destDeck);
+        if(dest == null){dest = new Deck(destDeck);}
+        dest.addCard(copy);
+        database.inputDeck(destDeck,dest);
+    } //
+
+    @Override
+    public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {
+        Deck currDeck = database.getDeck(deckName);
+        if(currDeck == null){currDeck = new Deck(deckName);}
+        currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
+        database.inputDeck(deckName,currDeck);
+    }
 
     /**
      * printDeck()
@@ -17,16 +57,9 @@ public class LogicManager implements LogicManagerInterface {
      *  This method is primarily for testing. It outputs the contents of a deck from
      * The database.
      */
-    protected void printDeck(String deckName){
-        String[][] deck = database.getDeckContents(deckName);
-
-        System.out.println("Deck: " + deckName + "/n");
-        for(int i = 0; i < deck.length; i++){
-            System.out.println("Card: " + deck[i][0]);
-            System.out.println("Q: " + deck[i][1]);
-            System.out.println("A: " + deck[i][2] + "\n");
-        }
-
+    public void printDeck(String deckName){
+        Deck currDeck = database.getDeck(deckName);
+        System.out.println(currDeck.toString());
     }
 
     /**
@@ -41,38 +74,15 @@ public class LogicManager implements LogicManagerInterface {
      * This method is primarily for testing purposes, it returns the size of the
      * deck requested
      */
-    protected int queryDeckSize(String deckName){
-        String[][] deck = database.getDeckContents(deckName);
-        return deck.length;
+    public int queryDeckSize(String deckName){
+        Deck currDeck = database.getDeck(deckName);
+        if(currDeck!=null){ return currDeck.getNumCards();}
+        return 0;
     }
 
-
-    //Shuffles the deck randomly
     @Override
-    public String[][] shuffleDeck(String deckName) {
-        Random rand = new Random();
-        String[][] result = database.getDeckContents(deckName);
-        int deckLength = result.length;
-        int n;
-
-        int i = -1;
-        while (i++ < deckLength - 1) {
-            n = rand.nextInt(deckLength);
-            String tempCardName = result[n][0];
-            String tempQuestion = result[n][1];
-            String tempAnswer = result[n][2];
-
-            result[n][0] = result[i][0];
-            result[n][1] = result[i][1];
-            result[n][2] = result[i][2];
-
-            result[i][0] = tempCardName;
-            result[i][1] = tempQuestion;
-            result[i][2] = tempAnswer;
-
-        }
-
-        database.inputDeck(deckName, result);
-        return result;
+    public ArrayList<Deck> getAllDecks(){
+        return(new ArrayList<Deck>(database.getAllDecks()));
     }
+
 }
