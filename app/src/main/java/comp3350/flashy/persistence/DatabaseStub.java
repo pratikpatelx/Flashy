@@ -29,7 +29,6 @@ public class DatabaseStub implements DatabaseImplementation{
            names.add(entry.getKey());
         }
 
-
         return names;
     }
 }
