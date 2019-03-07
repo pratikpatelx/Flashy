@@ -73,5 +73,9 @@ public class uiHandler {
             saveCard("test"+i,"test"+i);
     }
 
+    public void deleteCard() {
+
+    }
+
 
 }

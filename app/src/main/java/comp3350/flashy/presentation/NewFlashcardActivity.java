@@ -31,5 +31,6 @@ public class NewFlashcardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

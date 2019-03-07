@@ -53,7 +53,7 @@ public class LogicManager implements LogicManagerInterface {
      *  This method is primarily for testing. It outputs the contents of a deck from
      * The database.
      */
-    protected void printDeck(String deckName){
+    public void printDeck(String deckName){
         String[][] deck = database.getDeckContents(deckName);
 
         System.out.println("Deck: " + deckName + "/n");
@@ -77,7 +77,7 @@ public class LogicManager implements LogicManagerInterface {
      * This method is primarily for testing purposes, it returns the size of the
      * deck requested
      */
-    protected int queryDeckSize(String deckName){
+    public int queryDeckSize(String deckName){
         String[][] deck = database.getDeckContents(deckName);
         return deck.length;
     }

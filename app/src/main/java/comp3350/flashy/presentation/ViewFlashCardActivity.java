@@ -24,6 +24,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private FloatingActionButton next;
     private Button exit;
 
+    private Button delete;
+    private Button modify;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         prev = (FloatingActionButton) findViewById(R.id.prevButton);
         next = (FloatingActionButton) findViewById(R.id.nextButton);
         exit = (Button) findViewById(R.id.exitButton);
+        delete = (Button) findViewById(R.id.delButton);
+        modify = (Button) findViewById(R.id.modButton);
         deckSize = uiManager.getDeckSize();
 
         Bundle extra = getIntent().getExtras();
@@ -82,6 +88,20 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             }
         });
 
+        modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,8 +109,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
 
     //clamping methods for flashcard viewer
     private void nextUpdateIndex() {
