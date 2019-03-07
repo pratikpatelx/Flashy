@@ -1,5 +1,7 @@
 package comp3350.flashy.presentation;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
@@ -84,6 +86,10 @@ public class uiHandler {
             deckSize = currDeck.getNumCards();
             System.out.println("created new deck");
         }
+    }
+
+    public ArrayList<String> getNames(){
+        return logic.getNames();
     }
 
 

@@ -91,4 +91,8 @@ public class LogicManager implements LogicManagerInterface {
         return new ArrayList<>();
     }
 
+    public ArrayList<String> getNames(){
+       return database.getNames();
+    }
+
 }

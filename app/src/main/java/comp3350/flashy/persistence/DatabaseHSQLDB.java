@@ -91,6 +91,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
+    @Override
+    public ArrayList<String> getAllDeckNames() {
+        return null;
+    }
+
     private void createTables(){
         try {
             // This is a terrible database design, but it works for now
