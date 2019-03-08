@@ -192,13 +192,13 @@ public class Deck{
      */
     public Flashcard getCard(String cardName){
         Flashcard card;
-        if(this.cards.size() < 0){
+        if(this.cards.size() == 0){
             card = makeDummy();
         }
         else{
             this.validateNames();
             int pos = extractNumber(cardName);
-            if(pos >= 0){
+            if(pos >= 0 && pos < this.cards.size()){
                 card = this.cards.get(pos);
             }
             else{

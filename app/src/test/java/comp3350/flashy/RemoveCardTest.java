@@ -21,7 +21,7 @@ public class RemoveCardTest {
         lgc.putFlashcardInDeck(deckName,"Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
 
         System.out.println("Test to ensure there are 3 cards.");
-        int numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
+        int numCards = lgc.queryDeckSize(deckName);
         
         assertTrue(numCards == 3);
         
@@ -32,7 +32,7 @@ public class RemoveCardTest {
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
 
-        lgc.removeFlashcardFromDeck("THE_ORACLE_DECK", "Jack");
+        lgc.removeCard(deckName, 0);
         System.out.println("\nTest to ensure there is 1 cards in the deck.");
         
         numCards = lgc.queryDeckSize("THE_ORACLE_DECK");

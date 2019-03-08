@@ -9,12 +9,25 @@ import comp3350.flashy.persistence.DatabaseManager;
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager();
 
+    @Override
     public Deck getDeck(String deckName){
         return(database.getDeck(deckName));
     }
 
+    @Override
     public void insertDeck(Deck updated){
         database.inputDeck(updated.getName(), updated);
+    }
+
+    @Override
+    public void deleteDeck(Deck curr){
+        database.getDeck(curr.getName());
+    }
+
+    @Override
+    public Deck removeCard(Deck curr, int index){
+        curr.deleteCard(curr.getName()+"-"+index);
+        return curr;
     }
 
     @Override
@@ -29,21 +42,6 @@ public class LogicManager implements LogicManagerInterface {
         currDeck.addCard(new Flashcard(cardName,question,answer));
         database.inputDeck(deckName, currDeck);
     }
-
-    /**
-    * Copying a flashcard from one deck to another, or a new one
-    *
-    *
-    */
-
-    @Override
-    public void copyFlashcard(Deck orig, String destDeck) {
-       // Flashcard copy = orig.getCard();
-        Deck dest = database.getDeck(destDeck);
-        if(dest == null){dest = new Deck(destDeck);}
-        //dest.addCard(copy);
-        database.inputDeck(destDeck,dest);
-    } //
 
     @Override
     public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {

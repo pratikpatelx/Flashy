@@ -17,20 +17,19 @@ public class PutCardIntoDeckTest {
     public void putCardIntoDeckTest(){
         System.out.println("\nrunning putCardToDeck test\n");
         LogicManager lgc = new LogicManager();
+
+        String deckName = "Test_Deck";
+        String cardName0 = deckName + "-" + 0;
+        String cardName1 = deckName + "-" + 1;
+
         
         String question = "I'm thinking of something cute guess what it is.";
         
-        lgc.addFlashcard("Bob", question, "It was a basket filled with corgi puppies. =D");
-        lgc.addFlashcard("Jack", question, "It was a basket filled with schnauzer puppies. =D");
+        lgc.putFlashcardInDeck(deckName, cardName0, question, "It was a basket filled with corgi puppies. =D");
+        lgc.putFlashcardInDeck(deckName, cardName1, question,"It was a basket filled with schnauzer puppies. =D");
         Flashcard jill = new Flashcard("Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
         
-        
-        //add cards to decks
-        lgc.putFlashcardIntoDeck("Boys", "Bob", "I'm thinking of something cute guess what it is.", 
-                "It was a basket filled with corgi puppies. =D");
-        lgc.putFlashcardIntoDeck("Boys", "Jack", "I'm thinking of something cute guess what it is.", 
-                "It was a basket filled with schnauzer puppies. =D");
-        lgc.putFlashcardIntoDeck("Girls", jill);
+
         
         System.out.println("Test to ensure there are 2 cards in the deck 'Boys'.");
         int numCards = lgc.queryDeckSize("Boys");
