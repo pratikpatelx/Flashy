@@ -1,17 +1,10 @@
+package comp3350.flashy;
 
-package Tests;
-
-//import junit.framework.*;
 import org.junit.Test;
-//import org.junit.runner.JUnitCore;
-//import org.junit.runner.Result;
-//import org.junit.runner.notification.Failure;
 import static org.junit.Assert.*;
 
-
-
-import DomainLogic.Flashcard;
-import Logic.LogicManager;
+import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.logic.LogicManager;
 
 public class GetCardTest {
     
@@ -23,10 +16,11 @@ public class GetCardTest {
     public void getCardTest(){
         System.out.println("\n Running getCard test\n");
         LogicManager lgc = new LogicManager();
-        String cardName = "newCard";
+        String deckName = "Test_Deck";
+        String cardName = deckName + "-" + 0;
         Flashcard newCard = new Flashcard(cardName,"defaultQ","defaultA");
-        lgc.addFlashcard(cardName,"defaultQ","defaultQ");
-        assertEquals("getCardTest failed.",newCard,lgc.getCard(cardName));
+        lgc.putFlashcardInDeck("Test_Deck", cardName, "defaultQ", "defaultQ");
+        assertEquals("getCardTest failed.",newCard,lgc.getDeck(deckName).getCard(cardName));
     }
     
 

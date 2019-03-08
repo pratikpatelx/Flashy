@@ -1,8 +1,7 @@
 package comp3350.flashy.persistence;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Set;
+import java.util.Map;
 
 import comp3350.flashy.domain.Deck;
 
@@ -13,32 +12,23 @@ public class DatabaseStub implements DatabaseImplementation{
         storage = new Hashtable();
     }
 
-    @Override
     public void inputDeck(String identifier, Deck inputDeck) {
         storage.put(identifier, inputDeck);
     }
 
-    @Override
     public Deck getDeck(String identifier) {
         Deck result = storage.get(identifier);
-        storage.remove(identifier);
+       // storage.remove(identifier);
         return result;
     }
 
-    @Override
-    public Collection getDeckCollection() {
-        Collection result = null;
-        ArrayList temp = new ArrayList();
+    public ArrayList<String> getAllDeckNames(){
+        ArrayList<String> names = new ArrayList<String>();
 
-        /*
-        get each key in the hashtable and put the corresponding Deck into an arraylist
-         */
-        Set<String> keys = storage.keySet();
-        for(String key: keys){
-            temp.add(storage.get(key));
+        for(Map.Entry<String,Deck> entry : storage.entrySet()){
+           names.add(entry.getKey());
         }
 
-        result.add(temp);
-        return result;
+        return names;
     }
 }
