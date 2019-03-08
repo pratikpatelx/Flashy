@@ -1,13 +1,17 @@
 package comp3350.flashy.logic;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.persistence.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseManager database = new DatabaseManager();
+    private DatabaseManager database = new DatabaseManager(new DatabaseStub());
 
     @Override
     public Deck getDeck(String deckName){
@@ -90,7 +94,26 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     public ArrayList<String> getNames(){
-       return database.getNames();
+        ArrayList temp = getAllDecks();
+        ArrayList result = null;
+
+        for (int i  = 0; i < temp.size(); i++) {
+            result.add(temp.get(i));
+        }
+
+        return result;
     }
+/*
+    public ArrayList<String> getNames(){
+        ArrayList<String> temp = new ArrayList<>();
+        Collection<Deck> decks = database.getDeckCollection();
+
+        for (int)
+        //create a temp array
+        //loop through getDeckCollection array (i.e. ArrayList<deck>.getNam())
+        //store each index into temp
+        //return temp
+        return ;
+    }*/
 
 }
