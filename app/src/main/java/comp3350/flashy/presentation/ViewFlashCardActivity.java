@@ -98,7 +98,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.deleteCard();
+
+                uiManager.deleteCard(title);
             }
         });
 

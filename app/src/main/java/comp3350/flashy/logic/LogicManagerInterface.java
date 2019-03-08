@@ -13,7 +13,7 @@ public interface LogicManagerInterface {
 
     void deleteDeck(Deck curr);
 
-    Deck removeCard(Deck curr, int index);
+    Deck removeCard(Deck curr, String cardName);
 
     void putFlashcardInDeck(String deckName, String cardName, String question, String answer);
 

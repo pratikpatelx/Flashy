@@ -29,9 +29,9 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public Deck removeCard(Deck curr, int index){
+    public Deck removeCard(Deck curr, String cardName){
         System.out.println(curr);
-        curr.deleteCard(curr.getName()+"-"+index);
+        curr.deleteCard(cardName);
         return curr;
     }
 
