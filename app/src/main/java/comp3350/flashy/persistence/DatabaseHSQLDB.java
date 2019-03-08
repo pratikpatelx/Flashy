@@ -2,34 +2,28 @@ package comp3350.flashy.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
-    static Connection connection;
+    private static Connection connection;
 
-    class MyDatabase {
-        private Connection connection;
-        MyDatabase db = new MyDatabase();
-
-        public MyDatabase() {
-            try {
-                Class.forName("org.hsqldb.jdbcDriver");
-
-                connection = DriverManager.getConnection("jdbc:hsqldb:mem:fileDB", "SA", "");
-
-                createTables();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace(System.out);
-            } catch (SQLException e) {
-                e.printStackTrace(System.out);
-            }
+    public DatabaseHSQLDB() {
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace(System.out);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
         }
+        createTables();
     }
 
     @Override
@@ -39,14 +33,24 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             Flashcard card = null;
             for (int i = 0; i < cardList.size(); i++) {
                 card = (Flashcard) cardList.get(i);
+                /*
+                Update the Deck Table
+                 */
                 PreparedStatement statement = connection.prepareStatement(
-                        "insert into Decks values (?, ?, ?, ?);");
+                        "insert into Deck values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
                 statement.setString(2, card.getCardName());
                 statement.setString(3, card.getQuestion());
                 statement.setString(4, card.getAnswer());
-
                 ResultSet resultSet =  statement.executeQuery();
+
+                /*
+                Update the DeckList Table
+                 */
+                statement = connection.prepareStatement(
+                        "insert into DeckList values (?);");
+                statement.setString(1, identifier);
+                resultSet =  statement.executeQuery();
 
                 resultSet.close();
                 statement.close();
@@ -61,24 +65,30 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         Deck result = null;
 
         try {
+            /*
+            If a deck with the given name exists, get it from the database
+             */
             PreparedStatement statement = connection.prepareStatement(
-                    "select cardName, cardQuestion, cardAnswer from Decks where deckName=?;");
+                    "select cardName, cardQuestion, cardAnswer from Decks join DeckList " +
+                            " where Decks.deckName=DeckList.deckName " +
+                            " and DeckList.deckName=?;");
             statement.setString(1, identifier);
-
-            result = new Deck(identifier);
-            String cardName = null;
-            String cardQuestion = null;
-            String cardAnswer = null;
-
             ResultSet resultSet =  statement.executeQuery();
+
             while (resultSet.next()) {
-                cardName = resultSet.getString("cardName");
-                cardQuestion = resultSet.getString("cardQuestion");
-                cardAnswer = resultSet.getString("cardAnswer");
+
+                result = new Deck(identifier);
+                String cardName = resultSet.getString("cardName");
+                String cardQuestion = resultSet.getString("cardQuestion");
+                String cardAnswer = resultSet.getString("cardAnswer");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
-            statement = connection.prepareStatement( "delete from Decks where deckName=?;");
+            /*
+            Delete the Deck from the list
+            */
+            statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
             statement.setString(1, identifier);
             statement.executeUpdate();
 
@@ -92,25 +102,59 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public ArrayList<String> getAllDeckNames() {
-        return null;
+    public Collection getDeckCollection() {
+        Collection result = null;
+        ArrayList temp = new ArrayList();
+
+        PreparedStatement statement = null;
+        try {
+            /*
+            Get the list of decks
+             */
+            statement = connection.prepareStatement(
+                    "select deckName, cardName, cardQuestion, cardAnswer from Decks join DeckList" +
+                    " where Decks.deckName=DeckList.deckName;");
+            ResultSet resultSet =  statement.executeQuery();
+
+            Deck tempDeck = null;
+            while (resultSet.next()) {
+                tempDeck = new Deck(resultSet.getString("deckName"));
+                String cardName = resultSet.getString("cardName");
+                String cardQuestion = resultSet.getString("cardQuestion");
+                String cardAnswer = resultSet.getString("cardAnswer");
+                tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
+                temp.add(tempDeck);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        result.add(temp);
+        return result;
     }
 
-    private void createTables(){
+    private void createTables() {
         try {
-            // This is a terrible database design, but it works for now
-            String createDeck = "CREATE TABLE Decks ("
-                    + "deckName varchar(60)"
-                    + "cardName varchar(60), "
-                    + "cardQuestion varchar(60), "
-                    + "cardAnswer varchar(60), "
-                    + "PRIMARY KEY (deckName)"
-                    + "UNIQUE (cardName)"
-                    + ");";
+            PreparedStatement statement = connection.prepareStatement(
+                    "create table if not exists DeckList ("
+                            + "deckName varChar(180), "
+                            + "Primary Key (deckName)");
+            statement.execute();
 
-            connection.createStatement().executeUpdate(createDeck);
-        }
-        catch (SQLException e) {
+            statement = connection.prepareStatement(
+                    "create table if not exists Deck ("
+                            + "deckName varChar(180), "
+                            + "cardName varChar(180), "
+                            + "cardQuestion varChar(180), "
+                            + "cardAnswer varChar(180), "
+                            + "Primary Key (cardName), "
+                            + "Foreign Key (deckName) References DeckList (deckName));");
+            statement.execute();
+
+        } catch (SQLException e) {
             e.printStackTrace(System.out);
         }
     }
