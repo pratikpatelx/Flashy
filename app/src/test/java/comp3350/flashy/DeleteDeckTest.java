@@ -30,8 +30,13 @@ public class DeleteDeckTest {
         lgc.putFlashcardInDeck(deckAName, cardNameA1, question, firstAnswer);
         lgc.putFlashcardInDeck(deckAName, cardNameA2, question, secondAnswer);
         lgc.putFlashcardInDeck(deckAName, cardNameA3, question, thirdAnswer);
-        lgc.putFlashcardInDeck(deckBName, cardNameA1, question, firstAnswer);
-        lgc.putFlashcardInDeck(deckBName, cardNameA2, question, fourthAnswer);
+        lgc.putFlashcardInDeck(deckBName, cardNameB1, question, firstAnswer);
+        lgc.putFlashcardInDeck(deckBName, cardNameB2, question, fourthAnswer);
+
+        assertEquals(2, lgc.getNames().size());
+
+        Deck deckB = lgc.getDeck(deckBName);
+        assertEquals(deckB.getNumCards(), 2);
 
 
 
