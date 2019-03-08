@@ -4,16 +4,16 @@
 +---------------------------------------------------------------------------------------------------------------+
 | * CreateDeckActivity.java         | * LogicManager.java                 | * DatabaseHSQLDB.java               |
 | * CreateFlashCardActivity.java    | * LogicManagerInterface.java        | * DatabaseImplementation.java       |
-| * EditDeckActivity.java           | * uiHandler.java                    | * DatabaseManager.java              |
+|                                   |                                     | * DatabaseManager.java              |
 | * FlashCardListActivity.java      |                                     | * DatabaseStub.java                 |
 | * MainActivity.jaVa               |                                     | * MyDatabase.java                   |
-| * MenuActivity.java               |                                     | * hsqldb.jar                        |
+| * DeckMenuActivity.java           |                                     | * hsqldb.jar                        |
 | * NewDeckActivity.java            |                                     | * MyDatabase.class                  |
-| * NewFlashcardActivity.java       |                                     |                                     |
-| * ViewDecksActivity.java          |                                     |                                     |
+|                                   |                                     |                                     |
+|                                   |                                     |                                     |
 | * ViewFlashCardActivity.java      |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
+| * uiHandler.java                  |                                     |                                     |
+| * ShowAllDecksActivity.java       |                                     |                                     |
 |                                   |                                     |                                     |
 |                                   |                                     |                                     |
 |                                   |                                     |                                     |
@@ -28,5 +28,5 @@
 |  * Deck.java                                                                                                  |
 |  * Flashcard.java                                                                                             |
 |  * FlashcardInterface.java                                                                                    |
-|  * TorFcard.jaVa                                                                                              |
+|                                                                                                               |
 +---------------------------------------------------------------------------------------------------------------+
