@@ -18,10 +18,12 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         try {
             Class.forName("org.hsqldb.jdbcDriver");
             connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
+            System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+            System.out.println("Connection failed..");
         }
         createTables();
     }

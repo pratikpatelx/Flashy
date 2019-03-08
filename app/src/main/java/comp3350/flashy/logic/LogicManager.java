@@ -12,6 +12,7 @@ import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager(new DatabaseStub());
+    //private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
 
     @Override
     public Deck getDeck(String deckName){
@@ -89,31 +90,21 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public ArrayList<Deck> getAllDecks(){
-        //return(new ArrayList<Deck>(database.getAllDecks()));
-        return new ArrayList<>();
+        return(new ArrayList<Deck>(database.getDeckCollection()));
+        //return new ArrayList<>();
     }
 
     public ArrayList<String> getNames(){
-        ArrayList temp = getAllDecks();
-        ArrayList result = null;
+        ArrayList<Deck> temp = getAllDecks();
+        ArrayList result = new ArrayList<Deck>();
 
         for (int i  = 0; i < temp.size(); i++) {
-            result.add(temp.get(i));
+            result.add(temp.get(i).getName());
+            System.out.println(temp.get(i).getName());
         }
 
         return result;
     }
-/*
-    public ArrayList<String> getNames(){
-        ArrayList<String> temp = new ArrayList<>();
-        Collection<Deck> decks = database.getDeckCollection();
 
-        for (int)
-        //create a temp array
-        //loop through getDeckCollection array (i.e. ArrayList<deck>.getNam())
-        //store each index into temp
-        //return temp
-        return ;
-    }*/
 
 }

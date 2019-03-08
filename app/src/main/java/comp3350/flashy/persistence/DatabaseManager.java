@@ -31,7 +31,7 @@ public class DatabaseManager {
             Deck tempDeck = new Deck(deckName);
             for (int j = 0; j < 5; j++) {
                 tempDeck.addCard(new Flashcard(
-                        "DefaultCardName" + j,
+                        deckName + "-" + j,
                         "DefaultCardQuestion" + j,
                         "DefaultCardAnswer" + j));
                 inputDeck(deckName, tempDeck);
