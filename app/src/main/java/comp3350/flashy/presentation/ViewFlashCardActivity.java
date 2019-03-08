@@ -51,10 +51,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         }
 
         //throws array out of bounds exception
-       //content = uiManager.getContent(index);
+       content = uiManager.getContent(index);
 
-        //title = content[0];
-        //body = content[1];
+        title = content[0];
+        body = content[1];
 
         textViewFlashBody.setText(body);
         textViewFlashTitle.setText(title);
