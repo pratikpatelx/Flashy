@@ -24,14 +24,16 @@ public class PrintDeckTest {
         String answer1 = "It was a basket filled with corgi puppies. =D";
         String answer2 = "It was a basket filled with schnauzer puppies. =D";
         String answer3 = "It was a basket filled with wheaten terrier puppies. =D";
+
+
         
         lgc.putFlashcardInDeck(deckName,"Bob", question, answer1);
         lgc.putFlashcardInDeck(deckName,"Jack", question, answer2);
         lgc.putFlashcardInDeck(deckName,"Jill", question, answer3);
 
-        lgc.printDeck("THE_ORACLE_DECK");
+        lgc.printDeck(deckName);
         System.out.println("\nPrintDeck test completed\n");
-        assertTrue(true);//Just make sure the test runs
+        assertTrue(true);//Just make sure the test runs thats all that is asked
         
     }
     

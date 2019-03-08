@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
         GetCardTest.class,
         PrintDeckTest.class,
         PutCardIntoDeckTest.class,
-        //RemoveCardTest.class,
+        RemoveCardTest.class,
 })
 
 public class AllTests {}

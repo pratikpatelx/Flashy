@@ -4,6 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 public class RemoveCardTest {
     
@@ -32,13 +34,15 @@ public class RemoveCardTest {
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
 
-        lgc.removeCard(deckName, 0);
-        System.out.println("\nTest to ensure there is 1 cards in the deck.");
+
+        Deck testDeck = lgc.getDeck(deckName);
+        lgc.removeCard(testDeck, 1);
+        System.out.println("\nTest to ensure there is 2 cards in the deck.");
         
-        numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
-        assertTrue(numCards == 1);
-        if(numCards == 1){
-            System.out.println("There are 1 cards in the Deck, test passed");
+        numCards = lgc.queryDeckSize(deckName);
+        assertEquals(2, numCards );
+        if(numCards == 2){
+            System.out.println("There are 2 cards in the Deck, test passed");
         }
         else{
             System.out.println("There are " + numCards + " cards in the deck, test failed");

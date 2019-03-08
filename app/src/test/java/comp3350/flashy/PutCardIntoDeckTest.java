@@ -21,39 +21,28 @@ public class PutCardIntoDeckTest {
         String deckName = "Test_Deck";
         String cardName0 = deckName + "-" + 0;
         String cardName1 = deckName + "-" + 1;
+        String cardName2 = deckName + "-" + 2;
 
         
         String question = "I'm thinking of something cute guess what it is.";
         
         lgc.putFlashcardInDeck(deckName, cardName0, question, "It was a basket filled with corgi puppies. =D");
         lgc.putFlashcardInDeck(deckName, cardName1, question,"It was a basket filled with schnauzer puppies. =D");
-        Flashcard jill = new Flashcard("Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
+        lgc.putFlashcardInDeck(deckName, cardName2, question, "It was a basket filled with wheaten terrier puppies. =D");
         
 
         
-        System.out.println("Test to ensure there are 2 cards in the deck 'Boys'.");
-        int numCards = lgc.queryDeckSize("Boys");
+        System.out.println("Test to ensure there are 3 cards in the deck.");
         
-        assertTrue(numCards == 2);
+        assertTrue(lgc.queryDeckSize(deckName) == 3);
         
-        if(numCards == 2){
-            System.out.println("There are two cards in the Deck Boys, test passed");
+        if(lgc.queryDeckSize(deckName) == 3){
+            System.out.println("There are 3 cards in the Deck, test passed");
         }
         else{
-            System.out.println("There are " + numCards + " cards in the deck 'Boys', test failed");
+            System.out.println("There are " + lgc.queryDeckSize(deckName) + " cards in the deck 'Boys', test failed");
         }
-        
-        System.out.println("\nTest to ensure there is 1 card in the deck 'Girls'.");
-        
-        numCards = lgc.queryDeckSize("Girls");
-        assertTrue(numCards == 1);
-        if(numCards == 1){
-            System.out.println("There is 1 card in the Deck 'Girls', test passed");
-        }
-        else{
-            System.out.println("There are " + numCards + " cards in the deck 'Girls', test failed");
-        }
-        
+
         
         System.out.println("\naddCardToDeck test complete\n");
         
