@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.R;
 
 public class CreateDeckActivity extends AppCompatActivity {
     private Button createFlashCard;
     private Button viewFlashCard;
+    private Button listFlashCards;
+    private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,14 @@ public class CreateDeckActivity extends AppCompatActivity {
 
         createFlashCard = (Button) findViewById(R.id.createFlashCard);
         viewFlashCard = (Button) findViewById(R.id.viewFlashCard);
+        listFlashCards = (Button) findViewById(R.id.listFlashCards);
+
+        Bundle extra = super.getIntent().getExtras();
+
+        if(extra != null){
+            uiManager.setCurrDeck(extra.getString("DECK"));
+            System.out.println(extra.getString("DECK"));
+        }
 
 
         createFlashCard.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +48,19 @@ public class CreateDeckActivity extends AppCompatActivity {
             }
         });
 
+        listFlashCards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFlashCardListActivity();
+            }
+        });
+
+
+        ArrayList<String> names = uiManager.getNames();
+
+        for(String name: names){
+            System.out.println(name);
+        }
 
     }
 
@@ -45,7 +70,12 @@ public class CreateDeckActivity extends AppCompatActivity {
     }
 
     public void openViewFlashCardActivity() {
-        Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        Intent intent = new Intent(CreateDeckActivity.this, ViewFlashCardActivity.class);
+        startActivity(intent);
+    }
+
+    public void openFlashCardListActivity() {
+        Intent intent = new Intent(this, FlashCardListActivity.class);
         startActivity(intent);
     }
 }

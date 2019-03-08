@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/app_name"
@@ -51,7 +51,6 @@
                 <View
                     android:layout_width="8dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
                     android:background="@color/colorAccent" />
 
                 <TextView
@@ -80,14 +79,14 @@
                     android:textColorHint="@color/colorLogInText">
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="2dp"
                         android:id="@+id/login_and_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
                         android:hint="@string/username"
                         android:inputType="textPersonName"
-                        android:textColor="@color/colorPrimaryDark"
-                        />
+                        android:paddingBottom="2dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                    <!--//android:autofillHints="" />-->
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -96,25 +95,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="63dp"
                 android:layout_margin="10dp"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp">
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:textColorHint="@color/colorLogInText">
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/login_password"
-                        android:hint="Password"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:paddingBottom="2dp"
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -123,7 +122,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/login_button"
-                android:text="GO"
+                android:text="@string/go"
                 android:textColor="@color/colorGO"
                 android:layout_margin="10dp"/>
         </LinearLayout>
@@ -134,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/login_details"
-        android:layout_alignRight="@id/login_details"
+        android:layout_alignEnd="@id/login_details"
         android:layout_marginTop="25dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="-79dp"

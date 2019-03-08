@@ -1,4 +1,4 @@
-package comp3350.flashy.DomainLogic;
+package comp3350.flashy.domain;
 
 public interface FlashcardInterface {
     /**
