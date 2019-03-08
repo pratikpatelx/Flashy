@@ -19,7 +19,7 @@ public class ShuffleDeckTest {
         String testDeck = "tempD";
         String[][] initial = {{"F1","Q1","A1"},{"F2","Q2","A2"},{"F3","Q3","A3"}};
         for(int i=0;i<initial.length;i++){
-            lgc.putFlashcardIntoDeck(testDeck,initial[i][0],initial[i][1],initial[i][2]);
+            lgc.putFlashcardInDeck(testDeck,initial[i][0],initial[i][1],initial[i][2]);
         }
         assertFalse("shuffleDeck test failed",Arrays.deepEquals(initial,lgc.shuffleDeck(testDeck)));
         System.out.println("shuffleDeck test complete.");
