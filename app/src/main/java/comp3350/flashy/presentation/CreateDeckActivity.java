@@ -70,7 +70,7 @@ public class CreateDeckActivity extends AppCompatActivity {
     }
 
     public void openViewFlashCardActivity() {
-        Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        Intent intent = new Intent(CreateDeckActivity.this, ViewFlashCardActivity.class);
         startActivity(intent);
     }
 

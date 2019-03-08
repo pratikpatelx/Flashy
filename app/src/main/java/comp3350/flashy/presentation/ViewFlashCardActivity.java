@@ -27,8 +27,6 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private Button delete;
     private Button modify;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +50,11 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             index = uiManager.getIndexByFlashCard(extra.getString("FLASHCARD"));
         }
 
-        content = uiManager.getContent(index);
+        //throws array out of bounds exception
+       //content = uiManager.getContent(index);
 
-        title = content[0];
-        body = content[1];
+        //title = content[0];
+        //body = content[1];
 
         textViewFlashBody.setText(body);
         textViewFlashTitle.setText(title);
@@ -91,6 +90,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //uiManager.editContent(stuff to change things);
 
             }
         });
@@ -98,7 +98,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                uiManager.deleteCard();
             }
         });
 

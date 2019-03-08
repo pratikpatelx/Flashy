@@ -30,6 +30,20 @@ public class LogicManager implements LogicManagerInterface {
         database.inputDeck(deckName, currDeck);
     }
 
+    //kyle's method
+    @Override
+    public void deleteFlashcardInDeck(String deckName, String cardName) {
+        Deck currDeck = database.getDeck(deckName);
+
+        if (currDeck.deleteCard(cardName)) {
+            System.out.println("Success");
+            database.inputDeck(deckName, currDeck);
+        } else {
+            System.out.println("Failure");
+            database.inputDeck(deckName, currDeck);
+        }
+    }
+
     /**
     * Copying a flashcard from one deck to another, or a new one
     *

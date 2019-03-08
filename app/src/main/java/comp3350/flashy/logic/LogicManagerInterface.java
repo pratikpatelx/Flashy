@@ -15,6 +15,8 @@ public interface LogicManagerInterface {
 
     void copyFlashcard(Deck orig, String destDeck);
 
+    void deleteFlashcardInDeck(String deckName, String cardName);
+
     void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer);
 
     void printDeck(String deckName);

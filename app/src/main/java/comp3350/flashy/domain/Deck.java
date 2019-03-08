@@ -96,7 +96,7 @@ public class Deck{
      *      The name of the card to be removed
      *
      * @return
-     *      a boolean of weather a card was actually removed from the deck
+     *      a boolean of whether a card was actually removed from the deck
      */
     public boolean deleteCard(String cardName){
         boolean success = false;
