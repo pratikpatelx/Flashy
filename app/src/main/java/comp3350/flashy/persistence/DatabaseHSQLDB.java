@@ -17,34 +17,33 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private static Connection connection;
 
     public DatabaseHSQLDB() {
-            try {
-                Server hsqlServer = null;
+        Server hsqlServer = new Server();
+        hsqlServer.setDatabaseName(0, "FlashyDB");
+        hsqlServer.setDatabasePath(0, "file:FlashyDB");
 
-                hsqlServer = new Server();
-                hsqlServer.setDatabaseName(0, "db");
-                hsqlServer.setDatabasePath(0, "file:FlashyDB");
+//        hsqlServer.setLogWriter(null);
+        hsqlServer.setSilent(true);
 
-                hsqlServer.setLogWriter(null);
-                hsqlServer.setSilent(true);
+        // Start the database!
+        hsqlServer.start();
 
-                // Start the database!
-                hsqlServer.start();
+        System.out.println("Created DB Server");
 
-                System.out.println("Created DB");
-
-                Class.forName("org.hsqldb.jdbcDriver");
-//            connection = DriverManager.getConnection("jdbc:hsqldb:mem:db", "SA", "");
-                connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/db", "sa", "");
-                System.out.println(connection.toString());
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace(System.out);
-                System.exit(0);
-            } catch (SQLException e) {
-                e.printStackTrace(System.out);
-                System.out.println("Connection failed..");
-                System.exit(0);
-            }
-        System.out.println("Connection Sucessfull!");
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+            connection = DriverManager.getConnection("jdbc:hsqldb:mem:FlashyDB", "SA", "");
+//            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/FlashyDB", "SA", "");
+            System.out.println(connection.toString());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace(System.out);
+            System.out.println("Class Not Found..");
+            System.exit(0);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            System.out.println("Connection failed..");
+            System.exit(0);
+        }
+        System.out.println("Connection Successful!");
         createTables();
     }
 
@@ -113,15 +112,15 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             System.out.println("Parsed Deck Object");
 
-//            /*
-//            Delete the Deck from the list
-//            */
-////            statement = connection.prepareStatement(
-////                    "delete from DeckList where deckName=?;");
-////            statement.setString(1, identifier);
-////            statement.executeUpdate();
+            /*
+            Delete the Deck from the list
+            */
+            statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
 
-//            System.out.println("Deleted from decklist");
+            System.out.println("Deleted from decklist");
 
             System.out.println("getDeck DONE");
 
@@ -157,12 +156,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                         deckNameHolder = deckName;
                         tempDeck = new Deck(deckName);
                 }
-                //System.out.println(deckNameHolder == null + "-" + deckNameHolder + "-" + deckName);
                 if (!deckNameHolder.equals(deckName)) {
                     result.add(tempDeck);
                     tempDeck = new Deck(deckName);
                 }
-                //System.out.println(!deckNameHolder.equals(deckName) + " " + deckNameHolder + " " + deckName);
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
@@ -178,10 +175,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             System.out.println("getDeckCollection Failed");
             e.printStackTrace();
         }
-        System.out.println("temp size = " + temp.size());
-
-        //result.add(temp);
-        //System.out.println("collection size = " + result.size());
 
         return result;
     }
@@ -189,7 +182,9 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists DeckList (deckName varChar(60));");
+                    "create table if not exists DeckList ("
+                            + "deckName varChar(60), "
+                            + "primary key (deckName));");
             statement.execute();
 
             System.out.println("DeckList Created");
@@ -199,7 +194,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                             + "deckName varChar(60), "
                             + "cardName varChar(60), "
                             + "cardQuestion varChar(60), "
-                            + "cardAnswer varChar(60)); ");
+                            + "cardAnswer varChar(60));");
             statement.execute();
 
             System.out.println("Deck Created");
