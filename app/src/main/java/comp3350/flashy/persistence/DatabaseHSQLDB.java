@@ -26,29 +26,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         createTables();
     }
 
-    private void createTables() {
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists DeckList ("
-                            + "deckName varChar(180), "
-                            + "Primary Key (deckName)");
-            statement.execute();
-
-            statement = connection.prepareStatement(
-                    "create table if not exists Deck ("
-                            + "deckName varChar(180), "
-                            + "cardName varChar(180), "
-                            + "cardQuestion varChar(180), "
-                            + "cardAnswer varChar(180), "
-                            + "Primary Key (cardName), "
-                            + "Foreign Key (deckName) References DeckList (deckName));");
-            statement.execute();
-            
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
-    }
-
     @Override
     public void inputDeck(String identifier, Deck inputDeck) {
         try {
@@ -157,5 +134,28 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         result.add(temp);
         return result;
+    }
+
+    private void createTables() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "create table if not exists DeckList ("
+                            + "deckName varChar(180), "
+                            + "Primary Key (deckName)");
+            statement.execute();
+
+            statement = connection.prepareStatement(
+                    "create table if not exists Deck ("
+                            + "deckName varChar(180), "
+                            + "cardName varChar(180), "
+                            + "cardQuestion varChar(180), "
+                            + "cardAnswer varChar(180), "
+                            + "Primary Key (cardName), "
+                            + "Foreign Key (deckName) References DeckList (deckName));");
+            statement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
     }
 }
