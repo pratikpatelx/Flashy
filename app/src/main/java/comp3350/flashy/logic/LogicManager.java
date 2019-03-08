@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseManager database = new DatabaseManager();
+    private DatabaseManager database = new DatabaseManager(new DatabaseStub());
 
     @Override
     public Deck getDeck(String deckName){
@@ -26,6 +27,7 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public Deck removeCard(Deck curr, int index){
+        System.out.println(curr);
         curr.deleteCard(curr.getName()+"-"+index);
         return curr;
     }
@@ -87,12 +89,20 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public ArrayList<Deck> getAllDecks(){
-        //return(new ArrayList<Deck>(database.getAllDecks()));
-        return new ArrayList<>();
+        return(new ArrayList<Deck>(database.getDeckCollection()));
+        //return new ArrayList<>();
     }
 
     public ArrayList<String> getNames(){
-       return database.getNames();
+        ArrayList<Deck> temp = getAllDecks();
+        ArrayList result = null;
+
+        for (int i  = 0; i < temp.size(); i++) {
+            result.add(temp.get(i).getName());
+        }
+
+        return result;
     }
+
 
 }
