@@ -53,14 +53,14 @@ public class uiHandler {
     }
 
     public void editContent(int index, String newQuestion,String newAnswer){
-        Flashcard curr = logic.getDeck("default").getCard(deckName +"-"+ index);
+        Flashcard curr = logic.getDeck(deckName).getCard(deckName +"-"+ index);
 
         curr.setQuestion(newQuestion);
         curr.setAnswer(newAnswer);
     }
 
     public int getIndexByFlashCard(String name){
-        Flashcard curr = logic.getDeck("default").getCard(name);
+        Flashcard curr = logic.getDeck(deckName).getCard(name);
 
         //change this when changing (deckName + index) to (deckName +"-"+ index)
         String[] token = curr.getCardName().split("-");

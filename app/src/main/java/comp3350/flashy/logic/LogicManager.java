@@ -90,17 +90,17 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public ArrayList<Deck> getAllDecks(){
-        return(new ArrayList<Deck>(database.getDeckCollection()));
+        return (ArrayList<Deck>) (database.getDeckCollection());
         //return new ArrayList<>();
     }
 
     public ArrayList<String> getNames(){
         ArrayList<Deck> temp = getAllDecks();
-        ArrayList result = new ArrayList<Deck>();
+        ArrayList result = new ArrayList<String>();
 
         for (int i  = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
-            System.out.println(temp.get(i).getName());
+            //System.out.println(temp.get(i).getName());
         }
 
         return result;

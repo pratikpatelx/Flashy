@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.hsqldb.Server;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
@@ -16,18 +17,33 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private static Connection connection;
 
     public DatabaseHSQLDB() {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:mem:db", "SA", "");
-            System.out.println(connection.toString());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace(System.out);
-            System.exit(0);
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            System.out.println("Connection failed..");
-            System.exit(0);
-        }
+            try {
+                Server hsqlServer = null;
+
+                hsqlServer = new Server();
+                hsqlServer.setDatabaseName(0, "db");
+                hsqlServer.setDatabasePath(0, "file:FlashyDB");
+
+                hsqlServer.setLogWriter(null);
+                hsqlServer.setSilent(true);
+
+                // Start the database!
+                hsqlServer.start();
+
+                System.out.println("Created DB");
+
+                Class.forName("org.hsqldb.jdbcDriver");
+//            connection = DriverManager.getConnection("jdbc:hsqldb:mem:db", "SA", "");
+                connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/db", "sa", "");
+                System.out.println(connection.toString());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace(System.out);
+                System.exit(0);
+            } catch (SQLException e) {
+                e.printStackTrace(System.out);
+                System.out.println("Connection failed..");
+                System.exit(0);
+            }
         System.out.println("Connection Sucessfull!");
         createTables();
     }
@@ -97,14 +113,14 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             System.out.println("Parsed Deck Object");
 
-            /*
-            Delete the Deck from the list
-            */
-//            statement = connection.prepareStatement(
-//                    "delete from DeckList where deckName=?;");
-//            statement.setString(1, identifier);
-//            statement.executeUpdate();
-//
+//            /*
+//            Delete the Deck from the list
+//            */
+////            statement = connection.prepareStatement(
+////                    "delete from DeckList where deckName=?;");
+////            statement.setString(1, identifier);
+////            statement.executeUpdate();
+
 //            System.out.println("Deleted from decklist");
 
             System.out.println("getDeck DONE");
@@ -137,20 +153,24 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             String deckNameHolder = null;
             while (resultSet.next()) {
                 String deckName = resultSet.getString("deckName");
-                    tempDeck = new Deck(deckName);
-                    if (deckNameHolder == null){
+                if (deckNameHolder == null){
                         deckNameHolder = deckName;
-                    }
-                    if (!deckNameHolder.equals(deckName)) {
                         tempDeck = new Deck(deckName);
-                    } else {
-                        String cardName = resultSet.getString("cardName");
-                        String cardQuestion = resultSet.getString("cardQuestion");
-                        String cardAnswer = resultSet.getString("cardAnswer");
-                        tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                    }
+                }
+                //System.out.println(deckNameHolder == null + "-" + deckNameHolder + "-" + deckName);
+                if (!deckNameHolder.equals(deckName)) {
                     result.add(tempDeck);
+                    tempDeck = new Deck(deckName);
+                }
+                //System.out.println(!deckNameHolder.equals(deckName) + " " + deckNameHolder + " " + deckName);
+                String cardName = resultSet.getString("cardName");
+                String cardQuestion = resultSet.getString("cardQuestion");
+                String cardAnswer = resultSet.getString("cardAnswer");
+                tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
+                System.out.println("Added card " + cardName + " to deck" + deckName);
+                deckNameHolder = deckName;
             }
+            result.add(tempDeck);
 
             resultSet.close();
             statement.close();
@@ -169,19 +189,17 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "create table DeckList (deckName varChar(60));");//, Primary Key (deckName));");
+                    "create table if not exists DeckList (deckName varChar(60));");
             statement.execute();
 
             System.out.println("DeckList Created");
 
             statement = connection.prepareStatement(
-                    "create table Deck ("
+                    "create table if not exists Deck ("
                             + "deckName varChar(60), "
                             + "cardName varChar(60), "
                             + "cardQuestion varChar(60), "
                             + "cardAnswer varChar(60)); ");
-                            //+ "Primary Key (cardName)); ");
-                            //+ "Foreign Key (deckName) References DeckList (deckName));");
             statement.execute();
 
             System.out.println("Deck Created");
