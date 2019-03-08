@@ -134,13 +134,22 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             ResultSet resultSet =  statement.executeQuery();
 
             Deck tempDeck = null;
+            String deckNameHolder = null;
             while (resultSet.next()) {
-                tempDeck = new Deck(resultSet.getString("deckName"));
-                String cardName = resultSet.getString("cardName");
-                String cardQuestion = resultSet.getString("cardQuestion");
-                String cardAnswer = resultSet.getString("cardAnswer");
-                tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                result.add(tempDeck);
+                String deckName = resultSet.getString("deckName");
+                    tempDeck = new Deck(deckName);
+                    if (deckNameHolder == null){
+                        deckNameHolder = deckName;
+                    }
+                    if (!deckNameHolder.equals(deckName)) {
+                        tempDeck = new Deck(deckName);
+                    } else {
+                        String cardName = resultSet.getString("cardName");
+                        String cardQuestion = resultSet.getString("cardQuestion");
+                        String cardAnswer = resultSet.getString("cardAnswer");
+                        tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
+                    }
+                    result.add(tempDeck);
             }
 
             resultSet.close();
