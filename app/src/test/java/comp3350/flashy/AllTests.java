@@ -8,10 +8,8 @@ import org.junit.runners.Suite;
         ExampleTest.class,
         GetCardTest.class,
         PrintDeckTest.class,
-        PrintDeckTest.class,
         PutCardIntoDeckTest.class,
-        //RemoveCardTest.class,
-        ShuffleDeckTest.class
+        RemoveCardTest.class,
 })
 
 public class AllTests {}

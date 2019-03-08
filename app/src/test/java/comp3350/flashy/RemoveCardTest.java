@@ -4,6 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 public class RemoveCardTest {
     
@@ -21,7 +23,7 @@ public class RemoveCardTest {
         lgc.putFlashcardInDeck(deckName,"Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
 
         System.out.println("Test to ensure there are 3 cards.");
-        int numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
+        int numCards = lgc.queryDeckSize(deckName);
         
         assertTrue(numCards == 3);
         
@@ -32,13 +34,15 @@ public class RemoveCardTest {
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
 
-        lgc.removeFlashcardFromDeck("THE_ORACLE_DECK", "Jack");
-        System.out.println("\nTest to ensure there is 1 cards in the deck.");
+
+        Deck testDeck = lgc.getDeck(deckName);
+        lgc.removeCard(testDeck, 1);
+        System.out.println("\nTest to ensure there is 2 cards in the deck.");
         
-        numCards = lgc.queryDeckSize("THE_ORACLE_DECK");
-        assertTrue(numCards == 1);
-        if(numCards == 1){
-            System.out.println("There are 1 cards in the Deck, test passed");
+        numCards = lgc.queryDeckSize(deckName);
+        assertEquals(2, numCards );
+        if(numCards == 2){
+            System.out.println("There are 2 cards in the Deck, test passed");
         }
         else{
             System.out.println("There are " + numCards + " cards in the deck, test failed");
