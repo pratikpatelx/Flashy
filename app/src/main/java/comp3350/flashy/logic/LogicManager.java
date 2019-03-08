@@ -21,7 +21,6 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public void insertDeck(Deck updated){
-        Deck old = database.getDeck(updated.getName());
         database.inputDeck(updated.getName(), updated);
     }
 
@@ -31,9 +30,8 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public Deck removeCard(Deck curr, String cardName){
-        System.out.println(curr);
-        curr.deleteCard(cardName);
+    public Deck removeCard(Deck curr, int index){
+        curr.deleteCard(curr.getName()+"-"+index);
         return curr;
     }
 
@@ -53,11 +51,9 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck == null){
-            currDeck = new Deck(deckName);
-        }
+        if(currDeck == null){currDeck = new Deck(deckName);}
         currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
-        database.inputDeck(deckName, currDeck);
+        database.inputDeck(deckName,currDeck);
     }
 
     /**
@@ -88,12 +84,8 @@ public class LogicManager implements LogicManagerInterface {
      */
     public int queryDeckSize(String deckName){
         Deck currDeck = database.getDeck(deckName);
-        int num = 0;
-        if(currDeck!=null) {
-            num = currDeck.getNumCards();
-            database.inputDeck(currDeck.getName(), currDeck);
-        }
-        return num;
+        if(currDeck!=null){ return currDeck.getNumCards();}
+        return 0;
     }
 
     @Override

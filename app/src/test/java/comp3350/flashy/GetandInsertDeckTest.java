@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class GetandInsertDeckTest {
     @Test
     public void getAndInsertDeckTest(){
-        System.out.println("\nrunning RemoveCard test\n");
+        System.out.println("\nrunning GetandInsertDeck test\n");
         LogicManager lgc = new LogicManager();
         String deckName = "Test_Deck";
         String firstCardName = deckName + "-" + 0;
@@ -43,6 +43,6 @@ public class GetandInsertDeckTest {
         assertEquals(thirdAnswer, card.getAnswer());
 
 
-        System.out.println("\nRemoveCard test complete\n");
+        System.out.println("\nGetandInsertDeck test complete\n");
     }
 }
