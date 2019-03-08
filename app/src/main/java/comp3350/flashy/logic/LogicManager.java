@@ -30,8 +30,8 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public Deck removeCard(Deck curr, int index){
-        curr.deleteCard(curr.getName()+"-"+index);
+    public Deck removeCard(Deck curr, String cardName){
+        curr.deleteCard(cardName);
         return curr;
     }
 

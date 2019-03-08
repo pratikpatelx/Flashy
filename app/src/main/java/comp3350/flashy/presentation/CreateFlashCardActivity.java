@@ -30,12 +30,27 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flash_card);
 
+
+
         //getting body, title and save button.
         textViewFlashBody = (TextView) findViewById(R.id.body);
         textViewFlashTitle = (TextView) findViewById(R.id.title);
         save = (FloatingActionButton) findViewById(R.id.saveButton);
         cancel = (FloatingActionButton) findViewById(R.id.cancelButton);
         toShow = new EditText(this);
+
+        Bundle extra = getIntent().getExtras();
+        String[] card;
+
+        if(extra !=null){
+            extra.getString("FLASHCARD");
+            title = extra.getString("NAME");
+            body = extra.getString("BODY");
+
+            textViewFlashBody.setText(body);
+            textViewFlashTitle.setText(title);
+
+        }
 
         userInput = new AlertDialog.Builder(this).create();
 

@@ -1,5 +1,6 @@
 package comp3350.flashy.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private TextView textViewFlashBody;
     private TextView textViewFlashTitle;
 
+    private String name;
     private String body;
     private String title;
     private int index=1;
@@ -42,6 +44,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         delete = (Button) findViewById(R.id.delButton);
         modify = (Button) findViewById(R.id.modButton);
         deckSize = uiManager.getDeckSize();
+        name = uiManager.getDeckName();
 
         Bundle extra = getIntent().getExtras();
         String[] content;
@@ -90,8 +93,11 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //uiManager.editContent(stuff to change things);
+                String[] contents = uiManager.getContent(index);
 
+
+                openViewFlashCardActivity((name + "-" + index),contents[0],contents[1]);
+                //uiManager.deleteCard(index);
             }
         });
 
@@ -99,7 +105,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                uiManager.deleteCard(title);
+                uiManager.deleteCard(index);
+                finish();
             }
         });
 
@@ -112,7 +119,19 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+    }
+
+    public void openViewFlashCardActivity(String cardName, String head, String body) {
+        Intent intent = new Intent(this, CreateFlashCardActivity.class);
+        intent.putExtra("FLASHCARD",cardName);
+        intent.putExtra("NAME", head);
+        intent.putExtra("BODY", body);
+        startActivity(intent);
+    }
     //clamping methods for flashcard viewer
     private void nextUpdateIndex() {
         //Flashcard nextCard;

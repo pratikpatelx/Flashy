@@ -39,7 +39,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
 
 
-        title.setText("THE_ORACLE_DECK");
+        title.setText(currDeck.getName());
 
         final ArrayList<Flashcard> items = currDeck.getCards();
 
@@ -81,7 +81,7 @@ public class FlashCardListActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //edit deck
+
             }
         });
 
@@ -103,8 +103,11 @@ public class FlashCardListActivity extends AppCompatActivity {
     public void openViewFlashCardActivity(String cardName) {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
         intent.putExtra("FLASHCARD",cardName);
+
         startActivity(intent);
     }
+
+
 
     public void openCreateFlashCardActivity() {
         Intent intent = new Intent(this, CreateFlashCardActivity.class);

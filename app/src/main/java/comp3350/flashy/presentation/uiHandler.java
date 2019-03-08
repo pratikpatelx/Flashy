@@ -34,9 +34,9 @@ public class uiHandler {
     }
 
     //kyle wrote this
-    public void deleteCard(String cardName) {
-
-        logic.removeCard(currDeck, cardName);
+    public void deleteCard(int index) {
+        logic.removeCard(currDeck, (currDeck+"-"+index));
+        deckSize = currDeck.getNumCards();
 
     }
 
@@ -52,14 +52,11 @@ public class uiHandler {
     }
 
     public void editContent(int index, String newQuestion,String newAnswer){
-        Flashcard curr = logic.getDeck("default").getCard(deckName +"-"+ index);
-
-        curr.setQuestion(newQuestion);
-        curr.setAnswer(newAnswer);
+        logic.editFlashcard(currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
     }
 
     public int getIndexByFlashCard(String name){
-        Flashcard curr = logic.getDeck("default").getCard(name);
+        Flashcard curr = currDeck.getCard(name);
 
         //change this when changing (deckName + index) to (deckName +"-"+ index)
         String[] token = curr.getCardName().split("-");
@@ -76,6 +73,10 @@ public class uiHandler {
 
     public Deck getCurrDeck(){
         return currDeck;
+    }
+
+    public String getDeckName(){
+        return currDeck.getName();
     }
 
     public void setCurrDeck(String name){
