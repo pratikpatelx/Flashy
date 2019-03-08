@@ -24,14 +24,16 @@ public class DatabaseManager {
     }
 
     private void createDefaultData() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
             Deck tempDeck = new Deck(deckName);
+            for (int j = 0; j < 5; j++) {
             tempDeck.addCard(new Flashcard(
-                    "DefaultCardName" + i,
-                    "DefaultCardQuestion" + i,
-                    "DefaultCardAnswer" + i));
+                    "DefaultCardName" + j,
+                    "DefaultCardQuestion" + j,
+                    "DefaultCardAnswer" + j));
             inputDeck(deckName, tempDeck);
+            }
         }
     }
 }
