@@ -8,5 +8,6 @@ public interface DatabaseImplementation {
     void inputDeck(String identifier, Deck inputDeck);
 
     Deck getDeck(String identifier);
+
     ArrayList<String> getAllDeckNames();
 }

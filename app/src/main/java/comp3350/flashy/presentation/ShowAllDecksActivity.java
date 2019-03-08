@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -15,31 +16,30 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
-    ArrayAdapter<Flashcard> fcArrayAdapter;
-    private uiHandler uiManager;
-    private Deck currDeck = uiManager.getCurrDeck();
+    ArrayAdapter<String> fcArrayAdapter;
+    uiHandler uiManager = MainActivity.getHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_decks);
 
-        final ArrayList<Flashcard> items = currDeck.getCards();
+        final ArrayList<String> items = uiManager.getNames();
 
-        fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
+        fcArrayAdapter = new ArrayAdapter<String>(this, R.layout.deck_list_item, R.id.deck_list_item, items)
         {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
+                TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
 
-                flashCard.setTextSize(35);
+                deck.setTextSize(35);
 
-                flashCard.setText(items.get(position).getQuestion());
+                deck.setText(items.get(position));
 
 
-                flashCard.setOnClickListener(new View.OnClickListener(){
+                deck.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                        // openViewFlashCardActivity(items.get(position).getCardName());
@@ -50,6 +50,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 return view;
             }
         };
+
+        ListView listView = (ListView)findViewById(R.id.showAllDeckList);
+        listView.setAdapter(fcArrayAdapter);
     }
     
     
