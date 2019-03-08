@@ -97,7 +97,8 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
 
                 openViewFlashCardActivity((name + "-" + index),contents[0],contents[1]);
-                //uiManager.deleteCard(index);
+                uiManager.deleteCard(index);
+                finish();
             }
         });
 

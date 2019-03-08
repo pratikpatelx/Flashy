@@ -35,7 +35,7 @@ public class FlashCardListActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.Title);
         Button exit = (Button) findViewById(R.id.exitFlashList);
         Button add = (Button) findViewById(R.id.addCard);
-        Button edit = (Button) findViewById(R.id.editCard);
+        Button delete = (Button) findViewById(R.id.deleteDeck);
 
 
 
@@ -78,10 +78,11 @@ public class FlashCardListActivity extends AppCompatActivity {
             }
         });
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                uiManager.deleteDeck();
+                finish();
             }
         });
 

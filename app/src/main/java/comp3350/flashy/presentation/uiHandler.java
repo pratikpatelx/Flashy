@@ -99,10 +99,9 @@ public class uiHandler {
         return logic.getNames();
     }
 
-
-    //test stub for now remove later
-    public void addStub(){
-        for(int i = 0;i<4;i++)
-            saveCard("test"+i,"test"+i);
+    public void deleteDeck(){
+        logic.deleteDeck(currDeck);
     }
+
+
 }

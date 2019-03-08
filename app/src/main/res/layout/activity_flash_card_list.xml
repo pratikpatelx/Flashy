@@ -8,14 +8,14 @@
     tools:context=".presentation.FlashCardListActivity">
 
     <Button
-        android:id="@+id/editCard"
+        android:id="@+id/deleteDeck"
         android:layout_width="206dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/alert_light_frame"
-        android:text="Edit Cards"
+        android:text="Delete Deck"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/addCard"
         app:layout_constraintStart_toEndOf="@+id/exitFlashList"

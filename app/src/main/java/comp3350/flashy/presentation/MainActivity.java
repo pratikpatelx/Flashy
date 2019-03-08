@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ui.addStub();
+
         giveAccess = (Button)findViewById(R.id.login_button);
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
