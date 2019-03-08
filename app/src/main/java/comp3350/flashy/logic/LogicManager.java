@@ -46,9 +46,11 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck == null){currDeck = new Deck(deckName);}
+        if(currDeck == null){
+            currDeck = new Deck(deckName);
+        }
         currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
-        database.inputDeck(deckName,currDeck);
+        database.inputDeck(deckName, currDeck);
     }
 
     /**
