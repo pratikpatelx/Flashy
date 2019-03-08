@@ -1,25 +1,26 @@
 package comp3350.flashy.logic;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.persistence.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseManager;
 import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseManager database = new DatabaseManager(new DatabaseStub());
+    private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
+    //private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
 
     @Override
     public Deck getDeck(String deckName){
-        Deck currDeck = database.getDeck(deckName);
-        database.inputDeck(deckName, currDeck);
-        return(currDeck);
+        return(database.getDeck(deckName));
     }
 
     @Override
     public void insertDeck(Deck updated){
-        Deck old = database.getDeck(updated.getName());
         database.inputDeck(updated.getName(), updated);
     }
 
@@ -30,7 +31,6 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public Deck removeCard(Deck curr, int index){
-        System.out.println(curr);
         curr.deleteCard(curr.getName()+"-"+index);
         return curr;
     }
@@ -51,11 +51,9 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck == null){
-            currDeck = new Deck(deckName);
-        }
+        if(currDeck == null){currDeck = new Deck(deckName);}
         currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
-        database.inputDeck(deckName, currDeck);
+        database.inputDeck(deckName,currDeck);
     }
 
     /**
@@ -86,12 +84,8 @@ public class LogicManager implements LogicManagerInterface {
      */
     public int queryDeckSize(String deckName){
         Deck currDeck = database.getDeck(deckName);
-        int num = 0;
-        if(currDeck!=null) {
-            num = currDeck.getNumCards();
-            database.inputDeck(currDeck.getName(), currDeck);
-        }
-        return num;
+        if(currDeck!=null){ return currDeck.getNumCards();}
+        return 0;
     }
 
     @Override
@@ -102,10 +96,11 @@ public class LogicManager implements LogicManagerInterface {
 
     public ArrayList<String> getNames(){
         ArrayList<Deck> temp = getAllDecks();
-        ArrayList result = null;
+        ArrayList result = new ArrayList<Deck>();
 
         for (int i  = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
+            System.out.println(temp.get(i).getName());
         }
 
         return result;

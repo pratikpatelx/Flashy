@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManager;
 
 public class uiHandler {
 
@@ -30,6 +29,14 @@ public class uiHandler {
     public void saveCard(String head, String content) {
 
         logic.putFlashcardInDeck(deckName,(deckName +"-"+ deckSize), head, content);
+        deckSize= currDeck.getNumCards();
+        System.out.println(deckSize);
+    }
+
+    //kyle wrote this
+    public void deleteCard() {
+        //logic.deleteFlashcardInDeck(deckName, (deckName +"-"+ deckSize));
+        //logic.rem
         deckSize= currDeck.getNumCards();
         System.out.println(deckSize);
     }
@@ -98,10 +105,4 @@ public class uiHandler {
         for(int i = 0;i<4;i++)
             saveCard("test"+i,"test"+i);
     }
-
-    public void deleteCard() {
-
-    }
-
-
 }

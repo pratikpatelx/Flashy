@@ -33,10 +33,24 @@ public class DeckMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openHomeActivity();
-                Log.d("Flashy", "log out button clciked");
+                Log.d("Flashy", "log out button clicked");
             }
         });
 
+        viewDeck = (Button) findViewById(R.id.deckList);
+        viewDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openShowAllDecksActivity();
+                //Log.d("Flashy", "log out button clicked");
+            }
+        });
+
+    }
+
+    public void openShowAllDecksActivity() {
+        Intent intent = new Intent(this, ShowAllDecksActivity.class);
+        startActivity(intent);
     }
 
     public void openCreateNewDeckActivity(){

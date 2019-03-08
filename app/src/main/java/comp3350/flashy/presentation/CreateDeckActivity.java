@@ -16,6 +16,7 @@ public class CreateDeckActivity extends AppCompatActivity {
     private Button viewFlashCard;
     private Button listFlashCards;
     private uiHandler uiManager = MainActivity.getHandler();
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class CreateDeckActivity extends AppCompatActivity {
         createFlashCard = (Button) findViewById(R.id.createFlashCard);
         viewFlashCard = (Button) findViewById(R.id.viewFlashCard);
         listFlashCards = (Button) findViewById(R.id.listFlashCards);
+        backButton = (Button)findViewById(R.id.backButton);
 
         Bundle extra = super.getIntent().getExtras();
 
@@ -55,6 +57,14 @@ public class CreateDeckActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDeckMenuActivity();
+            }
+        });
+
+
 
         ArrayList<String> names = uiManager.getNames();
 
@@ -64,13 +74,18 @@ public class CreateDeckActivity extends AppCompatActivity {
 
     }
 
+    public void openDeckMenuActivity() {
+        Intent intent = new Intent(this, DeckMenuActivity.class);
+        startActivity(intent);
+    }
+
     public void openCreateFlashCardActivity() {
         Intent intent = new Intent(this, CreateFlashCardActivity.class);
         startActivity(intent);
     }
 
     public void openViewFlashCardActivity() {
-        Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        Intent intent = new Intent(CreateDeckActivity.this, ViewFlashCardActivity.class);
         startActivity(intent);
     }
 
