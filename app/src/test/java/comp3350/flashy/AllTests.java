@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
         PutCardIntoDeckTest.class,
         RemoveCardTest.class,
         EditCardTest.class,
-        GetandInsertDeckTest.class
+        GetandInsertDeckTest.class,
+        DeleteDeckTest.class
 })
 
 public class AllTests {}

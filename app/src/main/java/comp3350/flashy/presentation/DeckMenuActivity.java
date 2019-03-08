@@ -13,6 +13,7 @@ public class DeckMenuActivity extends AppCompatActivity {
     private Button newDeck;
     private Button viewDeck;
     private Button logOut;
+    private Button editDeck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,19 @@ public class DeckMenuActivity extends AppCompatActivity {
             }
         });
 
+        editDeck = (Button) findViewById(R.id.viewDecks);
+        editDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openViewFlashcardActivity();
+                //Log.d("Flashy", "log out button clicked");
+            }
+        });
+    }
+
+    public void openViewFlashcardActivity() {
+        Intent intent = new Intent(this, ViewFlashCardActivity.class);
+        startActivity(intent);
     }
 
     public void openShowAllDecksActivity() {

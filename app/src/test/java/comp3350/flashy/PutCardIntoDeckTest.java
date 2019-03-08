@@ -15,7 +15,7 @@ public class PutCardIntoDeckTest {
      */
     @Test
     public void putCardIntoDeckTest(){
-        System.out.println("\nrunning putCardToDeck test\n");
+        System.out.println("\nrunning putCardIntoDeck test\n");
         LogicManager lgc = new LogicManager();
 
         String deckName = "Test_Deck";
@@ -44,7 +44,7 @@ public class PutCardIntoDeckTest {
         }
 
         
-        System.out.println("\naddCardToDeck test complete\n");
+        System.out.println("\nPutCardIntooDeck test complete\n");
         
     }
     

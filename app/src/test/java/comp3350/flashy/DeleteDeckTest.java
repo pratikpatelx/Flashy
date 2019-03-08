@@ -7,6 +7,7 @@ import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DeleteDeckTest {
 
@@ -27,21 +28,23 @@ public class DeleteDeckTest {
         String thirdAnswer = "It was a basket filled with wheaten terrier puppies. =D";
         String fourthAnswer = "It was a basket of labrador puppies. =D";
 
+
+
         lgc.putFlashcardInDeck(deckAName, cardNameA1, question, firstAnswer);
         lgc.putFlashcardInDeck(deckAName, cardNameA2, question, secondAnswer);
         lgc.putFlashcardInDeck(deckAName, cardNameA3, question, thirdAnswer);
         lgc.putFlashcardInDeck(deckBName, cardNameB1, question, firstAnswer);
         lgc.putFlashcardInDeck(deckBName, cardNameB2, question, fourthAnswer);
-
-        assertEquals(2, lgc.getNames().size());
+        int numDecks = lgc.getNames().size();
+        assertTrue(lgc.getNames().size() >= 2);
 
         Deck deckB = lgc.getDeck(deckBName);
-        assertEquals(deckB.getNumCards(), 2);
+        assertEquals(2, deckB.getNumCards());
 
+        lgc.deleteDeck(deckB);
 
-
-
-
-        System.out.println("\nDeleteDeck test complete\n");
+        assertEquals(numDecks-1, lgc.getNames().size());
+        assertEquals(3, lgc.getDeck(deckAName).getNumCards());
+        System.out.println("DeleteDeck test complete\n");
     }
 }
