@@ -1,5 +1,6 @@
 package comp3350.flashy.presentation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.CreateDeckActivity;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
@@ -43,6 +45,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                        // openViewFlashCardActivity(items.get(position).getCardName());
+                        openCreateDeckActivity(items.get(position));
                     }
                 });
 
@@ -54,6 +57,11 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.showAllDeckList);
         listView.setAdapter(fcArrayAdapter);
     }
-    
+
+    public void openCreateDeckActivity(String deckName) {
+        Intent intent = new Intent(this, CreateDeckActivity.class);
+        intent.putExtra("DECK",deckName);
+        startActivity(intent);
+    }
     
 }
