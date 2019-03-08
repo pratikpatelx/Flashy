@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Hashtable;
 
 import org.hsqldb.Server;
 
@@ -56,10 +57,19 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
                 System.out.println("Starting to insert Deck");
 
+                PreparedStatement statement = connection.prepareStatement("select * from DeckList;");
+                ResultSet resultSet =  statement.executeQuery();
+                if (resultSet.next()) {
+                    statement = connection.prepareStatement(
+                            "delete from DeckList where deckName=?;");
+                    statement.setString(1, identifier);
+                    statement.executeUpdate();
+                }
+
                 /*
                 Update the Deck Table
                  */
-                PreparedStatement statement = connection.prepareStatement(
+                statement = connection.prepareStatement(
                         "insert into Deck (deckName, cardName, cardQuestion, cardAnswer) values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
                 statement.setString(2, card.getCardName());
@@ -115,10 +125,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             /*
             Delete the Deck from the list
             */
-            statement = connection.prepareStatement(
-                    "delete from DeckList where deckName=?;");
-            statement.setString(1, identifier);
-            statement.executeUpdate();
+//            statement = connection.prepareStatement(
+//                    "delete from DeckList where deckName=?;");
+//            statement.setString(1, identifier);
+//            statement.executeUpdate();
 
             System.out.println("Deleted from decklist");
 
@@ -137,37 +147,37 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     @Override
     public Collection getDeckCollection() {
         Collection result = new ArrayList();
-        ArrayList temp = new ArrayList();
+        ArrayList<Deck> deckList = new ArrayList();
 
-        PreparedStatement statement = null;
         try {
-            /*
-            Get the list of decks
-             */
-            statement = connection.prepareStatement(
-                    "select * from Deck;");
+            PreparedStatement statement = connection.prepareStatement("select * from DeckList;");
             ResultSet resultSet =  statement.executeQuery();
+            while (resultSet.next()) {
+                Deck deck = new Deck(resultSet.getString("deckName"));
+                System.out.println("deckName: " + resultSet.getString("deckName"));
+                deckList.add(deck);
+            }
 
-            Deck tempDeck = null;
-            String deckNameHolder = null;
+            statement = connection.prepareStatement("select * from Deck;");
+            resultSet =  statement.executeQuery();
+
             while (resultSet.next()) {
                 String deckName = resultSet.getString("deckName");
-                if (deckNameHolder == null){
-                        deckNameHolder = deckName;
-                        tempDeck = new Deck(deckName);
-                }
-                if (!deckNameHolder.equals(deckName)) {
-                    result.add(tempDeck);
-                    tempDeck = new Deck(deckName);
-                }
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
-                tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                System.out.println("Added card " + cardName + " to deck" + deckName);
-                deckNameHolder = deckName;
+                Flashcard card = new Flashcard(cardName, cardQuestion, cardAnswer);
+                for (int i = 0; i < deckList.size(); i++) {
+                    Deck tempDeck = deckList.get(i);
+                    System.out.println(deckList.size());
+                    if (deckName.equals(tempDeck.getName())) {
+                        tempDeck.addCard(card);
+                        deckList.remove(i);
+                        deckList.add(tempDeck);
+                        System.out.println("deckName: " + deckName + " CardName: " + cardName);
+                    }
+                }
             }
-            result.add(tempDeck);
 
             resultSet.close();
             statement.close();
@@ -176,6 +186,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             e.printStackTrace();
         }
 
+        result = deckList;
+
         return result;
     }
 
@@ -183,8 +195,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "create table if not exists DeckList ("
-                            + "deckName varChar(60), "
-                            + "primary key (deckName));");
+                            + "deckName varChar(60));");
             statement.execute();
 
             System.out.println("DeckList Created");

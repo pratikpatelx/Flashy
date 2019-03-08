@@ -20,7 +20,7 @@ public class DatabaseStub implements DatabaseImplementation{
 
     public Deck getDeck(String identifier) {
         Deck result = storage.get(identifier);
-        storage.remove(identifier);
+        //storage.remove(identifier);
         return result;
     }
 
@@ -35,17 +35,4 @@ public class DatabaseStub implements DatabaseImplementation{
 
         return result;
     }
-
-
-     /*
-    public ArrayList<String> getAllDeckNames(){
-        ArrayList<String> names = new ArrayList<String>();
-
-        for(Map.Entry<String,Deck> entry : storage.entrySet()){
-           names.add(entry.getKey());
-        }
-
-        return names;
-    }*/
-
 }

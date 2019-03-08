@@ -12,7 +12,7 @@ import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
-    //private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
+    //private DatabaseManager database = new DatabaseManager(new DatabaseStub());
 
     @Override
     public Deck getDeck(String deckName){
