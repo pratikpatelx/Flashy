@@ -18,6 +18,10 @@ public class DatabaseManager {
     public Deck getDeck(String identifier) {
         return storage.getDeck(identifier);
     }
+    
+    public Collection getDeckCollection() {
+        return storage.getDeckCollection();
+    }
 
     private void createDefaultData() {
         for (int i = 0; i < 10; i++) {
