@@ -12,11 +12,14 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public Deck getDeck(String deckName){
-        return(database.getDeck(deckName));
+        Deck currDeck = database.getDeck(deckName);
+        database.inputDeck(deckName, currDeck);
+        return(currDeck);
     }
 
     @Override
     public void insertDeck(Deck updated){
+        Deck old = database.getDeck(updated.getName());
         database.inputDeck(updated.getName(), updated);
     }
 
@@ -83,8 +86,12 @@ public class LogicManager implements LogicManagerInterface {
      */
     public int queryDeckSize(String deckName){
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck!=null){ return currDeck.getNumCards();}
-        return 0;
+        int num = 0;
+        if(currDeck!=null) {
+            num = currDeck.getNumCards();
+            database.inputDeck(currDeck.getName(), currDeck);
+        }
+        return num;
     }
 
     @Override
