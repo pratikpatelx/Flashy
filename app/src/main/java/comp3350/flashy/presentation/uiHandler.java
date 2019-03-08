@@ -35,7 +35,8 @@ public class uiHandler {
 
     //kyle wrote this
     public void deleteCard() {
-        logic.deleteFlashcardInDeck(deckName, (deckName +"-"+ deckSize));
+        //logic.deleteFlashcardInDeck(deckName, (deckName +"-"+ deckSize));
+        //logic.rem
         deckSize= currDeck.getNumCards();
         System.out.println(deckSize);
     }
