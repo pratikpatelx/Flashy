@@ -28,7 +28,7 @@ public class Deck{
 
 
     public ArrayList getCards() {
-        return cards;
+            return cards;
     }
 
     public void setDeck(Deck other) {
@@ -96,7 +96,7 @@ public class Deck{
      *      The name of the card to be removed
      *
      * @return
-     *      a boolean of weather a card was actually removed from the deck
+     *      a boolean of whether a card was actually removed from the deck
      */
     public boolean deleteCard(String cardName){
         boolean success = false;
@@ -192,13 +192,13 @@ public class Deck{
      */
     public Flashcard getCard(String cardName){
         Flashcard card;
-        if(this.cards.size() < 0){
+        if(this.cards.size() == 0){
             card = makeDummy();
         }
         else{
             this.validateNames();
             int pos = extractNumber(cardName);
-            if(pos >= 0){
+            if(pos >= 0 && pos < this.cards.size()){
                 card = this.cards.get(pos);
             }
             else{

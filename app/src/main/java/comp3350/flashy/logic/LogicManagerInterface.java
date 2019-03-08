@@ -13,9 +13,11 @@ public interface LogicManagerInterface {
 
     void deleteDeck(Deck curr);
 
-    Deck removeCard(Deck curr, int index);
+    Deck removeCard(Deck curr, String cardName);
 
     void putFlashcardInDeck(String deckName, String cardName, String question, String answer);
+
+    //void deleteFlashcardInDeck(String deckName, String cardName);
 
     void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer);
 

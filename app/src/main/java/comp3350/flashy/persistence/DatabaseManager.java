@@ -1,5 +1,7 @@
 package comp3350.flashy.persistence;
 
+import java.util.Collection;
+
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
@@ -19,15 +21,21 @@ public class DatabaseManager {
         return storage.getDeck(identifier);
     }
 
+    public Collection getDeckCollection() {
+        return storage.getDeckCollection();
+    }
+
     private void createDefaultData() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
             Deck tempDeck = new Deck(deckName);
-            tempDeck.addCard(new Flashcard(
-                    "DefaultCardName" + i,
-                    "DefaultCardQuestion" + i,
-                    "DefaultCardAnswer" + i));
-            inputDeck(deckName, tempDeck);
+            for (int j = 0; j < 5; j++) {
+                tempDeck.addCard(new Flashcard(
+                        "DefaultCardName" + j,
+                        "DefaultCardQuestion" + j,
+                        "DefaultCardAnswer" + j));
+                inputDeck(deckName, tempDeck);
+            }
         }
     }
 }

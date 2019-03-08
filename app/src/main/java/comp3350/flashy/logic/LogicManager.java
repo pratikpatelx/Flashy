@@ -4,19 +4,22 @@ import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseStub;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseManager database = new DatabaseManager(new DatabaseHSQLDB());
+    private DatabaseManager database = new DatabaseManager(new DatabaseStub());
 
     @Override
     public Deck getDeck(String deckName){
-        return(database.getDeck(deckName));
+        Deck currDeck = database.getDeck(deckName);
+        database.inputDeck(deckName, currDeck);
+        return(currDeck);
     }
 
     @Override
     public void insertDeck(Deck updated){
+        Deck old = database.getDeck(updated.getName());
         database.inputDeck(updated.getName(), updated);
     }
 
@@ -26,15 +29,21 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public Deck removeCard(Deck curr, int index){
-        curr.deleteCard(curr.getName()+"-"+index);
+    public Deck removeCard(Deck curr, String cardName){
+        System.out.println(curr);
+        curr.deleteCard(cardName);
         return curr;
     }
 
     @Override
     public void putFlashcardInDeck(String deckName, String cardName, String question, String answer) {
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck == null){currDeck = new Deck(deckName);}
+        //System.out.println(currDeck.toString());
+
+        if(currDeck == null){
+            currDeck = new Deck(deckName);
+        }
+
         currDeck.addCard(new Flashcard(cardName,question,answer));
         database.inputDeck(deckName, currDeck);
     }
@@ -42,9 +51,11 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer) {
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck == null){currDeck = new Deck(deckName);}
+        if(currDeck == null){
+            currDeck = new Deck(deckName);
+        }
         currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
-        database.inputDeck(deckName,currDeck);
+        database.inputDeck(deckName, currDeck);
     }
 
     /**
@@ -75,13 +86,30 @@ public class LogicManager implements LogicManagerInterface {
      */
     public int queryDeckSize(String deckName){
         Deck currDeck = database.getDeck(deckName);
-        if(currDeck!=null){ return currDeck.getNumCards();}
-        return 0;
+        int num = 0;
+        if(currDeck!=null) {
+            num = currDeck.getNumCards();
+            database.inputDeck(currDeck.getName(), currDeck);
+        }
+        return num;
     }
 
     @Override
     public ArrayList<Deck> getAllDecks(){
         return(new ArrayList<Deck>(database.getDeckCollection()));
+        //return new ArrayList<>();
     }
+
+    public ArrayList<String> getNames(){
+        ArrayList<Deck> temp = getAllDecks();
+        ArrayList result = null;
+
+        for (int i  = 0; i < temp.size(); i++) {
+            result.add(temp.get(i).getName());
+        }
+
+        return result;
+    }
+
 
 }

@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Set;
 
-import comp3350.flashy.DomainLogic.Deck;
+import comp3350.flashy.domain.Deck;
 
 public class DatabaseStub implements DatabaseImplementation{
     private Hashtable<String, Deck> storage;
@@ -26,19 +26,14 @@ public class DatabaseStub implements DatabaseImplementation{
     }
 
     @Override
-    public Collection getDeckCollection() {
-        Collection result = null;
-        ArrayList temp = new ArrayList();
+    public Collection<String> getDeckCollection(){
+        Collection result = new ArrayList();
 
-        /*
-        get each key in the hashtable and put the corresponding Deck into an arraylist
-         */
         Set<String> keys = storage.keySet();
-        for(String key: keys){
-            temp.add(storage.get(key));
+        for(String key: keys) {
+            result.add(storage.get(key));
         }
 
-        result.add(temp);
         return result;
     }
 }

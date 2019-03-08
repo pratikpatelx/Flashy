@@ -2,9 +2,9 @@ package comp3350.flashy.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -24,29 +24,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             e.printStackTrace(System.out);
         }
         createTables();
-    }
-
-    private void createTables() {
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists DeckList ("
-                            + "deckName varChar(180), "
-                            + "Primary Key (deckName)");
-            statement.execute();
-
-            statement = connection.prepareStatement(
-                    "create table if not exists Deck ("
-                            + "deckName varChar(180), "
-                            + "cardName varChar(180), "
-                            + "cardQuestion varChar(180), "
-                            + "cardAnswer varChar(180), "
-                            + "Primary Key (cardName), "
-                            + "Foreign Key (deckName) References DeckList (deckName));");
-            statement.execute();
-            
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
     }
 
     @Override
@@ -98,25 +75,22 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(1, identifier);
             ResultSet resultSet =  statement.executeQuery();
 
-            int counter = 0;
             while (resultSet.next()) {
+
                 result = new Deck(identifier);
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-
-                if (counter == 0) {
-                    /*
-                    Delete the Deck from the list
-                     */
-                    statement = connection.prepareStatement(
-                            "delete from DeckList where deckName=?;");
-                    statement.setString(1, identifier);
-                    statement.executeUpdate();
-                    counter = 1;
-                }
             }
+
+            /*
+            Delete the Deck from the list
+            */
+            statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
 
             resultSet.close();
             statement.close();
@@ -160,5 +134,28 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         result.add(temp);
         return result;
+    }
+
+    private void createTables() {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "create table if not exists DeckList ("
+                            + "deckName varChar(180), "
+                            + "Primary Key (deckName)");
+            statement.execute();
+
+            statement = connection.prepareStatement(
+                    "create table if not exists Deck ("
+                            + "deckName varChar(180), "
+                            + "cardName varChar(180), "
+                            + "cardQuestion varChar(180), "
+                            + "cardAnswer varChar(180), "
+                            + "Primary Key (cardName), "
+                            + "Foreign Key (deckName) References DeckList (deckName));");
+            statement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
     }
 }
