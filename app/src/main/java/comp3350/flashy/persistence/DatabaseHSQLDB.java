@@ -26,7 +26,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/FlashyDB", "SA", "");
+            //connection = DriverManager.getConnection("jdbc:hsqldb:file:FlashyDB", "SA", "");
+            connection = DriverManager.getConnection("jdbc:hsqldb:mem:FlashyDB", "SA", "");
             System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
@@ -64,13 +65,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 statement.setString(4, card.getAnswer());
                 statement.executeUpdate();
 
-                System.out.println("Inserted Deck");
-
                 /*
                 Update the DeckList Table
                  */
                 statement = connection.prepareStatement(
-                        "insert into DeckList values (?);");
+                        "insert into DeckList (deckName) values (?)");// if (select count (deckName) from DeckList where deckName=?) <= 1;");
                 statement.setString(1, identifier);
                 statement.executeUpdate();
 
@@ -99,8 +98,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             System.out.println("Got Deck");
 
+            result = new Deck(identifier);
             while (resultSet.next()) {
-                result = new Deck(identifier);
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
@@ -142,11 +141,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         ArrayList<Deck> deckList = new ArrayList();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from DeckList;");
+            PreparedStatement statement = connection.prepareStatement("select distinct * from DeckList;");
             ResultSet resultSet =  statement.executeQuery();
+            Deck deck = null;
             while (resultSet.next()) {
-                Deck deck = new Deck(resultSet.getString("deckName"));
-                System.out.println("deckName: " + resultSet.getString("deckName"));
+                deck = new Deck(resultSet.getString("deckName"));
                 deckList.add(deck);
             }
 
@@ -159,6 +158,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
                 Flashcard card = new Flashcard(cardName, cardQuestion, cardAnswer);
+
                 for (int i = 0; i < deckList.size(); i++) {
                     Deck tempDeck = deckList.get(i);
                     System.out.println(deckList.size());
@@ -186,8 +186,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists DeckList ("
-                            + "deckName varChar(60));");
+                    "create table if not exists DeckList (" +
+                            "deckName varChar(60));");
             statement.execute();
 
             System.out.println("DeckList Created");
