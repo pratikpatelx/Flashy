@@ -1,13 +1,10 @@
 package comp3350.flashy.persistence;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.hsqldb.Server;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
@@ -16,19 +13,33 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private static Connection connection;
 
     public DatabaseHSQLDB() {
+        Server hsqlServer = new Server();
+        hsqlServer.setDatabaseName(0, "FlashyDB");
+        hsqlServer.setDatabasePath(0, "file:FlashyDB");
+
+//        hsqlServer.setLogWriter(null);
+        hsqlServer.setSilent(true);
+
+        // Start the database!
+        hsqlServer.start();
+
+        System.out.println("Created DB Server");
+
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:mem:db", "SA", "");
+            connection = DriverManager.getConnection("jdbc:hsqldb:mem:FlashyDB", "SA", "");
+//            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/FlashyDB", "SA", "");
             System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
+            System.out.println("Class Not Found..");
             System.exit(0);
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             System.out.println("Connection failed..");
             System.exit(0);
         }
-        System.out.println("Connection Sucessfull!");
+        System.out.println("Connection Successful!");
         createTables();
     }
 
@@ -36,10 +47,13 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     public void inputDeck(String identifier, Deck inputDeck) {
         try {
             ArrayList<Flashcard> cardList = inputDeck.getCards();
+
+            deleteDeck(identifier);
+
             for (int i = 0; i < cardList.size(); i++) {
                 Flashcard card = cardList.get(i);
 
-                System.out.println("Starting to insert Deck");
+                System.out.println(cardList.size() + "inputDeck:" + identifier + " " + card.getCardName() + " " + card.getQuestion() + " " + card.getAnswer() + " ");
 
                 /*
                 Update the Deck Table
@@ -95,18 +109,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
-            System.out.println("Parsed Deck Object");
-
-            /*
-            Delete the Deck from the list
-            */
-//            statement = connection.prepareStatement(
-//                    "delete from DeckList where deckName=?;");
-//            statement.setString(1, identifier);
-//            statement.executeUpdate();
-//
-//            System.out.println("Deleted from decklist");
-
             System.out.println("getDeck DONE");
 
             resultSet.close();
@@ -120,36 +122,55 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public Collection getDeckCollection() {
-        Collection result = new ArrayList();
-        ArrayList temp = new ArrayList();
-
-        PreparedStatement statement = null;
+    public void deleteDeck(String identifier){
         try {
-            /*
-            Get the list of decks
-             */
-            statement = connection.prepareStatement(
-                    "select * from Deck;");
-            ResultSet resultSet =  statement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
 
-            Deck tempDeck = null;
-            String deckNameHolder = null;
+            statement = connection.prepareStatement(
+                    "delete from Deck where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
+        } catch (SQLException  e) {
+            System.out.println("Delete Failed");
+        }
+    }
+
+    @Override
+    public Collection getDeckCollection() {
+        Collection result = null;
+        ArrayList<Deck> deckList = new ArrayList();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from DeckList;");
+            ResultSet resultSet =  statement.executeQuery();
+            while (resultSet.next()) {
+                Deck deck = new Deck(resultSet.getString("deckName"));
+                System.out.println("deckName: " + resultSet.getString("deckName"));
+                deckList.add(deck);
+            }
+
+            statement = connection.prepareStatement("select * from Deck;");
+            resultSet =  statement.executeQuery();
+
             while (resultSet.next()) {
                 String deckName = resultSet.getString("deckName");
-                    tempDeck = new Deck(deckName);
-                    if (deckNameHolder == null){
-                        deckNameHolder = deckName;
+                String cardName = resultSet.getString("cardName");
+                String cardQuestion = resultSet.getString("cardQuestion");
+                String cardAnswer = resultSet.getString("cardAnswer");
+                Flashcard card = new Flashcard(cardName, cardQuestion, cardAnswer);
+                for (int i = 0; i < deckList.size(); i++) {
+                    Deck tempDeck = deckList.get(i);
+                    System.out.println(deckList.size());
+                    if (deckName.equals(tempDeck.getName())) {
+                        tempDeck.addCard(card);
+                        deckList.remove(i);
+                        deckList.add(tempDeck);
+                        System.out.println("deckName: " + deckName + " CardName: " + cardName);
                     }
-                    if (!deckNameHolder.equals(deckName)) {
-                        tempDeck = new Deck(deckName);
-                    } else {
-                        String cardName = resultSet.getString("cardName");
-                        String cardQuestion = resultSet.getString("cardQuestion");
-                        String cardAnswer = resultSet.getString("cardAnswer");
-                        tempDeck.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                    }
-                    result.add(tempDeck);
+                }
             }
 
             resultSet.close();
@@ -158,10 +179,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             System.out.println("getDeckCollection Failed");
             e.printStackTrace();
         }
-        System.out.println("temp size = " + temp.size());
 
-        //result.add(temp);
-        //System.out.println("collection size = " + result.size());
+        result = deckList;
 
         return result;
     }
@@ -169,19 +188,18 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "create table DeckList (deckName varChar(60));");//, Primary Key (deckName));");
+                    "create table if not exists DeckList ("
+                            + "deckName varChar(60));");
             statement.execute();
 
             System.out.println("DeckList Created");
 
             statement = connection.prepareStatement(
-                    "create table Deck ("
+                    "create table if not exists Deck ("
                             + "deckName varChar(60), "
                             + "cardName varChar(60), "
                             + "cardQuestion varChar(60), "
-                            + "cardAnswer varChar(60)); ");
-                            //+ "Primary Key (cardName)); ");
-                            //+ "Foreign Key (deckName) References DeckList (deckName));");
+                            + "cardAnswer varChar(60));");
             statement.execute();
 
             System.out.println("Deck Created");
