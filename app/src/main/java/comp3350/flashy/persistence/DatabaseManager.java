@@ -21,12 +21,16 @@ public class DatabaseManager {
         return storage.getDeck(identifier);
     }
 
+    public void removeDeck(String identifier) {
+        storage.deleteDeck(identifier);
+    }
+
     public Collection getDeckCollection() {
         return storage.getDeckCollection();
     }
 
     private void createDefaultData() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             String deckName = "DefaultDeck" + i;
             Deck tempDeck = new Deck(deckName);
             for (int j = 0; j < 5; j++) {
@@ -34,8 +38,8 @@ public class DatabaseManager {
                         deckName + "-" + j,
                         "DefaultCardQuestion" + j,
                         "DefaultCardAnswer" + j));
-                inputDeck(deckName, tempDeck);
             }
+            inputDeck(deckName, tempDeck);
         }
     }
 }
