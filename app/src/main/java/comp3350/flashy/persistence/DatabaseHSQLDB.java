@@ -1,13 +1,8 @@
 package comp3350.flashy.persistence;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Hashtable;
 
 import org.hsqldb.Server;
 
@@ -48,28 +43,38 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         createTables();
     }
 
+    public void deleteDeck(String identifier){
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "delete from DeckList where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "delete from Deck where deckName=?;");
+            statement.setString(1, identifier);
+            statement.executeUpdate();
+        } catch (SQLException  e) {
+            System.out.println("Delete Failed");
+        }
+    }
+
     @Override
     public void inputDeck(String identifier, Deck inputDeck) {
         try {
             ArrayList<Flashcard> cardList = inputDeck.getCards();
+
+            deleteDeck(identifier);
+
             for (int i = 0; i < cardList.size(); i++) {
                 Flashcard card = cardList.get(i);
 
                 System.out.println("Starting to insert Deck");
 
-                PreparedStatement statement = connection.prepareStatement("select * from DeckList;");
-                ResultSet resultSet =  statement.executeQuery();
-                if (resultSet.next()) {
-                    statement = connection.prepareStatement(
-                            "delete from DeckList where deckName=?;");
-                    statement.setString(1, identifier);
-                    statement.executeUpdate();
-                }
-
                 /*
                 Update the Deck Table
                  */
-                statement = connection.prepareStatement(
+                PreparedStatement statement = connection.prepareStatement(
                         "insert into Deck (deckName, cardName, cardQuestion, cardAnswer) values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
                 statement.setString(2, card.getCardName());
