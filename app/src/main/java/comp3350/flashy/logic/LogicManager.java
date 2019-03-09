@@ -26,7 +26,7 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public void deleteDeck(Deck curr){
-        database.getDeck(curr.getName());
+        database.removeDeck(curr.getName());
     }
 
     @Override

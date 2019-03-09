@@ -30,7 +30,7 @@ public class DatabaseManager {
     }
 
     private void createDefaultData() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
             Deck tempDeck = new Deck(deckName);
             for (int j = 0; j < 5; j++) {

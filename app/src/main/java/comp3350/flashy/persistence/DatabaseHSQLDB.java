@@ -17,7 +17,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         hsqlServer.setDatabaseName(0, "FlashyDB");
         hsqlServer.setDatabasePath(0, "file:FlashyDB");
 
-//        hsqlServer.setLogWriter(null);
         hsqlServer.setSilent(true);
 
         // Start the database!
@@ -27,8 +26,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:mem:FlashyDB", "SA", "");
-//            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/FlashyDB", "SA", "");
+            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/FlashyDB", "SA", "");
             System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
