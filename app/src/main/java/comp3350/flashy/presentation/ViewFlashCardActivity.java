@@ -18,7 +18,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private String name;
     private String body;
     private String title;
-    private int index=1;
+    private int index=0;
     private int deckSize;
 
     private uiHandler uiManager = MainActivity.getHandler();
@@ -43,6 +43,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         exit = (Button) findViewById(R.id.exitButton);
         delete = (Button) findViewById(R.id.delButton);
         modify = (Button) findViewById(R.id.modButton);
+        index = 0;
         deckSize = uiManager.getDeckSize();
         name = uiManager.getDeckName();
 
@@ -148,7 +149,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private void prevUpdateIndex() {
         //Flashcard nextCard;
         index--;
-        if (index > 0) {
+        if (index >= 0) {
             return;
         } else {
             index++;

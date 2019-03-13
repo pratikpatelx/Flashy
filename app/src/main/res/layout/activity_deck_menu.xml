@@ -29,28 +29,10 @@
                 android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.083" />
-
-            <Button
-                android:id="@+id/viewDecks"
-                android:layout_width="442dp"
-                android:layout_height="128dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@android:drawable/alert_light_frame"
-                android:text="@string/View_Deck"
-                android:textSize="36sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newDeck"
-                app:layout_constraintVertical_bias="0.066" />
+                app:layout_constraintVertical_bias="0.156" />
 
             <Button
                 android:id="@+id/logOut"
@@ -65,10 +47,10 @@
                 android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintHorizontal_bias="0.468"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewDecks"
-                app:layout_constraintVertical_bias="0.573" />
+                app:layout_constraintTop_toBottomOf="@+id/deckList"
+                app:layout_constraintVertical_bias="0.402" />
 
             <Button
                 android:id="@+id/deckList"
@@ -83,10 +65,10 @@
                 android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewDecks"
-                app:layout_constraintVertical_bias="0.121" />
+                app:layout_constraintTop_toBottomOf="@+id/newDeck"
+                app:layout_constraintVertical_bias="0.194" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"

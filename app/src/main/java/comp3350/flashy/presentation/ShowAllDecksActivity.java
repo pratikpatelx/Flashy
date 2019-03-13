@@ -1,10 +1,12 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,13 +22,19 @@ import comp3350.flashy.domain.Flashcard;
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
     uiHandler uiManager = MainActivity.getHandler();
+    ArrayList<String> items;
+    int selectedPostion;
+    private TextView deck;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_decks);
+        this.getSupportActionBar().hide();
 
-        final ArrayList<String> items = uiManager.getNames();
+        deck = (TextView) findViewById(R.id.selectedDeck);
+        items = uiManager.getNames();
+
 
         fcArrayAdapter = new ArrayAdapter<String>(this, R.layout.deck_list_item, R.id.deck_list_item, items)
         {
@@ -36,26 +44,38 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
                 TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
 
-                deck.setTextSize(35);
+
 
                 deck.setText(items.get(position));
 
 
-                deck.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                       // openViewFlashCardActivity(items.get(position).getCardName());
-                        openCreateDeckActivity(items.get(position));
-                    }
-                });
+//                deck.setOnClickListener(new View.OnClickListener(){
+//                    @Override
+//                    public void onClick(View v) {
+//                        openCreateDeckActivity(items.get(position));
+//
+//
+//                    }
+//                });
 
 
                 return view;
             }
         };
 
-        ListView listView = (ListView)findViewById(R.id.showAllDeckList);
+        final ListView listView = (ListView)findViewById(R.id.showAllDeckList);
         listView.setAdapter(fcArrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    listView.setItemChecked(position,true);
+                    selectedPostion = position;
+
+                    deck.setText(items.get(position));
+
+                }
+        });
     }
 
     public void openCreateDeckActivity(String deckName) {

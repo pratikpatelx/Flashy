@@ -17,29 +17,22 @@ public class uiHandler {
     //TODO add checks and error handling.
 
     public uiHandler() {
-        currDeck = new Deck("default");
-        deckSize = currDeck.getNumCards();
         logic = new LogicManager();
-        logic.insertDeck(currDeck);
-        deckName = currDeck.getName();
     }
 
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content) {
-
         logic.putFlashcardInDeck(deckName,(deckName +"-"+ deckSize), head, content);
         deckSize= currDeck.getNumCards();
-        System.out.println(deckSize);
     }
 
-    //kyle wrote this
     public void deleteCard(int index) {
         logic.removeCard(currDeck, (currDeck+"-"+index));
         deckSize = currDeck.getNumCards();
-
     }
 
+    //this returns the the head and body of the flashcard
     public String[] getContent(int index) {
 
         Flashcard curr = currDeck.getCard(deckName +"-"+ index);
@@ -55,6 +48,7 @@ public class uiHandler {
         logic.editFlashcard(currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
     }
 
+    //this will parse the current index of a flash card.
     public int getIndexByFlashCard(String name){
         Flashcard curr = currDeck.getCard(name);
 
@@ -85,6 +79,7 @@ public class uiHandler {
         if(newDeck !=null){
             currDeck=newDeck;
             deckName = newDeck.getName();
+            deckSize = currDeck.getNumCards();
             System.out.println("found deck");
         }else {
             currDeck = new Deck(name);

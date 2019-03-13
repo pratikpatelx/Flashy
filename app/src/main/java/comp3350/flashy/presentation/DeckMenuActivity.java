@@ -47,14 +47,14 @@ public class DeckMenuActivity extends AppCompatActivity {
             }
         });
 
-        editDeck = (Button) findViewById(R.id.viewDecks);
-        editDeck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openViewFlashcardActivity();
-                //Log.d("Flashy", "log out button clicked");
-            }
-        });
+//        editDeck = (Button) findViewById(R.id.viewDecks);
+//        editDeck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openViewFlashcardActivity();
+//                //Log.d("Flashy", "log out button clicked");
+//            }
+//        });
     }
 
     public void openViewFlashcardActivity() {
