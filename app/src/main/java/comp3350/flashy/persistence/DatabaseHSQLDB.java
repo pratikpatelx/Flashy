@@ -26,7 +26,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:file:FlashyDB", "SA", "");
+            connection = DriverManager.getConnection(
+                    "jdbc:hsqldb:file:FlashyDB",
+                    "SA",
+                    "");
             System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
@@ -42,11 +45,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public void inputDeck(String identifier, Deck inputDeck) {
+    public void inputDeck(String username, String identifier, Deck inputDeck) {
         try {
             ArrayList<Flashcard> cardList = inputDeck.getCards();
 
-            deleteDeck(identifier);
+            deleteDeck(username, identifier);
 
             for (int i = 0; i < cardList.size(); i++) {
                 Flashcard card = cardList.get(i);
@@ -57,7 +60,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 Update the Deck Table
                  */
                 PreparedStatement statement = connection.prepareStatement(
-                        "insert into Deck (deckName, cardName, cardQuestion, cardAnswer) values (?, ?, ?, ?);");
+                        "insert into Deck (deckName, cardName, cardQuestion, cardAnswer)" +
+                                " values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
                 statement.setString(2, card.getCardName());
                 statement.setString(3, card.getQuestion());
@@ -68,8 +72,9 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 Update the DeckList Table
                  */
                 statement = connection.prepareStatement(
-                        "insert into DeckList (deckName) values (?)");// if (select count (deckName) from DeckList where deckName=?) <= 1;");
-                statement.setString(1, identifier);
+                        "insert into DeckList (username, deckName) values (?,?)");
+                statement.setString(1, username);
+                statement.setString(2, identifier);
                 statement.executeUpdate();
 
                 System.out.println("inputDeck DONE");
@@ -83,15 +88,20 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public Deck getDeck(String identifier) {
+    public Deck getDeck(String username, String identifier) {
         Deck result = null;
 
         try {
+
             /*
             If a deck with the given name exists, get it from the database
              */
             PreparedStatement statement = connection.prepareStatement(
-                    "select cardName, cardQuestion, cardAnswer from Deck where Deck.deckName=?;");
+                    "select cardName, cardQuestion, cardAnswer from Deck join DeckList " +
+                            "where DeckList.username=? " +
+                            "and DeckList.deckName=? " +
+                            "and Deck.deckName=DeckList.deckName;");
+            statement.setString(1, username);
             statement.setString(1, identifier);
             ResultSet resultSet =  statement.executeQuery();
 
@@ -118,11 +128,12 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public void deleteDeck(String identifier){
+    public void deleteDeck(String username, String identifier){
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "delete from DeckList where deckName=?;");
-            statement.setString(1, identifier);
+                    "delete from DeckList where username=? and deckName=?;");
+            statement.setString(1, username);
+            statement.setString(2, identifier);
             statement.executeUpdate();
 
             statement = connection.prepareStatement(
@@ -135,12 +146,15 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public Collection getDeckCollection() {
+    public Collection getDeckCollection(String username) {
         Collection result = null;
         ArrayList<Deck> deckList = new ArrayList();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("select distinct * from DeckList;");
+            PreparedStatement statement = connection.prepareStatement(
+                    "select distinct * from DeckList where username=?;");
+            statement.setString(1, username);
+
             ResultSet resultSet =  statement.executeQuery();
             Deck deck = null;
             while (resultSet.next()) {
@@ -182,10 +196,69 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
+    @Override
+    public void inputUser(String username, String password) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "insert into UserList (username, password) values (?, ?);");
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("inputUser Failed");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getUserPassword(String username) {
+        String result = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "select password from UserList where username=?");
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                result = resultSet.getString("password");
+            }
+        } catch (SQLException e) {
+            System.out.println("getUserPassword Failed");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public void removeUser(String username) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "delete from UserList where username=?;");
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "delete from DeckList where username=?;");
+            statement.setString(1, username);
+            statement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("removeUser Failed");
+            e.printStackTrace();
+        }
+    }
+
     private void createTables() {
         try {
             PreparedStatement statement = connection.prepareStatement(
+                    "create table if not exists UserList (" +
+                            "username varChar(60) not null unique" +
+                            "password varChar(60))not null unique;");
+            statement.execute();
+
+            System.out.println("UserList Created");
+
+            statement = connection.prepareStatement(
                     "create table if not exists DeckList (" +
+                            "username varChar(60)" +
                             "deckName varChar(60));");
             statement.execute();
 

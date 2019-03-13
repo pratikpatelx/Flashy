@@ -6,11 +6,23 @@ import comp3350.flashy.domain.Deck;
 
 public interface DatabaseImplementation {
 
-    void inputDeck(String identifier, Deck inputDeck);
+    /*
+    Deck based methods
+     */
+    void inputDeck(String username, String identifier, Deck inputDeck);
 
-    Deck getDeck(String identifier);
+    Deck getDeck(String username, String identifier);
 
-    void deleteDeck(String identifier);
+    void deleteDeck(String username, String identifier);
 
-    Collection getDeckCollection();
+    Collection getDeckCollection(String username);
+
+    /*
+    User based methods
+     */
+    void inputUser (String username, String password);
+
+    String getUserPassword (String username);
+
+    void removeUser (String username);
 }

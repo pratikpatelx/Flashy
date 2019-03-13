@@ -7,23 +7,23 @@ import comp3350.flashy.domain.Deck;
 
 public interface LogicManagerInterface {
 
-    Deck getDeck(String deckName);
+    Deck getDeck(String username, String deckName);
 
-    void insertDeck(Deck updated);
+    void insertDeck(String username, Deck updated);
 
-    void deleteDeck(Deck curr);
+    void deleteDeck(String username, Deck curr);
 
-    Deck removeCard(Deck curr, String cardName);
+    Deck removeCard(String username, Deck curr, String cardName);
 
-    void putFlashcardInDeck(String deckName, String cardName, String question, String answer);
+    void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer);
 
     //void deleteFlashcardInDeck(String deckName, String cardName);
 
-    void editFlashcard(String deckName, String cardName, String newQuestion, String newAnswer);
+    void editFlashcard(String username, String deckName, String cardName, String newQuestion, String newAnswer);
 
-    void printDeck(String deckName);
+    void printDeck(String username, String deckName);
 
-    int queryDeckSize(String deckName);
+    int queryDeckSize(String username, String deckName);
 
-    ArrayList<Deck> getAllDecks();
+    ArrayList<Deck> getAllDecks(String username);
 }
