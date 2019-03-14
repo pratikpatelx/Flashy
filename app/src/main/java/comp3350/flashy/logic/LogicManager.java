@@ -111,5 +111,9 @@ public class LogicManager implements LogicManagerInterface {
         return result;
     }
 
+    public void addUsertoDatabase(String username, String password){
+        userHandler.addUser(username, password);
+    }
+
 
 }

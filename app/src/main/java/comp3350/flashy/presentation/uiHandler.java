@@ -103,5 +103,10 @@ public class uiHandler {
         logic.deleteDeck(username,toDel);
     }
 
+    public void registerUser(String username, String password){
+        logic.addUsertoDatabase(username,password);
+        System.out.println(username + " :: added user");
+    }
+
 
 }
