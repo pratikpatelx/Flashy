@@ -93,7 +93,7 @@
         app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toEndOf="@+id/cancelButton"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/add_card" />
 
     <FrameLayout
         android:id="@+id/container"

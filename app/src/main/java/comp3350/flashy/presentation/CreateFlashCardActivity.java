@@ -20,6 +20,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private String body = "Example of front side of flash card";
     private boolean bodySelected;
     private EditText toShow;
+    private boolean modifying = false;
 
     private FloatingActionButton save;
     private FloatingActionButton cancel;
@@ -39,7 +40,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         cancel = (FloatingActionButton) findViewById(R.id.cancelButton);
         toShow = new EditText(this);
 
-        Bundle extra = getIntent().getExtras();
+        final Bundle extra = getIntent().getExtras();
         String[] card;
 
         if(extra !=null){
@@ -49,6 +50,8 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
             textViewFlashBody.setText(body);
             textViewFlashTitle.setText(title);
+
+            modifying = true;
 
         }
 
@@ -111,6 +114,11 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(modifying){
+                    uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"));
+                }
+
                 finish();
             }
         });
