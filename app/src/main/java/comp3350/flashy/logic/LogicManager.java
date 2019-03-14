@@ -13,8 +13,8 @@ import comp3350.flashy.persistence.DeckDatabaseManager;
 import comp3350.flashy.persistence.UserDatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    //private DatabaseImplementation databaseType = new DatabaseStub();
+    //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
+    private DatabaseImplementation databaseType = new DatabaseStub();
     private DeckDatabaseManager database = new DeckDatabaseManager(databaseType);
     private UserDatabaseManager userDatabase = new UserDatabaseManager(databaseType);
     private UserHandler userHandler = new UserHandler(userDatabase);

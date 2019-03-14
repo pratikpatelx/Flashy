@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.UserHandler;
 
 public class uiHandler {
 
     private LogicManager logic;
+    private UserHandler admin;
+    private String username;
     private Deck currDeck;
 
     private String deckName;
@@ -18,17 +21,19 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
+
+        username = "THE KNOW-IT-ALL";
     }
 
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content) {
-        logic.putFlashcardInDeck(deckName,(deckName +"-"+ deckSize), head, content);
+        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content);
         deckSize= currDeck.getNumCards();
     }
 
     public void deleteCard(int index) {
-        logic.removeCard(currDeck, (currDeck+"-"+index));
+        logic.removeCard(username,currDeck, (currDeck+"-"+index));
         deckSize = currDeck.getNumCards();
     }
 
@@ -45,7 +50,7 @@ public class uiHandler {
     }
 
     public void editContent(int index, String newQuestion,String newAnswer){
-        logic.editFlashcard(currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
+        logic.editFlashcard(username,currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
     }
 
     //this will parse the current index of a flash card.
@@ -74,7 +79,7 @@ public class uiHandler {
     }
 
     public void setCurrDeck(String name){
-        Deck newDeck = logic.getDeck(name);
+        Deck newDeck = logic.getDeck(username,name);
 
         if(newDeck !=null){
             currDeck=newDeck;
@@ -83,7 +88,7 @@ public class uiHandler {
             System.out.println("found deck");
         }else {
             currDeck = new Deck(name);
-            logic.insertDeck(currDeck);
+            logic.insertDeck(username,currDeck);
             deckName = currDeck.getName();
             deckSize = currDeck.getNumCards();
             System.out.println("created new deck");
@@ -91,11 +96,11 @@ public class uiHandler {
     }
 
     public ArrayList<String> getNames(){
-        return logic.getNames();
+        return logic.getNames(username);
     }
 
     public void deleteDeck(){
-        logic.deleteDeck(currDeck);
+        logic.deleteDeck(username,currDeck);
     }
 
 
