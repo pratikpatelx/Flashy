@@ -8,7 +8,7 @@ import java.util.Set;
 import comp3350.flashy.domain.Deck;
 
 public class DatabaseStub implements DatabaseImplementation{
-    private Hashtable<String, Hashtable> storage;
+    private Hashtable<String, Hashtable<String, Deck>> storage;
     private Hashtable<String, String> userList;
 
     public DatabaseStub() {
@@ -17,10 +17,12 @@ public class DatabaseStub implements DatabaseImplementation{
     }
 
     @Override
+    //was putting new hashtable in everytime we added a new deck, overwriting the Decklist
+    //see inputUser
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        Hashtable deckList = new Hashtable<>();
-        deckList.put(identifier, inputDeck);
-        storage.put(username, deckList);
+        //Hashtable deckList = new Hashtable<>();
+        //deckList.put(identifier, inputDeck);
+        storage.get(username).put(identifier,inputDeck);
     }
 
     @Override
@@ -55,10 +57,12 @@ public class DatabaseStub implements DatabaseImplementation{
         return result;
     }
 
+    //to fix this, decklist now created w/user.
     @Override
     public void inputUser(String username, String password) {
         userList.put(username, password);
-        storage.put(username, null);
+        //storage.put(username, null);
+        storage.put(username, new Hashtable<String, Deck>());
     }
 
     @Override

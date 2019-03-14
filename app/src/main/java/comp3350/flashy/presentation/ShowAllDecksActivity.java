@@ -41,6 +41,8 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         deck = (TextView) findViewById(R.id.selectedDeck);
         listView = (ListView)findViewById(R.id.showAllDeckList);
         openDeck = (Button) findViewById(R.id.Open);
+        delDeck = (Button) findViewById(R.id.deleteDeck);
+        Back = (Button) findViewById(R.id.Back);
         items = uiManager.getNames();
         selectedPostion = -1;
 
@@ -65,9 +67,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     listView.setItemChecked(position,true);
                     selectedPostion = position;
-
                     deck.setText(items.get(position));
-
                 }
         });
 
@@ -78,6 +78,27 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 if(selectedPostion != -1)
                     openCreateDeckActivity(items.get(selectedPostion));
 
+            }
+        });
+
+        delDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(selectedPostion != -1){
+                    uiManager.deleteDeck(items.get(selectedPostion));
+                    items.remove(selectedPostion);
+                    fcArrayAdapter.notifyDataSetChanged();
+                    selectedPostion = -1;
+                    deck.setText("");
+                }
+            }
+        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

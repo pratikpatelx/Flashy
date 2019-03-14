@@ -32,6 +32,8 @@ public class DeckDatabaseManager extends DatabaseManager {
     }
 
     private void createDefaultData() {
+        storage.inputUser("THE KNOW-IT-ALL","BUGS");
+
         for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
             Deck tempDeck = new Deck(deckName);

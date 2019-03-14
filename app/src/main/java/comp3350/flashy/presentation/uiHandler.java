@@ -10,7 +10,6 @@ import comp3350.flashy.logic.UserHandler;
 public class uiHandler {
 
     private LogicManager logic;
-    private UserHandler admin;
     private String username;
     private Deck currDeck;
 
@@ -66,7 +65,6 @@ public class uiHandler {
 
 
     public int getDeckSize() {
-        //change this to get deck size
         return deckSize;
     }
 
@@ -96,11 +94,13 @@ public class uiHandler {
     }
 
     public ArrayList<String> getNames(){
+        System.out.println(logic.getNames(username));
         return logic.getNames(username);
     }
 
-    public void deleteDeck(){
-        logic.deleteDeck(username,currDeck);
+    public void deleteDeck(String dName) {
+        Deck toDel = logic.getDeck(username,dName);
+        logic.deleteDeck(username,toDel);
     }
 
 
