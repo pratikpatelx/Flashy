@@ -60,7 +60,7 @@ public class CreateDeckActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDeckMenuActivity();
+                finish();
             }
         });
 
