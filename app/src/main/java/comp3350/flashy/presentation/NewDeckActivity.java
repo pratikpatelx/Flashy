@@ -49,6 +49,7 @@ public class NewDeckActivity extends Activity {
             @Override
             public void onClick(View v) {
                 openCreateDeckActivity();
+                finish();
             }
         });
 
