@@ -14,6 +14,7 @@ import comp3350.flashy.R;
 
 public class MainActivity extends AppCompatActivity {
     private Button giveAccess;
+    private Button register;
     public static uiHandler ui = new uiHandler();
 
     @Override
@@ -22,11 +23,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         giveAccess = (Button)findViewById(R.id.login_button);
+        register = (Button) findViewById(R.id.register);
+
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDeckMenuActivity();
                 Log.d("Flashy", "Log in Button CLicked");
+            }
+        });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openResgistrationActivity();
             }
         });
     }
@@ -38,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openDeckMenuActivity(){
         Intent intent = new Intent(this, DeckMenuActivity.class);
+        startActivity(intent);
+    }
+    public void openResgistrationActivity(){
+        Intent intent = new Intent(this, FlashyRegistrationActivity.class);
         startActivity(intent);
     }
 

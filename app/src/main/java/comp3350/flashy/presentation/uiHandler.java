@@ -11,8 +11,8 @@ public class uiHandler {
 
     private LogicManager logic;
     private String username;
-    private Deck currDeck;
 
+    private Deck currDeck;
     private String deckName;
     private int deckSize; // this is to hold max index
 
@@ -47,10 +47,10 @@ public class uiHandler {
 
         return result;
     }
-
-    public void editContent(int index, String newQuestion,String newAnswer){
-        logic.editFlashcard(username,currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
-    }
+    // to be removed
+//    public void editContent(int index, String newQuestion,String newAnswer){
+//        logic.editFlashcard(username,currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
+//    }
 
     //this will parse the current index of a flash card.
     public int getIndexByFlashCard(String name){
