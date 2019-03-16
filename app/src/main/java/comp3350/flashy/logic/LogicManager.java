@@ -32,8 +32,8 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public void deleteDeck(String username, Deck curr){
-        database.removeDeck(username, curr.getName());
+    public void deleteDeck(String username, String deckName){
+        database.removeDeck(username, deckName);
     }
 
     @Override

@@ -92,13 +92,11 @@ public class uiHandler {
     }
 
     public ArrayList<String> getNames(){
-        System.out.println(logic.getNames(username));
         return logic.getNames(username);
     }
 
     public void deleteDeck(String dName) {
-        Deck toDel = logic.getDeck(username,dName);
-        logic.deleteDeck(username,toDel);
+        logic.deleteDeck(username,dName);
     }
 
     public boolean registerUser(String username, String password){

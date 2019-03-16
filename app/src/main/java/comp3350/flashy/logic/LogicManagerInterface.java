@@ -11,7 +11,7 @@ public interface LogicManagerInterface {
 
     void insertDeck(String username, Deck updated);
 
-    void deleteDeck(String username, Deck curr);
+    void deleteDeck(String username, String deckName);
 
     Deck removeCard(String username, Deck curr, String cardName);
 
