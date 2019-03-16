@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.hsqldb.rights.User;
 
@@ -34,10 +35,12 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(true){ //add conventions for naming and password
-                    uiManager.registerUser(Username.getText().toString(),password.getText().toString());
+                if(uiManager.registerUser(Username.getText().toString(),password.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_LONG).show();
                     finish();
-                }
+                }else
+                    Toast.makeText(getApplicationContext(),"Registration unsuccessful",Toast.LENGTH_LONG).show();
+
 
             }
         });

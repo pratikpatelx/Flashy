@@ -32,7 +32,7 @@ public class DeckDatabaseManager extends DatabaseManager {
     }
 
     private void createDefaultData() {
-        storage.inputUser("THE KNOW-IT-ALL","BUGS");
+        storage.inputUser("","");
 
         for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
@@ -43,7 +43,7 @@ public class DeckDatabaseManager extends DatabaseManager {
                         "DefaultCardQuestion" + j,
                         "DefaultCardAnswer" + j));
             }
-            inputDeck("THE KNOW-IT-ALL" ,deckName, tempDeck);
+            inputDeck("" ,deckName, tempDeck);
         }
     }
 }

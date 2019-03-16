@@ -17,11 +17,8 @@ public class DatabaseStub implements DatabaseImplementation{
     }
 
     @Override
-    //was putting new hashtable in everytime we added a new deck, overwriting the Decklist
-    //see inputUser
+    //TODO ADD CHECK FOR NULL USER
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        //Hashtable deckList = new Hashtable<>();
-        //deckList.put(identifier, inputDeck);
         storage.get(username).put(identifier,inputDeck);
     }
 
@@ -57,17 +54,24 @@ public class DatabaseStub implements DatabaseImplementation{
         return result;
     }
 
-    //to fix this, decklist now created w/user.
     @Override
-    public void inputUser(String username, String password) {
-        userList.put(username, password);
-        //storage.put(username, null);
-        storage.put(username, new Hashtable<String, Deck>());
+    public void inputUser(String username, String password) throws IllegalArgumentException {
+
+        if(userList.containsKey(username)){
+            throw new IllegalArgumentException();
+        }else {
+            userList.put(username, password);
+            storage.put(username, new Hashtable<String, Deck>());
+        }
+
     }
 
     @Override
-    public String getUserPassword(String username) {
-        return userList.get(username);
+    public String getUserPassword(String username) throws IllegalArgumentException {
+        if(userList.containsKey(username))
+            return userList.get(username);
+        else
+            throw new IllegalArgumentException();
     }
 
     @Override

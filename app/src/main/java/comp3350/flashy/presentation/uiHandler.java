@@ -20,8 +20,6 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
-
-        username = "THE KNOW-IT-ALL";
     }
 
 
@@ -47,12 +45,8 @@ public class uiHandler {
 
         return result;
     }
-    // to be removed
-//    public void editContent(int index, String newQuestion,String newAnswer){
-//        logic.editFlashcard(username,currDeck.getName(),(currDeck.getName()+"-"+index),newQuestion,newAnswer);
-//    }
 
-    //this will parse the current index of a flash card.
+    //note to self: do a better job...
     public int getIndexByFlashCard(String name){
         Flashcard curr = currDeck.getCard(name);
 
@@ -93,6 +87,10 @@ public class uiHandler {
         }
     }
 
+    public void setUsername(String name){
+        username = name;
+    }
+
     public ArrayList<String> getNames(){
         System.out.println(logic.getNames(username));
         return logic.getNames(username);
@@ -103,9 +101,12 @@ public class uiHandler {
         logic.deleteDeck(username,toDel);
     }
 
-    public void registerUser(String username, String password){
-        logic.addUsertoDatabase(username,password);
-        System.out.println(username + " :: added user");
+    public boolean registerUser(String username, String password){
+        return logic.addUserToDatabase(username,password);
+    }
+
+    public boolean Verified(String username, String password){
+        return logic.verifyUserPassword(username,password);
     }
 
 

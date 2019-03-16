@@ -5,7 +5,7 @@ import comp3350.flashy.persistence.DatabaseManager;
 import comp3350.flashy.persistence.UserDatabaseManager;
 
 public class UserHandler {
-    private UserDatabaseManager userList = null;
+    private UserDatabaseManager userList;
 
     public UserHandler(UserDatabaseManager givenImpl) {
         userList = givenImpl;
@@ -16,8 +16,11 @@ public class UserHandler {
      * @param username
      */
     public boolean verifyUser(String username, String password) {
-        String truePass = userList.getUserPassword(username);
-        return truePass.equals(password);
+        try {
+            return userList.getUserPassword(username).equals(password);
+        } catch(IllegalArgumentException e){
+            return false;
+        }
     }
 
     /**
@@ -25,7 +28,12 @@ public class UserHandler {
      * @param username
      * @param password
      */
-    public void addUser(String username, String password) {
-        userList.inputUser(username, password);
+    public boolean addUser(String username, String password) {
+        try {
+            userList.inputUser(username, password);
+            return true;
+        }catch (IllegalArgumentException e){
+            return false;
+        }
     }
 }

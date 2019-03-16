@@ -1,5 +1,7 @@
 package comp3350.flashy.logic;
 
+import android.widget.Toast;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -111,8 +113,14 @@ public class LogicManager implements LogicManagerInterface {
         return result;
     }
 
-    public void addUsertoDatabase(String username, String password){
-        userHandler.addUser(username, password);
+
+    //TODO ADD ARGUMENT CONVENTION REQUIREMENTS
+    public boolean addUserToDatabase(String username, String password){
+        return userHandler.addUser(username, password);
+    }
+
+    public boolean verifyUserPassword(String username, String password){
+        return userHandler.verifyUser(username,password);
     }
 
 
