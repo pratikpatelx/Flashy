@@ -8,6 +8,21 @@
     tools:context=".presentation.FlashCardListActivity">
 
     <Button
+        android:id="@+id/viewCards"
+        android:layout_width="164dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="View"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/addCard"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/exitFlashList"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardList" />
+
+    <Button
         android:id="@+id/addCard"
         android:layout_width="164dp"
         android:layout_height="80dp"

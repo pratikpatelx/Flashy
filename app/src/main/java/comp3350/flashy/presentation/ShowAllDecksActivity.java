@@ -16,7 +16,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.CreateDeckActivity;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
@@ -68,6 +67,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                     listView.setItemChecked(position,true);
                     selectedPostion = position;
                     deck.setText(items.get(position));
+                    uiManager.setCurrDeck(items.get(position));
                 }
         });
 
@@ -76,7 +76,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selectedPostion != -1)
-                    openCreateDeckActivity(items.get(selectedPostion));
+                    openFlashCardListActivity(items.get(selectedPostion));
 
             }
         });
@@ -103,9 +103,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         });
     }
 
-    public void openCreateDeckActivity(String deckName) {
-        Intent intent = new Intent(this, CreateDeckActivity.class);
-        intent.putExtra("DECK",deckName);
+    public void openFlashCardListActivity(String deckName) {
+        Intent intent = new Intent(this, FlashCardListActivity.class);
+        //intent.putExtra("DECK",deckName);
         startActivity(intent);
     }
     

@@ -26,6 +26,7 @@ public class NewDeckActivity extends Activity {
     private Button cancelDeck;
     private EditText input;
     private TextView title;
+    private uiHandler uiManager = MainActivity.getHandler();
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +74,8 @@ public class NewDeckActivity extends Activity {
     }
 
     public void openCreateDeckActivity(){
-        Intent intent = new Intent(this, CreateDeckActivity.class);
-        intent.putExtra("DECK",input.getText().toString());
+        Intent intent = new Intent(this, FlashCardListActivity.class);
+        uiManager.setCurrDeck(input.getText().toString());
         startActivity(intent);
     }
 
