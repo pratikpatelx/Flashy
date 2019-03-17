@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import comp3350.flashy.R;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button register;
     private EditText username;
     private EditText password;
+    private ListView profiles;
 
     public static uiHandler ui = new uiHandler();
 
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         giveAccess = (Button)findViewById(R.id.login_button);
         register = (Button) findViewById(R.id.register);
         username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+
+        profiles = (ListView) findViewById(R.id.profiles);
 
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

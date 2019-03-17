@@ -100,6 +100,10 @@ public class LogicManager implements LogicManagerInterface {
         return(new ArrayList<Deck>(database.getDeckCollection(username)));
     }
 
+    public ArrayList<Deck> getAllProfiles(String username){
+        return(new ArrayList<Deck>(userDatabase.getUserCollection()));
+    }
+
     public ArrayList<String> getNames(String username){
         ArrayList<Deck> temp = getAllDecks(username);
         System.out.println(getAllDecks(username));

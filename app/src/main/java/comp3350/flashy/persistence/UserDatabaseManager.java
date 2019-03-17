@@ -2,6 +2,8 @@ package comp3350.flashy.persistence;
 
 import org.hsqldb.DatabaseManager;
 
+import java.util.Collection;
+
 public class UserDatabaseManager extends DatabaseManager {
     private DatabaseImplementation storage;
 
@@ -20,5 +22,9 @@ public class UserDatabaseManager extends DatabaseManager {
 
     public void removeUser (String username){
         storage.removeUser(username);
+    }
+
+    public Collection getUserCollection() {
+        return storage.getUserCollection();
     }
 }

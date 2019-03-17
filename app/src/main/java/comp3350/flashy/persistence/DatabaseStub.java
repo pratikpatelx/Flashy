@@ -79,4 +79,17 @@ public class DatabaseStub implements DatabaseImplementation{
         userList.remove(username);
         storage.remove(username);
     }
+
+    @Override
+    public Collection<String> getUserCollection(){
+        //Hashtable userDecks = storage.get(username);
+        Collection result = new ArrayList();
+
+        Set<String> keys = userList.keySet();
+        for(String key: keys) {
+            result.add(userList.get(key));
+        }
+
+        return result;
+    }
 }

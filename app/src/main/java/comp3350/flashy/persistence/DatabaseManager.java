@@ -25,4 +25,6 @@ public abstract class DatabaseManager {
     abstract String getUserPassword (String username);
 
     abstract void removeUser (String username);
+
+    abstract public Collection getUserCollection(String username);
 }
