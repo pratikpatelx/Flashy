@@ -32,7 +32,16 @@ public class UserHandler {
         try {
             userList.inputUser(username, password);
             return true;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e){
+            return false;
+        }
+    }
+
+    public boolean removeUser(String usename) {
+        try {
+            userList.removeUser(usename);
+            return true;
+        } catch (IllegalArgumentException e){
             return false;
         }
     }
