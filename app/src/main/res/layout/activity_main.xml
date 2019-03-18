@@ -5,30 +5,98 @@
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLogInText"
+    android:background="@android:color/background_light"
     tools:context=".presentation.MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="198dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="FLASHY"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/selectedUser"
+        android:layout_width="146dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/profilePass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/Enter"
+        android:layout_width="131dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Enter"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/profilePass"
+        android:layout_width="185dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="36dp"
+        android:ems="10"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/Enter"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/addProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
-        android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/profiles"
-        tools:layout_editor_absoluteX="439dp" />
+        android:layout_width="197dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Add Profile"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/profiles" />
+
+    <Button
+        android:id="@+id/deleteProfile"
+        android:layout_width="197dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="104dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Delete"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/addProfile"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/profiles" />
 
     <ListView
         android:id="@+id/profiles"
         android:layout_width="510dp"
-        android:layout_height="736dp"
+        android:layout_height="551dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/profilePass" />
 </android.support.constraint.ConstraintLayout>

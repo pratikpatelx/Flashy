@@ -100,8 +100,9 @@ public class LogicManager implements LogicManagerInterface {
         return(new ArrayList<Deck>(database.getDeckCollection(username)));
     }
 
-    public ArrayList<Deck> getAllProfiles(String username){
-        return(new ArrayList<Deck>(userDatabase.getUserCollection()));
+    public ArrayList<String> getAllProfiles(){
+        System.out.println(userDatabase.getUserCollection());
+        return(new ArrayList<String>(userDatabase.getUserCollection()));
     }
 
     public ArrayList<String> getNames(String username){
@@ -112,6 +113,19 @@ public class LogicManager implements LogicManagerInterface {
         for (int i  = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
             System.out.println(temp.get(i).getName());
+        }
+
+        return result;
+    }
+
+    public ArrayList<String> getProfileNames(){
+        ArrayList<String> temp = getAllProfiles();
+        System.out.println(getAllProfiles());
+        ArrayList result = new ArrayList<Deck>();
+
+        for (int i  = 0; i < temp.size(); i++) {
+            result.add(temp.get(i));
+            System.out.println(temp.get(i));
         }
 
         return result;

@@ -9,6 +9,7 @@ public class UserDatabaseManager extends DatabaseManager {
 
     public UserDatabaseManager(DatabaseImplementation implementation){
         storage = implementation;
+        createDefaultData();
     }
 
     public void inputUser (String username, String password)
@@ -26,5 +27,13 @@ public class UserDatabaseManager extends DatabaseManager {
 
     public Collection getUserCollection() {
         return storage.getUserCollection();
+    }
+
+    private void createDefaultData() {
+        //storage.inputUser("","");
+
+        for (int i = 0; i < 3; i++) {
+            storage.inputUser(("test"+i),"");
+        }
     }
 }

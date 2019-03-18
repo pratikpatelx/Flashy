@@ -57,12 +57,12 @@ public class DatabaseStub implements DatabaseImplementation{
     @Override
     public void inputUser(String username, String password) throws IllegalArgumentException {
 
-        if(userList.containsKey(username)){
-            throw new IllegalArgumentException();
-        }else {
+        //if(userList.containsKey(username)){
+            //throw new IllegalArgumentException();
+       // }else {
             userList.put(username, password);
             storage.put(username, new Hashtable<String, Deck>());
-        }
+       // }
 
     }
 
@@ -82,12 +82,12 @@ public class DatabaseStub implements DatabaseImplementation{
 
     @Override
     public Collection<String> getUserCollection(){
-        //Hashtable userDecks = storage.get(username);
-        Collection result = new ArrayList();
 
-        Set<String> keys = userList.keySet();
-        for(String key: keys) {
-            result.add(userList.get(key));
+        Collection result = new ArrayList<String>();
+
+
+        for(String key : userList.keySet()) {
+            result.add(key);
         }
 
         return result;
