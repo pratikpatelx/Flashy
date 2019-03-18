@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedPos = position;
                 username.setText(pList.get(position));
+                password.setText("");
             }
         });
 
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         pList.clear();
         pList.addAll(ui.getAllProfileNames());
         profileArrayAdapter.notifyDataSetChanged();
+        password.setText("");
     }
 
     public static uiHandler getHandler() {
