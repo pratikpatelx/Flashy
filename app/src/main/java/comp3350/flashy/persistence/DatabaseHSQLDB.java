@@ -13,21 +13,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private static Connection connection;
 
     public DatabaseHSQLDB() {
-//        Server hsqlServer = new Server();
-//        hsqlServer.setDatabaseName(0, "FlashyDB");
-//        hsqlServer.setDatabasePath(0, "file:FlashyDB");
-//
-//        hsqlServer.setSilent(true);
-//
-//        // Start the database!
-//        hsqlServer.start();
-
-        System.out.println("Created DB Server");
-
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
+            Class.forName("org.hsqldb.jdbcDriver").newInstance();
             connection = DriverManager.getConnection(
-                    "jdbc:hsqldb:file:FlashyDB",
+                    "jdbc:hsqldb:file:FlashyDB;shutdown=true",
                     "SA",
                     "");
             System.out.println(connection.toString());
@@ -39,6 +28,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             e.printStackTrace(System.out);
             System.out.println("Connection failed..");
             System.exit(0);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
         System.out.println("Connection Successful!");
         createTables();
