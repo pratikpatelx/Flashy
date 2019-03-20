@@ -20,6 +20,8 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
+        username = "";
+
     }
 
 

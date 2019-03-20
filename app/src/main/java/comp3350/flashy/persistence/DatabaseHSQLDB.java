@@ -10,23 +10,13 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
-    private static Connection connection;
 
     public DatabaseHSQLDB() {
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
-            connection = DriverManager.getConnection(
-                    "jdbc:hsqldb:file:FlashyDB;shutdown=true",
-                    "SA",
-                    "");
-            System.out.println(connection.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
             System.out.println("Class Not Found..");
-            System.exit(0);
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            System.out.println("Connection failed..");
             System.exit(0);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -37,9 +27,17 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         createTables();
     }
 
+    private Connection connection() throws SQLException {
+        return DriverManager.getConnection(
+                "jdbc:hsqldb:file:FlashyDB;shutdown=true",
+                "SA",
+                "");
+    }
+
+
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        try {
+        try (final Connection connection = connection()) {
             ArrayList<Flashcard> cardList = inputDeck.getCards();
 
             deleteDeck(username, identifier);
@@ -84,7 +82,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     public Deck getDeck(String username, String identifier) {
         Deck result = null;
 
-        try {
+        try (final Connection connection = connection()) {
 
             /*
             If a deck with the given name exists, get it from the database
@@ -122,7 +120,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void deleteDeck(String username, String identifier){
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "delete from DeckList where username=? and deckName=?;");
             statement.setString(1, username);
@@ -143,7 +141,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         Collection result = null;
         ArrayList<Deck> deckList = new ArrayList();
 
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "select distinct * from DeckList where username=?;");
             statement.setString(1, username);
@@ -191,7 +189,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void inputUser(String username, String password) {
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "insert into UserList (username, password) values (?, ?);");
             statement.setString(1, username);
@@ -206,7 +204,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     @Override
     public String getUserPassword(String username) {
         String result = null;
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "select password from UserList where username=?");
             statement.setString(1, username);
@@ -223,7 +221,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void removeUser(String username) {
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "delete from UserList where username=?;");
             statement.setString(1, username);
@@ -240,11 +238,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     private void createTables() {
-        try {
+        try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "create table if not exists UserList (" +
                             "username varChar(60) not null unique" +
-                            "password varChar(60))not null unique;");
+                            "password varChar(60))not null;");
             statement.execute();
 
             System.out.println("UserList Created");

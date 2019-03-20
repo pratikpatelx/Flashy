@@ -9,8 +9,7 @@ public class UserDatabaseManager extends DatabaseManager {
         storage = implementation;
     }
 
-    public void inputUser (String username, String password)
-    {
+    public void inputUser (String username, String password) {
         storage.inputUser(username, password);
     }
 

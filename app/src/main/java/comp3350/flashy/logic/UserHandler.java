@@ -16,11 +16,12 @@ public class UserHandler {
      * @param username
      */
     public boolean verifyUser(String username, String password) {
-        try {
-            return userList.getUserPassword(username).equals(password);
-        } catch(IllegalArgumentException e){
-            return false;
-        }
+        Boolean result = false;
+            String upassword = userList.getUserPassword(username);
+            if (upassword != null && upassword.equals(password)){
+                result = true;
+            }
+            return result;
     }
 
     /**

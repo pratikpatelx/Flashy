@@ -32,17 +32,17 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
-        giveAccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ui.Verified(username.getText().toString(),password.getText().toString())) {
-                    ui.setUsername(username.getText().toString());
-                    openDeckMenuActivity();
-                }else
-                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
-
-            }
-        });
+      giveAccess.setOnClickListener(new View.OnClickListener() {
+           @Override
+         public void onClick(View v) {
+//                if(ui.Verified(username.getText().toString(),password.getText().toString())) {
+//                    ui.setUsername(username.getText().toString());
+                  openDeckMenuActivity();
+//                }else
+//                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
+//
+           }
+  });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
