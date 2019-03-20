@@ -2,6 +2,11 @@ package comp3350.flashy.domain;
 
 import java.util.Arrays;
 
+
+/**
+ * An extension to flashcard that adds functionality for multiple choice questions
+ * REQUIRES 5 possible answers including the single correct answer
+ */
 public class MCcard extends Flashcard implements FlashcardInterface {
 
     private String[] choices;
@@ -13,24 +18,37 @@ public class MCcard extends Flashcard implements FlashcardInterface {
                   String fifth) {
 
         super(name, question, answer);
-        this.choices = new String[5];
-        
-    }
-
-    //Place True or False card specific functions below
-    /**
-     * for this type of Flashcard the answer must be a string representation of true or false
-     * @param newAnswer
-     */
-    public void setAnswer(String newAnswer) {
-        if(newAnswer.contentEquals(String.valueOf(true))
-                || newAnswer.contentEquals(String.valueOf(false))){
-            super.setAnswer(newAnswer);
-        }
+        this.choices = new String[4];
+        this.choices[0] = answer;
+        this.choices[1] = second;
+        this.choices[2] = third;
+        this.choices[3] = fourth;
+        this.choices[4] = fifth;
     }
 
 
 
+    /***************** Accessors *****************/
+
+    public String getFirst(){
+        return this.choices[0];
+    }
+
+    public String getSecond(){
+        return this.choices[1];
+    }
+
+    public String getThird(){
+        return this.choices[2];
+    }
+
+    public String getFourth(){
+        return this.choices[3];
+    }
+
+    public String getFifth(){
+        return this.choices[4];
+    }
 
 
     @Override
