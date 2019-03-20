@@ -6,29 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ShowAllDecksActivity">
 
+    <Button
+        android:id="@+id/deleteDeck"
+        android:layout_width="160dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Delete Deck"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/Open"
+        app:layout_constraintStart_toEndOf="@+id/Back"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDeck" />
+
+    <Button
+        android:id="@+id/Open"
+        android:layout_width="164dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="44dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Open Deck"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/selectedDeck" />
+
+    <Button
+        android:id="@+id/Back"
+        android:layout_width="164dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="88dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Back"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/selectedDeck" />
+
     <ListView
         android:id="@+id/showAllDeckList"
-        android:layout_width="539dp"
-        android:layout_height="760dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="31dp" />
-
-    <TextView
-        android:id="@+id/showAllDecksText"
-        android:layout_width="288dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="538dp"
+        android:layout_height="588dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="List of All Decks"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192" />
+
+    <TextView
+        android:id="@+id/selectedDeck"
+        android:layout_width="245dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/showAllDeckList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/showAllDeckList" />
+
 </android.support.constraint.ConstraintLayout>

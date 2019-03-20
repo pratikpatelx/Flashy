@@ -3,39 +3,26 @@ package comp3350.flashy.persistence;
 import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.Flashcard;
 
-public class DatabaseManager {
-    DatabaseImplementation storage;
+public abstract class DatabaseManager {
 
-    public DatabaseManager(DatabaseImplementation implementation){
-        storage = implementation;
-        createDefaultData();
-    }
+    /*
+    Deck Methods
+     */
+    abstract public void inputDeck(String username, String identifier, Deck inputDeck);
 
-    public void inputDeck(String identifier, Deck inputDeck) {
-        storage.inputDeck(identifier, inputDeck);
-    }
+    abstract public Deck getDeck(String username, String identifier);
 
-    public Deck getDeck(String identifier) {
-        return storage.getDeck(identifier);
-    }
+    abstract public void removeDeck(String username, String identifier);
 
-    public Collection getDeckCollection() {
-        return storage.getDeckCollection();
-    }
+    abstract public Collection getDeckCollection(String username);
 
-    private void createDefaultData() {
-        for (int i = 0; i < 3; i++) {
-            String deckName = "DefaultDeck" + i;
-            Deck tempDeck = new Deck(deckName);
-            for (int j = 0; j < 5; j++) {
-                tempDeck.addCard(new Flashcard(
-                        deckName + "-" + j,
-                        "DefaultCardQuestion" + j,
-                        "DefaultCardAnswer" + j));
-                inputDeck(deckName, tempDeck);
-            }
-        }
-    }
+    /*
+    User Methods
+     */
+    abstract void inputUser (String username, String password);
+
+    abstract String getUserPassword (String username);
+
+    abstract void removeUser (String username);
 }

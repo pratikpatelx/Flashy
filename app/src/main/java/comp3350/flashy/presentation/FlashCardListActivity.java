@@ -35,9 +35,7 @@ public class FlashCardListActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.Title);
         Button exit = (Button) findViewById(R.id.exitFlashList);
         Button add = (Button) findViewById(R.id.addCard);
-        Button delete = (Button) findViewById(R.id.deleteDeck);
-
-
+        Button view = (Button) findViewById(R.id.viewCards);
 
         title.setText(currDeck.getName());
 
@@ -78,18 +76,17 @@ public class FlashCardListActivity extends AppCompatActivity {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uiManager.deleteDeck();
-                finish();
-            }
-        });
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCreateFlashCardActivity();
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openViewFlashCardActivity();
             }
         });
 
@@ -105,6 +102,11 @@ public class FlashCardListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
         intent.putExtra("FLASHCARD",cardName);
 
+        startActivity(intent);
+    }
+
+    public void openViewFlashCardActivity() {
+        Intent intent = new Intent(this, ViewFlashCardActivity.class);
         startActivity(intent);
     }
 

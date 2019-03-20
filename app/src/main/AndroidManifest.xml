@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.ShowAllDecksActivity"></activity>
+        <activity
+            android:name=".presentation.FlashyRegistrationActivity"
+            android:label="@string/title_activity_flashy_registration"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".presentation.ShowAllDecksActivity" />
         <activity
             android:name=".presentation.FlashCardListActivity"
             android:label="title_activity_flash_card_list"
