@@ -38,7 +38,7 @@ public class RemoveCardTest {
 
 
         System.out.println(testDeck);
-        lgc.removeCard(testDeck, 1);
+        //lgc.removeCard(testDeck, 1);
         System.out.println("\nTest to ensure there is 2 cards in the deck.");
 
         numCards = testDeck.getNumCards();
