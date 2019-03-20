@@ -82,4 +82,9 @@ public class Flashcard implements FlashcardInterface {
         return result;
     }
 
+    @Override
+    public boolean mark(String response){
+        return this.answer.equalsIgnoreCase(response);
+    }
+
 }
