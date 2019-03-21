@@ -1,4 +1,4 @@
-package comp3350.flashy.persistence;
+package comp3350.flashy.persistence.DatabaseImplementations;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.persistence.DatabaseManagement.DatabaseImplementation;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
 

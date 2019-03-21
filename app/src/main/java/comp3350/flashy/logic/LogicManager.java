@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseHSQLDB;
-import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DeckDatabaseManager;
-import comp3350.flashy.persistence.UserDatabaseManager;
+import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
+import comp3350.flashy.persistence.DatabaseManagement.DatabaseImplementation;
+import comp3350.flashy.persistence.DatabaseManagement.DeckDatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.UserDatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseImplementation databaseType = new DatabaseHSQLDB();

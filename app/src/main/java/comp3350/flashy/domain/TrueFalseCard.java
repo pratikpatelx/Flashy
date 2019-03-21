@@ -10,6 +10,10 @@ public class TrueFalseCard extends Flashcard {
         truthValue = givenTruthValue;
     }
 
+    public String getTruthValue () {
+        return truthValue;
+    }
+
     public String getCardType () {
         return cardType;
     }

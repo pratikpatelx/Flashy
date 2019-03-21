@@ -1,8 +1,6 @@
 package comp3350.flashy.logic;
 
-import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DatabaseManager;
-import comp3350.flashy.persistence.UserDatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.UserDatabaseManager;
 
 public class UserHandler {
     private UserDatabaseManager userList;

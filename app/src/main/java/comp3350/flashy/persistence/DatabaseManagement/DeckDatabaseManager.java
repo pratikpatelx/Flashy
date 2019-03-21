@@ -1,4 +1,4 @@
-package comp3350.flashy.persistence;
+package comp3350.flashy.persistence.DatabaseManagement;
 
 import org.hsqldb.DatabaseManager;
 
@@ -6,21 +6,24 @@ import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.persistence.Codifiers.DataTranslationLayer;
 
 public class DeckDatabaseManager extends DatabaseManager {
     private DatabaseImplementation storage;
+    private DataTranslationLayer translationLayer;
 
     public DeckDatabaseManager(DatabaseImplementation implementation){
         storage = implementation;
+        translationLayer = new DataTranslationLayer();
         createDefaultData();
     }
 
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        storage.inputDeck(username,identifier, DataTranslationLayer.encodeDeck(inputDeck));
+        storage.inputDeck(username,identifier, translationLayer.encodeDeck(inputDeck));
     }
 
     public Deck getDeck(String username, String identifier) {
-        return DataTranslationLayer.decodeDeck(storage.getDeck(username, identifier));
+        return translationLayer.decodeDeck(storage.getDeck(username, identifier));
     }
 
     public void removeDeck(String username, String identifier) {

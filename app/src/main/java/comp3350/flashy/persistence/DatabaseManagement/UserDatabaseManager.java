@@ -1,4 +1,4 @@
-package comp3350.flashy.persistence;
+package comp3350.flashy.persistence.DatabaseManagement;
 
 import org.hsqldb.DatabaseManager;
 
