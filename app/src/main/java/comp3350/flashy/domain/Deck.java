@@ -1,5 +1,7 @@
 package comp3350.flashy.domain;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Deck{
 
@@ -22,17 +24,19 @@ public class Deck{
 
     public Deck(String name, Deck other) {
         this.name = name;
-        this.cards = other.getCards();
+        this.cards = new ArrayList<Flashcard>();
+        this.cards.addAll(other.getCards());
         this.validateNames();
     }
 
 
-    public ArrayList getCards() {
+    public List<Flashcard> getCards() {
             return cards;
     }
 
     public void setDeck(Deck other) {
-        this.cards = other.getCards();
+        this.cards = new ArrayList<Flashcard>();
+        this.cards.addAll(other.getCards());
         this.validateNames();
     }
 
