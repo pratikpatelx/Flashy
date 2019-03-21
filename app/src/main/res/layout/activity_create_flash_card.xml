@@ -33,7 +33,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22"
-        app:srcCompat="@android:color/white" />
+        app:srcCompat="@android:color/white"
+        android:contentDescription="" />
 
     <TextView
         android:id="@+id/body"
@@ -45,7 +46,7 @@
         android:fontFamily="sans-serif"
         android:gravity="bottom|center|center_horizontal|top|center_vertical"
         android:paddingBottom="350dp"
-        android:text="Example of front side of a flash card"
+        android:text="@string/example_of_front_side_of_a_flash_card"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -64,7 +65,7 @@
         android:background="@color/flashcard_color"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Title"
+        android:text="@string/title"
         android:textSize="36sp"
         android:typeface="normal"
         android:visibility="visible"
@@ -93,7 +94,8 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.457"
         app:rippleColor="@color/design_default_color_primary_dark"
-        app:srcCompat="@drawable/ic_close_black_24dp" />
+        app:srcCompat="@drawable/ic_close_black_24dp"
+        android:focusable="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/saveButton"
@@ -113,7 +115,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.457"
-        app:srcCompat="@drawable/addcardiconselected" />
+        app:srcCompat="@drawable/addcardiconselected"
+        android:focusable="true" />
 
     <FrameLayout
         android:id="@+id/container"

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import comp3350.flashy.R;
 
@@ -62,6 +63,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
         textViewFlashBody.setText(body);
         textViewFlashTitle.setText(title);
+
 
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +136,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         intent.putExtra("BODY", body);
         startActivity(intent);
     }
+
     //clamping methods for flashcard viewer
     private void nextUpdateIndex() {
         //Flashcard nextCard;
@@ -156,4 +159,6 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

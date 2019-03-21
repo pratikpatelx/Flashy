@@ -1,7 +1,9 @@
 package comp3350.flashy.domain;
+import android.support.v7.widget.CardView;
+
 import java.util.ArrayList;
 
-public class Deck{
+public class Deck {
 
 
 

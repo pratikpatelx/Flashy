@@ -14,8 +14,8 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="260dp"
 
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:foregroundGravity="center_horizontal"
@@ -25,11 +25,13 @@
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addCard"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
-        app:layout_constraintVertical_bias="0.525"
-        app:srcCompat="@drawable/ic_visibility_black_24dp" />
+        app:layout_constraintVertical_bias="0.511"
+        app:srcCompat="@drawable/ic_visibility_black_24dp"
+        android:focusable="true" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -39,21 +41,23 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+
         android:padding="0dp"
         android:scaleType="fitXY"
-
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.835"
-        app:layout_constraintStart_toEndOf="@+id/exitFlashList"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
-        app:layout_constraintVertical_bias="0.525"
-        app:srcCompat="@drawable/addcardiconselected" />
+        app:layout_constraintVertical_bias="0.511"
+        app:srcCompat="@drawable/addcardiconselected"
+        android:focusable="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/exitFlashList"
@@ -73,11 +77,12 @@
         app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
-        app:layout_constraintVertical_bias="0.525"
-        app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
+        app:layout_constraintVertical_bias="0.511"
+        app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/Title"
@@ -85,14 +90,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:autoText="false"
-        android:text="Deck title"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:text="@string/deck_title"
         android:textAlignment="center"
         android:textSize="60sp"
         app:layout_constraintBottom_toTopOf="@+id/flashcardList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
@@ -103,10 +107,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:animateLayoutChanges="true"
+        android:animationCache="false"
+        android:listSelector="@color/flashcard_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
 
 </android.support.constraint.ConstraintLayout>

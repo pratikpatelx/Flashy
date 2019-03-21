@@ -5,7 +5,6 @@
     android:id="@+id/profileItem"
     android:layout_width="match_parent"
     android:layout_height="88dip"
-    android:background="@android:drawable/list_selector_background"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/vertical_deck_margin"
