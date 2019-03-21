@@ -3,11 +3,11 @@ package comp3350.flashy;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.Flashcard;
 
-public class RemoveCardTest {
+public class RemoveFlashcardTest {
 
     @Test
     public void removeCardTest(){

@@ -2,10 +2,7 @@ package comp3350.flashy.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,10 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.Deck;
 import comp3350.flashy.R;
-import comp3350.flashy.persistence.DatabaseManager;
 
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
@@ -39,7 +35,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         title.setText(currDeck.getName());
 
-        final ArrayList<Flashcard> items = currDeck.getCards();
+        final ArrayList<Flashcard> items = currDeck.getFlashcards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {

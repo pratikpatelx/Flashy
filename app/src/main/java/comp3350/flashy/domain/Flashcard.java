@@ -4,13 +4,19 @@ public class Flashcard implements FlashcardInterface {
     private String cardName;
     private String answer;
     private String question;
+    private String cardType = "0";
+
+    public Flashcard(String name, String question) {
+        this.cardName = name;
+        this.question = question;
+        this.answer = null;
+    }
 
     public Flashcard(String name, String question, String answer) {
         this.cardName = name;
         this.question = question;
         this.answer = answer;
     }
-
 
     /**
      * toString
@@ -25,36 +31,46 @@ public class Flashcard implements FlashcardInterface {
         return info;
     }
 
-
-
     /**
      * Mutators
      */
 
-    public String getAnswer() {
-        return answer;
-    }
+    /*
+    Setters
+     */
 
-    public void setAnswer(String newAnswer) {
-        this.answer = newAnswer;
-    }
-
-    public String getQuestion() {
-        return question;
+    public void setCardName(String newName) {
+        cardName = newName;
     }
 
     public void setQuestion(String newQuestion) {
         this.question = newQuestion;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    /*
+    Getters
+     */
+
     public String getCardName() {
         return cardName;
     }
 
-    public void setCardName(String newName) {
-        cardName = newName;
+    public String getQuestion() {
+        return question;
     }
-    
+
+    public void setAnswer(String newAnswer) {
+        this.answer = newAnswer;
+    }
+
+    public String getCardType() {
+        return "0";
+    }
+
     /**
      * editCard()
      * This method will change question and answer to be the same as that of
@@ -82,4 +98,19 @@ public class Flashcard implements FlashcardInterface {
         return result;
     }
 
+    public boolean isRegularFlashcard() {
+        return true;
+    }
+
+    public boolean isFillInTheBlanksFlashcard () {
+        return false;
+    }
+
+    public boolean isTrueFalseFlashcard () {
+        return false;
+    }
+
+    public boolean isMultipleChoiceFlashcard () {
+        return false;
+    }
 }

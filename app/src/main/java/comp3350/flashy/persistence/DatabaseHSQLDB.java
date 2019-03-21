@@ -4,30 +4,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.hsqldb.Server;
-
-import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.Deck;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
 
     public DatabaseHSQLDB() {
         try {
-            Class.forName("org.hsqldb.jdbcDriver").newInstance();
+            Class.forName("org.hsqldb.jdbcDriver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace(System.out);
             System.out.println("Class Not Found..");
             System.exit(0);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
         }
+
         System.out.println("Connection Successful!");
         createTables();
     }
 
     private Connection connection() throws SQLException {
+        System.out.println("Connection called");
         return DriverManager.getConnection(
                 "jdbc:hsqldb:file:FlashyDB;shutdown=true",
                 "SA",
@@ -38,14 +34,14 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
         try (final Connection connection = connection()) {
-            ArrayList<Flashcard> cardList = inputDeck.getCards();
+            ArrayList<Flashcard> flashcardList = inputDeck.getFlashcards();
 
             deleteDeck(username, identifier);
 
-            for (int i = 0; i < cardList.size(); i++) {
-                Flashcard card = cardList.get(i);
+            for (int i = 0; i < flashcardList.size(); i++) {
+                Flashcard flashcard = flashcardList.get(i);
 
-                System.out.println(cardList.size() + "inputDeck:" + identifier + " " + card.getCardName() + " " + card.getQuestion() + " " + card.getAnswer() + " ");
+                System.out.println(flashcardList.size() + "inputDeck:" + identifier + " " + flashcard.getCardName() + " " + flashcard.getQuestion() + " " + flashcard.getAnswer() + " ");
 
                 /*
                 Update the Deck Table
@@ -54,9 +50,9 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                         "insert into Deck (deckName, cardName, cardQuestion, cardAnswer)" +
                                 " values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
-                statement.setString(2, card.getCardName());
-                statement.setString(3, card.getQuestion());
-                statement.setString(4, card.getAnswer());
+                statement.setString(2, flashcard.getCardName());
+                statement.setString(3, flashcard.getQuestion());
+                statement.setString(4, flashcard.getAnswer());
                 statement.executeUpdate();
 
                 /*
@@ -161,13 +157,13 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
-                Flashcard card = new Flashcard(cardName, cardQuestion, cardAnswer);
+                Flashcard flashcard = new Flashcard(cardName, cardQuestion, cardAnswer);
 
                 for (int i = 0; i < deckList.size(); i++) {
                     Deck tempDeck = deckList.get(i);
                     System.out.println(deckList.size());
                     if (deckName.equals(tempDeck.getName())) {
-                        tempDeck.addCard(card);
+                        tempDeck.addCard(flashcard);
                         deckList.remove(i);
                         deckList.add(tempDeck);
                         System.out.println("deckName: " + deckName + " CardName: " + cardName);

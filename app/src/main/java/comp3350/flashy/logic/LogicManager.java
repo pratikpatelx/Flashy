@@ -1,16 +1,11 @@
 package comp3350.flashy.logic;
 
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DatabaseStub;
 import comp3350.flashy.persistence.DeckDatabaseManager;
 import comp3350.flashy.persistence.UserDatabaseManager;
 

@@ -33,14 +33,14 @@ public class GetandInsertDeckTest {
 
         Deck deck = lgc.getDeck(deckName);
 
-        Flashcard card = deck.getCard(firstCardName);
-        assertEquals(firstAnswer, card.getAnswer());
+        Flashcard flashcard = deck.getCard(firstCardName);
+        assertEquals(firstAnswer, flashcard.getAnswer());
 
-        card = deck.getCard(secondCardName);
-        assertEquals(secondAnswer, card.getAnswer());
+        flashcard = deck.getCard(secondCardName);
+        assertEquals(secondAnswer, flashcard.getAnswer());
 
-        card = deck.getCard(thirdCardName);
-        assertEquals(thirdAnswer, card.getAnswer());
+        flashcard = deck.getCard(thirdCardName);
+        assertEquals(thirdAnswer, flashcard.getAnswer());
 
 
         System.out.println("\nGetandInsertDeck test complete\n");

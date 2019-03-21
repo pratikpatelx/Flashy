@@ -2,10 +2,9 @@ package comp3350.flashy.presentation;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.logic.UserHandler;
 
 public class uiHandler {
 
