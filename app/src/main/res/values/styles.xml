@@ -21,8 +21,5 @@
         <item name="colorBackgroundFloating">@color/colorAccent</item>
     </style>
 
-    <style name="MyBackButton" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="android:buttonBarButtonStyle">@drawable/deletedeckicon</item>
-    </style>
 
 </resources>
