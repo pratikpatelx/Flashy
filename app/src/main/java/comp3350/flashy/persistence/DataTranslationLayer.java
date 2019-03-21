@@ -3,6 +3,7 @@ package comp3350.flashy.persistence;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
@@ -80,8 +81,8 @@ class DataTranslationLayer {
 
 
         result.concat(card.getCardType() + delimiter);
-        result.concat(firstPart + delimiter);
         result.concat(answer + delimiter);
+        result.concat(firstPart + delimiter);
         result.concat(lastPart + delimiter);
 
         return result;
@@ -117,35 +118,47 @@ class DataTranslationLayer {
 
     private static Flashcard decodeCard(Flashcard flashcard) {
         Flashcard result = null;
+        String cardName = flashcard.getCardName();
+        String question = flashcard.getQuestion();
+        String answer = flashcard.getAnswer();
         switch (flashcard.getAnswer().charAt(0)) {
             case '0':
-                result = decodeFlashcard(flashcard);
+                result = decodeFlashcard(cardName, question, answer);
                 break;
             case '1':
-                result =decodeFillInTheBlanksFlashcard(flashcard);
+                result =decodeFillInTheBlanksFlashcard(cardName, question, answer);
                 break;
             case '2':
-                result = decodeTrueFalseFlashcard(flashcard);
+                result = decodeTrueFalseFlashcard(cardName, question, answer);
                 break;
             case '3':
-                result = decodeMultipleChoiceFlashcard(flashcard);
+                result = decodeMultipleChoiceFlashcard(cardName, question, answer);
                 break;
         }
         return result;
     }
 
-    private static Flashcard decodeMultipleChoiceFlashcard(Flashcard flashcard) {
+    private static Flashcard decodeMultipleChoiceFlashcard(String cardName, String question, String answer) {
     }
 
-    private static Flashcard decodeTrueFalseFlashcard(Flashcard flashcard) {
+    private static Flashcard decodeTrueFalseFlashcard(String cardName, String question, String answer) {
     }
 
-    private static Flashcard decodeFillInTheBlanksFlashcard(Flashcard flashcard) {
+    private static Flashcard decodeFillInTheBlanksFlashcard(String cardName, String question, String answer) {
     }
 
+    private static Flashcard decodeFlashcard (String cardName, String question, String answer) {
+        Flashcard result = null;
+        String decodedAnswer = tokenizeString(answer).get(1);
+        return new Flashcard(cardName, question, answer);
+    }
 
-    private static Flashcard decodeFlashcard (Flashcard flashcard) {
-        String result = flashcard.getAnswer();
-        return result;
+    private static ArrayList<String> tokenizeString(String string) {
+        ArrayList<String> tokens = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(string, delimiter);
+        while (tokenizer.hasMoreElements()) {
+            tokens.add(tokenizer.nextToken());
+        }
+        return tokens;
     }
 }
