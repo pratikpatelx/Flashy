@@ -16,11 +16,11 @@ public class DeckDatabaseManager extends DatabaseManager {
     }
 
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        storage.inputDeck(username,identifier, inputDeck);
+        storage.inputDeck(username,identifier, DataTranslationLayer.encodeDeck(inputDeck));
     }
 
     public Deck getDeck(String username, String identifier) {
-        return storage.getDeck(username, identifier);
+        return DataTranslationLayer.decodeDeck(storage.getDeck(username, identifier));
     }
 
     public void removeDeck(String username, String identifier) {

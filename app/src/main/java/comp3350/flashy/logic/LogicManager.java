@@ -137,6 +137,10 @@ public class LogicManager implements LogicManagerInterface {
         return userHandler.addUser(username, password);
     }
 
+    public boolean removeUserFromDatabase(String username){
+        return userHandler.removeUser(username);
+    }
+
     public boolean verifyUserPassword(String username, String password){
         return userHandler.verifyUser(username,password);
     }

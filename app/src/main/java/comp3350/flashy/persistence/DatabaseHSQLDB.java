@@ -274,7 +274,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                             + "deckName varChar(60), "
                             + "cardName varChar(60), "
                             + "cardQuestion varChar(60), "
-                            + "cardAnswer varChar(60));");
+                            + "cardAnswer varChar(255));");
             statement.execute();
 
             System.out.println("Deck Created");
