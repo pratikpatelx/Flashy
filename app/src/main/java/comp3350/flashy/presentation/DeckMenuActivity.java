@@ -20,6 +20,7 @@ public class DeckMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deck_menu);
         this.getSupportActionBar().hide();
 
+
         newDeck = (Button) findViewById(R.id.newDeck);
         viewDeck = (Button) findViewById(R.id.deckList);
         logOut = (Button) findViewById(R.id.logOut);

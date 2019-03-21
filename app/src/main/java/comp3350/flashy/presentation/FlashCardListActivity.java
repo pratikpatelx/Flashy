@@ -3,9 +3,7 @@ package comp3350.flashy.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,7 +16,6 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.R;
-import comp3350.flashy.persistence.DatabaseManager;
 
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
@@ -33,9 +30,9 @@ public class FlashCardListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flash_card_list);
 
         TextView title = (TextView) findViewById(R.id.Title);
-        Button exit = (Button) findViewById(R.id.exitFlashList);
-        Button add = (Button) findViewById(R.id.addCard);
-        Button view = (Button) findViewById(R.id.viewCards);
+        FloatingActionButton exit = (FloatingActionButton)findViewById(R.id.exitFlashList);
+        FloatingActionButton add = (FloatingActionButton) findViewById(R.id.addCard);
+        FloatingActionButton view = (FloatingActionButton) findViewById(R.id.viewCards);
 
         title.setText(currDeck.getName());
 

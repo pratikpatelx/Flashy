@@ -24,10 +24,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private uiHandler uiManager = MainActivity.getHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
-    private Button exit;
+    private FloatingActionButton exit;
 
-    private Button delete;
-    private Button modify;
+    private FloatingActionButton  delete;
+    private FloatingActionButton modify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,9 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         textViewFlashTitle = (TextView) findViewById(R.id.title);
         prev = (FloatingActionButton) findViewById(R.id.prevButton);
         next = (FloatingActionButton) findViewById(R.id.nextButton);
-        exit = (Button) findViewById(R.id.exitButton);
-        delete = (Button) findViewById(R.id.delButton);
-        modify = (Button) findViewById(R.id.modButton);
+        exit = (FloatingActionButton) findViewById(R.id.exitButton);
+        delete = (FloatingActionButton) findViewById(R.id.delButton);
+        modify = (FloatingActionButton) findViewById(R.id.modButton);
         index = 0;
         deckSize = uiManager.getDeckSize();
         name = uiManager.getDeckName();

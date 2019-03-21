@@ -2,8 +2,11 @@
 <resources>
     <color name="colorPrimary">#00796B</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorLogInText">#FDFDFD</color>
-    <color name="colorGO">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorLogInText">#8147DA8B</color>
+    <color name="colorGO">#3992E6</color>
+    <color name="btn_color">#F9AA33</color>
+    <color name="btn_deck">#0277BD</color>
+    <color name="flashcard_color">#FFD95A</color>
 </resources>
 

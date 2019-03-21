@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileItem"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="88dip"
+    android:background="@android:drawable/list_selector_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/vertical_deck_margin"
+    android:paddingTop="8dip"
+    android:paddingRight="@dimen/vertical_deck_margin"
+    android:paddingBottom="8dip"
+    app:layout_constraintCircleRadius="20dp">
+
+    <ImageView
+        android:layout_width="72dip"
+        android:layout_height="72dip"
+        android:src="@drawable/decks_icon" />
 
     <TextView
         android:id="@+id/deck_list_item"
-        android:layout_width="507dp"
-        android:layout_height="95dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:drawable/alert_light_frame"
-        android:clickable="false"
-        android:freezesText="false"
-        android:paddingBottom="5dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textColor="@color/colorGO"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vertical_deck_margin"
+        android:layout_marginLeft="@dimen/vertical_deck_margin"
+        android:fontFamily="sans-serif"
+        android:text="Flash Card Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+</LinearLayout>
