@@ -34,10 +34,10 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
 
         //getting body, title and save button.
-        textViewFlashBody = (TextView) findViewById(R.id.body);
-        textViewFlashTitle = (TextView) findViewById(R.id.title);
-        save = (FloatingActionButton) findViewById(R.id.saveButton);
-        cancel = (FloatingActionButton) findViewById(R.id.cancelButton);
+        textViewFlashBody = findViewById(R.id.body);
+        textViewFlashTitle = findViewById(R.id.title);
+        save = findViewById(R.id.saveButton);
+        cancel = findViewById(R.id.cancelButton);
         toShow = new EditText(this);
 
         final Bundle extra = getIntent().getExtras();

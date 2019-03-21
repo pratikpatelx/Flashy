@@ -32,10 +32,10 @@ public class NewDeckActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_creation);
 
-        cancelDeck = (Button) findViewById(R.id.Cancel_Button);
-        createDeck = (Button) findViewById(R.id.Enter_Button);
-        input =  (EditText) findViewById(R.id.deckTitle);
-        title = (TextView) findViewById(R.id.title);
+        cancelDeck = findViewById(R.id.Cancel_Button);
+        createDeck = findViewById(R.id.Enter_Button);
+        input = findViewById(R.id.deckTitle);
+        title = findViewById(R.id.title);
 
 
         cancelDeck.setOnClickListener(new View.OnClickListener() {

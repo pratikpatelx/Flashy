@@ -36,13 +36,13 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        textViewFlashBody = (TextView) findViewById(R.id.body);
-        textViewFlashTitle = (TextView) findViewById(R.id.title);
-        prev = (FloatingActionButton) findViewById(R.id.prevButton);
-        next = (FloatingActionButton) findViewById(R.id.nextButton);
-        exit = (Button) findViewById(R.id.exitButton);
-        delete = (Button) findViewById(R.id.delButton);
-        modify = (Button) findViewById(R.id.modButton);
+        textViewFlashBody = findViewById(R.id.body);
+        textViewFlashTitle = findViewById(R.id.title);
+        prev = findViewById(R.id.prevButton);
+        next = findViewById(R.id.nextButton);
+        exit = findViewById(R.id.exitButton);
+        delete = findViewById(R.id.delButton);
+        modify = findViewById(R.id.modButton);
         index = 0;
         deckSize = uiManager.getDeckSize();
         name = uiManager.getDeckName();

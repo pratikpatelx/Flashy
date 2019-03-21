@@ -28,10 +28,10 @@ public class FlashCardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card_list);
 
-        TextView title = (TextView) findViewById(R.id.Title);
-        Button exit = (Button) findViewById(R.id.exitFlashList);
-        Button add = (Button) findViewById(R.id.addCard);
-        Button view = (Button) findViewById(R.id.viewCards);
+        TextView title = findViewById(R.id.Title);
+        Button exit = findViewById(R.id.exitFlashList);
+        Button add = findViewById(R.id.addCard);
+        Button view = findViewById(R.id.viewCards);
 
         title.setText(currDeck.getName());
 
@@ -43,7 +43,7 @@ public class FlashCardListActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
+                TextView flashCard = view.findViewById(R.id.flashListItem);
 
                 flashCard.setTextSize(35);
 
@@ -62,7 +62,7 @@ public class FlashCardListActivity extends AppCompatActivity {
             }
         };
 
-        ListView listView = (ListView)findViewById(R.id.flashcardList);
+        ListView listView = findViewById(R.id.flashcardList);
         listView.setAdapter(fcArrayAdapter);
 
         exit.setOnClickListener(new View.OnClickListener() {

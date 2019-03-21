@@ -34,11 +34,11 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        deck = (TextView) findViewById(R.id.selectedDeck);
-        listView = (ListView)findViewById(R.id.showAllDeckList);
-        openDeck = (Button) findViewById(R.id.Open);
-        delDeck = (Button) findViewById(R.id.deleteDeck);
-        Back = (Button) findViewById(R.id.Back);
+        deck = findViewById(R.id.selectedDeck);
+        listView = findViewById(R.id.showAllDeckList);
+        openDeck = findViewById(R.id.Open);
+        delDeck = findViewById(R.id.deleteDeck);
+        Back = findViewById(R.id.Back);
         items = uiManager.getNames();
         selectedPostion = -1;
 
@@ -48,7 +48,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
-                TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
+                TextView deck = view.findViewById(R.id.deck_list_item);
                 deck.setText(items.get(position));
 
                 return view;
