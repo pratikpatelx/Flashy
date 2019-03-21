@@ -13,9 +13,9 @@ class DataTranslationLayer {
         ArrayList cardList = deck.getCards();
         for (int i = 0; i < cardList.size(); i++) {
             Flashcard card = (Flashcard) cardList.get(i);
-            if (card instanceof Flashcard) {
-                card.setAnswer(encodeFlashcard(card).get(0));
-            } // else if (card instanceof MultipleChoiceFlashcard) {
+           // if (card instanceof Flashcard) {
+            //    card.setAnswer(encodeFlashcard(card).get(0));
+           // } // else if (card instanceof MultipleChoiceFlashcard) {
 //
 //            } else if (card instanceof FillInTheBlankFlashcard) {
 //

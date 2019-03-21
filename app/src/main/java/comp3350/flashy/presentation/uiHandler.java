@@ -111,5 +111,9 @@ public class uiHandler {
         return logic.verifyUserPassword(username,password);
     }
 
+    public void deleteProfile(String name){
+        logic.removeUserFromDatabase(name);
+    }
+
 
 }

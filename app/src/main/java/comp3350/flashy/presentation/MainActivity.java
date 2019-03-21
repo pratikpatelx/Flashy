@@ -97,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
         deleteUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //remove user
+                ui.deleteProfile(username.getText().toString());
+                updateProfileList();
             }
         });
     }
@@ -105,16 +106,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        pList.clear();
-        pList.addAll(ui.getAllProfileNames());
-        profileArrayAdapter.notifyDataSetChanged();
-        password.setText("");
+        updateProfileList();
     }
 
     public static uiHandler getHandler() {
 
         return ui;
     }
+
+    private void updateProfileList(){
+        updateProfileList();
+        profileArrayAdapter.notifyDataSetChanged();
+        password.setText("");
+    }
+
     public void openDeckMenuActivity(String username, String password){
         if(ui.Verified(username,password)) {
             ui.setUsername(username);
