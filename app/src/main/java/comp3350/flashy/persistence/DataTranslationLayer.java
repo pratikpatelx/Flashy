@@ -37,13 +37,13 @@ class DataTranslationLayer {
     /**
      * Encodes a regular Flashcard
      * "0|Answer"|
-     * @param flashcard
+     * @param card
      * @return
      */
-    private static String encodeFlashcard (Flashcard flashcard) {
-        String result = null;
-        String answer = flashcard.getAnswer();
-        result.concat(flashcard.getCardType() + delimiter);
+    private static String encodeFlashcard (Flashcard card) {
+        String result = "";
+        String answer = card.getAnswer();
+        result.concat(card.getCardType() + delimiter);
         return result;
     }
 
@@ -54,7 +54,7 @@ class DataTranslationLayer {
      * @return
      */
     private static String encodeTrueFalseFlashcard (TrueFalseCard card) {
-        String result = null;
+        String result = "";
         String answer = card.getAnswer();
         result.concat(card.getCardType() + delimiter);
         return result;
@@ -67,7 +67,7 @@ class DataTranslationLayer {
      * @return
      */
     private static String encodeFillInTheBlankFlashcard (FillInTheBlanksFlashcard card) {
-        String result = null;
+        String result = "";
         String answer = card.getAnswer();
         String firstPart = card.getFirstPart();
         String lastPart = card.getLastPart();
@@ -88,7 +88,7 @@ class DataTranslationLayer {
      * @return
      */
     private static String encodeMultipleChoiceFlashcard (MultipleChoiceFlashcard card) {
-        String result = null;
+        String result = "";
         String answer = card.getAnswer();
         ArrayList<String> choices = card.getAnswers();
 
