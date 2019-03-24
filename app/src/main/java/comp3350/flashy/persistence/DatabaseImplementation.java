@@ -1,4 +1,4 @@
-package comp3350.flashy.persistence.DatabaseManagement;
+package comp3350.flashy.persistence;
 
 import java.util.Collection;
 

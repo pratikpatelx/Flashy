@@ -1,11 +1,11 @@
 package comp3350.flashy.logic;
 
-import comp3350.flashy.persistence.DatabaseManagement.UserDatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class UserHandler {
-    private UserDatabaseManager userList;
+    private DatabaseManager userList;
 
-    public UserHandler(UserDatabaseManager givenImpl) {
+    public UserHandler(DatabaseManager givenImpl) {
         userList = givenImpl;
     }
 
@@ -36,9 +36,14 @@ public class UserHandler {
         }
     }
 
-    public boolean removeUser(String usename) {
+    /**
+     * Remove a given user if it exists
+     * @param username
+     * @return
+     */
+    public boolean removeUser(String username) {
         try {
-            userList.removeUser(usename);
+            userList.removeUser(username);
             return true;
         } catch (IllegalArgumentException e){
             return false;

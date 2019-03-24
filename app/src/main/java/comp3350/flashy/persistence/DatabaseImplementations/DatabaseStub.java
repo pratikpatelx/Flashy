@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.Set;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseImplementation;
+import comp3350.flashy.persistence.DatabaseImplementation;
 
 public class DatabaseStub implements DatabaseImplementation {
     private Hashtable<String, Hashtable<String, Deck>> storage;

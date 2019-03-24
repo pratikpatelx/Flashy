@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.hsqldb.rights.User;
-
 import comp3350.flashy.R;
 
 public class FlashyRegistrationActivity extends AppCompatActivity {

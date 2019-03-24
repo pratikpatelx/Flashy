@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseImplementation;
+import comp3350.flashy.persistence.DatabaseImplementation;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
 
@@ -34,6 +34,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
+        System.out.println("inputDeck started");
+
         try (final Connection connection = connection()) {
             ArrayList<Flashcard> flashcardList = inputDeck.getFlashcards();
 
@@ -77,6 +79,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public Deck getDeck(String username, String identifier) {
+        System.out.println("getDeck started");
+
         Deck result = null;
 
         try (final Connection connection = connection()) {
@@ -117,6 +121,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void deleteDeck(String username, String identifier){
+        System.out.println("deleteDeck started");
+
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "delete from DeckList where username=? and deckName=?;");
@@ -135,6 +141,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public Collection getDeckCollection(String username) {
+        System.out.println("getDeckCollection started");
+
         Collection result = null;
         ArrayList<Deck> deckList = new ArrayList();
 
@@ -186,6 +194,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void inputUser(String username, String password) {
+        System.out.println("inputUser started");
+
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "insert into UserList (username, password) values (?, ?);");
@@ -200,6 +210,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public String getUserPassword(String username) {
+        System.out.println("getUserPassword started");
+
         String result = null;
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
@@ -218,6 +230,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void removeUser(String username) {
+        System.out.println("removeUser started");
+
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "delete from UserList where username=?;");
@@ -235,6 +249,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     private void createTables() {
+        System.out.println("createTables started");
+
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "create table if not exists UserList (" +
