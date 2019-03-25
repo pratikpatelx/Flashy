@@ -32,7 +32,7 @@ public class QuizManager {
      * StartQuiz()
      * @return the first card in the quiz
      */
-    public Flashcard startQuiz(){
+    public Flashcard getNextCard(){
         return this.quiz.getCard();
     }
 
@@ -42,11 +42,13 @@ public class QuizManager {
      * @param response the user's answer to the current flashcard
      * @return the next flashcard
      */
-    public Flashcard continueQuiz(String response){
+    public boolean evaluateAnswer(String response){
         Flashcard curr = this.quiz.takeCard();
-
+        boolean correct = false;
+        
         if(curr.mark(response)){
             this.correct++;
+            correct = true;
         }
         else{
             //put the card back in the deck if it was wrong
@@ -54,7 +56,7 @@ public class QuizManager {
             this.quiz.placeCard(curr);
         }
 
-        return this.quiz.getCard();
+        return correct;
     }
 
 
