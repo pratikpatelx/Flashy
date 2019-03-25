@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.hsqldb.rights.User;
-
 import comp3350.flashy.R;
 
 public class FlashyRegistrationActivity extends AppCompatActivity {
@@ -27,10 +25,10 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashy_registration);
 
-        cancel = (Button) findViewById(R.id.cancelReg);
-        registration = (Button) findViewById(R.id.regButton);
-        Username = (EditText) findViewById(R.id.Username);
-        password = (EditText) findViewById(R.id.userPassword);
+        cancel = findViewById(R.id.cancelReg);
+        registration = findViewById(R.id.regButton);
+        Username = findViewById(R.id.Username);
+        password = findViewById(R.id.userPassword);
 
         registration.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,7 +3,6 @@ package comp3350.flashy;
 import org.junit.Test;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
 import static org.junit.Assert.assertEquals;

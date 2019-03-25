@@ -54,7 +54,7 @@
         android:background="@android:drawable/alert_light_frame"
         android:gravity="center_horizontal|top|center_vertical"
         android:paddingBottom="350dp"
-        android:text="Example of front side of a flash card"
+        android:text="Example of front side of a flash flashcard"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Example of front side of a flash card" />
+        tools:text="Example of front side of a flash flashcard" />
 
     <TextView
         android:id="@+id/title"

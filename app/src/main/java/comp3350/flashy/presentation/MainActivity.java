@@ -27,22 +27,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        giveAccess = (Button)findViewById(R.id.login_button);
-        register = (Button) findViewById(R.id.register);
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        giveAccess = findViewById(R.id.login_button);
+        register = findViewById(R.id.register);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
 
-        giveAccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ui.Verified(username.getText().toString(),password.getText().toString())) {
-                    ui.setUsername(username.getText().toString());
-                    openDeckMenuActivity();
-                }else
-                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
-
-            }
-        });
+      giveAccess.setOnClickListener(new View.OnClickListener() {
+           @Override
+         public void onClick(View v) {
+//                if(ui.Verified(username.getText().toString(),password.getText().toString())) {
+//                    ui.setUsername(username.getText().toString());
+                  openDeckMenuActivity();
+//                }else
+//                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
+//
+           }
+  });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

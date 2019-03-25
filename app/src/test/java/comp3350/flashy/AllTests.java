@@ -6,10 +6,10 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ExampleTest.class,
-        GetCardTest.class,
+        GetFlashcardTest.class,
         PrintDeckTest.class,
-        PutCardIntoDeckTest.class,
-        RemoveCardTest.class,
+        PutFlashcardIntoDeckTest.class,
+        RemoveFlashcardTest.class,
         //EditCardTest.class,
         GetandInsertDeckTest.class,
         DeleteDeckTest.class

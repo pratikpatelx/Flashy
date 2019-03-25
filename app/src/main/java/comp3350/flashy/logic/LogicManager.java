@@ -1,25 +1,18 @@
 package comp3350.flashy.logic;
 
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseHSQLDB;
+import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DatabaseStub;
-import comp3350.flashy.persistence.DeckDatabaseManager;
-import comp3350.flashy.persistence.UserDatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
     private DatabaseImplementation databaseType = new DatabaseHSQLDB();
     //private DatabaseImplementation databaseType = new DatabaseStub();
-    private DeckDatabaseManager database = new DeckDatabaseManager(databaseType);
-    private UserDatabaseManager userDatabase = new UserDatabaseManager(databaseType);
-    private UserHandler userHandler = new UserHandler(userDatabase);
+    private DatabaseManager database = new DatabaseManager(databaseType);
+    private UserHandler userHandler = new UserHandler(database);
 
     @Override
     public Deck getDeck(String username, String deckName){

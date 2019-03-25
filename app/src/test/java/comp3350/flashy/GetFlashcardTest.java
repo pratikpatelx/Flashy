@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
-public class GetCardTest {
+public class GetFlashcardTest {
     
     /**getCardTest
      *
@@ -18,9 +18,9 @@ public class GetCardTest {
         LogicManager lgc = new LogicManager();
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
-        Flashcard newCard = new Flashcard(cardName,"defaultQ","defaultA");
+        Flashcard newFlashcard = new Flashcard(cardName,"defaultQ","defaultA");
         lgc.putFlashcardInDeck("Test_Deck", cardName, "defaultQ", "defaultQ");
-        assertEquals("getCardTest failed.",newCard,lgc.getDeck(deckName).getCard(cardName));
+        assertEquals("getCardTest failed.", newFlashcard,lgc.getDeck(deckName).getCard(cardName));
     }
     
 

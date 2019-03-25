@@ -1,7 +1,6 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.Flashcard;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
@@ -37,11 +34,11 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        deck = (TextView) findViewById(R.id.selectedDeck);
-        listView = (ListView)findViewById(R.id.showAllDeckList);
-        openDeck = (Button) findViewById(R.id.Open);
-        delDeck = (Button) findViewById(R.id.deleteDeck);
-        Back = (Button) findViewById(R.id.Back);
+        deck = findViewById(R.id.selectedDeck);
+        listView = findViewById(R.id.showAllDeckList);
+        openDeck = findViewById(R.id.Open);
+        delDeck = findViewById(R.id.deleteDeck);
+        Back = findViewById(R.id.Back);
         items = uiManager.getNames();
         selectedPostion = -1;
 
@@ -51,7 +48,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
-                TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
+                TextView deck = view.findViewById(R.id.deck_list_item);
                 deck.setText(items.get(position));
 
                 return view;

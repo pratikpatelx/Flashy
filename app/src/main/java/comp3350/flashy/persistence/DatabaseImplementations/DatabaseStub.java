@@ -1,13 +1,13 @@
-package comp3350.flashy.persistence;
+package comp3350.flashy.persistence.DatabaseImplementations;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.Set;
 
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.persistence.DatabaseImplementation;
 
-public class DatabaseStub implements DatabaseImplementation{
+public class DatabaseStub implements DatabaseImplementation {
     private Hashtable<String, Hashtable<String, Deck>> storage;
     private Hashtable<String, String> userList;
 
