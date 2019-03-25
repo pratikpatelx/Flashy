@@ -2,6 +2,8 @@ package comp3350.flashy.domain;
 
 public class TorFcard extends Flashcard implements FlashcardInterface {
 
+    private static final String cardType = "2";
+
     public TorFcard(String name, String question, String answer) {
 
         super(name, question, answer);
@@ -36,4 +38,15 @@ public class TorFcard extends Flashcard implements FlashcardInterface {
         }
         return correct;
     }
+
+
+    public String getCardType () {
+        return cardType;
+    }
+
+    public boolean isTrueFalseFlashcard () {
+        return true;
+    }
+
+
 }

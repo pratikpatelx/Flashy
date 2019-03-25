@@ -4,6 +4,7 @@ public class Flashcard implements FlashcardInterface {
     private String cardName;
     private String answer;
     private String question;
+    private static final String cardType = "0";
 
     public Flashcard(String name, String question, String answer) {
         this.cardName = name;
@@ -86,5 +87,22 @@ public class Flashcard implements FlashcardInterface {
     public boolean mark(String response){
         return this.answer.equalsIgnoreCase(response);
     }
+
+    public boolean isRegularFlashcard() {
+        return true;
+    }
+
+    public boolean isFillInTheBlanksFlashcard () {
+        return false;
+    }
+
+    public boolean isTrueFalseFlashcard () {
+        return false;
+    }
+
+    public boolean isMultipleChoiceFlashcard () {
+        return false;
+    }
+
 
 }

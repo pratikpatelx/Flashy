@@ -10,6 +10,7 @@ import java.util.Arrays;
 public class MCcard extends Flashcard implements FlashcardInterface {
 
     private String[] choices;
+    private static final String cardType = "3";
 
     public MCcard(String name, String question, String answer,
                   String second,
@@ -63,4 +64,13 @@ public class MCcard extends Flashcard implements FlashcardInterface {
         }
         return correct;
     }
+
+    public String getCardType () {
+        return cardType;
+    }
+
+    public boolean isMultipleChoiceFlashcard () {
+        return true;
+    }
+
 }

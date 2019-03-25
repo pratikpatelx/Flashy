@@ -8,6 +8,7 @@ public class FitBcard extends Flashcard implements FlashcardInterface{
 
     private static final String BLANK = "_____";
     private static final int THRESHOLD = 5;
+    private static final String cardType = "1";
 
     public FitBcard(String name, String question, String answer) {
         super(name, question, answer);
@@ -37,5 +38,16 @@ public class FitBcard extends Flashcard implements FlashcardInterface{
         }
 
     }
+
+
+    public String getCardType () {
+        return cardType;
+    }
+
+    public boolean isFillInTheBlanksFlashcard () {
+        return true;
+    }
+
+
 
 }
