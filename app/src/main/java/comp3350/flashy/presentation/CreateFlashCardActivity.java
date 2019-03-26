@@ -6,20 +6,29 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.R;
+import comp3350.flashy.domain.Flashcard;
 
 public class CreateFlashCardActivity extends AppCompatActivity {
     private TextView textViewFlashBody;
     private TextView textViewFlashTitle;
+    private ArrayAdapter  menuArrayAdapter;
+    private ArrayList<String> list;
 
     private AlertDialog userInput;
     private String title = "Title";
     private String body = "Example of front side of flash card";
     private boolean bodySelected;
     private EditText toShow;
+    private Spinner menu;
     private boolean modifying = false;
 
     private FloatingActionButton save;
@@ -39,6 +48,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         save = findViewById(R.id.saveButton);
         cancel = findViewById(R.id.cancelButton);
         toShow = new EditText(this);
+        menu = findViewById(R.id.createMenu);
 
         final Bundle extra = getIntent().getExtras();
         String[] card;
@@ -54,6 +64,31 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             modifying = true;
 
         }
+
+        list = getMenuData();
+
+        menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list)
+        {
+            @Override
+            public View getView(final int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
+
+                flashCard.setTextSize(35);
+
+                flashCard.setText(list.get(position));
+
+
+
+
+                return view;
+            }
+        };
+
+        menu.setAdapter(menuArrayAdapter);
+
+
 
         userInput = new AlertDialog.Builder(this).create();
 
@@ -123,6 +158,19 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public ArrayList<String> getMenuData(){
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add("Standard");
+        result.add("Fill in the blank");
+        result.add("Multiple choice");
+        result.add("True or false");
+
+
+        return result;
 
     }
 
