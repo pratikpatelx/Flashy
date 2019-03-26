@@ -52,7 +52,7 @@ public class Encoder {
             answer = encodeFlashcard(flashcard);
         }
 
-        System.out.println("encoding card:" + flashcard.getCardName() + " " + answer);
+        System.out.println("Encoding card:" + flashcard.getCardName() + ", encoded answer: " + answer);
 
         return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer);
     }
@@ -66,7 +66,6 @@ public class Encoder {
     private String encodeFlashcard (Flashcard card) {
         String result = "";
         String answer = card.getAnswer();
-        System.out.println("answer for card:" +answer);
         result+= card.getCardType() + delimiter;
         result+= answer + delimiter;
         return result;

@@ -7,7 +7,6 @@ import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
@@ -33,9 +32,9 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    //TODO need decoded deck
     public Deck removeCard(String username, Deck curr, String cardName){
         curr.deleteCard(cardName);
+        insertDeck(username, curr);
         return curr;
     }
 

@@ -62,6 +62,9 @@ public class Decoder {
                 result = decodeMultipleChoiceFlashcard(cardName, question, tokenizedString);
                 break;
         }
+
+        System.out.println("Decoding card:" + flashcard.getCardName() + ", encoded result: " + result.toString());
+
         return result;
     }
 
