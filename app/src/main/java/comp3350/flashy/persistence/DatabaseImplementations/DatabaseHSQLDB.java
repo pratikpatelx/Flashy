@@ -37,7 +37,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         System.out.println("inputDeck started");
 
         try (final Connection connection = connection()) {
-            ArrayList<Flashcard> flashcardList = inputDeck.getFlashcards();
+            ArrayList<Flashcard> flashcardList = inputDeck.getCards();
 
             deleteDeck(username, identifier);
 

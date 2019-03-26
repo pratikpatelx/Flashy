@@ -3,10 +3,10 @@ package comp3350.flashy.persistence.Codifiers;
 import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.FillInTheBlanksFlashcard;
+import comp3350.flashy.domain.FitBcard;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.domain.TrueFalseCard;
+import comp3350.flashy.domain.MCcard;
+import comp3350.flashy.domain.TorFcard;
 
 public class Encoder {
     String delimiter = null;
@@ -16,7 +16,8 @@ public class Encoder {
 
     public Deck encodeDeck(Deck deck) {
         Deck result = new Deck(deck.getName());
-        ArrayList<Flashcard> cardList = deck.getFlashcards();
+        ArrayList<Flashcard> cardList = new ArrayList<Flashcard>();
+        cardList.addAll(deck.getCards());
         for (int i = 0; i < cardList.size(); i++) {
             result.addCard(encodeCard(cardList.get(i)));
         }
@@ -59,7 +60,7 @@ public class Encoder {
      * @param card
      * @return
      */
-    private String encodeTrueFalseFlashcard (TrueFalseCard card) {
+    private String encodeTrueFalseFlashcard (TorFcard card) {
         String result = "";
         String answer = card.getAnswer();
         result.concat(card.getCardType() + delimiter);
@@ -74,7 +75,7 @@ public class Encoder {
      * @param card
      * @return
      */
-    private String encodeFillInTheBlankFlashcard (FillInTheBlanksFlashcard card) {
+    private String encodeFillInTheBlankFlashcard (FitBcard card) {
         String result = "";
         String answer = card.getAnswer();
         String firstPart = card.getFirstPart();
@@ -95,7 +96,7 @@ public class Encoder {
      * @param card
      * @return
      */
-    private String encodeMultipleChoiceFlashcard (MultipleChoiceFlashcard card) {
+    private String encodeMultipleChoiceFlashcard (MCcard card) {
         String result = "";
         String answer = card.getAnswer();
         ArrayList<String> choices = card.getAnswers();

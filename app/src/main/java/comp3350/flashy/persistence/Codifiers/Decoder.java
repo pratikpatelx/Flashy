@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.FillInTheBlanksFlashcard;
+import comp3350.flashy.domain.FitBcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.domain.TrueFalseCard;
@@ -18,7 +18,8 @@ public class Decoder {
 
     public Deck decodeDeck(Deck deck) {
         Deck result = new Deck(deck.getName());
-        ArrayList<Flashcard> cardList = deck.getFlashcards();
+        ArrayList<Flashcard> cardList = new ArrayList<Flashcard>();
+        cardList.addAll(deck.getCards());
         for (int i = 0; i < cardList.size(); i++) {
             result.addCard(decodeCard(cardList.get(i)));
         }
@@ -68,7 +69,7 @@ public class Decoder {
         String firstPart = tokenizedString.get(2);
         String secondPart = tokenizedString.get(3);
 
-        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, firstPart, secondPart);
+        return new FitBcard(cardName, question, decodedAnswer, firstPart, secondPart);
     }
 
     private Flashcard decodeFlashcard (String cardName, String question, ArrayList<String> tokenizedString) {

@@ -10,4 +10,7 @@ public interface FlashcardInterface {
      * @return weather the answer is correct or wrong
      */
     public boolean mark(String response);
+
+
+    public String getCardType();
 }

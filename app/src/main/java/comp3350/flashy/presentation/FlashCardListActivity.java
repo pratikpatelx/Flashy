@@ -35,7 +35,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         title.setText(currDeck.getName());
 
-        final ArrayList<Flashcard> items = currDeck.getFlashcards();
+        final ArrayList<Flashcard> items = currDeck.getCards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {

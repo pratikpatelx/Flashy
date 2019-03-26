@@ -1,5 +1,7 @@
 package comp3350.flashy.domain;
 
+import comp3350.flashy.logic.CardPreper;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,8 +15,19 @@ public class Quiz {
     public Quiz(Deck deck){
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(deck.getCards());
+        this.prepareCards();
 
     }
+
+
+    private void prepareCards(){
+        for(int i = 0; i < this.cards.size(); i++){
+            if(cards.get(i).isFillInTheBlanksFlashcard()){
+                CardPreper.preareFitBcard(cards.get(i));
+            }
+        }
+    }
+
 
     /********** Accessors ***********/
 

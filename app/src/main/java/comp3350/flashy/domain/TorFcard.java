@@ -44,6 +44,12 @@ public class TorFcard extends Flashcard implements FlashcardInterface {
         return cardType;
     }
 
+    @Override
+    public boolean isRegularFlashcard(){
+        return false;
+    }
+
+    @Override
     public boolean isTrueFalseFlashcard () {
         return true;
     }

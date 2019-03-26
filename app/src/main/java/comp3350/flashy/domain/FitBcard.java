@@ -1,13 +1,14 @@
 package comp3350.flashy.domain;
 
 
+import java.util.Random;
+
 /**
  * An Specialized Flashcard that implements fill in the blank questions
  */
 public class FitBcard extends Flashcard implements FlashcardInterface{
 
-    private static final String BLANK = "_____";
-    private static final int THRESHOLD = 5;
+
     private static final String cardType = "1";
 
     public FitBcard(String name, String question, String answer) {
@@ -15,33 +16,16 @@ public class FitBcard extends Flashcard implements FlashcardInterface{
     }
 
 
-    /**
-     * prepare()
-     *
-     * prepares the flashcard for use in a quiz
-     */
-    public void prepare(){
-        String[] words = this.getQuestion().split(" ,.!?;:\"");
-        int nWords = words.length;
-        int count = 0;
-        for(int i = 0; i < nWords; i++){
-            if(words[i].length() >= THRESHOLD ){
-                count++;
-            }
-        }
 
-        if(count == 0){
-            //if no words are long enough pick one of the longest words
-        }
-        else{
-            //select a random word
-        }
-
-    }
 
 
     public String getCardType () {
         return cardType;
+    }
+
+    @Override
+    public boolean isRegularFlashcard(){
+        return false;
     }
 
     public boolean isFillInTheBlanksFlashcard () {

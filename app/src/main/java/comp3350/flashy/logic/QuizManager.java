@@ -45,7 +45,7 @@ public class QuizManager {
     public boolean evaluateAnswer(String response){
         Flashcard curr = this.quiz.takeCard();
         boolean correct = false;
-        
+
         if(curr.mark(response)){
             this.correct++;
             correct = true;

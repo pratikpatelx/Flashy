@@ -14,6 +14,7 @@ public class DeleteDeckTest {
     public void DeleteDeckTest(){
         System.out.println("\nDeleteDeck test\n");
         LogicManager lgc = new LogicManager();
+        String username = "John Dow";
         String deckAName = "AlphaDeck";
         String deckBName = "BrovoDeck";
         String cardNameA1 = deckAName + "-" + 0;
@@ -29,21 +30,21 @@ public class DeleteDeckTest {
 
 
 
-        lgc.putFlashcardInDeck(deckAName, cardNameA1, question, firstAnswer);
-        lgc.putFlashcardInDeck(deckAName, cardNameA2, question, secondAnswer);
-        lgc.putFlashcardInDeck(deckAName, cardNameA3, question, thirdAnswer);
-        lgc.putFlashcardInDeck(deckBName, cardNameB1, question, firstAnswer);
-        lgc.putFlashcardInDeck(deckBName, cardNameB2, question, fourthAnswer);
+        lgc.putFlashcardInDeck(username, deckAName, cardNameA1, question, firstAnswer);
+        lgc.putFlashcardInDeck(username, deckAName, cardNameA2, question, secondAnswer);
+        lgc.putFlashcardInDeck(username, deckAName, cardNameA3, question, thirdAnswer);
+        lgc.putFlashcardInDeck(username, deckBName, cardNameB1, question, firstAnswer);
+        lgc.putFlashcardInDeck(username, deckBName, cardNameB2, question, fourthAnswer);
         int numDecks = lgc.getNames().size();
         assertTrue(lgc.getNames().size() >= 2);
 
-        Deck deckB = lgc.getDeck(deckBName);
+        Deck deckB = lgc.getDeck(username, deckBName);
         assertEquals(2, deckB.getNumCards());
 
         lgc.deleteDeck(deckB);
 
         assertEquals(numDecks-1, lgc.getNames().size());
-        assertEquals(3, lgc.getDeck(deckAName).getNumCards());
+        assertEquals(3, lgc.getDeck(username, deckAName).getNumCards());
         System.out.println("DeleteDeck test complete\n");
     }
 }

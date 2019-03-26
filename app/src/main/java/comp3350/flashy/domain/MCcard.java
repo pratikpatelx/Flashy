@@ -66,9 +66,16 @@ public class MCcard extends Flashcard implements FlashcardInterface {
     }
 
     public String getCardType () {
-        return cardType;
+        return this.cardType;
     }
 
+
+    @Override
+    public boolean isRegularFlashcard(){
+        return false;
+    }
+
+    @Override
     public boolean isMultipleChoiceFlashcard () {
         return true;
     }

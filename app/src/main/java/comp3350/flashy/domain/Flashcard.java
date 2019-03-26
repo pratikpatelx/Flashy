@@ -29,7 +29,7 @@ public class Flashcard implements FlashcardInterface {
 
 
     /**
-     * Mutators
+     * Mutators and Accessors
      */
 
     public String getAnswer() {
@@ -74,6 +74,11 @@ public class Flashcard implements FlashcardInterface {
         return success;
     }
 
+    public String getCardType () {
+        return this.cardType;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         boolean result = false;
@@ -82,6 +87,8 @@ public class Flashcard implements FlashcardInterface {
         }
         return result;
     }
+
+
 
     @Override
     public boolean mark(String response){
