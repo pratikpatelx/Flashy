@@ -10,10 +10,20 @@ import comp3350.flashy.domain.TrueFalseCard;
 
 public class Encoder {
     String delimiter;
+
+    /**
+     * Constructor
+     * @param givenDelimiter
+     */
     public Encoder(String givenDelimiter) {
         delimiter = givenDelimiter;
     }
 
+    /**
+     * Encode an entire deck of Flashcard type objects
+     * @param deck
+     * @return
+     */
     public Deck encodeDeck(Deck deck) {
         Deck result = new Deck(deck.getName());
         ArrayList<Flashcard> cardList = deck.getFlashcards();
@@ -24,6 +34,11 @@ public class Encoder {
         return result;
     }
 
+    /**
+     * Encode a single flashcard type object
+     * @param flashcard
+     * @return
+     */
     private Flashcard encodeCard (Flashcard flashcard) {
         String answer = "";
 
