@@ -6,13 +6,15 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementation;
+import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    //private DatabaseImplementation databaseType = new DatabaseStub();
+    //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
+    private DatabaseImplementation databaseType = new DatabaseStub();
     private DatabaseManager database = new DatabaseManager(databaseType);
     private UserHandler userHandler = new UserHandler(database);
+
 
     @Override
     public Deck getDeck(String username, String deckName){
@@ -30,6 +32,7 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
+    //TODO need decoded deck
     public Deck removeCard(String username, Deck curr, String cardName){
         curr.deleteCard(cardName);
         return curr;
@@ -94,8 +97,8 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     public ArrayList<String> getAllProfiles(){
-        System.out.println(userDatabase.getUserCollection());
-        return(new ArrayList<String>(userDatabase.getUserCollection()));
+        System.out.println(database.getUserCollection());
+        return(new ArrayList<String>(database.getUserCollection()));
     }
 
     public ArrayList<String> getNames(String username){

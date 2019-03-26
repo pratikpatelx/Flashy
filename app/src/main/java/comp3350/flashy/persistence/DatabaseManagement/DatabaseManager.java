@@ -15,6 +15,7 @@ public class DatabaseManager {
     public DatabaseManager(DatabaseImplementation givenStorage) {
         storage = givenStorage;
         translationLayer = new DataTranslationLayer();
+        createDefaultData();
     }
     /*
     Deck Methods
@@ -55,6 +56,11 @@ public class DatabaseManager {
     /*
     User Methods
      */
+
+    public Collection<String> getUserCollection(){
+        return storage.getUserCollection();
+    }
+
     public void inputUser (String username, String password) {
         storage.inputUser(username, password);
     }

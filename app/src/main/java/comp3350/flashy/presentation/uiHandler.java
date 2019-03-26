@@ -100,6 +100,12 @@ public class uiHandler {
         return logic.getProfileNames();
     }
 
+    public ArrayList<Flashcard> getAllCards(){
+        currDeck = logic.getDeck(username,deckName);
+
+        return currDeck.getFlashcards();
+    }
+
     public void deleteDeck(String dName) {
         logic.deleteDeck(username,dName);
     }

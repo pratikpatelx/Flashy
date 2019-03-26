@@ -105,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        updateData();
+
+    }
+
+    private void updateData(){
         pList.clear();
         pList.addAll(ui.getAllProfileNames());
         profileArrayAdapter.notifyDataSetChanged();

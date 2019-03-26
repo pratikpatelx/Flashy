@@ -6,14 +6,14 @@ import static org.junit.Assert.*;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
-public class GetCardTest {
+public class GetFlashcardTest {
     
     /**getCardTest
      *
      * This test will confirm the getCard method is retrieving flashcards as expected.
      */
     @Test
-    public void getCardTest(){
+    public void getFlashcardTest(){
         System.out.println("\n Running getCard test\n");
         LogicManager lgc = new LogicManager();
         String deckName = "Test_Deck";

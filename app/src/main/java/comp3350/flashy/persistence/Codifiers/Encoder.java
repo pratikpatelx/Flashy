@@ -9,7 +9,7 @@ import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.domain.TrueFalseCard;
 
 public class Encoder {
-    String delimiter = null;
+    String delimiter;
     public Encoder(String givenDelimiter) {
         delimiter = givenDelimiter;
     }
@@ -17,6 +17,7 @@ public class Encoder {
     public Deck encodeDeck(Deck deck) {
         Deck result = new Deck(deck.getName());
         ArrayList<Flashcard> cardList = deck.getFlashcards();
+        System.out.println(cardList);
         for (int i = 0; i < cardList.size(); i++) {
             result.addCard(encodeCard(cardList.get(i)));
         }
@@ -24,7 +25,7 @@ public class Encoder {
     }
 
     private Flashcard encodeCard (Flashcard flashcard) {
-        String answer = null;
+        String answer = "";
 
         if (flashcard.isRegularFlashcard()) {
             answer = encodeFlashcard(flashcard);
@@ -35,6 +36,8 @@ public class Encoder {
         } else if (flashcard.isTrueFalseFlashcard()) {
             answer = encodeFlashcard(flashcard);
         }
+
+        System.out.println("encoding card:" + flashcard.getCardName() + " " + answer);
 
         return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer);
     }
@@ -48,8 +51,9 @@ public class Encoder {
     private String encodeFlashcard (Flashcard card) {
         String result = "";
         String answer = card.getAnswer();
-        result.concat(card.getCardType() + delimiter);
-        result.concat(answer + delimiter);
+        System.out.println("answer for card:" +answer);
+        result+= card.getCardType() + delimiter;
+        result+= answer + delimiter;
         return result;
     }
 

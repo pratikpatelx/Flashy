@@ -21,7 +21,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".presentation.CreateFlashCardActivity" />
         <activity android:name=".presentation.ViewFlashCardActivity"/>
-        <activity android:name=".presentation.CreateDeckActivity" />
+
         <activity android:name=".presentation.DeckMenuActivity" />
         <activity android:name=".presentation.NewDeckActivity" />
         <activity android:name=".presentation.MainActivity">

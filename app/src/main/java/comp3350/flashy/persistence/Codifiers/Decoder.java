@@ -17,12 +17,16 @@ public class Decoder {
     }
 
     public Deck decodeDeck(Deck deck) {
-        Deck result = new Deck(deck.getName());
-        ArrayList<Flashcard> cardList = deck.getFlashcards();
-        for (int i = 0; i < cardList.size(); i++) {
-            result.addCard(decodeCard(cardList.get(i)));
-        }
-        return result;
+        if(deck!= null) {
+            Deck result = new Deck(deck.getName());
+            ArrayList<Flashcard> cardList = deck.getFlashcards();
+            System.out.println(cardList.toString());
+            for (int i = 0; i < cardList.size(); i++) {
+                result.addCard(decodeCard(cardList.get(i)));
+            }
+            return result;
+        }else
+            return null;
     }
 
     private Flashcard decodeCard(Flashcard flashcard) {
@@ -83,6 +87,7 @@ public class Decoder {
         while (tokenizer.hasMoreElements()) {
             tokens.add(tokenizer.nextToken());
         }
+        System.out.println("tokens :" +tokens.toString());
         return tokens;
     }
 }

@@ -20,6 +20,7 @@ import comp3350.flashy.R;
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
     ArrayAdapter<Flashcard> fcArrayAdapter;
+    ArrayList<Flashcard> items;
 
     private Deck currDeck = uiManager.getCurrDeck();
 
@@ -36,7 +37,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         title.setText(currDeck.getName());
 
-        final ArrayList<Flashcard> items = currDeck.getCards();
+        items = uiManager.getAllCards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {
@@ -92,6 +93,12 @@ public class FlashCardListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        updateData();
+    }
+
+    private void updateData(){
+        items.clear();
+        items.addAll(uiManager.getAllCards());
         fcArrayAdapter.notifyDataSetChanged();
     }
 
