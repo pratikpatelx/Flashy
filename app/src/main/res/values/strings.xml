@@ -23,4 +23,10 @@
     <string name="enter_deck_name">Enter Deck Name</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_flashy_registration">FlashyRegistrationActivity</string>
+    <string name="deck_title">Deck title</string>
+    <string name="register">REGISTER</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_username">Enter username</string>
+    <string name="example_of_front_side_of_a_flash_card">Example of front side of a flash card</string>
+    <string name="title">Title</string>
 </resources>

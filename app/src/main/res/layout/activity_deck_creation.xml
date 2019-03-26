@@ -5,6 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLogInText"
     android:paddingLeft="10dp"
     android:paddingTop="20dp"
     android:paddingRight="10dp"
@@ -16,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="825dp"
+        android:background="@color/colorLogInText"
+        app:cardBackgroundColor="@color/colorLogInText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -25,6 +28,7 @@
         android:layout_height="793dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/colorLogInText"
         android:contentDescription="@string/deck_name"
         android:fadingEdge="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +44,7 @@
         android:layout_width="530dp"
         android:layout_height="150dp"
         android:layout_marginTop="36dp"
-        android:background="@android:drawable/alert_light_frame"
+        android:background="@android:drawable/dialog_holo_light_frame"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/deck_name"
         android:textSize="36sp"
@@ -57,9 +61,10 @@
         android:layout_height="137dp"
         android:layout_marginTop="36dp"
         android:autofillHints="@string/deck_name"
-        android:background="@android:drawable/editbox_background_normal"
+        android:background="@android:drawable/dialog_holo_light_frame"
         android:hint="@string/enter_deck_name"
         android:inputType=""
+        android:textAlignment="center"
         android:textColorLink="@color/colorGO"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -75,18 +80,21 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="140dp"
-        android:background="@android:drawable/alert_light_frame"
+        android:background="@android:drawable/btn_default_small"
+        android:backgroundTint="#0277BD"
         android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="sans-serif"
         android:text="@string/Enter"
-        android:textColorLink="@color/colorGO"
+        android:textColor="@android:color/background_light"
+        android:textColorLink="@android:color/background_light"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deckTitle"
-        app:layout_constraintVertical_bias="0.292"
-        android:focusable="true" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <Button
         android:id="@+id/Cancel_Button"
@@ -96,10 +104,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="140dp"
-        android:background="@android:drawable/alert_light_frame"
+        android:background="@android:drawable/btn_default_small"
+        android:backgroundTint="#0277BD"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="sans-serif"
         android:text="@string/cancel"
+        android:textColor="@android:color/background_light"
         android:textColorLink="@color/colorGO"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -107,7 +118,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deckTitle"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.979" />
 
 
 </android.support.constraint.ConstraintLayout>

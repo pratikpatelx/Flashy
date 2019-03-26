@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import comp3350.flashy.R;
 
@@ -24,10 +25,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private uiHandler uiManager = MainActivity.getHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
-    private Button exit;
+    private FloatingActionButton exit;
 
-    private Button delete;
-    private Button modify;
+    private FloatingActionButton  delete;
+    private FloatingActionButton modify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,13 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        textViewFlashBody = findViewById(R.id.body);
-        textViewFlashTitle = findViewById(R.id.title);
-        prev = findViewById(R.id.prevButton);
-        next = findViewById(R.id.nextButton);
-        exit = findViewById(R.id.exitButton);
-        delete = findViewById(R.id.delButton);
-        modify = findViewById(R.id.modButton);
+        textViewFlashBody = (TextView) findViewById(R.id.body);
+        textViewFlashTitle = (TextView) findViewById(R.id.title);
+        prev = (FloatingActionButton) findViewById(R.id.prevButton);
+        next = (FloatingActionButton) findViewById(R.id.nextButton);
+        exit = (FloatingActionButton) findViewById(R.id.exitButton);
+        delete = (FloatingActionButton) findViewById(R.id.delButton);
+        modify = (FloatingActionButton) findViewById(R.id.modButton);
         index = 0;
         deckSize = uiManager.getDeckSize();
         name = uiManager.getDeckName();
@@ -62,6 +63,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
         textViewFlashBody.setText(body);
         textViewFlashTitle.setText(title);
+
 
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +136,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         intent.putExtra("BODY", body);
         startActivity(intent);
     }
+
     //clamping methods for flashcard viewer
     private void nextUpdateIndex() {
         //Flashcard nextCard;
@@ -156,4 +159,6 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

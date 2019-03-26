@@ -2,6 +2,7 @@ package comp3350.flashy.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.R;
 
 public class FlashCardListActivity extends AppCompatActivity {
@@ -28,14 +29,14 @@ public class FlashCardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card_list);
 
-        TextView title = findViewById(R.id.Title);
-        Button exit = findViewById(R.id.exitFlashList);
-        Button add = findViewById(R.id.addCard);
-        Button view = findViewById(R.id.viewCards);
+        TextView title = (TextView) findViewById(R.id.Title);
+        FloatingActionButton exit = (FloatingActionButton)findViewById(R.id.exitFlashList);
+        FloatingActionButton add = (FloatingActionButton) findViewById(R.id.addCard);
+        FloatingActionButton view = (FloatingActionButton) findViewById(R.id.viewCards);
 
         title.setText(currDeck.getName());
 
-        final ArrayList<Flashcard> items = currDeck.getFlashcards();
+        final ArrayList<Flashcard> items = currDeck.getCards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
         {
@@ -43,7 +44,7 @@ public class FlashCardListActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = view.findViewById(R.id.flashListItem);
+                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
 
                 flashCard.setTextSize(35);
 
@@ -62,7 +63,7 @@ public class FlashCardListActivity extends AppCompatActivity {
             }
         };
 
-        ListView listView = findViewById(R.id.flashcardList);
+        ListView listView = (ListView)findViewById(R.id.flashcardList);
         listView.setAdapter(fcArrayAdapter);
 
         exit.setOnClickListener(new View.OnClickListener() {

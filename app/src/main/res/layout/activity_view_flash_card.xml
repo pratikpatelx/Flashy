@@ -11,39 +11,46 @@
     android:paddingBottom="20dp"
     tools:context=".presentation.CreateFlashCardActivity">
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/modButton"
-        android:layout_width="164dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/alert_light_frame"
-        android:text="Modify"
-        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/delButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.7" />
 
-    <Button
-        android:id="@+id/delButton"
-        android:layout_width="164dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/alert_light_frame"
-        android:text="Delete"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@+id/container"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.623"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/delButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/fab_test"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.623"
+        app:srcCompat="@drawable/ic_delete_forever_white_24dp" />
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
@@ -72,9 +79,11 @@
         android:layout_width="385dp"
         android:layout_height="72dp"
         android:layout_marginTop="24dp"
-        android:background="@android:drawable/alert_light_frame"
+        android:background="@color/flashcard_color"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Title"
+        android:text="@string/title"
+        android:fontFamily="sans-serif-medium"
+        android:typeface="normal"
         android:textSize="36sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -89,9 +98,9 @@
         android:layout_height="540dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:drawable/alert_light_frame"
-        android:gravity="center_horizontal|top|center_vertical"
-        android:text="Example of front side of a flash flashcard"
+        android:background="@color/flashcard_color"
+        android:gravity="center|center_vertical"
+        android:text="@string/example_of_front_side_of_a_flash_card"
         android:textAlignment="center"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -100,7 +109,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Example of front side of a flash flashcard" />
+        tools:text="Example of front side of a flash card" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/nextButton"
@@ -116,22 +125,26 @@
         app:layout_constraintStart_toEndOf="@+id/prevButton"
         app:srcCompat="@android:drawable/ic_media_ff" />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/exitButton"
-        android:layout_width="164dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/alert_light_frame"
-        android:text="Exit"
-        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintEnd_toStartOf="@+id/delButton"
-        app:layout_constraintHorizontal_bias="0.533"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.623"
+        app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/prevButton"
@@ -152,7 +165,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView">
 

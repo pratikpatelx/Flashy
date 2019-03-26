@@ -96,6 +96,10 @@ public class uiHandler {
         return logic.getNames(username);
     }
 
+    public ArrayList<String> getAllProfileNames(){
+        return logic.getProfileNames();
+    }
+
     public void deleteDeck(String dName) {
         logic.deleteDeck(username,dName);
     }

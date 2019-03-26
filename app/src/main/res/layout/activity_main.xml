@@ -1,147 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorLogInText"
+    tools:context=".presentation.MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="198dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:layout_margin="30dp">
+        android:text="FLASHY"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/selectedUser"
+        android:layout_width="146dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profilePass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.001" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/app_name"
-            android:textSize="36sp"
-            android:fontFamily="sans-serif-light"/>
+    <Button
+        android:id="@+id/Enter"
+        android:layout_width="131dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/btn_default"
+        android:text="Enter"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
 
-    </LinearLayout>
+    <EditText
+        android:id="@+id/profilePass"
+        android:layout_width="185dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Enter"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.001" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/login_details"
-        android:layout_width="317dp"
-        android:layout_height="398dp"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="3dp"
-        app:cardUseCompatPadding="true">
+    <Button
+        android:id="@+id/addProfile"
+        android:layout_width="197dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:drawable/btn_default"
+        android:text="Add Profile"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/profiles" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/deleteProfile"
+        android:layout_width="197dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="104dp"
+        android:background="@android:drawable/btn_default"
+        android:text="Delete"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/addProfile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profiles"
+        app:layout_constraintTop_toBottomOf="@+id/profiles" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="8dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="20dp"
-                    android:text="@string/log_in"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorLogInText">
-
-                    <EditText
-                        android:id="@+id/username"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:hint="@string/username"
-                        android:inputType="textPersonName"
-                        android:paddingBottom="2dp"
-                        android:textColor="@color/colorPrimaryDark" />
-                    <!--//android:autofillHints="" />-->
-                </android.support.design.widget.TextInputLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorLogInText">
-
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="53dp"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:paddingBottom="2dp"
-                        android:textColor="@color/colorPrimary" />
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/login_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/go"
-                android:textColor="@color/colorGO" />
-
-            <Button
-                android:id="@+id/register"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:text="register" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/rbutton_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login_details"
-        android:layout_alignEnd="@id/login_details"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="-87dp"
-        android:src="@drawable/ic_person_add" />
-</RelativeLayout>
+    <ListView
+        android:id="@+id/profiles"
+        android:layout_width="510dp"
+        android:layout_height="551dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/picture_frame"
+        android:backgroundTint="@color/btn_deck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePass" />
+</android.support.constraint.ConstraintLayout>

@@ -248,6 +248,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         }
     }
 
+    @Override
+    public Collection<String> getUserCollection() {
+        return null;
+    }
+
     private void createTables() {
         System.out.println("createTables started");
 

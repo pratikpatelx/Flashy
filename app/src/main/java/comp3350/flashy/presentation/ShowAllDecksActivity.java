@@ -1,10 +1,17 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,9 +29,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayList<String> items;
     int selectedPostion = -1;
     private TextView deck;
-    private Button openDeck;
-    private Button delDeck;
-    private Button Back;
+    private FloatingActionButton openDeck;
+    private FloatingActionButton delDeck;
+    private FloatingActionButton Back;
     private ListView listView;
 
     @Override
@@ -34,11 +41,12 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        deck = findViewById(R.id.selectedDeck);
-        listView = findViewById(R.id.showAllDeckList);
-        openDeck = findViewById(R.id.Open);
-        delDeck = findViewById(R.id.deleteDeck);
-        Back = findViewById(R.id.Back);
+
+        deck = (TextView) findViewById(R.id.selectedDeck);
+        listView = (ListView)findViewById(R.id.showAllDeckList);
+        openDeck = (FloatingActionButton) findViewById(R.id.Open);
+        delDeck = (FloatingActionButton) findViewById(R.id.deleteDeck);
+        Back = (FloatingActionButton) findViewById(R.id.Back);
         items = uiManager.getNames();
         selectedPostion = -1;
 
@@ -48,10 +56,10 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
-                TextView deck = view.findViewById(R.id.deck_list_item);
+                TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
                 deck.setText(items.get(position));
-
                 return view;
+
             }
         };
 
@@ -63,9 +71,12 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     listView.setItemChecked(position,true);
                     selectedPostion = position;
+                    fcArrayAdapter.notifyDataSetChanged();
                     deck.setText(items.get(position));
                     uiManager.setCurrDeck(items.get(position));
                 }
+
+
         });
 
         openDeck.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +109,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     public void openFlashCardListActivity(String deckName) {
@@ -105,5 +117,6 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         //intent.putExtra("DECK",deckName);
         startActivity(intent);
     }
+
     
 }

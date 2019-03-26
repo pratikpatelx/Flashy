@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="comp3350.flashy">
 
     <application
@@ -19,7 +20,7 @@
             android:label="title_activity_flash_card_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".presentation.CreateFlashCardActivity" />
-        <activity android:name=".presentation.ViewFlashCardActivity" />
+        <activity android:name=".presentation.ViewFlashCardActivity"/>
         <activity android:name=".presentation.CreateDeckActivity" />
         <activity android:name=".presentation.DeckMenuActivity" />
         <activity android:name=".presentation.NewDeckActivity" />

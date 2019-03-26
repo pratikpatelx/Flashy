@@ -59,7 +59,7 @@ public class DatabaseStub implements DatabaseImplementation {
 
         if(userList.containsKey(username)){
             throw new IllegalArgumentException();
-        }else {
+       }else {
             userList.put(username, password);
             storage.put(username, new Hashtable<String, Deck>());
         }
@@ -78,5 +78,18 @@ public class DatabaseStub implements DatabaseImplementation {
     public void removeUser(String username) {
         userList.remove(username);
         storage.remove(username);
+    }
+
+    @Override
+    public Collection<String> getUserCollection(){
+
+        Collection result = new ArrayList<String>();
+
+
+        for(String key : userList.keySet()) {
+            result.add(key);
+        }
+
+        return result;
     }
 }

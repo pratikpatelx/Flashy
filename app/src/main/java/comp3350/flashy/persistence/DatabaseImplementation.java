@@ -25,4 +25,6 @@ public interface DatabaseImplementation {
     String getUserPassword (String username);
 
     void removeUser (String username);
+
+    Collection<String> getUserCollection();
 }
