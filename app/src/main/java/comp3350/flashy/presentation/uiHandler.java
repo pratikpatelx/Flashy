@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.QuizManager;
 
 public class uiHandler {
 
     private LogicManager logic;
     private String username;
+    private QuizManager quiz;
 
     private Deck currDeck;
     private String deckName;
@@ -19,7 +21,6 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
-        username = "";
 
     }
 
@@ -37,8 +38,12 @@ public class uiHandler {
 
     //this returns the the head and body of the flashcard
     public String[] getContent(int index) {
+        Flashcard curr;
 
-        Flashcard curr = currDeck.getCard(deckName +"-"+ index);
+        if(index != -1)
+            curr = currDeck.getCard(deckName +"-"+ index);
+        else
+            curr = quiz.getNextCard();
 
         String[] result = new String[2];
         result[0] = curr.getQuestion();
@@ -46,6 +51,8 @@ public class uiHandler {
 
         return result;
     }
+
+
 
     //note to self: do a better job...
     public int getIndexByFlashCard(String name){
@@ -116,6 +123,28 @@ public class uiHandler {
 
     public boolean Verified(String username, String password){
         return logic.verifyUserPassword(username,password);
+    }
+
+    public void startQuiz() {
+        quiz = logic.startQuiz(username,deckName);
+    }
+
+    public void setAnswer(boolean correct){
+        quiz.evaluateAnswer(correct);
+    }
+
+    public int[] getQuizInfo(){
+        int[] result = new int[3];
+
+        result[0] = quiz.getDeckSize();
+        result[1] = quiz.getCorrect();
+        result[2] = quiz.getWrong();
+
+        return result;
+    }
+
+    public boolean isQuizDone(){
+        return quiz.done();
     }
 
 
