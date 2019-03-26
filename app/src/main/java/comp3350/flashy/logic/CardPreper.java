@@ -4,6 +4,7 @@ import java.util.Random;
 
 import comp3350.flashy.domain.FitBcard;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.MCcard;
 
 public class CardPreper {
 
@@ -68,6 +69,15 @@ public class CardPreper {
             String revision = card.getQuestion();
             revision.replaceFirst(card.getAnswer(), BLANK);
             card.setQuestion(revision);
+        }
+    }
+
+
+
+    public static void prepareMCcard(Flashcard card){
+        MCcard mc;
+        if(card.isMultipleChoiceFlashcard()){
+
         }
     }
 

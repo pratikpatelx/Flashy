@@ -39,6 +39,13 @@ public class Quiz {
         return this.cards.remove(0);
     }
 
+
+    /**
+     * placeCard()
+     *      This method places the flashcard card into a random position in the deck
+     *
+     * @param card the card to be added
+     */
     public void placeCard(Flashcard card){
 
         if(!this.cards.isEmpty()){

@@ -1,5 +1,6 @@
 package comp3350.flashy.domain;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -30,7 +31,7 @@ public class Deck{
     }
 
 
-    public List<Flashcard> getCards() {
+    public Collection<Flashcard> getCards() {
             return cards;
     }
 
