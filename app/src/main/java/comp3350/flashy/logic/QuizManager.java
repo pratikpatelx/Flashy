@@ -59,6 +59,28 @@ public class QuizManager {
         return correct;
     }
 
+    /**
+     *
+     * @param response weather the user got the question right or not
+     * @return just an echo of responsr
+     */
+    public boolean evaluateAnswer(boolean response){
+        Flashcard curr = this.quiz.takeCard();
+        boolean correct = false;
+
+        if(response){
+            this.correct++;
+            correct = true;
+        }
+        else{
+            //put the card back in the deck if it was wrong
+            this.wrong++;
+            this.quiz.placeCard(curr);
+        }
+
+        return correct;
+    }
+
 
 
 
