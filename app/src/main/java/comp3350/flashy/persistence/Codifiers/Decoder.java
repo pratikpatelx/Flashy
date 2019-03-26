@@ -28,7 +28,7 @@ public class Decoder {
     public Deck decodeDeck(Deck deck) {
         if(deck!= null) {
             Deck result = new Deck(deck.getName());
-            ArrayList<Flashcard> cardList = deck.getFlashcards();
+            ArrayList<Flashcard> cardList = new ArrayList<Flashcard>(deck.getFlashcards());
             System.out.println(cardList.toString());
             for (int i = 0; i < cardList.size(); i++) {
                 result.addCard(decodeCard(cardList.get(i)));

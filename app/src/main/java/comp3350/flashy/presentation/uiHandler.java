@@ -103,7 +103,7 @@ public class uiHandler {
     public ArrayList<Flashcard> getAllCards(){
         currDeck = logic.getDeck(username,deckName);
 
-        return currDeck.getFlashcards();
+        return new ArrayList<Flashcard>(currDeck.getFlashcards());
     }
 
     public void deleteDeck(String dName) {

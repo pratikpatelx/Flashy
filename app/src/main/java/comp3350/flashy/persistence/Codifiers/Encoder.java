@@ -26,7 +26,7 @@ public class Encoder {
      */
     public Deck encodeDeck(Deck deck) {
         Deck result = new Deck(deck.getName());
-        ArrayList<Flashcard> cardList = deck.getFlashcards();
+        ArrayList<Flashcard> cardList = new ArrayList<Flashcard>(deck.getFlashcards());
         System.out.println(cardList);
         for (int i = 0; i < cardList.size(); i++) {
             result.addCard(encodeCard(cardList.get(i)));

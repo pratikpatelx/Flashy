@@ -4,19 +4,14 @@ public class Flashcard implements FlashcardInterface {
     private String cardName;
     private String answer;
     private String question;
-    private String cardType = "0";
-
-    public Flashcard(String name, String question) {
-        this.cardName = name;
-        this.question = question;
-        this.answer = null;
-    }
+    private static final String cardType = "0";
 
     public Flashcard(String name, String question, String answer) {
         this.cardName = name;
         this.question = question;
         this.answer = answer;
     }
+
 
     /**
      * toString
@@ -31,46 +26,36 @@ public class Flashcard implements FlashcardInterface {
         return info;
     }
 
+
+
     /**
-     * Mutators
+     * Mutators and Accessors
      */
-
-    /*
-    Setters
-     */
-
-    public void setCardName(String newName) {
-        cardName = newName;
-    }
-
-    public void setQuestion(String newQuestion) {
-        this.question = newQuestion;
-    }
 
     public String getAnswer() {
         return answer;
-    }
-
-    /*
-    Getters
-     */
-
-    public String getCardName() {
-        return cardName;
-    }
-
-    public String getQuestion() {
-        return question;
     }
 
     public void setAnswer(String newAnswer) {
         this.answer = newAnswer;
     }
 
-    public String getCardType() {
-        return "0";
+    public String getQuestion() {
+        return question;
     }
 
+    public void setQuestion(String newQuestion) {
+        this.question = newQuestion;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String newName) {
+        cardName = newName;
+    }
+    
     /**
      * editCard()
      * This method will change question and answer to be the same as that of
@@ -89,6 +74,11 @@ public class Flashcard implements FlashcardInterface {
         return success;
     }
 
+    public String getCardType () {
+        return this.cardType;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         boolean result = false;
@@ -96,6 +86,13 @@ public class Flashcard implements FlashcardInterface {
             result = this.cardName.equals(((Flashcard) o).getCardName());
         }
         return result;
+    }
+
+
+
+    @Override
+    public boolean mark(String response){
+        return this.answer.equalsIgnoreCase(response);
     }
 
     public boolean isRegularFlashcard() {
@@ -113,4 +110,6 @@ public class Flashcard implements FlashcardInterface {
     public boolean isMultipleChoiceFlashcard () {
         return false;
     }
+
+
 }

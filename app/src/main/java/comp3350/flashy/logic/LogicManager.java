@@ -128,6 +128,26 @@ public class LogicManager implements LogicManagerInterface {
     }
 
 
+    /**
+     *
+     * @param username the name of the account taking the quiz
+     * @param quizDeckName the name of the deck to make a quiz with
+     * @return the QuizManager that the presentation layer will use to take the quiz
+     *      NOTE this method will return null if the deck requested does not exist
+     */
+    public QuizManager startQuiz(String username, String quizDeckName){
+        Deck quizDeck = this.getDeck(username, quizDeckName);
+        QuizManager qMngr = null;
+
+        if(quizDeck != null){
+            qMngr = new QuizManager(username, quizDeck);
+        }
+
+        return qMngr;
+    }
+
+
+
     //TODO ADD ARGUMENT CONVENTION REQUIREMENTS
     public boolean addUserToDatabase(String username, String password){
         return userHandler.addUser(username, password);

@@ -2,6 +2,9 @@ package comp3350.flashy.domain;
 import android.support.v7.widget.CardView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 public class Deck {
 
@@ -9,32 +12,34 @@ public class Deck {
 
     private static final String DUMMYNAME = "DUMMY";
     private static final String DUMMYQUESTION = "Why did you give me this dummy?";
-    private static final String DUMMYANSWER = "There are either no flashcards in the "
+    private static final String DUMMYANSWER = "There are either no cards in the "
             + "deck or you asked for a specific card that does not exist";
 
-    private ArrayList<Flashcard> flashcards;
+    private ArrayList<Flashcard> cards;
     private String name;
     private int curr; //This is the index of the currently selected flashcard, the one that is displayed in the GUI
 
     public Deck(String name){
         this.name = name;
-        this.flashcards = new ArrayList();
+        this.cards = new ArrayList();
         this.curr = -1;
     }
 
     public Deck(String name, Deck other) {
         this.name = name;
-        this.flashcards = other.getFlashcards();
+        this.cards = new ArrayList<Flashcard>();
+        this.cards.addAll(other.getFlashcards());
         this.validateNames();
     }
 
 
-    public ArrayList getFlashcards() {
-            return flashcards;
+    public Collection<Flashcard> getFlashcards() {
+            return cards;
     }
 
     public void setDeck(Deck other) {
-        this.flashcards = other.getFlashcards();
+        this.cards = new ArrayList<Flashcard>();
+        this.cards.addAll(other.getFlashcards());
         this.validateNames();
     }
 
@@ -51,17 +56,17 @@ public class Deck {
 
     /**
      * validateNames()
-     * This function will iterate through the flashcards and ensures each one has the
+     * This function will iterate through the cards and ensures each one has the
      * correct name
      */
     public final void validateNames(){
         String correct;
-        Flashcard flashcard;
-        for(int i = 0; i < this.flashcards.size(); i++){
+        Flashcard card;
+        for(int i = 0; i < this.cards.size(); i++){
             correct = this.name+ "-" + (i);
-            flashcard = this.flashcards.get(i);
-            if(!flashcard.getCardName().equals(correct)){
-                flashcard.setCardName(correct);
+            card = this.cards.get(i);
+            if(!card.getCardName().equals(correct)){
+                card.setCardName(correct);
             }
         }
     }
@@ -76,12 +81,13 @@ public class Deck {
      *
      * This function will execute the process for putting a new "Flashcard" to
      * the deck
-     * This function will be called when the "Add Flashcard/Done" button is pressed in the
+     * This function will be called when the "Add Card/Done" button is pressed in the
      * card creation GUI.
      * This function handles the creation of the simple flashcard
      */
     public void addCard(Flashcard noob){
-        this.flashcards.add(noob);
+
+        this.cards.add(noob);
         this.curr++;
     }
 
@@ -103,10 +109,10 @@ public class Deck {
         boolean success = false;
         int pos = this.findCard(cardName);
         if(pos >= 0){
-            this.flashcards.remove(pos);
+            this.cards.remove(pos);
             this.validateNames();
             success = true;
-            if(this.curr == this.flashcards.size()-1){
+            if(this.curr == this.cards.size()-1){
                 this.curr--;
             }
         }
@@ -128,10 +134,10 @@ public class Deck {
      */
     public boolean editCard(Flashcard changed){
         boolean success = false;
-        if(flashcards.size() >= 0){
-            int idx = flashcards.indexOf(changed);
+        if(cards.size() >= 0){
+            int idx = cards.indexOf(changed);
             if(idx >= 0){
-                flashcards.get(idx).editCard(changed);
+                cards.get(idx).editCard(changed);
                 success = true;
             }
 
@@ -153,7 +159,7 @@ public class Deck {
      *
      */
     public void nextCard(){
-        this.curr = (this.curr + 1)%this.flashcards.size();
+        this.curr = (this.curr + 1)%this.cards.size();
     }
 
 
@@ -170,7 +176,7 @@ public class Deck {
      */
     public void prevCard(){
         if(this.curr == 0){
-            this.curr = this.flashcards.size()-1;
+            this.curr = this.cards.size()-1;
         }
         else{
             this.curr--;
@@ -182,7 +188,7 @@ public class Deck {
      * getCard()
      *
      * this function returns the Flash object in "deck" with the index equal to "curr"
-     * if there are no flashcards in the deck then then a dummy card will be returned.
+     * if there are no cards in the deck then then a dummy card will be returned.
      *
      * @param cardName
      *      The name of the card to search for
@@ -192,21 +198,21 @@ public class Deck {
      *      a dummy card if it can't find the card requested
      */
     public Flashcard getCard(String cardName){
-        Flashcard flashcard;
-        if(this.flashcards.size() == 0){
-            flashcard = makeDummy();
+        Flashcard card;
+        if(this.cards.size() == 0){
+            card = makeDummy();
         }
         else{
             this.validateNames();
             int pos = extractNumber(cardName);
-            if(pos >= 0 && pos < this.flashcards.size()){
-                flashcard = this.flashcards.get(pos);
+            if(pos >= 0 && pos < this.cards.size()){
+                card = this.cards.get(pos);
             }
             else{
-                flashcard = makeDummy();
+                card = makeDummy();
             }
         }
-        return flashcard;
+        return card;
     }
 
 
@@ -215,7 +221,7 @@ public class Deck {
 
         this.validateNames();
         int number = this.extractNumber(cardName);
-        if(number >= 0 && number < this.flashcards.size()){
+        if(number >= 0 && number < this.cards.size()){
             pos = number;
         }
 
@@ -250,7 +256,7 @@ public class Deck {
      * @return the number of flashcards in this Deck
      */
     public int getNumCards(){
-        return this.flashcards.size();
+        return this.cards.size();
     }
 
 
@@ -267,8 +273,8 @@ public class Deck {
     @Override
     public String toString(){
         String info = "Deck: " + this.name + "\n";
-        for(int i = 0; i < this.flashcards.size(); i++){
-            info += flashcards.get(i) + "\n";
+        for(int i = 0; i < this.cards.size(); i++){
+            info += cards.get(i) + "\n";
         }
         return info;
     }
