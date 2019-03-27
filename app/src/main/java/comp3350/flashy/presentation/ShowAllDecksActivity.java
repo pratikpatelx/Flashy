@@ -33,6 +33,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
     private FloatingActionButton delDeck;
     private FloatingActionButton Back;
     private ListView listView;
+    private Button quiz;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         openDeck = (FloatingActionButton) findViewById(R.id.Open);
         delDeck = (FloatingActionButton) findViewById(R.id.deleteDeck);
         Back = (FloatingActionButton) findViewById(R.id.Back);
+        quiz = findViewById(R.id.startQuiz);
+
         items = uiManager.getNames();
         selectedPostion = -1;
 
@@ -84,7 +87,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selectedPostion != -1)
-                    openFlashCardListActivity(items.get(selectedPostion));
+                    openFlashCardListActivity();
 
             }
         });
@@ -103,6 +106,14 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             }
         });
 
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedPostion != -1)
+                    openQuizActivity();
+            }
+        });
+
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,9 +123,14 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
     }
 
-    public void openFlashCardListActivity(String deckName) {
+    public void openFlashCardListActivity() {
         Intent intent = new Intent(this, FlashCardListActivity.class);
-        //intent.putExtra("DECK",deckName);
+        startActivity(intent);
+    }
+
+    public void openQuizActivity() {
+        Intent intent = new Intent(this, Quiz.class);
+        uiManager.startQuiz();
         startActivity(intent);
     }
 

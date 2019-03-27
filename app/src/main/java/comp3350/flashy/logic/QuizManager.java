@@ -81,6 +81,16 @@ public class QuizManager {
         return correct;
     }
 
+    public int getDeckSize(){
+        return this.quiz.getSize();
+    }
+
+    public boolean done(){
+        return this.quiz.isEmpty();
+    }
+
+
+
 
 
 
