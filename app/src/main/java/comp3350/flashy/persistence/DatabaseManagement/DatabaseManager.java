@@ -52,7 +52,7 @@ public class DatabaseManager {
 
 
             }
-            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
+            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-5","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
             inputDeck("" ,deckName, tempDeck);
         }
     }
