@@ -63,7 +63,7 @@ public class CardPreper {
             }
 
             Random rand = new Random();
-            int selected = rand.nextInt() % count;
+            int selected = rand.nextInt(count);
 
             curr.setFirstPart(cands[selected]);
 
