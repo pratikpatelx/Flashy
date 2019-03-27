@@ -1,5 +1,7 @@
 package comp3350.flashy.persistence.DatabaseImplementations;
 
+import org.hsqldb.rights.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,14 +13,6 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 public class DatabaseHSQLDB implements DatabaseImplementation {
 
     public DatabaseHSQLDB() {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace(System.out);
-            System.out.println("Class Not Found..");
-            System.exit(0);
-        }
-
         System.out.println("Connection Successful!");
         createTables();
     }
@@ -249,8 +243,23 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     }
 
     @Override
-    public Collection<String> getUserCollection() {
-        return null;
+    public Collection<String> getUserCollection(){
+        System.out.println("getUserCollection started");
+        Collection userList = new ArrayList<String>();
+
+        try (final Connection connection = connection()) {
+            PreparedStatement statement = connection.prepareStatement(
+                    "select username from UserList;");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                userList.add(resultSet.getString("username"));
+            }
+        } catch (SQLException e){
+            System.out.println("getUserCollection Failed");
+            e.printStackTrace();
+        }
+
+        return userList;
     }
 
     private void createTables() {

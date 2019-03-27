@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/test3"
+    android:backgroundTint="@color/test3"
     tools:context=".presentation.ShowAllDecksActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -83,6 +85,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
+        android:background="@color/test3"
+        android:backgroundTint="@color/test3"
         android:clickable="false"
         android:drawSelectorOnTop="false"
         android:isScrollContainer="true"

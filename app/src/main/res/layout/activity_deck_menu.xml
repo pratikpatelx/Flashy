@@ -14,7 +14,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorLogInText">
+            android:background="@color/test3">
 
             <Button
                 android:id="@+id/newDeck"
@@ -25,7 +25,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@android:drawable/btn_default"
-                android:backgroundTint="@color/btn_deck"
+                android:backgroundTint="@color/colorLogInText"
                 android:text="@string/New_Deck"
                 android:textColor="@android:color/white"
                 android:textSize="36sp"
@@ -45,7 +45,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@android:drawable/btn_default"
-                android:backgroundTint="@color/btn_deck"
+                android:backgroundTint="@color/colorLogInText"
                 android:text="@string/Log_Out"
                 android:textColor="@android:color/background_light"
                 android:textSize="36sp"
@@ -65,7 +65,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@android:drawable/btn_default"
-                android:backgroundTint="@color/btn_deck"
+                android:backgroundTint="@color/colorLogInText"
                 android:text="@string/List_Deck"
                 android:textColor="@android:color/white"
                 android:textSize="36sp"

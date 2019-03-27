@@ -10,8 +10,8 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    private DatabaseImplementation databaseType = new DatabaseStub();
+    private DatabaseImplementation databaseType = new DatabaseHSQLDB();
+    //private DatabaseImplementation databaseType = new DatabaseStub();
     private DatabaseManager database = new DatabaseManager(databaseType);
     private UserHandler userHandler = new UserHandler(database);
 
@@ -98,7 +98,8 @@ public class LogicManager implements LogicManagerInterface {
 
     public ArrayList<String> getAllProfiles(){
         System.out.println(database.getUserCollection());
-        return(new ArrayList<String>(database.getUserCollection()));
+        ArrayList<String> strings = new ArrayList<String>(database.getUserCollection());
+        return strings;
     }
 
     public ArrayList<String> getNames(String username){

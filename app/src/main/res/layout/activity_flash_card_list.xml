@@ -5,6 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/test3"
     tools:context=".presentation.FlashCardListActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -18,6 +19,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:foregroundGravity="center_horizontal"
         android:padding="0dp"
         android:scaleType="fitXY"
@@ -30,8 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
         app:layout_constraintVertical_bias="0.511"
-        app:srcCompat="@drawable/ic_visibility_black_24dp"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_visibility_black_24dp" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -45,6 +46,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
 
+        android:focusable="true"
         android:padding="0dp"
         android:scaleType="fitXY"
         app:backgroundTint="@android:color/holo_red_light"
@@ -56,8 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
         app:layout_constraintVertical_bias="0.511"
-        app:srcCompat="@drawable/addcardiconselected"
-        android:focusable="true" />
+        app:srcCompat="@drawable/addcardiconselected" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/exitFlashList"
@@ -69,8 +70,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:padding="0dp"
+        android:focusable="true"
 
+        android:padding="0dp"
         android:scaleType="fitXY"
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
@@ -81,8 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flashcardList"
         app:layout_constraintVertical_bias="0.511"
-        app:srcCompat="@drawable/ic_arrow_back_white_24dp"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
     <TextView
         android:id="@+id/Title"
@@ -109,6 +110,7 @@
         android:layout_marginBottom="8dp"
         android:animateLayoutChanges="true"
         android:animationCache="false"
+        android:backgroundTint="@android:color/background_light"
         android:listSelector="@color/flashcard_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
