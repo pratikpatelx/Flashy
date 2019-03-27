@@ -20,6 +20,8 @@ public class QuizManager {
         this.wrong = 0;
     }
 
+
+
     public int getCorrect(){
         return this.correct;
     }
@@ -30,7 +32,7 @@ public class QuizManager {
 
     /**
      * StartQuiz()
-     * @return the first card in the quiz
+     * @return the next card in the quiz
      */
     public Flashcard getNextCard(){
         return this.quiz.getCard();
