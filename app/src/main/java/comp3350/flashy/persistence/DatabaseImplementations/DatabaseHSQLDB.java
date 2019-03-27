@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import comp3350.flashy.application.DBSetup;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.persistence.DatabaseImplementation;
@@ -20,7 +21,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     private Connection connection() throws SQLException {
         System.out.println("Connection called");
         return DriverManager.getConnection(
-                "jdbc:hsqldb:file:FlashyDB;shutdown=true",
+                "jdbc:hsqldb:file:" + DBSetup.getDBPathName() + ";shutdown=true",
                 "SA",
                 "");
     }

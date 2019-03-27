@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import comp3350.flashy.application.DBSetup;
 import comp3350.flashy.persistence.dbSetup;
 
 import java.io.File;
@@ -144,20 +145,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setDBPathName(final String name) {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver").newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void copyDatabaseToDevice() {
-        final String DB_PATH = "db";
+        final String DB_PATH = "FlashyDB";
 
         String[] assetNames;
         Context context = getApplicationContext();
@@ -165,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
 
         try {
-
             assetNames = assetManager.list(DB_PATH);
             for (int i = 0; i < assetNames.length; i++) {
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
@@ -173,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
 
             copyAssetsToDirectory(assetNames, dataDirectory);
 
-            setDBPathName(dataDirectory.toString() + "/" + DB_PATH);
+            DBSetup.setDBPathName(dataDirectory.toString() + "/" + DBSetup.getDBPathName());
 
         } catch (final IOException ioe) {
             System.out.println("Unable to access application data: " + ioe.getMessage());
         }
     }
 
-    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = getAssets();
 
         for (String asset : assets) {
