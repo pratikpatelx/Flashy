@@ -10,11 +10,20 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    //private DatabaseImplementation databaseType = new DatabaseStub();
-    private DatabaseManager database = new DatabaseManager(databaseType);
-    private UserHandler userHandler = new UserHandler(database);
 
+    private DatabaseManager database;
+    private UserHandler userHandler;
+
+
+    public LogicManager(){
+        //this(new DatabaseManager(new DatabaseHSQLDB());
+        this(new DatabaseManager(new DatabaseStub()));
+    }
+
+    public LogicManager(DatabaseManager databaseImpl){
+        database = databaseImpl;
+        userHandler = new UserHandler(database);
+    }
 
     @Override
     public Deck getDeck(String username, String deckName){
