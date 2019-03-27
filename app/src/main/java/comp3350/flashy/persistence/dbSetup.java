@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class dbSetup extends Activity {
-    private void setDBPathName(final String name) {
+
+}
+   /* private void setDBPathName(final String name) {
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
         } catch (InstantiationException e) {
@@ -74,3 +76,4 @@ public class dbSetup extends Activity {
         }
     }
 }
+*/
