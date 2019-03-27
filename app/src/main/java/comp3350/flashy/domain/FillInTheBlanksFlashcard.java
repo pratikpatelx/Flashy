@@ -15,6 +15,10 @@ public class FillInTheBlanksFlashcard extends Flashcard {
         return firstPart;
     }
 
+    public void setFirstPart(String answer){
+        this.firstPart = answer;
+    }
+
     public String getLastPart () {
         return lastPart;
     }

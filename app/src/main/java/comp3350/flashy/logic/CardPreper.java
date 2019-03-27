@@ -20,10 +20,12 @@ public class CardPreper {
      */
     public static void preareFitBcard(Flashcard card){
         if(card.isFillInTheBlanksFlashcard()) {
-            String[] words = card.getQuestion().split(" ,.!?;:\"");
+            FillInTheBlanksFlashcard curr = (FillInTheBlanksFlashcard) card;
+            String[] words = card.getAnswer().split("\\s+|,.!?;:\"");
             int nWords = words.length;
             int count = 0;
             int longest = 0;
+            System.out.println("split gets this: "+words[0]);
 
             boolean met = false;//has the threshold been met
 
@@ -61,12 +63,15 @@ public class CardPreper {
             }
 
             Random rand = new Random();
-            int selected = rand.nextInt() % cands.length;
-            card.setAnswer(cands[selected]);
+            int selected = rand.nextInt() % count;
 
-            String revision = card.getQuestion();
-            revision.replaceFirst(card.getAnswer(), BLANK);
-            card.setQuestion(revision);
+            curr.setFirstPart(cands[selected]);
+
+            String revision = curr.getAnswer().replace(curr.getFirstPart(), BLANK);
+
+
+            System.out.println("revision:"+revision+" firstpart:"+ curr.getFirstPart());
+            curr.setAnswer(revision);
         }
     }
 

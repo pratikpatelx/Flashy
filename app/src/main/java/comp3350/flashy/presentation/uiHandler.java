@@ -12,7 +12,9 @@ public class uiHandler {
 
     private LogicManager logic;
     private String username;
+
     private QuizManager quiz;
+    private int quizCardType;
 
     private Deck currDeck;
     private String deckName;
@@ -40,16 +42,26 @@ public class uiHandler {
     //this returns the the head and body of the flashcard
     public String[] getContent(int index) {
         Flashcard curr;
+        String[] result = new String[3];
 
 
-        if(index != -1)
-            curr = currDeck.getCard(deckName +"-"+ index);
-        else
+        if(index != -1) {
+            curr = currDeck.getCard(deckName + "-" + index);
+        } else {
             curr = quiz.getNextCard();
+            quizCardType = Integer.parseInt(curr.getCardType());
+            if(curr.isFillInTheBlanksFlashcard()){
+                FillInTheBlanksFlashcard temp = (FillInTheBlanksFlashcard) curr;
+                result[2] = temp.getFirstPart();
+
+            }
+
+            System.out.println("type: " + curr.getCardType() + "quizcardType" + quizCardType);
+        }
 
 
 
-        String[] result = new String[2];
+
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
 
@@ -151,5 +163,9 @@ public class uiHandler {
         return quiz.done();
     }
 
+
+    public int getCurrentType(){
+        return quizCardType;
+    }
 
 }
