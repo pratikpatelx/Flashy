@@ -116,7 +116,9 @@ public class Encoder {
     private String encodeMultipleChoiceFlashcard (MultipleChoiceFlashcard card) {
         String result = "";
         String answer = card.getAnswer();
-        ArrayList<String> choices = card.getAnswers();
+        ArrayList<String> choices = new ArrayList<String>(card.getAnswers());
+
+        card.getAnswers();
 
         result.concat(card.getCardType() + delimiter);
         for (int i = 0; i < choices.size(); i++) {

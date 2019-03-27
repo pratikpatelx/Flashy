@@ -1,21 +1,22 @@
 package comp3350.flashy.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MultipleChoiceFlashcard extends Flashcard {
-    ArrayList answers = null;
+    private ArrayList answers;
     private String cardType = "2";
 
-    public MultipleChoiceFlashcard (String name, String question, ArrayList answerList) {
+    public MultipleChoiceFlashcard (String name, String question, List<String> answerList) {
         super(name, question,"");
-        answers = answerList;
+        this.answers = new ArrayList<String>(answerList);
     }
 
-    public void setAnswers (ArrayList newAnswers) {
-        answers = newAnswers;
+    public void setAnswers (List<String> newAnswers) {
+        this.answers = new ArrayList<String>(newAnswers);
     }
 
-    public ArrayList getAnswers () {
+    public List<String> getAnswers () {
         return answers;
     }
 
