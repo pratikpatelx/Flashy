@@ -14,6 +14,7 @@ public class GetandInsertDeckTest {
         System.out.println("\nrunning GetandInsertDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
+        lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String firstCardName = deckName + "-" + 0;
         String secondCardName = deckName + "-" + 1;

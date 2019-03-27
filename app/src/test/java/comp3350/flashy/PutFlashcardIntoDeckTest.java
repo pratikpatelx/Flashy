@@ -18,7 +18,7 @@ public class PutFlashcardIntoDeckTest {
         System.out.println("\nrunning putCardIntoDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
-
+        lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String cardName0 = deckName + "-" + 0;
         String cardName1 = deckName + "-" + 1;

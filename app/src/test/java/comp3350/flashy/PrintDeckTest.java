@@ -17,6 +17,7 @@ public class PrintDeckTest {
         System.out.println("\nrunning printDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
+        lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
 

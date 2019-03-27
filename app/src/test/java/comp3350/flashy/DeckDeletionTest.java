@@ -15,6 +15,7 @@ public class DeckDeletionTest {
         System.out.println("\nDeleteDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
+        lgc.addUserToDatabase(user, "");
         String deckAName = "AlphaDeck";
         String deckBName = "BrovoDeck";
         String cardNameA1 = deckAName + "-" + 0;
