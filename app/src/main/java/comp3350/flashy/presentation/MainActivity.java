@@ -158,7 +158,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import comp3350.flashy.application.DBSetup;
-import comp3350.flashy.persistence.dbSetup;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -189,11 +188,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        copyDatabaseToDevice();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.getSupportActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        copyDatabaseToDevice();
 
         register = (FloatingActionButton) findViewById(R.id.addProfile);
         password = (EditText) findViewById(R.id.profilePass);

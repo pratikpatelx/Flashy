@@ -2,6 +2,7 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 
+import comp3350.flashy.application.DBSetup;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
@@ -10,7 +11,7 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    private DatabaseImplementation databaseType = new DatabaseHSQLDB();
+    private DatabaseImplementation databaseType = new DatabaseHSQLDB(DBSetup.getDBPathName());
     //private DatabaseImplementation databaseType = new DatabaseStub();
     private DatabaseManager database = new DatabaseManager(databaseType);
     private UserHandler userHandler = new UserHandler(database);

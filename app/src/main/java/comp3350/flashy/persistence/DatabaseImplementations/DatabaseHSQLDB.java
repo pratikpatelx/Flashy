@@ -1,38 +1,36 @@
 package comp3350.flashy.persistence.DatabaseImplementations;
 
-import org.hsqldb.rights.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.application.DBSetup;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.persistence.DatabaseImplementation;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
 
-    public DatabaseHSQLDB() {
+    private final String dbPath;
+
+    public DatabaseHSQLDB(String givenDBPath) {
+        dbPath = givenDBPath;
         System.out.println("Connection Successful!");
-        createTables();
     }
 
     private Connection connection() throws SQLException {
         System.out.println("Connection called");
         return DriverManager.getConnection(
-                "jdbc:hsqldb:file:" + DBSetup.getDBPathName() + ";shutdown=true",
+                "jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
                 "SA",
                 "");
     }
-
 
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
         System.out.println("inputDeck started");
 
         try (final Connection connection = connection()) {
-            ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
+            ArrayList<Flashcard> flashcardList = new ArrayList<>(inputDeck.getFlashcards());
 
             deleteDeck(username, identifier);
 
@@ -250,7 +248,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "select username from UserList;");
+                    "select * from UserList;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 userList.add(resultSet.getString("username"));
