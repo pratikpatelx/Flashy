@@ -243,7 +243,8 @@ public class MainActivity extends AppCompatActivity {
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDeckMenuActivity(username.getText().toString(),password.getText().toString());
+                openDeck();
+                //openDeckMenuActivity(username.getText().toString(),password.getText().toString());
             }
         });
 
@@ -258,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateData();
+        //updateData();
 
     }
 
@@ -272,6 +273,11 @@ public class MainActivity extends AppCompatActivity {
     public static uiHandler getHandler() {
 
         return ui;
+    }
+
+    private void openDeck(){
+        Intent intent = new Intent(this, DeckMenuActivity.class);
+        startActivity(intent);
     }
     public void openDeckMenuActivity(String username, String password){
         if(ui.Verified(username,password)) {

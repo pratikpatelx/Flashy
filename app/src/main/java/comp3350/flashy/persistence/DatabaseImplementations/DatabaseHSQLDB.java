@@ -197,6 +197,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
+            System.out.print("Usr");
         } catch (SQLException e) {
             System.out.println("inputUser Failed");
             e.printStackTrace();
@@ -249,8 +250,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         Collection userList = new ArrayList<String>();
 
         try (final Connection connection = connection()) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "select username from UserList;");
+            PreparedStatement statement = connection.prepareStatement("select username from UserList;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 userList.add(resultSet.getString("username"));
