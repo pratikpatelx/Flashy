@@ -16,7 +16,8 @@ public class PrintDeckTest {
     public void printDeckTest(){
         System.out.println("\nrunning printDeck test\n");
         LogicManager lgc = new LogicManager();
-
+        String user = "John Doe";
+        lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
 
@@ -27,11 +28,11 @@ public class PrintDeckTest {
 
 
         
-        lgc.putFlashcardInDeck(deckName,"Bob", question, answer1);
-        lgc.putFlashcardInDeck(deckName,"Jack", question, answer2);
-        lgc.putFlashcardInDeck(deckName,"Jill", question, answer3);
+        lgc.putFlashcardInDeck(user, deckName,"Bob", question, answer1);
+        lgc.putFlashcardInDeck(user, deckName,"Jack", question, answer2);
+        lgc.putFlashcardInDeck(user, deckName,"Jill", question, answer3);
 
-        lgc.printDeck(deckName);
+        lgc.printDeck(user, deckName);
         System.out.println("\nPrintDeck test completed\n");
         assertTrue(true);//Just make sure the test runs thats all that is asked
         

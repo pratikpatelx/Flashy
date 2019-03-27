@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
         RemoveFlashcardTest.class,
         //EditCardTest.class,
         GetandInsertDeckTest.class,
-        DeleteDeckTest.class
+        DeckDeletionTest.class
 })
 
 public class AllTests {}

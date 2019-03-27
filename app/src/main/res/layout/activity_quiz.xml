@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.Quiz">
+
+    <ImageView
+        android:id="@+id/flashcardFrame"
+        android:layout_width="443dp"
+        android:layout_height="572dp"
+        android:layout_marginTop="160dp"
+        android:background="@color/colorLogInText"
+        android:contentDescription=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/white" />
+
+    <TextView
+        android:id="@+id/hiddenText"
+        android:layout_width="266dp"
+        android:layout_height="158dp"
+        android:gravity="center"
+        android:text="Hidden"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toTopOf="@+id/flashcardFrame"
+        app:layout_constraintVertical_bias="0.533" />
+
+    <TextView
+        android:id="@+id/quizBody"
+        android:layout_width="395dp"
+        android:layout_height="464dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/flashcard_color"
+        android:fontFamily="sans-serif"
+        android:gravity="bottom|center|center_horizontal|top|center_vertical"
+        android:paddingBottom="350dp"
+        android:text="@string/example_of_front_side_of_a_flash_card"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/quizTitle"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Example of front side of a flash card" />
+
+    <TextView
+        android:id="@+id/quizTitle"
+        android:layout_width="396dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/flashcard_color"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/title"
+        android:textSize="36sp"
+        android:typeface="normal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toTopOf="@+id/flashcardFrame"
+        tools:text="Title" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/failButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        android:theme="@style/MyFloatingCancelButton"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/fab_test"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardFrame"
+        app:rippleColor="@color/design_default_color_primary_dark"
+        app:srcCompat="@drawable/ic_close_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/successButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:backgroundTint="@android:color/holo_green_light"
+
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/fab_test"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardFrame"
+        app:srcCompat="@android:drawable/checkbox_on_background" />
+
+    <Button
+        android:id="@+id/revealAnswer"
+        android:layout_width="168dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Reveal"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/successButton"
+        app:layout_constraintStart_toEndOf="@+id/failButton"
+        app:layout_constraintTop_toBottomOf="@+id/flashcardFrame" />
+
+    <TextView
+        android:id="@+id/deckSizeText"
+        android:layout_width="110dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="80dp"
+        android:gravity="center"
+        android:text="Deck Size"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/wrongText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wrongText"
+        android:layout_width="110dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="Wrong"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/correctText"
+        android:layout_width="110dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Correct"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toEndOf="@+id/wrongText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numCorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="8dp"
+        android:text="00"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/numWrong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/correctText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/numWrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="00"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/flashcardFrame"
+        app:layout_constraintEnd_toStartOf="@+id/numCorrect"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toEndOf="@+id/numCards"
+        app:layout_constraintTop_toBottomOf="@+id/wrongText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/numCards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="00"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/flashcardFrame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deckSizeText"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>
