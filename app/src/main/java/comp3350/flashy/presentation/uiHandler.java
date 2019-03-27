@@ -2,6 +2,7 @@ package comp3350.flashy.presentation;
 
 import java.util.ArrayList;
 
+import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
@@ -40,10 +41,13 @@ public class uiHandler {
     public String[] getContent(int index) {
         Flashcard curr;
 
+
         if(index != -1)
             curr = currDeck.getCard(deckName +"-"+ index);
         else
             curr = quiz.getNextCard();
+
+
 
         String[] result = new String[2];
         result[0] = curr.getQuestion();

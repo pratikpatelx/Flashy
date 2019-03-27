@@ -26,4 +26,9 @@ public class FillInTheBlanksFlashcard extends Flashcard {
     public boolean isFillInTheBlanksFlashcard () {
         return true;
     }
+
+    @Override
+    public boolean isRegularFlashcard() {
+        return false;
+    }
 }

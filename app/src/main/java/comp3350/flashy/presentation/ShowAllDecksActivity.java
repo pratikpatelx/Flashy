@@ -61,6 +61,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 View view = super.getView(position, convertView, parent);
                 TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
                 deck.setText(items.get(position));
+
                 return view;
 
             }
@@ -97,6 +98,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selectedPostion != -1){
+                    listView.setItemChecked(selectedPostion,false);
                     uiManager.deleteDeck(items.get(selectedPostion));
                     items.remove(selectedPostion);
                     fcArrayAdapter.notifyDataSetChanged();

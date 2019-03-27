@@ -47,7 +47,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
                 TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
 
-                flashCard.setTextSize(35);
+
 
                 flashCard.setText(items.get(position).getQuestion());
 

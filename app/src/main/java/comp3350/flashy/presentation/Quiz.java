@@ -13,8 +13,11 @@ public class Quiz extends AppCompatActivity {
 
     private uiHandler uiManager = MainActivity.getHandler();
 
-    private TextView title;
-    private TextView body;
+    int state;
+
+    private TextView stdTitle;
+    private TextView stdBody;
+    private TextView fitbBody;
     private TextView numCorrect;
     private TextView numWrong;
     private TextView deckSize;
@@ -31,8 +34,9 @@ public class Quiz extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         this.getSupportActionBar().hide();
 
-        title = findViewById(R.id.quizTitle);
-        body = findViewById(R.id.quizBody);
+        stdTitle = findViewById(R.id.quizTitle);
+        stdBody = findViewById(R.id.quizBody);
+        fitbBody = findViewById(R.id.fitbBody);
         numCorrect = findViewById(R.id.numCorrect);
         numWrong = findViewById(R.id.numWrong);
         deckSize = findViewById(R.id.numCards);
@@ -40,19 +44,39 @@ public class Quiz extends AppCompatActivity {
         success = findViewById(R.id.successButton);
         fail = findViewById(R.id.failButton);
         reveal = findViewById(R.id.revealAnswer);
-        content = uiManager.getContent(-1);
-        updateNumbers();
 
-        body.setVisibility(View.INVISIBLE);
-
-        title.setText(content[0]);
-        body.setText(content[1]);
+        updateContent();
+        setOnClickListeners();
 
 
+
+    }
+
+
+    private void updateContent(){
+        if(!uiManager.isQuizDone()) {
+
+            content = uiManager.getContent(-1);
+            int[] numbers = uiManager.getQuizInfo();
+
+            stdTitle.setText(content[0]);
+            stdBody.setText(content[1]);
+            fitbBody.setText(content[1]);
+            deckSize.setText(Integer.toString(numbers[0]));
+            numCorrect.setText(Integer.toString(numbers[1]));
+            numWrong.setText(Integer.toString(numbers[2]));
+
+        }else{
+            finish();
+        }
+    }
+
+    private void setOnClickListeners(){
         reveal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                body.setVisibility(View.VISIBLE);
+                fitbBody.setVisibility(View.VISIBLE);
+                stdBody.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -60,9 +84,10 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uiManager.setAnswer(true);
-                body.setVisibility(View.INVISIBLE);
-                updateCardContent();
-                updateNumbers();
+                stdBody.setVisibility(View.VISIBLE);
+                fitbBody.setVisibility(View.INVISIBLE);
+                updateContent();
+
             }
         });
 
@@ -70,28 +95,10 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uiManager.setAnswer(false);
-                body.setVisibility(View.INVISIBLE);
-                updateCardContent();
-                updateNumbers();
+                stdBody.setVisibility(View.INVISIBLE);
+                updateContent();
+
             }
         });
-    }
-
-    private void updateNumbers(){
-        int[] numbers = uiManager.getQuizInfo();
-
-        deckSize.setText(Integer.toString(numbers[0]));
-        numCorrect.setText(Integer.toString(numbers[1]));
-        numWrong.setText(Integer.toString(numbers[2]));
-    }
-
-    private void updateCardContent(){
-        if(!uiManager.isQuizDone()) {
-            content = uiManager.getContent(-1);
-            title.setText(content[0]);
-            body.setText(content[1]);
-        }else{
-            finish();
-        }
     }
 }

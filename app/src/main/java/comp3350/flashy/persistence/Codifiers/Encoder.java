@@ -47,7 +47,7 @@ public class Encoder {
         } else if (flashcard.isMultipleChoiceFlashcard()) {
             answer = encodeFlashcard(flashcard);
         } else if (flashcard.isFillInTheBlanksFlashcard()) {
-            answer = encodeFlashcard(flashcard);
+            answer = encodeFillInTheBlankFlashcard((FillInTheBlanksFlashcard) flashcard);
         } else if (flashcard.isTrueFalseFlashcard()) {
             answer = encodeFlashcard(flashcard);
         }
@@ -99,10 +99,10 @@ public class Encoder {
         String lastPart = card.getLastPart();
 
 
-        result.concat(card.getCardType() + delimiter);
-        result.concat(answer + delimiter);
-        result.concat(firstPart + delimiter);
-        result.concat(lastPart + delimiter);
+        result+=card.getCardType() + delimiter;
+        result+=answer + delimiter;
+        result+=firstPart + delimiter;
+        result+=lastPart + delimiter;
 
         return result;
     }
