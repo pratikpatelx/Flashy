@@ -1,28 +1,29 @@
 package comp3350.flashy.domain;
 
 public class FillInTheBlanksFlashcard extends Flashcard {
-    private static final String cardType = "1";
+    String firstPart = null;
+    String lastPart = null;
+    String cardType = "1";
 
-    public FillInTheBlanksFlashcard(String name, String question, String answer) {
+    public FillInTheBlanksFlashcard (String name, String question, String answer, String givenFirstPart, String givenLastPart) {
         super(name, question, answer);
+        firstPart = givenFirstPart;
+        lastPart = givenLastPart;
     }
 
+    public String getFirstPart () {
+        return firstPart;
+    }
 
-
-
+    public String getLastPart () {
+        return lastPart;
+    }
 
     public String getCardType () {
         return cardType;
     }
 
-    @Override
-    public boolean isRegularFlashcard(){
-        return false;
-    }
-
-    @Override
     public boolean isFillInTheBlanksFlashcard () {
         return true;
     }
-
 }

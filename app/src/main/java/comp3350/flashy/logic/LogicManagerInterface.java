@@ -9,6 +9,8 @@ public interface LogicManagerInterface {
 
     Deck getDeck(String username, String deckName);
 
+    Deck makeDeck(String deckName);
+
     void insertDeck(String username, Deck updated);
 
     void deleteDeck(String username, String deckName);
