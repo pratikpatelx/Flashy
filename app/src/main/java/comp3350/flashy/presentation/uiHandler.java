@@ -29,8 +29,8 @@ public class uiHandler {
 
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
-    public void saveCard(String head, String content) {
-        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content);
+    public void saveCard(String head, String content, int type) {
+        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content,type);
         deckSize= currDeck.getNumCards();
     }
 

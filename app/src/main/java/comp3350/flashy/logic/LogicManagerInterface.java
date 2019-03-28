@@ -15,7 +15,7 @@ public interface LogicManagerInterface {
 
     Deck removeCard(String username, Deck curr, String cardName);
 
-    void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer);
+    void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer, int type);
 
     //void deleteFlashcardInDeck(String deckName, String cardName);
 

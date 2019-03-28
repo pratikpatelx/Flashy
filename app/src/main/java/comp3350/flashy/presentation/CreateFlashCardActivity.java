@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private TextView textViewFlashTitle;
     private ArrayAdapter  menuArrayAdapter;
     private ArrayList<String> list;
+    private int type;
 
     private AlertDialog userInput;
     private String title = "Title";
@@ -49,6 +51,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         cancel = findViewById(R.id.cancelButton);
         toShow = new EditText(this);
         menu = findViewById(R.id.createMenu);
+        type = 0;
 
         final Bundle extra = getIntent().getExtras();
         String[] card;
@@ -88,6 +91,17 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
         menu.setAdapter(menuArrayAdapter);
 
+        menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                type = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         userInput = new AlertDialog.Builder(this).create();
@@ -141,7 +155,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println(title + " :: title saved");
                 System.out.println(body + " :: body saved");
-                uiManager.saveCard(title, body);
+                uiManager.saveCard(title, body,type);
                 finish();
             }
         });
@@ -151,7 +165,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(modifying){
-                    uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"));
+                    uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"),type);
                 }
 
                 finish();

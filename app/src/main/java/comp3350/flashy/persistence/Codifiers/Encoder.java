@@ -101,8 +101,7 @@ public class Encoder {
 
         result+=card.getCardType() + delimiter;
         result+=answer + delimiter;
-        result+=firstPart + delimiter;
-        result+=lastPart + delimiter;
+
 
         return result;
     }

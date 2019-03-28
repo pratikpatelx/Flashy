@@ -89,16 +89,16 @@ public class Quiz extends AppCompatActivity {
         stdBody.setVisibility(View.INVISIBLE);
         fitbBody.setText(content[1]);
         fitbAnswer.setText(content[2]);
-
+        fitbAnswer.setVisibility(View.INVISIBLE);
         fitbBody.setVisibility(View.VISIBLE);
-
-
     }
 
     private void setStandardContent() {
         stdTitle.setText(content[0]);
         stdBody.setText(content[1]);
         stdBody.setVisibility(View.INVISIBLE);
+        fitbAnswer.setVisibility(View.INVISIBLE);
+        fitbBody.setVisibility(View.INVISIBLE);
     }
 
     private void setMCContent() {
