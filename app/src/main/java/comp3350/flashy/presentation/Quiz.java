@@ -86,6 +86,7 @@ public class Quiz extends AppCompatActivity {
 
     private void setFITBContent() {
         stdTitle.setText(content[0]);
+        stdBody.setVisibility(View.INVISIBLE);
         fitbBody.setText(content[1]);
         fitbAnswer.setText(content[2]);
 

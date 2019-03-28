@@ -73,11 +73,11 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
+                TextView flashcardType = (TextView) view.findViewById(R.id.flashListItem);
 
-                flashCard.setTextSize(35);
+                flashcardType.setTextSize(35);
 
-                flashCard.setText(list.get(position));
+                flashcardType.setText(list.get(position));
 
 
 
