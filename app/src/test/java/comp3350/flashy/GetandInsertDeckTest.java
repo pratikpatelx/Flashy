@@ -16,34 +16,40 @@ public class GetandInsertDeckTest {
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
-        String firstCardName = deckName + "-" + 0;
-        String secondCardName = deckName + "-" + 1;
-        String thirdCardName = deckName + "-" + 2;
+        String cardName0 = deckName + "-" + 0;
+        String cardName1 = deckName + "-" + 1;
+        String cardName2 = deckName + "-" + 2;
+
         String question = "I'm thinking of something cute guess what it is.";
-        String firstAnswer = "It was a basket filled with corgi puppies. =D";
-        String secondAnswer = "It was a basket filled with schnauzer puppies. =D";
-        String thirdAnswer = "It was a basket filled with wheaten terrier puppies. =D";
+        String aStart = "It was a basket filled with ";
+        String aEnd = " puppies! =D";
+        String a0 = aStart.concat("schnauzer".concat(aEnd));
+        String a1 = aStart.concat("corgi".concat(aEnd));
+        String a2 = aStart.concat("wheaten terrier".concat(aEnd));
+        Flashcard card0 = new Flashcard(cardName0, question, a0);
+        Flashcard card1 = new Flashcard(cardName1, question, a1);
+        Flashcard card2 = new Flashcard(cardName2, question, a2);
 
         Deck sentDeck = new Deck(deckName);
 
 
-        sentDeck.addCard(new Flashcard(firstCardName, question, firstAnswer));
-        sentDeck.addCard(new Flashcard(secondCardName, question, secondAnswer));
-        sentDeck.addCard(new Flashcard(thirdCardName, question, thirdAnswer));
+        sentDeck.addCard(new Flashcard(cardName0, question, a0));
+        sentDeck.addCard(new Flashcard(cardName1, question, a1));
+        sentDeck.addCard(new Flashcard(cardName2, question, a2));
 
         lgc.insertDeck(user, sentDeck);
 
 
         Deck deck = lgc.getDeck(user, deckName);
 
-        Flashcard flashcard = deck.getCard(firstCardName);
-        assertEquals(firstAnswer, flashcard.getAnswer());
+        Flashcard flashcard = deck.getCard(cardName0);
+        assertEquals(a0, flashcard.getAnswer());
 
-        flashcard = deck.getCard(secondCardName);
-        assertEquals(secondAnswer, flashcard.getAnswer());
+        flashcard = deck.getCard(cardName1);
+        assertEquals(a1, flashcard.getAnswer());
 
-        flashcard = deck.getCard(thirdCardName);
-        assertEquals(thirdAnswer, flashcard.getAnswer());
+        flashcard = deck.getCard(cardName2);
+        assertEquals(a2, flashcard.getAnswer());
 
 
         System.out.println("\nGetandInsertDeck test complete\n");

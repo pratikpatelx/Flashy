@@ -16,15 +16,23 @@ public class RemoveFlashcardTest {
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
-        String firstCardName = deckName + "-" + 0;
-        String secondCardName = deckName + "-" + 1;
+        String cardName0 = deckName + "-" + 0;
+        String cardName1 = deckName + "-" + 1;
+        String cardName2 = deckName + "-" + 2;
+
         String question = "I'm thinking of something cute guess what it is.";
+        String aStart = "It was a basket filled with ";
+        String aEnd = " puppies! =D";
+        String a0 = aStart.concat("schnauzer".concat(aEnd));
+        String a1 = aStart.concat("corgi".concat(aEnd));
+        String a2 = aStart.concat("wheaten terrier".concat(aEnd));
+        Flashcard card0 = new Flashcard(cardName0, question, a0);
+        Flashcard card1 = new Flashcard(cardName1, question, a1);
+        Flashcard card2 = new Flashcard(cardName2, question, a2);
 
-
-
-        lgc.putFlashcardInDeck(user, deckName,"Bob", question, "It was a basket filled with corgi puppies. =D");
-        lgc.putFlashcardInDeck(user, deckName, "Jack", question, "It was a basket filled with schnauzer puppies. =D");
-        lgc.putFlashcardInDeck(user, deckName, "Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
+        lgc.putFlashcardInDeck(user, deckName, card0);
+        lgc.putFlashcardInDeck(user, deckName, card1);
+        lgc.putFlashcardInDeck(user, deckName, card2);
 
         Deck testDeck = lgc.getDeck(user, deckName);
         System.out.println("Test to ensure there are 3 cards.");
@@ -39,7 +47,7 @@ public class RemoveFlashcardTest {
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
 
-        lgc.removeCard(user, testDeck, secondCardName);
+        lgc.removeCard(user, testDeck, cardName1);
 
         System.out.println(testDeck);
         System.out.println("\nTest to ensure there is 2 cards in the deck.");

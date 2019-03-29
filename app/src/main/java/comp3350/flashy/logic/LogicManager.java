@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
@@ -12,6 +11,7 @@ import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 public class LogicManager implements LogicManagerInterface {
     //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
     private DatabaseImplementation databaseType = new DatabaseStub();
+
     private DatabaseManager database = new DatabaseManager(databaseType);
     private UserHandler userHandler = new UserHandler(database);
 
@@ -39,23 +39,22 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer) {
+    public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
-        //System.out.println(currDeck.toString());
 
         if(currDeck == null){
             currDeck = new Deck(deckName);
         }
 
-        currDeck.addCard(new Flashcard(cardName,question,answer));
+        currDeck.addCard(card);
         database.inputDeck(username, deckName, currDeck);
     }
 
     @Override
-    public void editFlashcard(String username, String deckName, String cardName, String newQuestion, String newAnswer) {
+    public void editFlashcard(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
         if(currDeck == null){currDeck = new Deck(deckName);}
-        currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
+        currDeck.editCard(card);
         database.inputDeck(username, deckName,currDeck);
     }
 
