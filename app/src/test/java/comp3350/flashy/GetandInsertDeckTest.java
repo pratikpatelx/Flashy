@@ -13,6 +13,8 @@ public class GetandInsertDeckTest {
     public void getAndInsertDeckTest(){
         System.out.println("\nrunning GetandInsertDeck test\n");
         LogicManager lgc = new LogicManager();
+        String user = "John Doe";
+        lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String firstCardName = deckName + "-" + 0;
         String secondCardName = deckName + "-" + 1;
@@ -24,14 +26,15 @@ public class GetandInsertDeckTest {
 
         Deck sentDeck = new Deck(deckName);
 
+
         sentDeck.addCard(new Flashcard(firstCardName, question, firstAnswer));
         sentDeck.addCard(new Flashcard(secondCardName, question, secondAnswer));
         sentDeck.addCard(new Flashcard(thirdCardName, question, thirdAnswer));
 
-        lgc.insertDeck(sentDeck);
+        lgc.insertDeck(user, sentDeck);
 
 
-        Deck deck = lgc.getDeck(deckName);
+        Deck deck = lgc.getDeck(user, deckName);
 
         Flashcard flashcard = deck.getCard(firstCardName);
         assertEquals(firstAnswer, flashcard.getAnswer());
