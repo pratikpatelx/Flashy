@@ -1,5 +1,5 @@
 CREATE SCHEMA PUBLIC AUTHORIZATION DBA
-CREATE MEMORY TABLE PUBLIC.UserList(username varChar(60) not null unique, password varChar(60))not null)
+CREATE MEMORY TABLE PUBLIC.UserList(username varChar(60) unique, password varChar(60))
 CREATE MEMORY TABLE PUBLIC.DeckList(username varChar(60), deckName varChar(60))
 CREATE MEMORY TABLE PUBLIC.Deck(deckName varChar(60), cardName varChar(60), cardQuestion varChar(60), cardAnswer varChar(255))
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'

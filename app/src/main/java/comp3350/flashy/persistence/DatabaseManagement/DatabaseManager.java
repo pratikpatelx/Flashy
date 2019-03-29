@@ -2,6 +2,7 @@ package comp3350.flashy.persistence.DatabaseManagement;
 
 import java.util.Collection;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.Codifiers.DataTranslationLayer;
@@ -12,8 +13,8 @@ public class DatabaseManager {
     private DatabaseImplementation storage;
     private DataTranslationLayer translationLayer;
 
-    public DatabaseManager(DatabaseImplementation givenStorage) {
-        storage = givenStorage;
+    public DatabaseManager() {
+        storage = Services.getDatabase();
         translationLayer = new DataTranslationLayer();
         createDefaultData();
     }
@@ -23,7 +24,6 @@ public class DatabaseManager {
     public void inputDeck(String username, String identifier, Deck inputDeck) {
         storage.inputDeck(username,identifier, translationLayer.encodeDeck(inputDeck));
     }
-
 
     public Deck getDeck(String username, String identifier) {
         return translationLayer.decodeDeck(storage.getDeck(username, identifier));

@@ -189,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        copyDatabaseToDevice();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.getSupportActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        copyDatabaseToDevice();
 
         register = (FloatingActionButton) findViewById(R.id.addProfile);
         password = (EditText) findViewById(R.id.profilePass);
@@ -260,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //updateData();
-
     }
 
     private void updateData(){
@@ -294,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void copyDatabaseToDevice() {
-        final String DB_PATH = "FlashyDB";
+        final String DB_PATH = "db";
 
         String[] assetNames;
         Context context = getApplicationContext();
