@@ -32,23 +32,25 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
 
 
     @Override
-    public CreateAccount insertAccount(CreateAccount currentCreateAccount) throws PersistenceException {
+    public CreateAccount insertAccount(CreateAccount currentCreateAccount)  {
+        System.out.println("INSERT DB TEST");
         try (final Connection c = connection()) {
-            final PreparedStatement st =c.prepareStatement("INSERT INTO useraccounts VALUES(?,?)");
+            final PreparedStatement st =c.prepareStatement("INSERT INTO useraccounts VALUES(?, ?)");
             st.setString(1, currentCreateAccount.getUsername());
             st.setString(2, currentCreateAccount.getPassword());
+
 
             st.executeUpdate();
             st.close();
             return currentCreateAccount;
 
-        } catch (SQLException e) {
+        } catch (final SQLException e) {
              throw new PersistenceException(e);
         }
     }
 
     @Override
-    public CreateAccount getAccountInformation() throws PersistenceException {
+    public CreateAccount getAccountInformation() {
         final List<CreateAccount> accountInfos = new ArrayList<>();
 
         try(final Connection c  = connection()) {
@@ -70,7 +72,7 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
     }
 
     @Override
-    public boolean getAccountInformation(String userName, String password) throws PersistenceException {
+    public boolean getAccountInformation(String userName, String password) {
             final List<CreateAccount> accountInfos = new ArrayList<>();
             boolean result = false;
             try(final Connection c  = connection()) {
