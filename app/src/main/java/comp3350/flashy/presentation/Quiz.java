@@ -84,7 +84,7 @@ public class Quiz extends AppCompatActivity {
                 state = uiManager.getCurrentType();
                 System.out.println(state);
             }else{
-                contentMC = uiManager.getMCContent();
+                contentMC = uiManager.getMCContent(-1);
                 state = 2;
             }
 

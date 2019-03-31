@@ -52,6 +52,17 @@
         app:srcCompat="@drawable/ic_delete_forever_white_24dp" />
 
 
+    <TextView
+        android:id="@+id/currentType"
+        android:layout_width="480dp"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -64,30 +75,105 @@
         android:id="@+id/imageView"
         android:layout_width="430dp"
         android:layout_height="681dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289"
+        app:layout_constraintTop_toBottomOf="@+id/currentType"
+        app:layout_constraintVertical_bias="0.005"
         app:srcCompat="@android:color/white" />
+
+    <TextView
+        android:id="@+id/mcHead"
+        android:layout_width="385dp"
+        android:layout_height="318dp"
+        android:layout_marginTop="52dp"
+        android:background="@color/flashcard_color"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/mcEntry4"
+        android:layout_width="385dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/wrongchoice"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/mcEntry3" />
+
+    <TextView
+        android:id="@+id/mcEntry1"
+        android:layout_width="385dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/flashcard_color"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/mcHead" />
+
+    <TextView
+        android:id="@+id/mcEntry2"
+        android:layout_width="385dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/wrongchoice"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/mcEntry1" />
+
+    <TextView
+        android:id="@+id/mcEntry3"
+        android:layout_width="385dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/wrongchoice"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/mcEntry2" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="385dp"
         android:layout_height="72dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@color/flashcard_color"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/title"
-        android:fontFamily="sans-serif-medium"
-        android:typeface="normal"
         android:textSize="36sp"
-        android:visibility="visible"
+        android:typeface="normal"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:text="Title" />
@@ -103,6 +189,7 @@
         android:text="@string/example_of_front_side_of_a_flash_card"
         android:textAlignment="center"
         android:textSize="35sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.574"

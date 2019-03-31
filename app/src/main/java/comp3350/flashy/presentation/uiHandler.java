@@ -72,16 +72,29 @@ public class uiHandler {
         return result;
     }
 
-    public ArrayList<String> getMCContent(){
+    public ArrayList<String> getMCContent(int index){
         ArrayList<String> result = new ArrayList<>();
 
-        MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) quiz.getNextCard();
 
-        result.add(card.getQuestion());
-        result.add(card.getAnswer());
-        result.addAll(card.getAnswers());
+        if(index != -1){
+            MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) currDeck.getCard(deckName + "-" + index);
+            result.add(card.getQuestion());
+            result.addAll(card.getAnswers());
+        }else {
+            MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) quiz.getNextCard();
+
+            result.add(card.getQuestion());
+            result.add(card.getAnswer());
+            result.addAll(card.getAnswers());
+        }
 
         return result;
+    }
+
+    public int getFlashcardTypeByIndex(int index){
+        Flashcard curr = currDeck.getCard(deckName + "-" + index);
+
+        return Integer.parseInt(curr.getCardType());
     }
 
 
@@ -97,6 +110,16 @@ public class uiHandler {
         return index;
     }
 
+    public ArrayList<String> getMenuData(){
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add("Standard");
+        result.add("Fill in the blank");
+        result.add("Multiple choice");
+
+        return result;
+
+    }
 
     public int getDeckSize() {
         return deckSize;

@@ -43,6 +43,8 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private EditText mcWrong3;
     private TextView instructionsMC;
 
+    ArrayList<String> mcContent;
+
     private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
@@ -65,24 +67,40 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         cancel = findViewById(R.id.cancelButton);
         toShow = new EditText(this);
         menu = findViewById(R.id.createMenu);
+
         type = 0;
+
 
         final Bundle extra = getIntent().getExtras();
         String[] card;
 
         if(extra !=null){
-            extra.getString("FLASHCARD");
-            title = extra.getString("NAME");
-            body = extra.getString("BODY");
+            if((mcContent =  extra.getStringArrayList("MC-CONTENT")) != null){
 
-            textViewFlashBody.setText(body);
-            textViewFlashTitle.setText(title);
+                mcQuestion.setText(mcContent.get(0));
+                mcCorrect.setText(mcContent.get(1));
+                mcWrong1.setText(mcContent.get(2));
+                mcWrong2.setText(mcContent.get(3));
+                mcWrong3.setText(mcContent.get(4));
+
+                type = 2;
+            }else {
+                extra.getString("FLASHCARD");
+                title = extra.getString("NAME");
+                body = extra.getString("BODY");
+                type = extra.getInt("TYPE");
+
+                textViewFlashBody.setText(body);
+                textViewFlashTitle.setText(title);
+
+
+            }
 
             modifying = true;
 
         }
 
-        list = getMenuData();
+        list = uiManager.getMenuData();
 
         menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list)
         {
@@ -104,6 +122,10 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         };
 
         menu.setAdapter(menuArrayAdapter);
+        menu.setSelection(type);
+
+
+
 
         menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -190,7 +212,11 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(modifying){
-                    uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"),type);
+                    if(type == 2){
+                        uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
+                    }else
+                        uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"),type);
+
                 }
 
                 finish();
@@ -212,16 +238,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         instructionsMC.setVisibility(View.INVISIBLE);
     }
 
-    public ArrayList<String> getMenuData(){
-        ArrayList<String> result = new ArrayList<String>();
-
-        result.add("Standard");
-        result.add("Fill in the blank");
-        result.add("Multiple choice");
-
-        return result;
-
-    }
 
     private void showMCInterface() {
         textViewFlashBody.setVisibility(View.INVISIBLE);
