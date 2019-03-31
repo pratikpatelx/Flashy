@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profileItem"
     android:layout_width="match_parent"
-    android:layout_height="88dip"
+    android:layout_height="100dip"
+    android:background="@color/btndeckdarker"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/vertical_deck_margin"
@@ -21,13 +22,14 @@
     <TextView
         android:id="@+id/deck_list_item"
         android:layout_width="483dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/vertical_deck_margin"
         android:layout_marginLeft="@dimen/vertical_deck_margin"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"
         android:text="Flash Card Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp" />
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp" />
 
 </LinearLayout>

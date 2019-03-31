@@ -32,17 +32,17 @@ public class uiHandler {
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content, int type) {
         logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content,type);
-        deckSize= currDeck.getNumCards();
+        deckSize++;
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
         logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), question, answer);
-        deckSize= currDeck.getNumCards();
+        deckSize++;
     }
 
     public void deleteCard(int index) {
         logic.removeCard(username,currDeck, (currDeck+"-"+index));
-        deckSize = currDeck.getNumCards();
+        deckSize--;
     }
 
     //this returns the the head and body of the flashcard
@@ -152,6 +152,10 @@ public class uiHandler {
 
     public void setUsername(String name){
         username = name;
+    }
+
+    public String getUsername(){
+        return username;
     }
 
     public ArrayList<String> getNames(){

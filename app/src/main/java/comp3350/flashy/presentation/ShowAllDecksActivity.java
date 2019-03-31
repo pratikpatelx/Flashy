@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,12 +24,15 @@ import java.util.ArrayList;
 
 import comp3350.flashy.R;
 
+import static comp3350.flashy.R.color.wrongchoice;
+
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
     private uiHandler uiManager = MainActivity.getHandler();
     ArrayList<String> items;
     int selectedPostion = -1;
     private TextView deck;
+    private TextView username;
     private FloatingActionButton openDeck;
     private FloatingActionButton delDeck;
     private FloatingActionButton Back;
@@ -44,6 +48,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
 
         deck = (TextView) findViewById(R.id.selectedDeck);
+        username = findViewById(R.id.userDeck);
         listView = (ListView)findViewById(R.id.showAllDeckList);
         openDeck = (FloatingActionButton) findViewById(R.id.Open);
         delDeck = (FloatingActionButton) findViewById(R.id.deleteDeck);
@@ -59,14 +64,18 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
-                TextView deck = (TextView) view.findViewById(R.id.deck_list_item);
-                deck.setText(items.get(position));
+                final TextView deckItem = (TextView) view.findViewById(R.id.deck_list_item);
+
+                deckItem.setText(items.get(position));
+
+
 
                 return view;
 
             }
         };
 
+        username.setText(uiManager.getUsername());
 
         listView.setAdapter(fcArrayAdapter);
 

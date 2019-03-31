@@ -5,6 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLogInText"
     android:paddingLeft="10dp"
     android:paddingTop="20dp"
     android:paddingRight="10dp"
@@ -17,25 +18,25 @@
         android:layout_height="0dp"
         android:layout_marginBottom="825dp"
         android:background="@color/colorLogInText"
+        app:cardBackgroundColor="@color/btn_deck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="489dp"
-        android:layout_height="638dp"
+        android:layout_height="652dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorLogInText"
+        android:background="@color/btn_deck"
         android:contentDescription=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.479"
-        app:srcCompat="@android:color/white" />
+        app:layout_constraintTop_toBottomOf="@+id/createMenu"
+        app:layout_constraintVertical_bias="0.109" />
 
     <TextView
         android:id="@+id/instructionsMC"
@@ -45,7 +46,7 @@
         android:gravity="center"
         android:text='"Wrong answer" will be replaced with a blank answer'
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -62,7 +63,7 @@
         android:hint="Wrong Answer"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -79,7 +80,7 @@
         android:hint="Wrong Answer"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/wrongMC1" />
@@ -95,7 +96,7 @@
         android:hint="Wrong Answer"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/correctMC" />
@@ -111,14 +112,14 @@
         android:hint="Correct Answer"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/mcQuestion" />
 
     <EditText
         android:id="@+id/mcQuestion"
-        android:layout_width="428dp"
+        android:layout_width="425dp"
         android:layout_height="281dp"
         android:layout_marginTop="24dp"
         android:background="@color/flashcard_color"
@@ -127,7 +128,7 @@
         android:hint="Multiple Choice Question"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -146,10 +147,10 @@
         android:text="@string/example_of_front_side_of_a_flash_card"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0"
@@ -157,7 +158,7 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="425dp"
+        android:layout_width="433dp"
         android:layout_height="83dp"
         android:layout_marginTop="24dp"
         android:background="@color/flashcard_color"
@@ -166,7 +167,7 @@
         android:text="@string/title"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -177,64 +178,54 @@
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:padding="0dp"
         android:scaleType="fitXY"
         android:theme="@style/MyFloatingCancelButton"
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
         app:layout_constraintEnd_toStartOf="@+id/saveButton"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.457"
         app:rippleColor="@color/design_default_color_primary_dark"
-        app:srcCompat="@drawable/ic_close_black_24dp"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_close_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:focusable="true"
+
         android:padding="0dp"
         android:scaleType="fitXY"
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.995"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.457"
-        app:srcCompat="@drawable/addcardiconselected"
-        android:focusable="true" />
+        app:srcCompat="@drawable/addcardiconselected" />
 
     <Spinner
         android:id="@+id/createMenu"
-        android:layout_width="match_parent"
+        android:layout_width="632dp"
         android:layout_height="83dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/container"
-        app:layout_constraintVertical_bias="0.454"
-        tools:layout_editor_absoluteX="10dp" />
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="47dp">
-
-    </FrameLayout>
+        android:background="@color/btn_deck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

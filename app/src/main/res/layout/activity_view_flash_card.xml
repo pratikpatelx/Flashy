@@ -5,6 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLogInText"
     android:paddingLeft="10dp"
     android:paddingTop="20dp"
     android:paddingRight="10dp"
@@ -16,19 +17,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:layout_marginStart="8dp"
         android:clickable="true"
         android:padding="0dp"
         android:scaleType="fitXY"
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
 
+        app:layout_constraintBottom_toBottomOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.734"
+        app:layout_constraintStart_toEndOf="@+id/delButton"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.623"
+        app:layout_constraintVertical_bias="0.572"
         app:srcCompat="@drawable/ic_edit_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -45,10 +47,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/container"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.623"
+        app:layout_constraintVertical_bias="0.572"
         app:srcCompat="@drawable/ic_delete_forever_white_24dp" />
 
 
@@ -78,13 +80,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/btn_deck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentType"
-        app:layout_constraintVertical_bias="0.005"
-        app:srcCompat="@android:color/white" />
+        app:layout_constraintVertical_bias="0.005" />
 
     <TextView
         android:id="@+id/mcHead"
@@ -95,7 +97,7 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -105,30 +107,28 @@
         android:id="@+id/mcEntry4"
         android:layout_width="385dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="@color/wrongchoice"
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/mcHead"
+        app:layout_constraintStart_toStartOf="@+id/mcHead"
         app:layout_constraintTop_toBottomOf="@+id/mcEntry3" />
 
     <TextView
         android:id="@+id/mcEntry1"
         android:layout_width="385dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@color/flashcard_color"
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/mcHead"
+        app:layout_constraintStart_toStartOf="@+id/mcHead"
         app:layout_constraintTop_toBottomOf="@+id/mcHead" />
 
     <TextView
@@ -140,10 +140,9 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/mcHead"
+        app:layout_constraintStart_toStartOf="@+id/mcHead"
         app:layout_constraintTop_toBottomOf="@+id/mcEntry1" />
 
     <TextView
@@ -155,9 +154,9 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/mcHead"
+        app:layout_constraintStart_toStartOf="@+id/mcHead"
         app:layout_constraintTop_toBottomOf="@+id/mcEntry2" />
 
     <TextView
@@ -173,7 +172,7 @@
         android:typeface="normal"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:text="Title" />
@@ -192,7 +191,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0"
@@ -217,19 +216,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:padding="0dp"
         android:scaleType="fitXY"
         app:backgroundTint="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/fab_test"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toStartOf="@+id/delButton"
+        app:layout_constraintHorizontal_bias="0.255"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.623"
+        app:layout_constraintVertical_bias="0.656"
         app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
 
