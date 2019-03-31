@@ -15,6 +15,10 @@ public class FillInTheBlanksFlashcard extends Flashcard {
         return firstPart;
     }
 
+    public void setFirstPart(String answer){
+        this.firstPart = answer;
+    }
+
     public String getLastPart () {
         return lastPart;
     }
@@ -25,5 +29,10 @@ public class FillInTheBlanksFlashcard extends Flashcard {
 
     public boolean isFillInTheBlanksFlashcard () {
         return true;
+    }
+
+    @Override
+    public boolean isRegularFlashcard() {
+        return false;
     }
 }

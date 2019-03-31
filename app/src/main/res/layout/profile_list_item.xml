@@ -18,11 +18,12 @@
 
     <TextView
         android:id="@+id/profileName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="471dp"
+        android:layout_height="61dp"
         android:layout_marginStart="@dimen/vertical_deck_margin"
         android:layout_marginLeft="@dimen/vertical_deck_margin"
         android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
         android:text="@string/deck_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="28sp" />

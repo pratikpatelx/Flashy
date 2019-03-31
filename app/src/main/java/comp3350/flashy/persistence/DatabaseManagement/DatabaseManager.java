@@ -3,6 +3,7 @@ package comp3350.flashy.persistence.DatabaseManagement;
 import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.Codifiers.DataTranslationLayer;
 import comp3350.flashy.persistence.DatabaseImplementation;
@@ -48,7 +49,10 @@ public class DatabaseManager {
                         deckName + "-" + j,
                         "DefaultCardQuestion" + j,
                         "DefaultCardAnswer" + j));
+
+
             }
+            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-5","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
             inputDeck("" ,deckName, tempDeck);
         }
     }

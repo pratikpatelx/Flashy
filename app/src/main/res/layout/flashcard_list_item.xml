@@ -21,14 +21,19 @@
 
     <TextView
         android:id="@+id/flashListItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="488dp"
+        android:layout_height="64dp"
         android:layout_marginStart="@dimen/vertical_deck_margin"
         android:layout_marginLeft="@dimen/vertical_deck_margin"
+        android:autoText="false"
         android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
+        android:hapticFeedbackEnabled="false"
         android:text="Flash Card Name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="28sp" />
+        android:textColor="@color/colorAccent"
+        android:textIsSelectable="false"
+        android:textSize="30sp"
+        android:textStyle="normal" />
 
 </LinearLayout>
 

@@ -1,12 +1,15 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy;
 
 import org.junit.Test;
 
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+
 
 public class DeckDeletionTest {
 
@@ -30,12 +33,18 @@ public class DeckDeletionTest {
         String fourthAnswer = "It was a basket of labrador puppies. =D";
 
 
+        Flashcard card0 = new Flashcard(cardNameA1, question, firstAnswer);
+        Flashcard card1 = new Flashcard(cardNameA2, question, secondAnswer);
+        Flashcard card2 = new Flashcard(cardNameA3, question, thirdAnswer);
+        Flashcard card3 = new Flashcard(cardNameB1, question, firstAnswer);
+        Flashcard card4 = new Flashcard(cardNameB2, question, fourthAnswer);
 
-        lgc.putFlashcardInDeck(user, deckAName, cardNameA1, question, firstAnswer);
-        lgc.putFlashcardInDeck(user, deckAName, cardNameA2, question, secondAnswer);
-        lgc.putFlashcardInDeck(user, deckAName, cardNameA3, question, thirdAnswer);
-        lgc.putFlashcardInDeck(user, deckBName, cardNameB1, question, firstAnswer);
-        lgc.putFlashcardInDeck(user, deckBName, cardNameB2, question, fourthAnswer);
+
+        lgc.putFlashcardInDeck(user, deckAName, card0);
+        lgc.putFlashcardInDeck(user, deckAName, card1);
+        lgc.putFlashcardInDeck(user, deckAName, card2);
+        lgc.putFlashcardInDeck(user, deckBName, card3);
+        lgc.putFlashcardInDeck(user, deckBName, card4);
         int numDecks = lgc.getNames(user).size();
         assertTrue(lgc.getNames(user).size() >= 2);
 
@@ -49,3 +58,4 @@ public class DeckDeletionTest {
         System.out.println("DeleteDeck test complete\n");
     }
 }
+

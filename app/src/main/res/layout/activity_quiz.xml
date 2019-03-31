@@ -33,6 +33,22 @@
         app:layout_constraintVertical_bias="0.533" />
 
     <TextView
+        android:id="@+id/fitbAnswer"
+        android:layout_width="196dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:cursorVisible="false"
+        android:gravity="center"
+        android:text="answer"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/fitbBody" />
+
+    <TextView
         android:id="@+id/quizBody"
         android:layout_width="395dp"
         android:layout_height="464dp"
@@ -45,6 +61,7 @@
         android:text="@string/example_of_front_side_of_a_flash_card"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
         app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
         app:layout_constraintHorizontal_bias="0.479"
@@ -52,6 +69,24 @@
         app:layout_constraintTop_toBottomOf="@+id/quizTitle"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Example of front side of a flash card" />
+
+    <TextView
+        android:id="@+id/fitbBody"
+        android:layout_width="396dp"
+        android:layout_height="354dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/flashcard_color"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toBottomOf="@+id/quizTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/quizTitle"

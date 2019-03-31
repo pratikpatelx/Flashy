@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MultipleChoiceFlashcard extends Flashcard {
     ArrayList answers = null;
-    private String cardType = "3";
+    private String cardType = "2";
 
     public MultipleChoiceFlashcard (String name, String question, ArrayList answerList) {
         super(name, question,"");

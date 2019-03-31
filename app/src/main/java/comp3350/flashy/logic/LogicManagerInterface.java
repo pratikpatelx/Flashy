@@ -3,6 +3,7 @@ package comp3350.flashy.logic;
 import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 
 
 public interface LogicManagerInterface {
@@ -17,11 +18,11 @@ public interface LogicManagerInterface {
 
     Deck removeCard(String username, Deck curr, String cardName);
 
-    void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer);
+    void putFlashcardInDeck(String username, String deckName, Flashcard card);
 
     //void deleteFlashcardInDeck(String deckName, String cardName);
 
-    void editFlashcard(String username, String deckName, String cardName, String newQuestion, String newAnswer);
+    void editFlashcard(String username, String deckName, Flashcard card);
 
     void printDeck(String username, String deckName);
 

@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
                 username.setText(pList.get(position));
 
+
                 return view;
             }
         };
