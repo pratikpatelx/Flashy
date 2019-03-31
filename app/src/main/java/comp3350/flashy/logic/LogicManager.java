@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseImplementation;
@@ -53,9 +54,19 @@ public class LogicManager implements LogicManagerInterface {
                 break;
             case 1:currDeck.addCard(new FillInTheBlanksFlashcard(cardName,question,answer , "", ""));
                 break;
-            case 2:currDeck.addCard(new Flashcard(cardName,question,answer));
-                break;
         }
+
+        database.inputDeck(username, deckName, currDeck);
+    }
+
+    public void putFlashcardInDeck(String username, String deckName, String cardName, String question, ArrayList<String> answers) {
+        Deck currDeck = database.getDeck(username, deckName);
+
+        if(currDeck == null){
+            currDeck = new Deck(deckName);
+        }
+
+        currDeck.addCard(new MultipleChoiceFlashcard(cardName,question,answers));
 
         database.inputDeck(username, deckName, currDeck);
     }

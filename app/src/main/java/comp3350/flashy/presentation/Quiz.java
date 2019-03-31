@@ -1,5 +1,6 @@
 package comp3350.flashy.presentation;
 
+import android.annotation.SuppressLint;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,13 +9,20 @@ import android.widget.Button;
 import android.widget.TextClock;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import comp3350.flashy.R;
+
+import static comp3350.flashy.R.color.defaultmcanswer;
+import static comp3350.flashy.R.color.flashcard_color;
+import static comp3350.flashy.R.color.wrongchoice;
 
 public class Quiz extends AppCompatActivity {
 
     private uiHandler uiManager = MainActivity.getHandler();
 
     int state;
+    int nextState;
 
     private TextView stdTitle;
     private TextView stdBody;
@@ -23,12 +31,18 @@ public class Quiz extends AppCompatActivity {
     private TextView numWrong;
     private TextView deckSize;
     private TextView fitbAnswer;
+    private TextView MCQ;
+    private TextView MCChoice1;
+    private TextView MCChoice2;
+    private TextView MCChoice3;
+    private TextView MCChoice4;
 
     private FloatingActionButton success;
     private FloatingActionButton fail;
     private Button reveal;
 
     private String[] content;
+    private ArrayList<String> contentMC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,12 @@ public class Quiz extends AppCompatActivity {
         numWrong = findViewById(R.id.numWrong);
         deckSize = findViewById(R.id.numCards);
         fitbAnswer = findViewById(R.id.fitbAnswer);
+
+        MCQ = findViewById(R.id.mcBody);
+        MCChoice1 = findViewById(R.id.mcQ1);
+        MCChoice2 = findViewById(R.id.mcQ2);
+        MCChoice3 = findViewById(R.id.mcQ3);
+        MCChoice4 = findViewById(R.id.mcQ4);
 
         success = findViewById(R.id.successButton);
         fail = findViewById(R.id.failButton);
@@ -59,9 +79,14 @@ public class Quiz extends AppCompatActivity {
     private void updateContent(){
         if(!uiManager.isQuizDone()) {
 
-            content = uiManager.getContent(-1);
-            state = uiManager.getCurrentType();
-            System.out.println(state);
+            if(uiManager.getNextCardType() != 2) {
+                content = uiManager.getContent(-1);
+                state = uiManager.getCurrentType();
+                System.out.println(state);
+            }else{
+                contentMC = uiManager.getMCContent();
+                state = 2;
+            }
 
 
             //this is the state of the current card.
@@ -86,23 +111,71 @@ public class Quiz extends AppCompatActivity {
 
     private void setFITBContent() {
         stdTitle.setText(content[0]);
-        stdBody.setVisibility(View.INVISIBLE);
         fitbBody.setText(content[1]);
         fitbAnswer.setText(content[2]);
+
+        stdBody.setVisibility(View.INVISIBLE);
+        stdTitle.setVisibility(View.VISIBLE);
         fitbAnswer.setVisibility(View.INVISIBLE);
         fitbBody.setVisibility(View.VISIBLE);
+        reveal.setVisibility(View.VISIBLE);
+
+        MCQ.setVisibility(View.INVISIBLE);
+        MCChoice1.setVisibility(View.INVISIBLE);
+        MCChoice2.setVisibility(View.INVISIBLE);
+        MCChoice3.setVisibility(View.INVISIBLE);
+        MCChoice4.setVisibility(View.INVISIBLE);
     }
 
     private void setStandardContent() {
         stdTitle.setText(content[0]);
         stdBody.setText(content[1]);
+
+        stdTitle.setVisibility(View.VISIBLE);
+        stdBody.setVisibility(View.VISIBLE);
+        reveal.setVisibility(View.VISIBLE);
+
         stdBody.setVisibility(View.INVISIBLE);
         fitbAnswer.setVisibility(View.INVISIBLE);
         fitbBody.setVisibility(View.INVISIBLE);
+
+        MCQ.setVisibility(View.INVISIBLE);
+        MCChoice1.setVisibility(View.INVISIBLE);
+        MCChoice2.setVisibility(View.INVISIBLE);
+        MCChoice3.setVisibility(View.INVISIBLE);
+        MCChoice4.setVisibility(View.INVISIBLE);
     }
 
     private void setMCContent() {
+        resetBackgrounds();
 
+        MCQ.setText(contentMC.get(0));
+        MCChoice1.setText(contentMC.get(2));
+        MCChoice2.setText(contentMC.get(3));
+        MCChoice3.setText(contentMC.get(4));
+        MCChoice4.setText(contentMC.get(5));
+
+
+        stdBody.setVisibility(View.INVISIBLE);
+        fitbAnswer.setVisibility(View.INVISIBLE);
+        fitbBody.setVisibility(View.INVISIBLE);
+        stdTitle.setVisibility(View.INVISIBLE);
+        reveal.setVisibility(View.INVISIBLE);
+
+        MCQ.setVisibility(View.VISIBLE);
+        MCChoice1.setVisibility(View.VISIBLE);
+        MCChoice2.setVisibility(View.VISIBLE);
+        MCChoice3.setVisibility(View.VISIBLE);
+        MCChoice4.setVisibility(View.VISIBLE);
+
+    }
+
+    private void resetBackgrounds() {
+
+        MCChoice1.setBackgroundColor(getResources().getColor(defaultmcanswer));
+        MCChoice2.setBackgroundColor(getResources().getColor(defaultmcanswer));
+        MCChoice3.setBackgroundColor(getResources().getColor(defaultmcanswer));
+        MCChoice4.setBackgroundColor(getResources().getColor(defaultmcanswer));
     }
 
     private void setOnClickListeners(){
@@ -140,5 +213,66 @@ public class Quiz extends AppCompatActivity {
 
             }
         });
+
+        MCChoice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBackgrounds();
+
+            }
+        });
+        MCChoice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBackgrounds();
+
+            }
+        });
+        MCChoice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBackgrounds();
+
+            }
+        });
+        MCChoice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBackgrounds();
+
+            }
+        });
+
+
+    }
+
+
+    private void setBackgrounds(){
+        int num = 0;
+
+        for (int i = 2; i<contentMC.size();i++){
+            if(contentMC.get(1).equals(contentMC.get(i))){
+                num = i;
+
+                System.out.println("answer: "+ contentMC.get(i) + " index : " + i);
+            }
+        }
+
+        MCChoice1.setBackgroundColor(getResources().getColor(wrongchoice));
+        MCChoice2.setBackgroundColor(getResources().getColor(wrongchoice));
+        MCChoice3.setBackgroundColor(getResources().getColor(wrongchoice));
+        MCChoice4.setBackgroundColor(getResources().getColor(wrongchoice));
+
+        switch(num){
+            case 2: MCChoice1.setBackgroundColor(getResources().getColor(flashcard_color));
+                break;
+            case 3: MCChoice2.setBackgroundColor(getResources().getColor(flashcard_color));
+                break;
+            case 4: MCChoice3.setBackgroundColor(getResources().getColor(flashcard_color));
+                break;
+            case 5: MCChoice4.setBackgroundColor(getResources().getColor(flashcard_color));
+                break;
+        }
+
     }
 }

@@ -1,10 +1,12 @@
 package comp3350.flashy.persistence.DatabaseManagement;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.persistence.Codifiers.DataTranslationLayer;
 import comp3350.flashy.persistence.DatabaseImplementation;
 
@@ -40,6 +42,13 @@ public class DatabaseManager {
 
     private void createDefaultData() {
         storage.inputUser("","");
+        ArrayList<String> answers = new ArrayList<>();
+
+        answers.add("test1");
+        answers.add("test2");
+        answers.add("test3");
+        answers.add("test4");
+
 
         for (int i = 0; i < 3; i++) {
             String deckName = "DefaultDeck" + i;
@@ -52,7 +61,10 @@ public class DatabaseManager {
 
 
             }
-            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-5","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
+
+            tempDeck.addCard(new MultipleChoiceFlashcard("DefaultDeck"+i+"-5","the question",answers));
+
+            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
             inputDeck("" ,deckName, tempDeck);
         }
     }

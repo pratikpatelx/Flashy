@@ -82,7 +82,13 @@ public class CardPreper {
         MultipleChoiceFlashcard mc;
         if(card.isMultipleChoiceFlashcard()){
             mc = (MultipleChoiceFlashcard) card;
+
+
+
             ArrayList<String> choices = new ArrayList<>(mc.getAnswers());
+
+            mc.setAnswer(choices.get(0));
+
             ArrayList<String> noobs = new ArrayList<String>();
             int num = choices.size();
             Random rand = new Random();

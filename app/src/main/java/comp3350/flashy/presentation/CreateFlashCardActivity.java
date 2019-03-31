@@ -35,6 +35,14 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
     private FloatingActionButton save;
     private FloatingActionButton cancel;
+
+    private EditText mcQuestion;
+    private EditText mcCorrect;
+    private EditText mcWrong1;
+    private EditText mcWrong2;
+    private EditText mcWrong3;
+    private TextView instructionsMC;
+
     private uiHandler uiManager = MainActivity.getHandler();
 
     @Override
@@ -42,6 +50,12 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flash_card);
 
+        mcCorrect = findViewById(R.id.correctMC);
+        mcWrong1 = findViewById(R.id.wrongMC1);
+        mcWrong2 = findViewById(R.id.wrongMC2);
+        mcWrong3 = findViewById(R.id.wrongMC3);
+        mcQuestion = findViewById(R.id.mcQuestion);
+        instructionsMC = findViewById(R.id.instructionsMC);
 
 
         //getting body, title and save button.
@@ -95,7 +109,13 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 type = position;
+                if (type == 2){
+                    showMCInterface();
+                }else
+                    showStandardInterface();
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -155,7 +175,12 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println(title + " :: title saved");
                 System.out.println(body + " :: body saved");
-                uiManager.saveCard(title, body,type);
+
+                if(type == 2){
+                    uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
+                }else
+                    uiManager.saveCard(title, body, type);
+
                 finish();
             }
         });
@@ -175,19 +200,51 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
     }
 
+    private void showStandardInterface() {
+        textViewFlashBody.setVisibility(View.VISIBLE);
+        textViewFlashTitle.setVisibility(View.VISIBLE);
+
+        mcQuestion.setVisibility(View.INVISIBLE);
+        mcWrong3.setVisibility(View.INVISIBLE);
+        mcWrong2.setVisibility(View.INVISIBLE);
+        mcWrong1.setVisibility(View.INVISIBLE);
+        mcCorrect.setVisibility(View.INVISIBLE);
+        instructionsMC.setVisibility(View.INVISIBLE);
+    }
+
     public ArrayList<String> getMenuData(){
         ArrayList<String> result = new ArrayList<String>();
 
         result.add("Standard");
         result.add("Fill in the blank");
         result.add("Multiple choice");
-        result.add("True or false");
-
 
         return result;
 
     }
 
+    private void showMCInterface() {
+        textViewFlashBody.setVisibility(View.INVISIBLE);
+        textViewFlashTitle.setVisibility(View.INVISIBLE);
+
+        mcQuestion.setVisibility(View.VISIBLE);
+        mcWrong3.setVisibility(View.VISIBLE);
+        mcWrong2.setVisibility(View.VISIBLE);
+        mcWrong1.setVisibility(View.VISIBLE);
+        mcCorrect.setVisibility(View.VISIBLE);
+        instructionsMC.setVisibility(View.VISIBLE);
+    }
+
+    private ArrayList<String> getMCAnswers(){
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add(mcCorrect.getText().toString());
+        result.add(mcWrong1.getText().toString());
+        result.add(mcWrong2.getText().toString());
+        result.add(mcWrong3.getText().toString());
+
+        return result;
+    }
 
 }
 

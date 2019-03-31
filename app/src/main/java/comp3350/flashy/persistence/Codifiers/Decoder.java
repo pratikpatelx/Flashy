@@ -56,9 +56,6 @@ public class Decoder {
                 result =decodeFillInTheBlanksFlashcard(cardName, question, tokenizedString);
                 break;
             case '2':
-                result = decodeTrueFalseFlashcard(cardName, question, tokenizedString);
-                break;
-            case '3':
                 result = decodeMultipleChoiceFlashcard(cardName, question, tokenizedString);
                 break;
         }

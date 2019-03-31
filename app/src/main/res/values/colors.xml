@@ -8,5 +8,7 @@
     <color name="btn_color">#F9AA33</color>
     <color name="btn_deck">#0277BD</color>
     <color name="flashcard_color">#9EFF9E</color>
+    <color name="wrongchoice">#FFA39E</color>
+    <color name="defaultmcanswer">#9EC8FF</color>
 </resources>
 

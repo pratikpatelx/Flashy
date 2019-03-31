@@ -45,7 +45,7 @@ public class Encoder {
         if (flashcard.isRegularFlashcard()) {
             answer = encodeFlashcard(flashcard);
         } else if (flashcard.isMultipleChoiceFlashcard()) {
-            answer = encodeFlashcard(flashcard);
+            answer = encodeMultipleChoiceFlashcard((MultipleChoiceFlashcard) flashcard);
         } else if (flashcard.isFillInTheBlanksFlashcard()) {
             answer = encodeFillInTheBlankFlashcard((FillInTheBlanksFlashcard) flashcard);
         } else if (flashcard.isTrueFalseFlashcard()) {
@@ -119,10 +119,12 @@ public class Encoder {
 
         card.getAnswers();
 
-        result.concat(card.getCardType() + delimiter);
+        result+=card.getCardType() + delimiter;
         for (int i = 0; i < choices.size(); i++) {
-            result.concat(choices.get(i) + delimiter);
+            result+=choices.get(i)+" " + delimiter;
         }
+
+        System.out.println(result);
 
         return result;
     }

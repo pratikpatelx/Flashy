@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.QuizManager;
 
@@ -34,6 +35,11 @@ public class uiHandler {
         deckSize= currDeck.getNumCards();
     }
 
+    public void saveMCCard(String question, ArrayList<String> answer) {
+        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), question, answer);
+        deckSize= currDeck.getNumCards();
+    }
+
     public void deleteCard(int index) {
         logic.removeCard(username,currDeck, (currDeck+"-"+index));
         deckSize = currDeck.getNumCards();
@@ -60,10 +66,20 @@ public class uiHandler {
         }
 
 
-
-
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
+
+        return result;
+    }
+
+    public ArrayList<String> getMCContent(){
+        ArrayList<String> result = new ArrayList<>();
+
+        MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) quiz.getNextCard();
+
+        result.add(card.getQuestion());
+        result.add(card.getAnswer());
+        result.addAll(card.getAnswers());
 
         return result;
     }
@@ -119,10 +135,6 @@ public class uiHandler {
         return logic.getNames(username);
     }
 
-    public ArrayList<String> getAllProfileNames(){
-        return logic.getProfileNames();
-    }
-
     public ArrayList<Flashcard> getAllCards(){
         currDeck = logic.getDeck(username,deckName);
 
@@ -139,6 +151,10 @@ public class uiHandler {
 
     public boolean Verified(String username, String password){
         return logic.verifyUserPassword(username,password);
+    }
+
+    public ArrayList<String> getAllProfileNames(){
+        return logic.getProfileNames();
     }
 
     public void startQuiz() {
@@ -166,6 +182,10 @@ public class uiHandler {
 
     public int getCurrentType(){
         return quizCardType;
+    }
+
+    public int getNextCardType(){
+        return quiz.getNextCardType();
     }
 
 }

@@ -37,6 +37,9 @@ public class QuizManager {
     public Flashcard getNextCard(){
         return this.quiz.getCard();
     }
+    public int getNextCardType() {
+        return Integer.parseInt(this.quiz.getCard().getCardType());
+    }
 
 
     /**
