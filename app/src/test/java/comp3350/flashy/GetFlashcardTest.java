@@ -18,6 +18,7 @@ public class GetFlashcardTest {
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
+
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
         Flashcard newCard = new Flashcard(cardName,"defaultQ","defaultA");

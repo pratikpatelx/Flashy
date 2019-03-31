@@ -26,6 +26,7 @@ public class GetandInsertDeckTest {
 
         Deck sentDeck = new Deck(deckName);
 
+
         sentDeck.addCard(new Flashcard(firstCardName, question, firstAnswer));
         sentDeck.addCard(new Flashcard(secondCardName, question, secondAnswer));
         sentDeck.addCard(new Flashcard(thirdCardName, question, thirdAnswer));

@@ -21,12 +21,11 @@ public class RemoveFlashcardTest {
         String question = "I'm thinking of something cute guess what it is.";
 
 
+
         lgc.putFlashcardInDeck(user, deckName,"Bob", question, "It was a basket filled with corgi puppies. =D");
         lgc.putFlashcardInDeck(user, deckName, "Jack", question, "It was a basket filled with schnauzer puppies. =D");
         lgc.putFlashcardInDeck(user, deckName, "Jill", question, "It was a basket filled with wheaten terrier puppies. =D");
-        //testDeck.addCard(new Flashcard("Bob", question, "It was a basket filled with corgi puppies. =D"));
-        //testDeck.addCard(new Flashcard("Jack", question, "It was a basket filled with schnauzer puppies. =D"));
-        //testDeck.addCard(new Flashcard("Jill", question, "It was a basket filled with wheaten terrier puppies. =D"));
+        
         Deck testDeck = lgc.getDeck(user, deckName);
         System.out.println("Test to ensure there are 3 cards.");
         int numCards = testDeck.getNumCards();

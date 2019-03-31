@@ -30,7 +30,6 @@ public class DeckDeletionTest {
         String fourthAnswer = "It was a basket of labrador puppies. =D";
 
 
-
         lgc.putFlashcardInDeck(user, deckAName, cardNameA1, question, firstAnswer);
         lgc.putFlashcardInDeck(user, deckAName, cardNameA2, question, secondAnswer);
         lgc.putFlashcardInDeck(user, deckAName, cardNameA3, question, thirdAnswer);
