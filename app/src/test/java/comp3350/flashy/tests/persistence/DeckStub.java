@@ -1,4 +1,4 @@
-package comp3350.tests.persistence;
+package comp3350.flashy.tests.persistence;
 
 
 import comp3350.flashy.domain.Deck;

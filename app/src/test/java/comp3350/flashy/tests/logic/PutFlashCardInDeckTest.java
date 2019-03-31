@@ -1,12 +1,10 @@
-package comp3350.tests.unit.logic;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 
 import comp3350.flashy.domain.Flashcard;
-import comp3350.tests.persistence.DeckStub;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
@@ -17,12 +15,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

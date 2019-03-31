@@ -1,4 +1,4 @@
-package comp3350.tests.integration;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
