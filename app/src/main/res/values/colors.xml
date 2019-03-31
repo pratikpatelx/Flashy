@@ -8,5 +8,9 @@
     <color name="btn_color">#F9AA33</color>
     <color name="btn_deck">#0277BD</color>
     <color name="flashcard_color">#9EFF9E</color>
+    <color name="test">#C85A54</color>
+    <color name="test2">#FF8A80</color>
+    <color name="test3">#FFFFFF</color>
+
 </resources>
 

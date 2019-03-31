@@ -1,23 +1,22 @@
-package comp3350.flashy;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 
-import java.lang.String;
+import static org.junit.Assert.assertEquals;
 
 public class PutFlashcardIntoDeckTest {
 
     /**
      * addCardToDeckTest
-     *
+     * <p>
      * This test will test adding flashcards and both methods of putting flashcards
      * into decks.
      */
     @Test
-    public void putCardIntoDeckTest(){
+    public void putCardIntoDeckTest() {
         System.out.println("\nrunning putCardIntoDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
@@ -42,15 +41,13 @@ public class PutFlashcardIntoDeckTest {
         lgc.putFlashcardInDeck(user, deckName, card2);
 
 
-
         System.out.println("Test to ensure there are 3 cards in the deck.");
 
-        assertEquals(3,  lgc.queryDeckSize(user, deckName));
+        assertEquals(3, lgc.queryDeckSize(user, deckName));
 
-        if(lgc.queryDeckSize(user, deckName) == 3){
+        if (lgc.queryDeckSize(user, deckName) == 3) {
             System.out.println("There are 3 cards in the Deck, test passed");
-        }
-        else{
+        } else {
             System.out.println("There are " + lgc.queryDeckSize(user, deckName) + " cards in the deck test failed");
         }
 

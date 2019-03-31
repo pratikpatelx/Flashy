@@ -30,7 +30,7 @@ public class uiHandler {
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content) {
-        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content);
+        logic.putFlashcardInDeck(username,deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
         deckSize= currDeck.getNumCards();
     }
 
@@ -120,7 +120,7 @@ public class uiHandler {
     }
 
     public ArrayList<String> getAllProfileNames(){
-        return logic.getProfileNames();
+        return logic.getAllProfiles();
     }
 
     public ArrayList<Flashcard> getAllCards(){

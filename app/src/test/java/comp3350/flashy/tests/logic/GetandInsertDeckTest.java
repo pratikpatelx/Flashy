@@ -1,4 +1,4 @@
-package comp3350.flashy;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GetandInsertDeckTest {
     @Test
-    public void getAndInsertDeckTest(){
+    public void getAndInsertDeckTest() {
         System.out.println("\nrunning GetandInsertDeck test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";

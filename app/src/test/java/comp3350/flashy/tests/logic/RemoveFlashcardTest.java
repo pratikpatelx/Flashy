@@ -1,16 +1,17 @@
-package comp3350.flashy;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
+import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.domain.Deck;
+
+import static org.junit.Assert.assertEquals;
 
 public class RemoveFlashcardTest {
 
     @Test
-    public void removeCardTest(){
+    public void removeCardTest() {
         System.out.println("\nrunning RemoveCard test\n");
         LogicManager lgc = new LogicManager();
         String user = "John Doe";
@@ -40,10 +41,9 @@ public class RemoveFlashcardTest {
 
         assertEquals(3, numCards);
 
-        if(numCards == 3){
+        if (numCards == 3) {
             System.out.println("There are 3 cards in the Deck; test passed");
-        }
-        else{
+        } else {
             System.out.println("There are " + numCards + " cards in the deck; test failed");
         }
 
@@ -53,11 +53,10 @@ public class RemoveFlashcardTest {
         System.out.println("\nTest to ensure there is 2 cards in the deck.");
 
         numCards = testDeck.getNumCards();
-        assertEquals(2, numCards );
-        if(numCards == 2){
+        assertEquals(2, numCards);
+        if (numCards == 2) {
             System.out.println("There are 2 cards in the Deck, test passed");
-        }
-        else{
+        } else {
             System.out.println("There are " + numCards + " cards in the deck, test failed");
         }
 

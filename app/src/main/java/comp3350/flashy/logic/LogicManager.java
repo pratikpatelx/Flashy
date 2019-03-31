@@ -9,12 +9,23 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    private DatabaseImplementation databaseType = new DatabaseStub();
+    private DatabaseManager database;
+    private UserHandler userHandler;
 
-    private DatabaseManager database = new DatabaseManager(databaseType);
-    private UserHandler userHandler = new UserHandler(database);
 
+    public LogicManager(){
+        //this(new DatabaseManager(new DatabaseHSQLDB());
+        this(new DatabaseManager(new DatabaseStub()));
+    }
+
+    public LogicManager(DatabaseManager databaseImpl){
+        database = databaseImpl;
+        userHandler = new UserHandler(database);
+    }
+
+    public Deck makeDeck(String deckName){
+        return new Deck(deckName);
+    }
 
     @Override
     public Deck getDeck(String username, String deckName){
@@ -43,7 +54,7 @@ public class LogicManager implements LogicManagerInterface {
         Deck currDeck = database.getDeck(username, deckName);
 
         if(currDeck == null){
-            currDeck = new Deck(deckName);
+            currDeck = makeDeck(deckName);
         }
 
         currDeck.addCard(card);
@@ -53,23 +64,9 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void editFlashcard(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
-        if(currDeck == null){currDeck = new Deck(deckName);}
+        if(currDeck == null){currDeck = makeDeck(deckName);}
         currDeck.editCard(card);
         database.inputDeck(username, deckName,currDeck);
-    }
-
-    /**
-     * printDeck()
-     *
-     * @param deckName
-     *  The name of the deck to be printed
-     *
-     *  This method is primarily for testing. It outputs the contents of a deck from
-     * The database.
-     */
-    public void printDeck(String username, String deckName){
-        Deck currDeck = database.getDeck(username, deckName);
-        System.out.println(currDeck.toString());
     }
 
     /**
@@ -96,36 +93,19 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     public ArrayList<String> getAllProfiles(){
-        System.out.println(database.getUserCollection());
         return(new ArrayList<String>(database.getUserCollection()));
     }
 
     public ArrayList<String> getNames(String username){
         ArrayList<Deck> temp = getAllDecks(username);
-        System.out.println(getAllDecks(username));
         ArrayList result = new ArrayList<Deck>();
 
         for (int i  = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
-            System.out.println(temp.get(i).getName());
         }
 
         return result;
     }
-
-    public ArrayList<String> getProfileNames(){
-        ArrayList<String> temp = getAllProfiles();
-        System.out.println(getAllProfiles());
-        ArrayList result = new ArrayList<Deck>();
-
-        for (int i  = 0; i < temp.size(); i++) {
-            result.add(temp.get(i));
-            System.out.println(temp.get(i));
-        }
-
-        return result;
-    }
-
 
     /**
      *

@@ -1,4 +1,4 @@
-package comp3350.flashy;
+package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
 

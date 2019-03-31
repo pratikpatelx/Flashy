@@ -6,12 +6,11 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.tests.persistence.DeckStub;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
+import comp3350.flashy.tests.persistence.DeckStub;
 
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -27,11 +26,11 @@ public class GetAllDecksTest {
     private Deck testDeck;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         testDB = mock(DatabaseManager.class);
         testLGC = new LogicManager(testDB);
         testDeck = new DeckStub();
-        testColl = new ArrayList();
+        testColl = new ArrayList<>();
         testColl.add(testDeck);
     }
 
@@ -39,15 +38,15 @@ public class GetAllDecksTest {
     //Needs to return a COLLECTION. Need a way to confirm that testCollection cast to a new list is the same as our returned collection cast to list
 
     @Test
-    public void getAllDecksTest(){
+    public void getAllDecksTest() {
         System.out.println("\nrunning GetAllDecks unit test\n");
 
         when(testDB.getDeckCollection("")).thenReturn(testColl);
 
         ArrayList<Deck> result = testLGC.getAllDecks("");
-        assertTrue("Test failed: Result does not contain testDeck.",result.contains(testDeck));
-        testList = new ArrayList<Deck>(testColl);
-        assertEquals(testList,result);
+        assertTrue("Test failed: Result does not contain testDeck.", result.contains(testDeck));
+        testList = new ArrayList<>(testColl);
+        assertEquals(testList, result);
 
         verify(testDB).getDeckCollection("");
 

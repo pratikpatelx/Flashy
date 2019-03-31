@@ -20,11 +20,7 @@ public interface LogicManagerInterface {
 
     void putFlashcardInDeck(String username, String deckName, Flashcard card);
 
-    //void deleteFlashcardInDeck(String deckName, String cardName);
-
     void editFlashcard(String username, String deckName, Flashcard card);
-
-    void printDeck(String username, String deckName);
 
     int queryDeckSize(String username, String deckName);
 
