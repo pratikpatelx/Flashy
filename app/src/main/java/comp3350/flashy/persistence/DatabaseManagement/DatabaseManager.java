@@ -64,7 +64,7 @@ public class DatabaseManager {
 
             tempDeck.addCard(new MultipleChoiceFlashcard("DefaultDeck"+i+"-5","the question",answers));
 
-            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default","Answer"));
+            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default"));
             inputDeck("Stub" ,deckName, tempDeck);
         }
     }

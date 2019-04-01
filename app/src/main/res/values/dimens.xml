@@ -3,7 +3,6 @@
     <dimen name="fab_test">80dp</dimen>
     <dimen name="deck_fab">90dp</dimen>
     <dimen name="design_fab_image_size" tools:override="true">56dp</dimen>
-    <dimen name="horizontal_deck_margin">16dp</dimen>
     <dimen name="vertical_deck_margin">16dp</dimen>
     <dimen name="design_bottom_navigation_item_max_width" tools:override="true">600dp</dimen>
     <dimen name="design_bottom_navigation_active_item_max_width" tools:override="true">600dp</dimen>

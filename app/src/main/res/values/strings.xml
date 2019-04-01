@@ -1,24 +1,12 @@
 <resources>
     <string name="app_name">FLASHY</string>
-    <string name="log_in">Log In</string>
-    <string name="go">GO</string>
-    <string name="password">password</string>
-    <string name="username">Username</string>
-    <string name="deckname1">Deck1</string>
-    <string name="FlashCardHeader">Title Test</string>
-    <string name="card_back_description">Back SIde</string>
-    <string name="card_back_title">Back title</string>
-    <string name="description_image_1">Image</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--- DECKS -->
     <string name="New_Deck">CREATE DECK</string>
-    <string name="View_Deck">EDIT DECK</string>
     <string name="Log_Out">LOG OUT</string>
     <string name="List_Deck">SHOW ALL DECKS</string>
     <string name="deck_name">Deck Name</string>
-    <string name="create_category">CREATE DECK</string>
     <string name="Enter">ENTER</string>
     <string name="enter_deck_name">Enter Deck Name</string>
     <string name="cancel">Cancel</string>
