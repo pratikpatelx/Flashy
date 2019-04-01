@@ -25,18 +25,21 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
-
     }
-
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content, int type) {
-        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), head, content,type);
+        switch(type){
+            case 0: logic.putFlashcardInDeck(username, deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
+            break;
+            case 1: logic.putFlashcardInDeck(username, deckName,new FillInTheBlanksFlashcard((deckName +"-"+ deckSize), head, content," "," "));
+            break;
+        }
         deckSize++;
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
-        logic.putFlashcardInDeck(username,deckName,(deckName +"-"+ deckSize), question, answer);
+        logic.putFlashcardInDeck(username,deckName, new MultipleChoiceFlashcard((deckName +"-"+ deckSize), question, answer));
         deckSize++;
     }
 
@@ -181,7 +184,7 @@ public class uiHandler {
     }
 
     public ArrayList<String> getAllProfileNames(){
-        return logic.getProfileNames();
+        return logic.getAllProfiles();
     }
 
     public void startQuiz() {

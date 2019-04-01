@@ -3,20 +3,30 @@ package comp3350.flashy.logic;
 import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
-    //private DatabaseImplementation databaseType = new DatabaseHSQLDB();
-    private DatabaseImplementation databaseType = new DatabaseStub();
-    private DatabaseManager database = new DatabaseManager(databaseType);
-    private UserHandler userHandler = new UserHandler(database);
 
+    private DatabaseManager database;
+    private UserHandler userHandler;
+
+
+    public LogicManager(){
+        //this(new DatabaseManager(new DatabaseHSQLDB()); To be used when HSQLDB is fully functional
+        this(new DatabaseManager(new DatabaseStub()));
+    }
+
+    public LogicManager(DatabaseManager databaseImpl){
+        database = databaseImpl;
+        userHandler = new UserHandler(database);
+    }
+
+    public Deck makeDeck(String deckName){
+        return new Deck(deckName);
+    }
 
     @Override
     public Deck getDeck(String username, String deckName){
@@ -41,56 +51,21 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     @Override
-    public void putFlashcardInDeck(String username, String deckName, String cardName, String question, String answer,int type) {
+    public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
-        //System.out.println(currDeck.toString());
-
-        if(currDeck == null){
-            currDeck = new Deck(deckName);
+        if(currDeck == null) {
+            currDeck = makeDeck(deckName);
         }
-
-        switch(type){
-            case 0:currDeck.addCard(new Flashcard(cardName,question,answer));
-                break;
-            case 1:currDeck.addCard(new FillInTheBlanksFlashcard(cardName,question,answer , "", ""));
-                break;
-        }
-
-        database.inputDeck(username, deckName, currDeck);
-    }
-
-    public void putFlashcardInDeck(String username, String deckName, String cardName, String question, ArrayList<String> answers) {
-        Deck currDeck = database.getDeck(username, deckName);
-
-        if(currDeck == null){
-            currDeck = new Deck(deckName);
-        }
-
-        currDeck.addCard(new MultipleChoiceFlashcard(cardName,question,answers));
-
+        currDeck.addCard(card);
         database.inputDeck(username, deckName, currDeck);
     }
 
     @Override
-    public void editFlashcard(String username, String deckName, String cardName, String newQuestion, String newAnswer) {
+    public void editFlashcard(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
-        if(currDeck == null){currDeck = new Deck(deckName);}
-        currDeck.editCard(new Flashcard(cardName,newQuestion,newAnswer));
+        if(currDeck == null){currDeck = makeDeck(deckName);}
+        currDeck.editCard(card);
         database.inputDeck(username, deckName,currDeck);
-    }
-
-    /**
-     * printDeck()
-     *
-     * @param deckName
-     *  The name of the deck to be printed
-     *
-     *  This method is primarily for testing. It outputs the contents of a deck from
-     * The database.
-     */
-    public void printDeck(String username, String deckName){
-        Deck currDeck = database.getDeck(username, deckName);
-        System.out.println(currDeck.toString());
     }
 
     /**
@@ -117,36 +92,19 @@ public class LogicManager implements LogicManagerInterface {
     }
 
     public ArrayList<String> getAllProfiles(){
-        System.out.println(database.getUserCollection());
         return(new ArrayList<String>(database.getUserCollection()));
     }
 
     public ArrayList<String> getNames(String username){
         ArrayList<Deck> temp = getAllDecks(username);
-        System.out.println(getAllDecks(username));
         ArrayList result = new ArrayList<Deck>();
 
         for (int i  = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
-            System.out.println(temp.get(i).getName());
         }
 
         return result;
     }
-
-    public ArrayList<String> getProfileNames(){
-        ArrayList<String> temp = getAllProfiles();
-        System.out.println(getAllProfiles());
-        ArrayList result = new ArrayList<Deck>();
-
-        for (int i  = 0; i < temp.size(); i++) {
-            result.add(temp.get(i));
-            System.out.println(temp.get(i));
-        }
-
-        return result;
-    }
-
 
     /**
      *
