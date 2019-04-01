@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
     private FloatingActionButton Back;
     private ListView listView;
     private Button quiz;
+    private Button newDeck;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
         deck = (TextView) findViewById(R.id.selectedDeck);
         username = findViewById(R.id.userDeck);
+        newDeck = (Button) findViewById(R.id.createDeck);
         listView = (ListView)findViewById(R.id.showAllDeckList);
         openDeck = (FloatingActionButton) findViewById(R.id.Open);
         delDeck = (FloatingActionButton) findViewById(R.id.deleteDeck);
@@ -117,6 +120,14 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             }
         });
 
+        newDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCreateNewDeckActivity();
+                Log.d("Flashy", "new deck button clicked");
+            }
+        });
+
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +145,15 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        items.clear();
+        items.addAll(uiManager.getNames());
+        fcArrayAdapter.notifyDataSetChanged();
+
+    }
+
     public void openFlashCardListActivity() {
         Intent intent = new Intent(this, FlashCardListActivity.class);
         startActivity(intent);
@@ -145,5 +165,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openCreateNewDeckActivity(){
+        Intent intent = new Intent(this, NewDeckActivity.class);
+        startActivity(intent);
+    }
     
 }

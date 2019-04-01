@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     public void openDeckMenuActivity(String username, String password){
         if(ui.Verified(username,password)) {
             ui.setUsername(username);
-            Intent intent = new Intent(this, DeckMenuActivity.class);
+            Intent intent = new Intent(this, ShowAllDecksActivity.class);
             startActivity(intent);
         }else
             Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
