@@ -31,7 +31,7 @@ public class ManageFlashcardTest {
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void createFlashCard() {
+    public void manageFlashcard() {
 
         //add user
         onView(withId(R.id.addProfile)).perform(click());
@@ -50,47 +50,54 @@ public class ManageFlashcardTest {
         onView(withId(R.id.Enter_Button)).perform(click());
 
 
-        //create default flashcard
+
+        //add flashcard and select type
         onView(withId(R.id.addCard)).perform(click());
-        //question
+        onView(withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+        //create flashcard
         onView(withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("This is a question"));
         onView(withText("Save")).perform(click());
-        //answer
         onView(withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
-        //verify flash card has been added to the flash card list
-        onView(withId(R.id.flashListItem)).check(matches(withText(containsString("This is a question"))));
+        //verify flashcard has been added
+        onView(withText("This is a question")).check(matches(withText(containsString("This is a question"))));
 
 
 
-        //create default flashcard
+        //add flashcard and select type
         onView(withId(R.id.addCard)).perform(click());
-        //question
+        onView(withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+        //create flashcard
         onView(withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("This is another question"));
         onView(withText("Save")).perform(click());
-        //answer
         onView(withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is another answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
-        //verify flash card has been added to the flash card list
+        //verify flashcard has been added
         onView(withText("This is another question")).check(matches(withText(containsString("This is another question"))));
 
 
 
-        //create default flashcard
+        //add flashcard and select type
         onView(withId(R.id.addCard)).perform(click());
-        //question
+        onView(withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+        //create default flashcard
         onView(withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("This is the last question"));
         onView(withText("Save")).perform(click());
-        //answer
         onView(withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is the last answer"));
         onView(withText("Save")).perform(click());
@@ -109,33 +116,48 @@ public class ManageFlashcardTest {
 
 
         //edit flashcard (the last flashcard)
-
         onView(withId(R.id.modButton)).perform(click());
 
-        //question
         onView(withId(R.id.title)).perform(click());
         onView(withText("This is the last question")).perform(replaceText("This is an edited question"));
         onView(withText("Save")).perform(click());
-        //answer
         onView(withId(R.id.body)).perform(click());
         onView(withText("This is the last answer")).perform(replaceText("This is an edited answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
-        //verify flash card has been added to the flash card list
+        //verify flashcard has been re added
         onView(withText("This is an edited question")).check(matches(withText(containsString("This is an edited question"))));
 
 
 
         //delete flashcard
+        onView(withText("This is a question")).perform(click());
+        onView(withId(R.id.delButton)).perform(click());
+
+        //delete flashcard
         onView(withText("This is another question")).perform(click());
+        onView(withId(R.id.delButton)).perform(click());
+
+        //delete flashcard
+        onView(withText("This is an edited question")).perform(click());
         onView(withId(R.id.delButton)).perform(click());
 
 
 
-        //exit
-       onView(withId(R.id.exitFlashList)).perform(click());
-       onView(withId(R.id.Back)).perform(click());
+        //go back
+        onView(withId(R.id.exitFlashList)).perform(click());
 
+        //delete deck
+        onView(withText("test deck")).perform(click());
+        onView(withId(R.id.deleteDeck)).perform(click());
+
+
+        //logout
+        onView(withId(R.id.Back)).perform(click());
+
+        //delete profile
+        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(withId(R.id.profiles)).perform(click());
+        onView(withId(R.id.deleteProfile)).perform(click());
     }
 }
