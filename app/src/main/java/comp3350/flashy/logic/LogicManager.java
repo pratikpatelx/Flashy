@@ -2,8 +2,10 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
 import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
 import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
@@ -15,14 +17,15 @@ public class LogicManager implements LogicManagerInterface {
 
 
     public LogicManager(){
-        //this(new DatabaseManager(new DatabaseHSQLDB()); To be used when HSQLDB is fully functional
-        this(new DatabaseManager(new DatabaseStub()));
+        database = new DatabaseManager(Services.getFlashyPersistence());
+        userHandler = new UserHandler(database);
+        //this(new DatabaseManager(new DatabaseStub()));
     }
 
-    public LogicManager(DatabaseManager databaseImpl){
-        database = databaseImpl;
-        userHandler = new UserHandler(database);
-    }
+//    public LogicManager(DatabaseManager databaseImpl){
+//        database = databaseImpl;
+//        userHandler = new UserHandler(database);
+//    }
 
     public Deck makeDeck(String deckName){
         return new Deck(deckName);
