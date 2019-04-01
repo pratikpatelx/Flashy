@@ -26,13 +26,13 @@ import static org.hamcrest.core.AllOf.allOf;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class CreateFlashCardTest {
+public class ManageFlashcardTest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void createFlashCard(){
+    public void createFlashCard() {
         //Register User
         onView(withId(R.id.addProfile)).perform(click());
 
@@ -51,9 +51,6 @@ public class CreateFlashCardTest {
         onView(withId(R.id.createDeck)).perform(click());
         onView(withId(R.id.deckTitle)).perform(typeText("System Testing"));
         onView(withId(R.id.Enter_Button)).perform(click());
-
-
-
 
         //Create A new Flash Card
         onView(withId(R.id.addCard)).perform(click());
@@ -74,9 +71,22 @@ public class CreateFlashCardTest {
         onView(withId(R.id.flashListItem)).check(matches(withText(containsString("System Test"))));
         //onView(withId(R.id.test)).perform(click());
 
+        //edit flashcard
+        onView(withText("System Test")).perform(click());
+        onView(withId(R.id.modButton)).perform(click());
+
+
+
+    }
+
+/*
+        //delete flashcard
+
         //verify deck has the card added to the deck
         onView(withId(R.id.exitFlashList)).perform(click());
         //onView(withId(R.id.deckList)).perform(click());
+
+
         onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing"))));
 
         //onView(withId(R.id.deck_img)).perform(click());
@@ -84,6 +94,27 @@ public class CreateFlashCardTest {
         //log out to main page
         onView(withId(R.id.Back)).perform(click());
         //onView(withId(R.id.logOut)).perform(click());
-    }
 
+        //log in
+        onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
+        onView(withId(R.id.profilePass)).perform(typeText("test"));
+        onView(withId(R.id.Enter)).perform(click());
+
+        //select deck and delete
+        onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing")))).perform(click());
+        onView(withId(R.id.deleteDeck)).perform(click());
+    }*/
+/*
+    @Test
+    public void deleteFlashCard() {
+        //log in
+        onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
+        onView(withId(R.id.profilePass)).perform(typeText("test"));
+        onView(withId(R.id.Enter)).perform(click());
+
+        //select deck and delete
+        onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing")))).perform(click());
+        onView(withId(R.id.deleteDeck)).perform(click());
+/*
+    */
 }
