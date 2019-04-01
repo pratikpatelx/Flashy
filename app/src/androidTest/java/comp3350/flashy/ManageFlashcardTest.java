@@ -18,7 +18,6 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -36,18 +35,18 @@ public class ManageFlashcardTest {
 
         //add user
         onView(withId(R.id.addProfile)).perform(click());
-        onView(withId(R.id.Username)).perform(typeText("test"));
-        onView(withId(R.id.userPassword)).perform(typeText("test"));
+        onView(withId(R.id.Username)).perform(typeText("user123"));
+        onView(withId(R.id.userPassword)).perform(typeText("123"));
         onView(withId(R.id.regButton)).perform(click());
 
         //log in
-        onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
-        onView(withId(R.id.profilePass)).perform(typeText("test"));
+        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(withId(R.id.profiles)).perform(click());
+        onView(withId(R.id.profilePass)).perform(typeText("123"));
         onView(withId(R.id.Enter)).perform(click());
 
         //create deck
         onView(withId(R.id.createDeck)).perform(click());
-        onView(withId(R.id.deckTitle)).perform(typeText("System Testing"));
+        onView(withId(R.id.deckTitle)).perform(typeText("test deck"));
         onView(withId(R.id.Enter_Button)).perform(click());
 
 
@@ -55,16 +54,16 @@ public class ManageFlashcardTest {
         onView(withId(R.id.addCard)).perform(click());
         //question
         onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("System Test"));
+        onView(withText("Title")).perform(replaceText("This is a question"));
         onView(withText("Save")).perform(click());
         //answer
         onView(withId(R.id.body)).perform(click());
-        onView(withText("Example of front side of a flash card")).perform(replaceText("This is a system Test"));
+        onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withId(R.id.flashListItem)).check(matches(withText(containsString("System Test"))));
+        onView(withId(R.id.flashListItem)).check(matches(withText(containsString("This is a question"))));
 
 
 
@@ -72,16 +71,16 @@ public class ManageFlashcardTest {
         onView(withId(R.id.addCard)).perform(click());
         //question
         onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("System Test 2"));
+        onView(withText("Title")).perform(replaceText("This is another question"));
         onView(withText("Save")).perform(click());
         //answer
         onView(withId(R.id.body)).perform(click());
-        onView(withText("Example of front side of a flash card")).perform(replaceText("This is a system Test 2"));
+        onView(withText("Example of front side of a flash card")).perform(replaceText("This is another answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withText("System Test 2")).check(matches(withText(containsString("System Test 2"))));
+        onView(withText("This is another question")).check(matches(withText(containsString("This is another question"))));
 
 
 
@@ -89,99 +88,54 @@ public class ManageFlashcardTest {
         onView(withId(R.id.addCard)).perform(click());
         //question
         onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("System Test 3"));
+        onView(withText("Title")).perform(replaceText("This is the last question"));
         onView(withText("Save")).perform(click());
         //answer
         onView(withId(R.id.body)).perform(click());
-        onView(withText("Example of front side of a flash card")).perform(replaceText("This is a system Test 3"));
+        onView(withText("Example of front side of a flash card")).perform(replaceText("This is the last answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withText("System Test 3")).check(matches(withText(containsString("System Test 3"))));
+        onView(withText("This is the last question")).check(matches(withText(containsString("This is the last question"))));
 
 
 
         //view flashcard
-        onView(withText("System Test")).perform(click());
-
-        //flip through flashcards
+        onView(withId(R.id.viewCards)).perform(click());
         onView(withId(R.id.nextButton)).perform(click());
         onView(withId(R.id.nextButton)).perform(click());
 
 
 
-        //edit flashcard
+        //edit flashcard (the last flashcard)
 
         onView(withId(R.id.modButton)).perform(click());
 
         //question
         onView(withId(R.id.title)).perform(click());
-        onView(withText("System Test 3")).perform(replaceText("System Test 4"));
+        onView(withText("This is the last question")).perform(replaceText("This is an edited question"));
         onView(withText("Save")).perform(click());
         //answer
         onView(withId(R.id.body)).perform(click());
-        onView(withText("This is a system Test 3")).perform(replaceText("This is a system Test 4"));
+        onView(withText("This is the last answer")).perform(replaceText("This is an edited answer"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withText("System Test 4")).check(matches(withText(containsString("System Test 4"))));
+        onView(withText("This is an edited question")).check(matches(withText(containsString("This is an edited question"))));
 
 
 
         //delete flashcard
-        onView(withText("System Test 2")).perform(click());
+        onView(withText("This is another question")).perform(click());
         onView(withId(R.id.delButton)).perform(click());
 
 
 
         //exit
        onView(withId(R.id.exitFlashList)).perform(click());
-       // onView(withId(R.id.Back)).perform(click());
+       onView(withId(R.id.Back)).perform(click());
 
     }
 }
-/*
-        //delete flashcard
-
-         /edit flashcard
-        onView(withText("System Test")).perform(click());
-        onView(withId(R.id.modButton)).perform(click());
-
-
-        //verify deck has the card added to the deck
-        onView(withId(R.id.exitFlashList)).perform(click());
-        //onView(withId(R.id.deckList)).perform(click());
-
-
-        onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing"))));
-
-        //onView(withId(R.id.deck_img)).perform(click());
-
-        //log out to main page
-        onView(withId(R.id.Back)).perform(click());
-        //onView(withId(R.id.logOut)).perform(click());
-
-        //log in
-        onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
-        onView(withId(R.id.profilePass)).perform(typeText("test"));
-        onView(withId(R.id.Enter)).perform(click());
-
-        //select deck and delete
-        onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing")))).perform(click());
-        onView(withId(R.id.deleteDeck)).perform(click());
-    }*/
-/*
-    @Test
-    public void deleteFlashCard() {
-        //log in
-        onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
-        onView(withId(R.id.profilePass)).perform(typeText("test"));
-        onView(withId(R.id.Enter)).perform(click());
-
-        //select deck and delete
-        onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing")))).perform(click());
-        onView(withId(R.id.deleteDeck)).perform(click());
-/*
-    */
