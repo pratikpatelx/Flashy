@@ -3,8 +3,12 @@ package comp3350.flashy.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import comp3350.flashy.tests.domain.CardTest;
+import comp3350.flashy.domain.FillInTheBlanksFlashcard;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
+import comp3350.flashy.tests.domain.FillInTheBlanksFlashcardTest;
+import comp3350.flashy.tests.domain.FlashcardTest;
 import comp3350.flashy.tests.domain.DeckTest;
+import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
 import comp3350.flashy.tests.logic.ExampleTest;
 import comp3350.flashy.tests.logic.GetAllDecksTest;
 import comp3350.flashy.tests.logic.GetAllProfilesTest;
@@ -32,7 +36,9 @@ import comp3350.flashy.tests.logic.EditFlashcardTest;
         GetAllDecksTest.class,
         GetAllProfilesTest.class,
         DeckTest.class,
-        CardTest.class,
+        FlashcardTest.class,
+        FillInTheBlanksFlashcardTest.class,
+        MultipleChoiceFlashcardTest.class,
 })
 
 public class AllTests {}
