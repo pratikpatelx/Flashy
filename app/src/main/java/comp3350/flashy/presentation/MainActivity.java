@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //remove user
+                ui.deleteUser(pList.get(selectedPos));
+                updateData();
             }
         });
     }

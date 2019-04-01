@@ -1,6 +1,7 @@
 package comp3350.flashy.presentation;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
@@ -181,6 +182,10 @@ public class uiHandler {
 
     public boolean Verified(String username, String password){
         return logic.verifyUserPassword(username,password);
+    }
+
+    public void deleteUser(String user){
+        logic.removeUserFromDatabase(user);
     }
 
     public ArrayList<String> getAllProfileNames(){
