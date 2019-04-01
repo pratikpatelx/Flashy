@@ -93,6 +93,14 @@ public class ManageDeckTest {
         onView(withText("test deck 3")).check(matches(withText(containsString("test deck 3"))));
 
         //delete a deck
+        onView(withText("test deck 1")).perform(click());
+        onView(withId(R.id.deleteDeck)).perform(click());
+
+        //delete a deck
+        onView(withText("test deck 2")).perform(click());
+        onView(withId(R.id.deleteDeck)).perform(click());
+
+        //delete a deck
         onView(withText("test deck 3")).perform(click());
         onView(withId(R.id.deleteDeck)).perform(click());
 
