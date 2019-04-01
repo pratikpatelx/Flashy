@@ -174,13 +174,29 @@ public class MainActivity extends AppCompatActivity {
                 //openDeckMenuActivity(username.getText().toString(),password.getText().toString());
             }
         });
+    }
 
-        deleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //remove user
-            }
-        });
+    public void buttonAccountDeleteOnClick(View v) {
+        CreateAccount account = createUserFromEditText();
+
+        try {
+            accessCreateAccount.deleteAccount(account);
+            accountList.clear();
+            accountList.addAll(accessCreateAccount.getAccounts());
+            createAccountArrayAdapter.notifyDataSetChanged();
+        } catch (final Exception e) {
+            //Messages.warning(this, e.getMessage());
+        }
+    }
+
+    private CreateAccount createUserFromEditText() {
+
+        TextView editName = (TextView) findViewById(R.id.profileName);
+        EditText editPass = (EditText)findViewById(R.id.profilePass);
+
+        CreateAccount account = new CreateAccount(editName.getText().toString(), editPass.getText().toString());
+
+        return account;
     }
 
     @Override

@@ -15,4 +15,6 @@ public interface CreateAccountPersistence {
     List<CreateAccount>getAccountInformation();
 
     boolean getAccountInformation(String userName, String password);
+
+    void deleteAccount(CreateAccount currentAccount);
 }

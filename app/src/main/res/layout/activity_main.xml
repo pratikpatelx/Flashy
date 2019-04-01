@@ -99,7 +99,8 @@
         app:layout_constraintEnd_toStartOf="@+id/addProfile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/profiles"
-        app:layout_constraintTop_toBottomOf="@+id/profiles" />
+        app:layout_constraintTop_toBottomOf="@+id/profiles"
+        android:onClick="buttonAccountDeleteOnClick"/>
 
     <ListView
         android:id="@+id/profiles"

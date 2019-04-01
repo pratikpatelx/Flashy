@@ -108,4 +108,18 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
             }
         return result;
     }
+
+    @Override
+    public void deleteAccount(CreateAccount currentAccount) {
+        try (final Connection c = connection()) {
+            final PreparedStatement sc = c.prepareStatement("DELETE FROM useraccounts WHERE USERNAME = ?");
+            sc.setString(1, currentAccount.getUsername());
+            sc.executeUpdate();
+            final PreparedStatement st = c.prepareStatement("DELETE FROM useraccounts WHERE USERNAME = ?");
+            st.setString(1, currentAccount.getUsername());
+            st.executeUpdate();
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
 }

@@ -41,4 +41,8 @@ public class AccessCreateAccounts {
     public boolean getAccountInformation(String userName, String password) throws PersistenceException {
         return accountPersistence.getAccountInformation(userName, password);
     }
+
+    public void deleteAccount(CreateAccount account) {
+        accountPersistence.deleteAccount(account);
+    }
 }
