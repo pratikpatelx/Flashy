@@ -1,22 +1,31 @@
 package comp3350.flashy.presentation;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
@@ -36,6 +45,9 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
 
     //Pratik's Edit
     private AccessCreateAccounts accessCreateAccount;
+    private List<CreateAccount> accountList;
+    private ArrayAdapter<CreateAccount> createAccountArrayAdapter;
+    private int selectedAcccountPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,32 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flashy_registration);
         copyDatabaseToDevice();
         accessCreateAccount = new AccessCreateAccounts();
+
+        try {
+            accountList = new ArrayList<>();
+            accountList.addAll(accessCreateAccount.getAccounts());
+            createAccountArrayAdapter = new ArrayAdapter<CreateAccount>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, accountList)
+            {
+                @Override
+                public View getView(int position,  View convertView,  ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                    text1.setText(accountList.get(position).getUsername());
+                    text2.setText(accountList.get(position).getPassword());
+
+                    return view;
+                }
+            };
+
+            final ListView listView = (ListView)findViewById(R.id.profiles);
+
+        }catch (final Exception e){
+
+            //Messages.fatalError(this, e.getMessage());
+        }
 
         cancel = findViewById(R.id.cancelReg);
         final Button registration = findViewById(R.id.regButton);

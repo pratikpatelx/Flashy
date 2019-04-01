@@ -32,6 +32,16 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
 
 
     @Override
+    public List<CreateAccount> getAccountSequential() {
+        return null;
+    }
+
+    @Override
+    public List<CreateAccount> getAccountRandom(CreateAccount currentCreateAccount) {
+        return null;
+    }
+
+    @Override
     public CreateAccount insertAccount(CreateAccount currentCreateAccount)  {
         System.out.println("INSERT DB TEST");
         try (final Connection c = connection()) {
@@ -50,7 +60,7 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
     }
 
     @Override
-    public CreateAccount getAccountInformation() {
+    public List<CreateAccount> getAccountInformation() {
         final List<CreateAccount> accountInfos = new ArrayList<>();
 
         try(final Connection c  = connection()) {
@@ -64,7 +74,7 @@ public class CreateAccountPersistenceHSQLDB implements CreateAccountPersistence 
             rs.close();
             st.close();
 
-            return accountInfos.get(new Random().nextInt(accountInfos.size()));
+            return accountInfos;
 
         }catch (final SQLException e){
             throw new PersistenceException(e);

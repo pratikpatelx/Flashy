@@ -22,10 +22,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
 import comp3350.flashy.business.AccessCreateAccounts;
+import comp3350.flashy.domain.CreateAccount;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.hsqldb.PersistenceException;
 
@@ -33,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
     private Button giveAccess;
     private Button register;
     private Button deleteUser;
-    private String password;
+
     private int selectedPos;
-    private String username;
+
 
     //DB STUFF
     private AccessCreateAccounts accessCreateAccount;
+    private List<CreateAccount> accountList;
+    private ArrayAdapter<CreateAccount> createAccountArrayAdapter;
+    private int selectedAccountPosition = -1;
+    private TextView usernameTest;
 
 
     private ListView profiles;
@@ -59,38 +65,67 @@ public class MainActivity extends AppCompatActivity {
         accessCreateAccount = new AccessCreateAccounts();
 
         register = (Button) findViewById(R.id.addProfile);
-        password = ((EditText) findViewById(R.id.profilePass)).getText().toString();
+        //password = ((EditText) findViewById(R.id.profilePass)).getText().toString();
         giveAccess = (Button)findViewById(R.id.Enter);
         profiles = (ListView) findViewById(R.id.profiles);
-        username = ((TextView) findViewById(R.id.selectedUser)).getText().toString();
+        //username = ((TextView) findViewById(R.id.selectedUser)).getText().toString();
         deleteUser = (Button) findViewById(R.id.deleteProfile);
+        usernameTest = (TextView) findViewById(R.id.selectedUser);
 
+        //accessCreateAccount.getAccounts();
         pList = ui.getAllProfileNames();
 
         System.out.println("profiles: " + pList.toString());
 
-        profileArrayAdapter = new ArrayAdapter<String>(this, R.layout.profile_list_item, R.id.profileName, pList)
+
+        accountList = new ArrayList<>();
+        accountList.addAll(accessCreateAccount.getAccounts());
+        createAccountArrayAdapter = new ArrayAdapter<CreateAccount>(this, R.layout.profile_list_item, R.id.profileName, accountList)
         {
             @Override
-            public View getView(final int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                //username.setText(pList.get(position));
-
+                TextView text1 = (TextView) view.findViewById(R.id.profileName);
+                text1.setText(accountList.get(position).getUsername());
 
                 return view;
+
             }
+
         };
+        final ListView listView = (ListView) findViewById(R.id.profiles);
+        createAccountArrayAdapter.notifyDataSetChanged();
+        listView.setAdapter(createAccountArrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Button updateButton = (Button)findViewById(R.id.deleteProfile);
+                Button deleteButton = (Button)findViewById(R.id.addProfile);
 
+                if (position == selectedAccountPosition) {
+                    listView.setItemChecked(position, false);
+                    updateButton.setEnabled(false);
+                    deleteButton.setEnabled(false);
+                    selectedAccountPosition = -1;
+                } else {
+                    listView.setItemChecked(position, true);
+                    updateButton.setEnabled(true);
+                    deleteButton.setEnabled(true);
+                    selectedAccountPosition = position;
+                    selectCourseAtPosition(position);
+                }
+            }
+        });
 
-        profiles.setAdapter(profileArrayAdapter);
 
         profiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedPos = position;
-               // username.setText(pList.get(position));
-                //password.setText("");
+                usernameTest.setText(accountList.get(position).getUsername());
+
+
             }
         });
 
@@ -105,8 +140,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         giveAccess.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
+                 String username;
+                 String password;
+
+                updateData();
+                username =  ((TextView)findViewById(R.id.selectedUser)).getText().toString();
+                password = ((EditText) findViewById(R.id.profilePass)).getText().toString();
                 Context context = getApplicationContext();
                 CharSequence returnText;
                 int duration = Toast.LENGTH_LONG;
@@ -118,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast toast = Toast.makeText(context, returnText, duration);
                         toast.show();
+                        openDeckMenuActivity(v);
                     }
                     else{
                         returnText = "Incorrect username or password";
@@ -150,23 +191,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateData(){
+        accountList.clear();
+        accountList.addAll(accessCreateAccount.getAccounts());
+        createAccountArrayAdapter.notifyDataSetChanged();
         pList.clear();
         pList.addAll(ui.getAllProfileNames());
-        profileArrayAdapter.notifyDataSetChanged();
+//         profileArrayAdapter.notifyDataSetChanged();
        // password.setText("");
+    }
+
+
+    public void selectCourseAtPosition(int position) {
+        CreateAccount selected = createAccountArrayAdapter.getItem(position);
+
+        TextView editName = findViewById(R.id.profileName);
+
+        editName.setText(selected.getUsername());
     }
 
     public static uiHandler getHandler() {
 
         return ui;
     }
-    public void openDeckMenuActivity(String username, String password){
-        if(ui.Verified(username,password)) {
-            ui.setUsername(username);
-            Intent intent = new Intent(this, DeckMenuActivity.class);
-            startActivity(intent);
-        }else
-            Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
+    public void openDeckMenuActivity(View view){
+      Intent startDeckActivity = new Intent(this, DeckMenuActivity.class);
+      startActivity(startDeckActivity);
 
     }
     public void openRegistrationActivity(){
@@ -225,7 +274,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
-

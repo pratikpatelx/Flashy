@@ -1,28 +1,21 @@
 package comp3350.flashy.domain;
 
 public class CreateAccount {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
-    public CreateAccount(String username, String password){
-        this.username = username;
-        this.password = password;
+    public CreateAccount(String newUsername, String newPassword){
+        username = newUsername;
+        password = newPassword;
     }
 
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
 
     public String getUsername(){
-        return username;
+        return (username);
     }
 
     public String getPassword(){
-        return password;
+        return (password);
     }
 
     public boolean validateAccountInfo(){
