@@ -1,5 +1,6 @@
 package comp3350.flashy.presentation;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,11 +34,24 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                CharSequence returnText;
+                Context context = getApplicationContext();
+                returnText = "Please Enter Every Field in Username and Password";
+                int duration = Toast.LENGTH_LONG;
+
                 if(uiManager.registerUser(Username.getText().toString(),password.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_LONG).show();
+                    returnText = "Account Created Sucessfully";
+                    Toast toast = Toast.makeText(context, returnText, duration);
+                    toast.show();
                     finish();
-                }else
-                    Toast.makeText(getApplicationContext(),"Registration unsuccessful",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast toast = Toast.makeText(context, returnText, duration);
+                    toast.show();
+                }
+
+                Toast toast = Toast.makeText(context, returnText, duration);
+                toast.show();
 
 
             }
