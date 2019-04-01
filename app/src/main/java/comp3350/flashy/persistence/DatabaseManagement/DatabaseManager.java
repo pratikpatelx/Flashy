@@ -41,32 +41,32 @@ public class DatabaseManager {
     }
 
     private void createDefaultData() {
-//        storage.inputUser("Stub","TEST");
-//        ArrayList<String> answers = new ArrayList<>();
-//
-//        answers.add("test1");
-//        answers.add("test2");
-//        answers.add("test3");
-//        answers.add("test4");
-//
-//
-//        for (int i = 0; i < 3; i++) {
-//            String deckName = "DefaultDeck" + i;
-//            Deck tempDeck = new Deck(deckName);
-//            for (int j = 0; j < 5; j++) {
-//                tempDeck.addCard(new Flashcard(
-//                        deckName + "-" + j,
-//                        "DefaultCardQuestion" + j,
-//                        "DefaultCardAnswer" + j));
-//
-//
-//            }
-//
-//            tempDeck.addCard(new MultipleChoiceFlashcard("DefaultDeck"+i+"-5","the question",answers));
-//            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default"));
-//            System.out.println("DECKSTUB: "+ tempDeck);
-//            inputDeck("Stub" ,deckName, tempDeck);
-//        }
+        storage.inputUser("Stub","TEST");
+        ArrayList<String> answers = new ArrayList<>();
+
+        answers.add("test1");
+        answers.add("test2");
+        answers.add("test3");
+        answers.add("test4");
+
+
+        for (int i = 0; i < 3; i++) {
+            String deckName = "DefaultDeck" + i;
+            Deck tempDeck = new Deck(deckName);
+            for (int j = 0; j < 5; j++) {
+                tempDeck.addCard(new Flashcard(
+                        deckName + "-" + j,
+                        "DefaultCardQuestion" + j,
+                        "DefaultCardAnswer" + j));
+
+
+            }
+
+            tempDeck.addCard(new MultipleChoiceFlashcard("DefaultDeck"+i+"-5","the question",answers));
+            tempDeck.addCard(new FillInTheBlanksFlashcard("DefaultDeck"+i+"-6","Default Card Question","Default Card Answer lol stuff here for testingdfsf","Default"));
+            System.out.println("DECKSTUB: "+ tempDeck);
+            inputDeck("Stub" ,deckName, tempDeck);
+        }
     }
 
     /*
