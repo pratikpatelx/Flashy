@@ -41,44 +41,49 @@ public class CreateFlashCardTest {
         onView(withId(R.id.userPassword)).perform(typeText("test"));
         onView(withId(R.id.regButton)).perform(click());
 
+
         //log in
         onData(allOf(is(instanceOf(String.class)), is("test"))).inAdapterView(withId(R.id.profiles)).perform(click());
         onView(withId(R.id.profilePass)).perform(typeText("test"));
         onView(withId(R.id.Enter)).perform(click());
 
         //Create A new Deck
-        onView(withId(R.id.newDeck)).perform(click());
+        onView(withId(R.id.createDeck)).perform(click());
         onView(withId(R.id.deckTitle)).perform(typeText("System Testing"));
         onView(withId(R.id.Enter_Button)).perform(click());
 
+
+
+
         //Create A new Flash Card
         onView(withId(R.id.addCard)).perform(click());
+
+
         onView(withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("System Test"));
         onView(withText("Save")).perform(click());
         onView(withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is a system Test"));
+
         onView(withText("Save")).perform(click());
+
+
         onView(withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
         onView(withId(R.id.flashListItem)).check(matches(withText(containsString("System Test"))));
-        onView(withId(R.id.test)).perform(click());
+        //onView(withId(R.id.test)).perform(click());
 
         //verify deck has the card added to the deck
         onView(withId(R.id.exitFlashList)).perform(click());
-        onView(withId(R.id.deckList)).perform(click());
+        //onView(withId(R.id.deckList)).perform(click());
         onView(withId(R.id.deck_list_item)).check(matches(withText(containsString("System Testing"))));
-        onView(withId(R.id.deck_img)).perform(click());
+
+        //onView(withId(R.id.deck_img)).perform(click());
 
         //log out to main page
         onView(withId(R.id.Back)).perform(click());
-        onView(withId(R.id.logOut)).perform(click());
-
-
-
-
-
+        //onView(withId(R.id.logOut)).perform(click());
     }
 
 }
