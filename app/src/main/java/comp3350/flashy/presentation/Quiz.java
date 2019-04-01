@@ -188,8 +188,6 @@ public class Quiz extends AppCompatActivity {
                         break;
                     case 1: fitbAnswer.setVisibility(View.VISIBLE);
                         break;
-                    case 2:
-                        break;
 
                 }
 

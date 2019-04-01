@@ -7,15 +7,57 @@
     android:background="@color/colorLogInText"
     tools:context=".presentation.ShowAllDecksActivity">
 
+    <Button
+        android:id="@+id/startQuiz"
+        android:layout_width="139dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/btn_default"
+        android:backgroundTint="@color/btn_deck"
+        android:text="Quiz"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/selectedDeck"
+        app:layout_constraintTop_toBottomOf="@+id/showAllDeckList" />
+
+    <Button
+        android:id="@+id/createDeck"
+        android:layout_width="148dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/btn_default"
+        android:backgroundTint="@color/btn_deck"
+        android:text="@string/New_Deck"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/selectedDeck"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showAllDeckList" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="78dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/userDeck"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/username_icon" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:layout_marginStart="8dp"
 
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:foregroundGravity="center_horizontal"
         android:padding="0dp"
@@ -24,11 +66,11 @@
         app:borderWidth="0dp"
         app:fabCustomSize="@dimen/deck_fab"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-        app:layout_constraintEnd_toStartOf="@+id/deleteDeck"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.516"
+        app:layout_constraintVertical_bias="0.419"
         app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -48,19 +90,17 @@
         app:fabCustomSize="@dimen/deck_fab"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/Open"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toEndOf="@+id/Back"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.485"
         app:srcCompat="@drawable/ic_delete_forever_white_24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/Open"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginStart="328dp"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
 
-        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:foregroundGravity="center_horizontal"
         android:padding="0dp"
@@ -70,28 +110,16 @@
         app:fabCustomSize="@dimen/deck_fab"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.987"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:srcCompat="@drawable/ic_play_arrow_white_24dp" />
-
-
-    <Button
-        android:id="@+id/startQuiz"
-        android:layout_width="97dp"
-        android:layout_height="87dp"
-        android:text="Quiz"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.479" />
+        app:layout_constraintVertical_bias="0.452"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
+
 
     <TextView
         android:id="@+id/userDeck"
-        android:layout_width="502dp"
+        android:layout_width="wrap_content"
         android:layout_height="79dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
@@ -108,7 +136,7 @@
         android:layout_height="519dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="48dp"
-        android:background="@color/btn_deck"
+        android:background="@color/colorLogInText"
         android:clickable="false"
         android:drawSelectorOnTop="false"
         android:isScrollContainer="true"
@@ -121,16 +149,17 @@
 
     <TextView
         android:id="@+id/selectedDeck"
-        android:layout_width="245dp"
-        android:layout_height="88dp"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
         android:background="@color/flashcard_color"
         android:gravity="center"
         android:textColorLink="@color/flashcard_color"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showAllDeckList" />
 
@@ -139,15 +168,15 @@
         android:layout_width="548dp"
         android:layout_height="160dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/selectedDeck"
-        app:layout_constraintVertical_bias="0.551">
+        app:layout_constraintTop_toBottomOf="@+id/selectedDeck"
+        app:layout_constraintVertical_bias="0.523">
 
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

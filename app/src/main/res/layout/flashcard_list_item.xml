@@ -5,7 +5,6 @@
     android:id="@+id/profileItem"
     android:layout_width="match_parent"
     android:layout_height="100dip"
-    android:background="@color/btn_deck"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/vertical_deck_margin"
@@ -17,7 +16,7 @@
     <ImageView
         android:layout_width="76dp"
         android:layout_height="71dp"
-        android:src="@drawable/flashcard" />
+        android:src="@drawable/cardicon" />
 
     <TextView
         android:id="@+id/flashListItem"
@@ -29,7 +28,6 @@
         android:gravity="center_vertical"
         android:hapticFeedbackEnabled="false"
         android:text="Flash Card Name"
-        android:textColor="@color/colorAccent"
         android:textIsSelectable="false"
         android:textSize="36sp" />
 

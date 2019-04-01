@@ -5,12 +5,14 @@
     <color name="colorAccent">#000000</color>
     <color name="colorLogInText">#8147DA8B</color>
     <color name="colorGO">#C3E6D239</color>
-    <color name="btn_color">#F9AA33</color>
+    <color name="btn_color">#19AD27</color>
     <color name="btn_deck">#99168AD0</color>
     <color name="flashcard_color">#9EFF9E</color>
     <color name="wrongchoice">#FFA39E</color>
     <color name="defaultmcanswer">#9EC8FF</color>
     <color name="flashitemcolor">#C91FFF84</color>
     <color name="btndeckdarker">#DE168AD0</color>
+    <color name="newcolor">#9A46D689</color>
+    <color name="test">#77CE3A</color>
 </resources>
 
