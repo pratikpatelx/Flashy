@@ -3,6 +3,8 @@ package comp3350.flashy.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import comp3350.flashy.tests.domain.CardTest;
+import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.logic.ExampleTest;
 import comp3350.flashy.tests.logic.GetAllDecksTest;
 import comp3350.flashy.tests.logic.GetAllProfilesTest;
@@ -29,8 +31,8 @@ import comp3350.flashy.tests.logic.EditFlashcardTest;
         GetNamesTest.class,
         GetAllDecksTest.class,
         GetAllProfilesTest.class,
-
-
+        DeckTest.class,
+        CardTest.class,
 })
 
 public class AllTests {}
