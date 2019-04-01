@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -52,13 +53,6 @@ public class FlashCardListActivity extends AppCompatActivity {
                 flashCard.setText(items.get(position).getQuestion());
 
 
-                flashCard.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        openViewFlashCardActivity(items.get(position).getCardName());
-                    }
-                });
-
 
                 return view;
             }
@@ -66,6 +60,13 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         ListView listView = (ListView)findViewById(R.id.flashcardList);
         listView.setAdapter(fcArrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openViewFlashCardActivity(items.get(position).getCardName());
+            }
+        });
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override

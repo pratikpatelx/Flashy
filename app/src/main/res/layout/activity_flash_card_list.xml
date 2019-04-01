@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/test3"
+    android:background="@color/colorLogInText"
     tools:context=".presentation.FlashCardListActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -90,15 +90,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/editbox_background_normal"
+        android:background="@color/flashcard_color"
         android:text="@string/deck_title"
         android:textAlignment="center"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/flashcardList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/flashcardList"
@@ -110,13 +110,12 @@
         android:layout_marginBottom="8dp"
         android:animateLayoutChanges="true"
         android:animationCache="false"
-        android:backgroundTint="@android:color/background_light"
-        android:listSelector="@color/flashcard_color"
+        android:background="@color/btn_deck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:layout_constraintVertical_bias="0.2" />
 
 </android.support.constraint.ConstraintLayout>

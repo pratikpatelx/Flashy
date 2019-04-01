@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/test3"
-    android:backgroundTint="@color/test3"
+    android:background="@color/colorLogInText"
     tools:context=".presentation.ShowAllDecksActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -90,36 +89,46 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:layout_constraintVertical_bias="0.479" />
 
+    <TextView
+        android:id="@+id/userDeck"
+        android:layout_width="502dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/showAllDeckList"
-        android:layout_width="538dp"
-        android:layout_height="588dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="519dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
-        android:background="@color/test3"
-        android:backgroundTint="@color/test3"
+        android:background="@color/btn_deck"
         android:clickable="false"
         android:drawSelectorOnTop="false"
         android:isScrollContainer="true"
-        android:listSelector="@color/flashcard_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.256"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintTop_toBottomOf="@+id/userDeck"
+        app:layout_constraintVertical_bias="0.031" />
 
     <TextView
         android:id="@+id/selectedDeck"
         android:layout_width="245dp"
         android:layout_height="88dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:drawable/edit_text"
+        android:background="@color/flashcard_color"
         android:gravity="center"
+        android:textColorLink="@color/flashcard_color"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

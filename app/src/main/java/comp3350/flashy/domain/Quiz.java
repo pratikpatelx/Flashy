@@ -1,6 +1,6 @@
 package comp3350.flashy.domain;
 
-import comp3350.flashy.logic.CardPreper;
+import comp3350.flashy.logic.CardPrepper;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,14 +16,17 @@ public class Quiz {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(deck.getFlashcards());
         this.prepareCards();
-
+        this.shuffle();
     }
 
 
     private void prepareCards(){
         for(int i = 0; i < this.cards.size(); i++){
             if(cards.get(i).isFillInTheBlanksFlashcard()){
-                CardPreper.preareFitBcard(cards.get(i));
+                CardPrepper.prepareFitBcard(cards.get(i));
+            }
+            else if(cards.get(i).isMultipleChoiceFlashcard()){
+                CardPrepper.prepareMultipleChoiceFlashcard(cards.get(i));
             }
         }
     }
@@ -66,6 +69,23 @@ public class Quiz {
 
     public boolean isEmpty(){
         return this.cards.isEmpty();
+    }
+
+
+    private void shuffle(){
+        ArrayList<Flashcard> deck = this.cards;
+        ArrayList<Flashcard> mixed = new ArrayList<Flashcard>();
+        int num = deck.size();
+        Random rand = new Random();
+
+        Flashcard picked;
+
+        for(int i = 0; i < num; i++){
+            picked = deck.get(rand.nextInt(deck.size()));
+            deck.remove(picked);
+            mixed.add(picked);
+        }
+        this.cards = mixed;
     }
 
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLogInText"
     tools:context=".presentation.Quiz">
 
     <ImageView
@@ -11,12 +12,11 @@
         android:layout_width="443dp"
         android:layout_height="572dp"
         android:layout_marginTop="160dp"
-        android:background="@color/colorLogInText"
+        android:background="@color/btn_deck"
         android:contentDescription=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/white" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/hiddenText"
@@ -25,12 +25,85 @@
         android:gravity="center"
         android:text="Hidden"
         android:textSize="30sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
         app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
         app:layout_constraintTop_toTopOf="@+id/flashcardFrame"
         app:layout_constraintVertical_bias="0.533" />
+
+    <TextView
+        android:id="@+id/mcBody"
+        android:layout_width="396dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/flashcard_color"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
+        app:layout_constraintStart_toStartOf="@+id/flashcardFrame"
+        app:layout_constraintTop_toTopOf="@+id/flashcardFrame" />
+
+    <TextView
+        android:id="@+id/mcQ1"
+        android:layout_width="396dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/defaultmcanswer"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mcBody"
+        app:layout_constraintStart_toStartOf="@+id/mcBody"
+        app:layout_constraintTop_toBottomOf="@+id/mcBody" />
+
+    <TextView
+        android:id="@+id/mcQ2"
+        android:layout_width="396dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/defaultmcanswer"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mcQ1"
+        app:layout_constraintStart_toStartOf="@+id/mcQ1"
+        app:layout_constraintTop_toBottomOf="@+id/mcQ1" />
+
+    <TextView
+        android:id="@+id/mcQ3"
+        android:layout_width="396dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/defaultmcanswer"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mcQ2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/mcQ2"
+        app:layout_constraintTop_toBottomOf="@+id/mcQ2" />
+
+    <TextView
+        android:id="@+id/mcQ4"
+        android:layout_width="396dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/defaultmcanswer"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mcQ3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/mcQ3"
+        app:layout_constraintTop_toBottomOf="@+id/mcQ3" />
 
     <TextView
         android:id="@+id/fitbAnswer"
@@ -99,7 +172,7 @@
         android:text="@string/title"
         android:textSize="36sp"
         android:typeface="normal"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/flashcardFrame"

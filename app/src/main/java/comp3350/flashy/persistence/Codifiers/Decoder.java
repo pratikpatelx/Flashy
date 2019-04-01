@@ -56,9 +56,6 @@ public class Decoder {
                 result =decodeFillInTheBlanksFlashcard(cardName, question, tokenizedString);
                 break;
             case '2':
-                result = decodeTrueFalseFlashcard(cardName, question, tokenizedString);
-                break;
-            case '3':
                 result = decodeMultipleChoiceFlashcard(cardName, question, tokenizedString);
                 break;
         }
@@ -107,10 +104,9 @@ public class Decoder {
      */
     private Flashcard decodeFillInTheBlanksFlashcard(String cardName, String question, ArrayList<String> tokenizedString) {
         String decodedAnswer = tokenizedString.get(1);
-        String firstPart = tokenizedString.get(2);
-        String secondPart = tokenizedString.get(3);
 
-        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, firstPart, secondPart);
+
+        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, "", "");
     }
 
     /**

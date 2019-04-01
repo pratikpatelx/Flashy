@@ -9,12 +9,13 @@ import comp3350.flashy.persistence.DatabaseImplementation;
 import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
 
 public class LogicManager implements LogicManagerInterface {
+
     private DatabaseManager database;
     private UserHandler userHandler;
 
 
     public LogicManager(){
-        //this(new DatabaseManager(new DatabaseHSQLDB());
+        //this(new DatabaseManager(new DatabaseHSQLDB()); To be used when HSQLDB is fully functional
         this(new DatabaseManager(new DatabaseStub()));
     }
 
@@ -52,11 +53,9 @@ public class LogicManager implements LogicManagerInterface {
     @Override
     public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = database.getDeck(username, deckName);
-
-        if(currDeck == null){
+        if(currDeck == null) {
             currDeck = makeDeck(deckName);
         }
-
         currDeck.addCard(card);
         database.inputDeck(username, deckName, currDeck);
     }

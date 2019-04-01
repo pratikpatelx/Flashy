@@ -1,10 +1,11 @@
 package comp3350.flashy.logic;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import comp3350.flashy.domain.*;
 
-public class CardPreper {
+public class CardPrepper {
 
     private static final String BLANK = "_____";
     private static final int THRESHOLD = 5;
@@ -18,7 +19,7 @@ public class CardPreper {
      *
      * @param card the card to be prepared
      */
-    public static void preareFitBcard(Flashcard card){
+    public static void prepareFitBcard(Flashcard card){
         if(card.isFillInTheBlanksFlashcard()) {
             FillInTheBlanksFlashcard curr = (FillInTheBlanksFlashcard) card;
             String[] words = card.getAnswer().split("\\s+|,.!?;:\"");
@@ -77,11 +78,32 @@ public class CardPreper {
 
 
 
-//    public static void prepareMCcard(Flashcard card){
-//        MCcard mc;
-//        if(card.isMultipleChoiceFlashcard()){
-//
-//        }
-//    }
+    public static void prepareMultipleChoiceFlashcard(Flashcard card){
+        MultipleChoiceFlashcard mc;
+        if(card.isMultipleChoiceFlashcard()){
+            mc = (MultipleChoiceFlashcard) card;
+
+
+
+            ArrayList<String> choices = new ArrayList<>(mc.getAnswers());
+
+            mc.setAnswer(choices.get(0));
+
+            ArrayList<String> noobs = new ArrayList<String>();
+            int num = choices.size();
+            Random rand = new Random();
+
+            String picked;
+
+            for(int i = 0; i < num; i++){
+                picked = choices.get(rand.nextInt(choices.size()));
+                choices.remove(picked);
+                noobs.add(picked);
+            }
+
+            mc.setAnswers(noobs);
+
+        }
+    }
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.QuizManager;
 
@@ -24,19 +25,27 @@ public class uiHandler {
 
     public uiHandler() {
         logic = new LogicManager();
-
     }
 
-
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
-    public void saveCard(String head, String content) {
-        logic.putFlashcardInDeck(username,deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
-        deckSize= currDeck.getNumCards();
+    public void saveCard(String head, String content, int type) {
+        switch(type){
+            case 0: logic.putFlashcardInDeck(username, deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
+            break;
+            case 1: logic.putFlashcardInDeck(username, deckName,new FillInTheBlanksFlashcard((deckName +"-"+ deckSize), head, content," "," "));
+            break;
+        }
+        deckSize++;
+    }
+
+    public void saveMCCard(String question, ArrayList<String> answer) {
+        logic.putFlashcardInDeck(username,deckName, new MultipleChoiceFlashcard((deckName +"-"+ deckSize), question, answer));
+        deckSize++;
     }
 
     public void deleteCard(int index) {
         logic.removeCard(username,currDeck, (currDeck+"-"+index));
-        deckSize = currDeck.getNumCards();
+        deckSize--;
     }
 
     //this returns the the head and body of the flashcard
@@ -60,12 +69,35 @@ public class uiHandler {
         }
 
 
-
-
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
 
         return result;
+    }
+
+    public ArrayList<String> getMCContent(int index){
+        ArrayList<String> result = new ArrayList<>();
+
+
+        if(index != -1){
+            MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) currDeck.getCard(deckName + "-" + index);
+            result.add(card.getQuestion());
+            result.addAll(card.getAnswers());
+        }else {
+            MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) quiz.getNextCard();
+
+            result.add(card.getQuestion());
+            result.add(card.getAnswer());
+            result.addAll(card.getAnswers());
+        }
+
+        return result;
+    }
+
+    public int getFlashcardTypeByIndex(int index){
+        Flashcard curr = currDeck.getCard(deckName + "-" + index);
+
+        return Integer.parseInt(curr.getCardType());
     }
 
 
@@ -81,6 +113,16 @@ public class uiHandler {
         return index;
     }
 
+    public ArrayList<String> getMenuData(){
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add("Standard");
+        result.add("Fill in the blank");
+        result.add("Multiple choice");
+
+        return result;
+
+    }
 
     public int getDeckSize() {
         return deckSize;
@@ -115,12 +157,12 @@ public class uiHandler {
         username = name;
     }
 
-    public ArrayList<String> getNames(){
-        return logic.getNames(username);
+    public String getUsername(){
+        return username;
     }
 
-    public ArrayList<String> getAllProfileNames(){
-        return logic.getAllProfiles();
+    public ArrayList<String> getNames(){
+        return logic.getNames(username);
     }
 
     public ArrayList<Flashcard> getAllCards(){
@@ -139,6 +181,10 @@ public class uiHandler {
 
     public boolean Verified(String username, String password){
         return logic.verifyUserPassword(username,password);
+    }
+
+    public ArrayList<String> getAllProfileNames(){
+        return logic.getAllProfiles();
     }
 
     public void startQuiz() {
@@ -166,6 +212,10 @@ public class uiHandler {
 
     public int getCurrentType(){
         return quizCardType;
+    }
+
+    public int getNextCardType(){
+        return quiz.getNextCardType();
     }
 
 }
