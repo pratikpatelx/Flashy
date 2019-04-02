@@ -75,7 +75,7 @@ public class Decoder {
     private Flashcard decodeMultipleChoiceFlashcard(String cardName, String question, ArrayList<String> tokenizedString) {
         ArrayList<String> answerList = new ArrayList<>();
         for (int i = 1; i < tokenizedString.size(); i++) {
-            answerList.add(tokenizedString.get(i));
+            answerList.add(tokenizedString.get(i).substring(0,tokenizedString.get(i).length()-1));
         }
 
         return new MultipleChoiceFlashcard(cardName, question, answerList);

@@ -174,7 +174,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
                 for (int i = 0; i < deckList.size(); i++) {
                     Deck tempDeck = deckList.get(i);
-                    System.out.println(deckList.size());
                     if (deckName.equals(tempDeck.getName())) {
                         tempDeck.addCard(flashcard);
                         deckList.remove(i);
