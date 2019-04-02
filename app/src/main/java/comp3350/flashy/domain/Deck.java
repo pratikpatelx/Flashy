@@ -37,6 +37,10 @@ public class Deck {
             return cards;
     }
 
+    public void clearDeck(){
+        cards.clear();
+    }
+
     public void setDeck(Deck other) {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(other.getFlashcards());

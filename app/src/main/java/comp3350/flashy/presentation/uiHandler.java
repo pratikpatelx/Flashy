@@ -66,7 +66,7 @@ public class uiHandler {
 
             }
 
-            System.out.println("type: " + curr.getCardType() + "quizcardType" + quizCardType);
+
         }
 
 

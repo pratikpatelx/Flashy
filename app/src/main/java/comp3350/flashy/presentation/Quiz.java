@@ -252,7 +252,7 @@ public class Quiz extends AppCompatActivity {
             if(contentMC.get(1).equals(contentMC.get(i))){
                 num = i;
 
-                System.out.println("answer: "+ contentMC.get(i) + " index : " + i);
+
             }
         }
 

@@ -61,7 +61,7 @@ public class Encoder {
             answer = encodeFlashcard(flashcard);
         }
 
-        System.out.println("Encoding card:" + flashcard.getCardName() + ", encoded answer: " + answer);
+
 
         return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer);
     }
@@ -133,7 +133,7 @@ public class Encoder {
             result+=choices.get(i)+" " + delimiter;
         }
 
-        System.out.println(result);
+
 
         return result;
     }

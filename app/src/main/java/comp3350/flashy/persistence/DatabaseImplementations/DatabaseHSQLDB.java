@@ -29,7 +29,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "SA",
                     "");
         }finally{
-            System.out.println("failed to connnect");
+            System.out.println("failed to connect");
         }
 
         return result;
@@ -43,15 +43,14 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         try (final Connection connection = connection()) {
             ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
 
-            //its not deleting the old deck for some reason
+
             deleteDeck(username, identifier);
+            PreparedStatement statement = null;
 
             for (int i = 0; i < flashcardList.size(); i++) {
                 Flashcard flashcard = flashcardList.get(i);
 
-                System.out.println(flashcardList.size() + "inputDeck:" + identifier + " " + flashcard.getCardName() + " " + flashcard.getQuestion() + " " + flashcard.getAnswer() + " ");
-
-                PreparedStatement statement = connection.prepareStatement(
+                statement = connection.prepareStatement(
                         "INSERT INTO DECK (deckName, cardName, cardQuestion, cardAnswer)" +
                                 " values (?, ?, ?, ?);");
                 statement.setString(1, identifier);
@@ -60,19 +59,19 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 statement.setString(4, flashcard.getAnswer());
                 statement.executeUpdate();
 
-
-                // Update the decklist Table
-
-                statement = connection.prepareStatement(
-                        "INSERT INTO DECKLIST (username, deckName) values (?,?)");
-                statement.setString(1, username);
-                statement.setString(2, identifier);
-                statement.executeUpdate();
-
-                System.out.println("inputDeck DONE");
-                statement.close();
-
             }
+
+            // Update the decklist Table
+
+            statement = connection.prepareStatement(
+                    "INSERT INTO DECKLIST (username, deckName) values (?,?)");
+            statement.setString(1, username);
+            statement.setString(2, identifier);
+            statement.executeUpdate();
+
+            System.out.println("inputDeck DONE");
+
+            statement.close();
         } catch (SQLException e) {
             System.out.println("inputDeck Failed");
             e.printStackTrace(System.out);
@@ -106,6 +105,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
+                System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
             System.out.println("getDeck DONE");
@@ -179,7 +179,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                         tempDeck.addCard(flashcard);
                         deckList.remove(i);
                         deckList.add(tempDeck);
-                        System.out.println("deckName: " + deckName + " CardName: " + cardName);
                     }
                 }
             }
