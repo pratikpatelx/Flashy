@@ -29,7 +29,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "SA",
                     "");
         }finally{
-            System.out.println("failed to connect");
+            System.out.println("Failed to connnect");
         }
 
         return result;
@@ -38,40 +38,35 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-
-
         try (final Connection connection = connection()) {
-            ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
-
+            ArrayList<Flashcard> flashcardList = new ArrayList<>(inputDeck.getFlashcards());
 
             deleteDeck(username, identifier);
-            PreparedStatement statement = null;
 
             for (int i = 0; i < flashcardList.size(); i++) {
                 Flashcard flashcard = flashcardList.get(i);
 
-                statement = connection.prepareStatement(
-                        "INSERT INTO DECK (deckName, cardName, cardQuestion, cardAnswer)" +
-                                " values (?, ?, ?, ?);");
+                System.out.println(flashcardList.size() + "inputDeck:" + identifier + " " + flashcard.getCardName() + " " + flashcard.getQuestion() + " " + flashcard.getAnswer() + " ");
+
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO DECK (DECKNAME, CARDNAME, CARDQUESTION, CARDANSWER) " +
+                                "VALUES (?, ?, ?, ?);");
                 statement.setString(1, identifier);
                 statement.setString(2, flashcard.getCardName());
                 statement.setString(3, flashcard.getQuestion());
                 statement.setString(4, flashcard.getAnswer());
                 statement.executeUpdate();
 
+                // Update the decklist Table
+                statement = connection.prepareStatement(
+                        "INSERT INTO DECKLIST (USERNAME, DECKNAME) VALUES (?,?)");
+                statement.setString(1, username);
+                statement.setString(2, identifier);
+                statement.executeUpdate();
+
+                System.out.println("inputDeck DONE");
+                statement.close();
             }
-
-            // Update the decklist Table
-
-            statement = connection.prepareStatement(
-                    "INSERT INTO DECKLIST (username, deckName) values (?,?)");
-            statement.setString(1, username);
-            statement.setString(2, identifier);
-            statement.executeUpdate();
-
-            System.out.println("inputDeck DONE");
-
-            statement.close();
         } catch (SQLException e) {
             System.out.println("inputDeck Failed");
             e.printStackTrace(System.out);
@@ -90,9 +85,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             If a deck with the given name exists, get it from the database
              */
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT cardName, cardQuestion, cardAnswer FROM DECK JOIN DECKLIST ON DECK.deckName=DECKLIST.deckName " +
-                            "WHERE DECKLIST.username=? " +
-                            "AND DECKLIST.deckName=? ;" );
+                    "SELECT cardName, cardQuestion, cardAnswer FROM DECK join DECKLIST ON DECK.DECKNAME=DECKLIST.DECKNAME " +
+                            "WHERE DECKLIST.USERNAME=?;");
             statement.setString(1, username);
             statement.setString(2, identifier);
             ResultSet resultSet =  statement.executeQuery();
@@ -101,16 +95,13 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             result = new Deck(identifier);
             while (resultSet.next()) {
-                String cardName = resultSet.getString("cardName");
-                String cardQuestion = resultSet.getString("cardQuestion");
-                String cardAnswer = resultSet.getString("cardAnswer");
+                String cardName = resultSet.getString("CARDNAME");
+                String cardQuestion = resultSet.getString("CARDQUESTION");
+                String cardAnswer = resultSet.getString("CARDANSWER");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
             System.out.println("getDeck DONE");
-
-
 
             resultSet.close();
             statement.close();
@@ -125,16 +116,15 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     @Override
     public void deleteDeck(String username, String identifier){
         System.out.println("deleteDeck started");
-
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM DECKLIST WHERE username=? AND deckName=?;");
+                    "DELETE FROM DECKLIST WHERE USERNAME=? AND DECKNAME=?;");
             statement.setString(1, username);
             statement.setString(2, identifier);
             statement.executeUpdate();
 
             statement = connection.prepareStatement(
-                    "DELETE FROM DECK WHERE deckName=?;");
+                    "DELETE FROM DECK WHERE DECKNAME=?;");
             statement.setString(1, identifier);
             statement.executeUpdate();
             statement.close();
@@ -158,7 +148,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             ResultSet resultSet =  statement.executeQuery();
             Deck deck = null;
             while (resultSet.next()) {
-                deck = new Deck(resultSet.getString("deckName"));
+                deck = new Deck(resultSet.getString("DECKNAME"));
                 deckList.add(deck);
             }
 
@@ -166,10 +156,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             resultSet =  statement.executeQuery();
 
             while (resultSet.next()) {
-                String deckName = resultSet.getString("deckName");
-                String cardName = resultSet.getString("cardName");
-                String cardQuestion = resultSet.getString("cardQuestion");
-                String cardAnswer = resultSet.getString("cardAnswer");
+                String deckName = resultSet.getString("DECKNAME");
+                String cardName = resultSet.getString("CARDNAME");
+                String cardQuestion = resultSet.getString("CARDQUESTION");
+                String cardAnswer = resultSet.getString("CARDANSWER");
                 Flashcard flashcard = new Flashcard(cardName, cardQuestion, cardAnswer);
 
                 for (int i = 0; i < deckList.size(); i++) {
@@ -178,6 +168,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                         tempDeck.addCard(flashcard);
                         deckList.remove(i);
                         deckList.add(tempDeck);
+                        System.out.println("deckName: " + deckName + " CardName: " + cardName);
                     }
                 }
             }
@@ -200,7 +191,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO USERACCOUNTS (USERNAME, PASSWORD) values (?, ?);");
+                    "INSERT INTO USERACCOUNTS (USERNAME, PASSWORD) VALUES (?, ?);");
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
@@ -258,7 +249,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
     @Override
     public Collection<String> getUserCollection() {
         System.out.println("removeUser started");
-        Collection<String> test;
 
         ArrayList<String> usernames = new ArrayList<>();
 

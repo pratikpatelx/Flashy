@@ -47,15 +47,13 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_all_decks);
         this.getSupportActionBar().hide();
 
-
-
-        deck = (TextView) findViewById(R.id.selectedDeck);
+        deck = findViewById(R.id.selectedDeck);
         username = findViewById(R.id.userDeck);
-        newDeck = (Button) findViewById(R.id.createDeck);
-        listView = (ListView)findViewById(R.id.showAllDeckList);
-        openDeck = (FloatingActionButton) findViewById(R.id.Open);
-        delDeck = (FloatingActionButton) findViewById(R.id.deleteDeck);
-        Back = (FloatingActionButton) findViewById(R.id.Back);
+        newDeck = findViewById(R.id.createDeck);
+        listView = findViewById(R.id.showAllDeckList);
+        openDeck = findViewById(R.id.Open);
+        delDeck = findViewById(R.id.deleteDeck);
+        Back = findViewById(R.id.Back);
         quiz = findViewById(R.id.startQuiz);
 
         items = uiManager.getNames();
@@ -67,7 +65,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
 
                 View view = super.getView(position, convertView, parent);
-                final TextView deckItem = (TextView) view.findViewById(R.id.deck_list_item);
+                final TextView deckItem = view.findViewById(R.id.deck_list_item);
 
                 deckItem.setText(items.get(position));
 
