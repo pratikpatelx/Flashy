@@ -70,8 +70,6 @@ public class Deck {
             }
         }
     }
-
-
     /*
      * addCard()
      *
@@ -120,8 +118,6 @@ public class Deck {
     }
 
 
-
-
     /**
      * editCard()
      * This method will change the card with the same name as the parameter changed
@@ -132,6 +128,7 @@ public class Deck {
      *
      * @return returns weather or not the card was successfully edited;
      */
+
     public boolean editCard(Flashcard changed){
         boolean success = false;
         if(cards.size() >= 0){
@@ -157,13 +154,12 @@ public class Deck {
      * This function should be called when the user swipes right on the deck viewer
      * GUI
      *
-     */
     public void nextCard(){
         this.curr = (this.curr + 1)%this.cards.size();
     }
 
 
-    /*
+
      * prevCard()
      *
      * Parameters: None
@@ -173,7 +169,7 @@ public class Deck {
      *
      * This function should be called when the user swipes left on the deck viewer
      * GUI
-     */
+
     public void prevCard(){
         if(this.curr == 0){
             this.curr = this.cards.size()-1;
@@ -224,7 +220,6 @@ public class Deck {
         if(number >= 0 && number < this.cards.size()){
             pos = number;
         }
-
         return pos;
     }
 

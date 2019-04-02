@@ -5,7 +5,7 @@ import java.util.Random;
 
 import comp3350.flashy.domain.*;
 
-public class CardPreper {
+public class CardPrepper {
 
     private static final String BLANK = "_____";
     private static final int THRESHOLD = 5;

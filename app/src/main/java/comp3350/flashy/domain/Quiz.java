@@ -1,6 +1,6 @@
 package comp3350.flashy.domain;
 
-import comp3350.flashy.logic.CardPreper;
+import comp3350.flashy.logic.CardPrepper;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,10 +23,10 @@ public class Quiz {
     private void prepareCards(){
         for(int i = 0; i < this.cards.size(); i++){
             if(cards.get(i).isFillInTheBlanksFlashcard()){
-                CardPreper.prepareFitBcard(cards.get(i));
+                CardPrepper.prepareFitBcard(cards.get(i));
             }
             else if(cards.get(i).isMultipleChoiceFlashcard()){
-                CardPreper.prepareMultipleChoiceFlashcard(cards.get(i));
+                CardPrepper.prepareMultipleChoiceFlashcard(cards.get(i));
             }
         }
     }

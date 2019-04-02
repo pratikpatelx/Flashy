@@ -3,9 +3,9 @@ package comp3350.flashy.logic;
 import comp3350.flashy.domain.*;
 
 
-/**
- * This class serves as the sole connection between the presentation layer and the quiz being taken
- */
+
+ // This class serves as the sole connection between the presentation layer and the quiz being taken
+
 public class QuizManager {
 
     private String user;
