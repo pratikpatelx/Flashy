@@ -26,7 +26,7 @@ public class CardPrepper {
             int nWords = words.length;
             int count = 0;
             int longest = 0;
-            System.out.println("split gets this: "+words[0]);
+
 
             boolean met = false;//has the threshold been met
 
@@ -71,7 +71,7 @@ public class CardPrepper {
             String revision = curr.getAnswer().replace(curr.getFirstPart(), BLANK);
 
 
-            System.out.println("revision:"+revision+" firstpart:"+ curr.getFirstPart());
+
             curr.setAnswer(revision);
         }
     }

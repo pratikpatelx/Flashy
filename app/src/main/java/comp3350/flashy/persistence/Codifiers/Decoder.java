@@ -29,7 +29,7 @@ public class Decoder {
         if(deck!= null) {
             Deck result = new Deck(deck.getName());
             ArrayList<Flashcard> cardList = new ArrayList<Flashcard>(deck.getFlashcards());
-            System.out.println(cardList.toString());
+
             for (int i = 0; i < cardList.size(); i++) {
                 result.addCard(decodeCard(cardList.get(i)));
             }
@@ -60,7 +60,7 @@ public class Decoder {
                 break;
         }
 
-        System.out.println("Decoding card:" + flashcard.getCardName() + ", encoded result: " + result.toString());
+
 
         return result;
     }
@@ -133,7 +133,7 @@ public class Decoder {
         while (tokenizer.hasMoreElements()) {
             tokens.add(tokenizer.nextToken());
         }
-        System.out.println("tokens :" +tokens.toString());
+
         return tokens;
     }
 }

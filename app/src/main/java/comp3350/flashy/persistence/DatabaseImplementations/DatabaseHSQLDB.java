@@ -88,6 +88,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "SELECT cardName, cardQuestion, cardAnswer FROM DECK join DECKLIST ON DECK.DECKNAME=DECKLIST.DECKNAME " +
                             "WHERE DECKLIST.USERNAME=?;");
             statement.setString(1, username);
+            statement.setString(2, identifier);
             ResultSet resultSet =  statement.executeQuery();
 
             System.out.println("Got deck");
