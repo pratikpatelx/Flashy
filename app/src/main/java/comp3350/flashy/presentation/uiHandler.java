@@ -20,7 +20,7 @@ public class uiHandler {
 
     private Deck currDeck;
     private String deckName;
-    private int deckSize; // this is to hold max index
+    private static int deckSize = 0; // this is to hold max index
 
     //TODO add checks and error handling.
 
@@ -32,11 +32,11 @@ public class uiHandler {
     public void saveCard(String head, String content, int type) {
         switch(type){
             case 0: logic.putFlashcardInDeck(username, deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
+            //deckSize++;
             break;
             case 1: logic.putFlashcardInDeck(username, deckName,new FillInTheBlanksFlashcard((deckName +"-"+ deckSize), head, content," "));
             break;
         }
-        deckSize++;
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
