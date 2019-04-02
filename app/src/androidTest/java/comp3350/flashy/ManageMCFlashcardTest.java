@@ -58,17 +58,16 @@ public class ManageMCFlashcardTest {
         onView(withText("Multiple choice")).perform(click());
 
         //create flashcard
-
         onView(ViewMatchers.withId(R.id.wrongMC3)).perform(typeText("Wrongest answer"));
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
         onView(ViewMatchers.withId(R.id.correctMC)).perform(typeText("Correct answer"));
-        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("This is a question"));
+        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("Question 1"));
         Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
-        onView(withText("This is a question")).check(matches(withText(containsString("This is a question"))));
+        onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
 
 
 
@@ -81,12 +80,12 @@ public class ManageMCFlashcardTest {
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
         onView(ViewMatchers.withId(R.id.correctMC)).perform(typeText("Correct answer"));
-        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("This is another question"));
+        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("Question 2"));
         Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
-        onView(withText("This is another question")).check(matches(withText(containsString("This is another question"))));
+        onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
 
 
 
@@ -99,12 +98,12 @@ public class ManageMCFlashcardTest {
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
         onView(ViewMatchers.withId(R.id.correctMC)).perform(typeText("Correct answer"));
-        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("This is the last question"));
+        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("Question 3"));
         Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withText("This is the last question")).check(matches(withText(containsString("This is the last question"))));
+        onView(withText("Question 3")).check(matches(withText(containsString("Question 3"))));
 
 
 
@@ -117,29 +116,29 @@ public class ManageMCFlashcardTest {
         //edit flashcard (the last flashcard)
         onView(ViewMatchers.withId(R.id.modButton)).perform(click());
 
-        onView(ViewMatchers.withId(R.id.wrongMC3)).perform(replaceText("1 Wrongest answer"));
-        onView(ViewMatchers.withId(R.id.wrongMC2)).perform(replaceText("2 Wronger answer"));
-        onView(ViewMatchers.withId(R.id.wrongMC1)).perform(replaceText("3 Wrong answer"));
-        onView(ViewMatchers.withId(R.id.correctMC)).perform(replaceText("4 Correct answer"));
-        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(replaceText("This is an edited question"));
+        onView(ViewMatchers.withId(R.id.wrongMC3)).perform(replaceText("Wrongest answer!"));
+        onView(ViewMatchers.withId(R.id.wrongMC2)).perform(replaceText("Wronger answer!"));
+        onView(ViewMatchers.withId(R.id.wrongMC1)).perform(replaceText("Wrong answer!"));
+        onView(ViewMatchers.withId(R.id.correctMC)).perform(replaceText("Correct answer!"));
+        onView(ViewMatchers.withId(R.id.mcQuestion)).perform(replaceText("Edited question"));
         Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been re added
-        onView(withText("This is an edited question")).check(matches(withText(containsString("This is an edited question"))));
+        onView(withText("Edited question")).check(matches(withText(containsString("Edited question"))));
 
 
 
         //delete flashcard
-        onView(withText("This is a question")).perform(click());
+        onView(withText("Question 1")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
         //delete flashcard
-        onView(withText("This is another question")).perform(click());
+        onView(withText("Question 2")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
         //delete flashcard
-        onView(withText("This is an edited question")).perform(click());
+        onView(withText("Edited question")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
 

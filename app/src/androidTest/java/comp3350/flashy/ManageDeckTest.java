@@ -1,5 +1,6 @@
 package comp3350.flashy;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.matcher.ViewMatchers;import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -31,7 +32,8 @@ public class ManageDeckTest {
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void createDeck() {
+    public void manageDeck() {
+
         //add user
         onView(ViewMatchers.withId(R.id.addProfile)).perform(click());
         onView(ViewMatchers.withId(R.id.Username)).perform(typeText("user123"));
@@ -50,8 +52,7 @@ public class ManageDeckTest {
         onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
 
         //verify if deck has been added to deck list
-        onView(ViewMatchers.withId(R.id.deck_list_item)).check(matches(withText(containsString("test deck 1"))));
-
+        onView(withText("test deck 1")).check(matches(withText(containsString("test deck 1"))));
 
         //create deck
         onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
@@ -67,23 +68,28 @@ public class ManageDeckTest {
         onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 3"));
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
-        //create default flashcard
+
+        //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
-        //question
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+
+        //create default flashcard
         onView(ViewMatchers.withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("This is a question"));
+        onView(withText("Title")).perform(replaceText("Question 1"));
         onView(withText("Save")).perform(click());
-        //answer
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
-        //verify flash card has been added to the flash card list
-        onView(ViewMatchers.withId(R.id.flashListItem)).check(matches(withText(containsString("This is a question"))));
+        //verify flashcard has been added
+        onView(ViewMatchers.withId(R.id.flashListItem)).check(matches(withText(containsString("Question 1"))));
 
         //delete flashcard
-        onView(withText("This is a question")).perform(click());
+        onView(withText("Question 1")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
         //go back
@@ -106,6 +112,10 @@ public class ManageDeckTest {
 
         //exit
         onView(ViewMatchers.withId(R.id.Back)).perform(click());
+
+        //delete profile
+        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
+        onView(ViewMatchers.withId(R.id.deleteProfile)).perform(click());
     }
 
 }
