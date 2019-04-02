@@ -160,11 +160,9 @@ public class CreateFlashCardActivity extends AppCompatActivity {
                 if (bodySelected) {
                     textViewFlashBody.setText(toShow.getText());
                     body = toShow.getText().toString();
-                    System.out.println(body + " body recieved");
                 } else {
                     textViewFlashTitle.setText(toShow.getText());
                     title = toShow.getText().toString();
-                    System.out.println(title + " title recieved");
                 }
             }
         });
@@ -176,7 +174,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userInput.setTitle("Enter Flashcard body");
                 bodySelected = true;
-                System.out.println("body pressed");
                 toShow.setText(textViewFlashBody.getText());
                 userInput.show();
             }
@@ -187,7 +184,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userInput.setTitle("Enter Flashcard Title");
                 bodySelected = false;
-                System.out.println("title pressed");
                 toShow.setText(textViewFlashTitle.getText());
                 userInput.show();
             }
@@ -196,8 +192,6 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(title + " :: title saved");
-                System.out.println(body + " :: body saved");
 
                 if(type == 2){
                     uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLogInText"
+    android:background="@android:color/background_light"
     tools:context=".presentation.FlashyRegistrationActivity">
 
     <Button
@@ -13,7 +13,9 @@
         android:layout_height="101dp"
         android:layout_marginBottom="256dp"
         android:background="@android:drawable/btn_default_small"
+        android:backgroundTint="@color/test"
         android:text="@string/cancel"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +28,9 @@
         android:layout_height="101dp"
         android:layout_marginBottom="256dp"
         android:background="@android:drawable/btn_default_small"
+        android:backgroundTint="@color/test"
         android:text="@string/register"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +71,11 @@
         android:layout_marginTop="32dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
+        android:hint="Passwoord"
         android:importantForAutofill="no"
         android:inputType="textPassword"
+        android:textColor="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPass" />
@@ -80,8 +87,11 @@
         android:layout_marginTop="20dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
+        android:hint="Username"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUser" />

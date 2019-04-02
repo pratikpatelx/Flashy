@@ -23,7 +23,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     public DatabaseHSQLDB(String dbPath) {
         this.dbPath = dbPath;
-        System.out.println(dbPath);
     }
 
     /**
@@ -33,7 +32,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      * @throws SQLException
      */
     private Connection connection() throws SQLException {
-        System.out.println("Connection called");
         Connection result;
         try {
             result = DriverManager.getConnection(
@@ -56,7 +54,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        System.out.println("Started inputDeck");
         try (final Connection connection = connection()) {
             ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
 
@@ -87,7 +84,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             statement.close();
 
-            System.out.println("inputDeck DONE");
         } catch (SQLException e) {
             System.out.println("inputDeck Failed");
             e.printStackTrace(System.out);
@@ -103,7 +99,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public Deck getDeck(String username, String identifier) {
-        System.out.println("getDeck started");
 
         Deck result = null;
 
@@ -126,13 +121,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
                 result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
-                System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
+               // System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
             resultSet.close();
             statement.close();
-
-            System.out.println("getDeck DONE");
         } catch (SQLException e) {
             System.out.println("getDeck Failed");
             e.printStackTrace(System.out);
@@ -149,8 +142,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public void deleteDeck(String username, String identifier) {
-        System.out.println("deleteDeck started");
-
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "DELETE FROM DECKLIST WHERE username=? AND deckName=?;");
@@ -164,7 +155,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.executeUpdate();
             statement.close();
 
-            System.out.println("deleteDeck DONE");
         } catch (SQLException e) {
             System.out.println("deleteDeck Failed");
         }
@@ -178,7 +168,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public Collection getDeckCollection(String username) {
-        System.out.println("getDeckCollection started");
 
         Collection result = null;
         ArrayList<Deck> deckList = new ArrayList();
@@ -218,7 +207,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             resultSet.close();
             statement.close();
 
-            System.out.println("getDeckCollection DONE");
         } catch (SQLException e) {
             System.out.println("getDeckCollection Failed");
             e.printStackTrace();
@@ -237,7 +225,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public void inputUser(String username, String password) {
-        System.out.println("inputUser started");
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
@@ -248,7 +235,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             statement.close();
 
-            System.out.println("inputUser DONE");
         } catch (SQLException e) {
             System.out.println("inputUser Failed");
             e.printStackTrace();
@@ -263,7 +249,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public String getUserPassword(String username) {
-        System.out.println("getUserPassword started");
 
         String result = null;
         try (final Connection connection = connection()) {
@@ -276,7 +261,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             }
             statement.close();
 
-            System.out.println("getUserPassword DONE");
         } catch (SQLException e) {
             System.out.println("getUserPassword Failed");
             e.printStackTrace();
@@ -291,7 +275,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public void removeUser(String username) {
-        System.out.println("removeUser started");
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
@@ -306,7 +289,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             statement.close();
 
-            System.out.println("removeUser DONE");
         } catch (SQLException e) {
             System.out.println("removeUser Failed");
             e.printStackTrace();
@@ -320,7 +302,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
      */
     @Override
     public Collection<String> getUserCollection() {
-        System.out.println("removeUser started");
 
         ArrayList<String> usernames = new ArrayList<>();
 
@@ -335,8 +316,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             results.close();
             statement.close();
-
-            System.out.println("getUserCollection DONE");
         } catch (SQLException e) {
             System.out.println("getUserCollection Failed");
             e.printStackTrace();

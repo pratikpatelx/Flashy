@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static uiHandler ui;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,8 +106,14 @@ public class MainActivity extends AppCompatActivity {
         deleteUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CharSequence returnText;
+                Context context = getApplicationContext();
+                CharSequence showText = "User " +username.getText() + "has been deleted";
+                int duration = Toast.LENGTH_LONG;
                 //remove user
                 ui.deleteUser(pList.get(selectedPos));
+                Toast toast = Toast.makeText(context, showText, duration);
+                toast.show();
                 updateData();
             }
         });

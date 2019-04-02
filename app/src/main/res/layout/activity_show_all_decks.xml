@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLogInText"
+    android:background="@android:color/background_light"
     tools:context=".presentation.ShowAllDecksActivity">
 
     <Button
         android:id="@+id/startQuiz"
         android:layout_width="139dp"
-        android:layout_height="77dp"
+        android:layout_height="78dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/btn_default"
-        android:backgroundTint="@color/btn_deck"
+        android:backgroundTint="@color/test"
         android:text="Quiz"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
@@ -32,7 +32,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/btn_default"
-        android:backgroundTint="@color/btn_deck"
+        android:backgroundTint="@color/test"
         android:text="@string/New_Deck"
         android:textColor="@android:color/white"
         android:textSize="24sp"
@@ -71,7 +71,7 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:layout_constraintVertical_bias="0.419"
-        app:srcCompat="@android:drawable/ic_lock_power_off" />
+        app:srcCompat="@drawable/ic_power_settings_new_white_24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/deleteDeck"
@@ -136,7 +136,7 @@
         android:layout_height="519dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="48dp"
-        android:background="@color/colorLogInText"
+        android:background="@android:color/background_light"
         android:clickable="false"
         android:drawSelectorOnTop="false"
         android:isScrollContainer="true"
@@ -150,16 +150,16 @@
     <TextView
         android:id="@+id/selectedDeck"
         android:layout_width="221dp"
-        android:layout_height="wrap_content"
+        android:layout_height="61dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/flashcard_color"
+        android:background="@android:drawable/editbox_background_normal"
         android:gravity="center"
-        android:textColorLink="@color/flashcard_color"
+        android:textColorLink="@color/colorAccent"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showAllDeckList" />
 

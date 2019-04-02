@@ -7,7 +7,9 @@
     <color name="colorGO">#C3E6D239</color>
     <color name="btn_deck">#99168AD0</color>
     <color name="flashcard_color">#9EFF9E</color>
-    <color name="wrongchoice">#FFA39E</color>
+    <color name="wrongchoice">#FF5252</color>
     <color name="defaultmcanswer">#9EC8FF</color>
+    <color name="Test">#292961</color>
+    <color name="test">#1DA1F2</color>
 </resources>
 

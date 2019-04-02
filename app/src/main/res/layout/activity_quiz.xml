@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLogInText"
+    android:background="@android:color/background_light"
     tools:context=".presentation.Quiz">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="443dp"
         android:layout_height="572dp"
         android:layout_marginTop="160dp"
-        android:background="@color/btn_deck"
+        android:background="@color/test"
         android:contentDescription=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
         android:layout_height="158dp"
         android:gravity="center"
         android:text="Hidden"
+        android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/flashcardFrame"
@@ -212,7 +213,7 @@
         app:fabCustomSize="@dimen/fab_test"
         app:layout_constraintEnd_toEndOf="@+id/flashcardFrame"
         app:layout_constraintTop_toBottomOf="@+id/flashcardFrame"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+        app:srcCompat="@drawable/ic_check_black_24dp" />
 
     <Button
         android:id="@+id/revealAnswer"
@@ -222,7 +223,9 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/alert_light_frame"
+        android:backgroundTint="@color/test"
         android:text="Reveal"
+        android:textColor="@android:color/background_light"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/successButton"
         app:layout_constraintStart_toEndOf="@+id/failButton"
