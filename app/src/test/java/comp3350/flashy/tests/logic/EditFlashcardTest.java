@@ -30,7 +30,7 @@ public class EditFlashcardTest {
     public void setUp() {
         testDB = mock(DatabaseManager.class);
         testDeck = mock(Deck.class);
-        testLGC = spy(new LogicManager(testDB));
+        testLGC = spy(new LogicManager());
         testCard = new Flashcard("name", "newQ", "newA");
 
     }

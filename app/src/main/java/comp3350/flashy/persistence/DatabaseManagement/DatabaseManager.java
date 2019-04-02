@@ -41,8 +41,8 @@ public class DatabaseManager {
     }
 
     private void createDefaultData() {
-    }
-        /*storage.inputUser("Stub","TEST");
+
+        storage.inputUser("Stub","TEST");
         ArrayList<String> answers = new ArrayList<>();
 
         answers.add("test1");
@@ -68,7 +68,7 @@ public class DatabaseManager {
             System.out.println("DECKSTUB: "+ tempDeck);
             inputDeck("Stub" ,deckName, tempDeck);
         }
-    }*/
+    }
 
     /*
     User Methods

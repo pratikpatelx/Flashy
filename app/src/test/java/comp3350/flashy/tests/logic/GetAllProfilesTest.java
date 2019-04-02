@@ -28,7 +28,7 @@ public class GetAllProfilesTest {
     @Before
     public void setUp() {
         testDB = mock(DatabaseManager.class);
-        testLGC = spy(new LogicManager(testDB));
+        testLGC = spy(new LogicManager());
         testColl = new ArrayList<String>() {
             {
                 add("1");

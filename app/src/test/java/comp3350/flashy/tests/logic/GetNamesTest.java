@@ -27,7 +27,7 @@ public class GetNamesTest {
     @Before
     public void setUp() {
         testDB = mock(DatabaseManager.class);
-        testLGC = new LogicManager(testDB);
+        testLGC = new LogicManager();
         testColl = new ArrayList<>();
         testColl.add(new DeckStub("1"));
         testColl.add(new DeckStub("2"));

@@ -43,6 +43,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         try (final Connection connection = connection()) {
             ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
 
+            //its not deleting the old deck for some reason
             deleteDeck(username, identifier);
 
             for (int i = 0; i < flashcardList.size(); i++) {
@@ -108,6 +109,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             }
 
             System.out.println("getDeck DONE");
+
+
 
             resultSet.close();
             statement.close();

@@ -16,7 +16,7 @@ public class FillInTheBlanksFlashcardTest {
 
     @Before
     public void setUp(){
-        card = new FillInTheBlanksFlashcard("fakeDeck-0","q1","a1","p1","p2");
+        card = new FillInTheBlanksFlashcard("fakeDeck-0","q1","a1","p1");
 
     }
 
@@ -25,7 +25,7 @@ public class FillInTheBlanksFlashcardTest {
 
         System.out.println("Running Fill In The Blanks Flashcard object test");
         assertTrue(card.getFirstPart().equals("p1"));
-        assertTrue(card.getLastPart().equals("p2"));
+
         assertTrue(card.getCardType().equals("1"));
         assertTrue(card.isFillInTheBlanksFlashcard());
 

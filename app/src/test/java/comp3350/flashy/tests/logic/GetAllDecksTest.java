@@ -28,7 +28,7 @@ public class GetAllDecksTest {
     @Before
     public void setUp() {
         testDB = mock(DatabaseManager.class);
-        testLGC = new LogicManager(testDB);
+        testLGC = new LogicManager();
         testDeck = new DeckStub();
         testColl = new ArrayList<>();
         testColl.add(testDeck);
