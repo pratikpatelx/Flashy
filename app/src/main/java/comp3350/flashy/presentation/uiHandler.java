@@ -126,6 +126,8 @@ public class uiHandler {
     }
 
     public int getDeckSize() {
+        deckSize = logic.queryDeckSize(username,currDeck.getName());
+
         return deckSize;
     }
 
