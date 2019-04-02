@@ -12,7 +12,3 @@ SET FILES SCALE 32
 SET SCHEMA PUBLIC
 INSERT INTO USERACCOUNTS VALUES ('STUB', 'TEST')
 INSERT INTO USERACCOUNTS VALUES ('ADMIN', 'flashy')
-INSERT INTO DECK VALUES ('adminDeck', 'adminDeckName', 'adminDeckQuestion', 'adminDeckAnswer')
-INSERT INTO DECK VALUES ('adminDeck', 'adminDeckName2', 'adminDeckQuestion2', 'adminDeckAnswer2')
-INSERT INTO DECK VALUES ('adminDeck', 'adminDeckName3', 'adminDeckQuestion3', 'adminDeckAnswer3')
-INSERT INTO DECKLIST VALUES ('ADMIN', 'adminDeck')

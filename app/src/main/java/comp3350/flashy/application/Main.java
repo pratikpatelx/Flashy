@@ -1,7 +1,7 @@
 package comp3350.flashy.application;
 
 public class Main {
-    private static String dbName = "SC";
+    private static String dbName = "FlashyDB";
 
     public static void setDBPathName(final String name) {
         try {

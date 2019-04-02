@@ -3,7 +3,6 @@ package comp3350.flashy.persistence.DatabaseImplementations;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
@@ -13,13 +12,22 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     private final String dbPath;
 
+    /**
+     * Constructor
+     *
+     * @param dbPath
+     */
     public DatabaseHSQLDB(String dbPath) {
-
         this.dbPath = dbPath;
         System.out.println(dbPath);
-        //createTables();
     }
 
+    /**
+     * get a connection to the DB
+     *
+     * @return
+     * @throws SQLException
+     */
     private Connection connection() throws SQLException {
         System.out.println("Connection called");
         Connection result;
@@ -35,14 +43,17 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
-
+    /**
+     * put a deck into the DB, overwrite if a duplicate exists
+     * @param username
+     * @param identifier
+     * @param inputDeck
+     */
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-
-
+        System.out.println("Started inputDeck");
         try (final Connection connection = connection()) {
             ArrayList<Flashcard> flashcardList = new ArrayList<Flashcard>(inputDeck.getFlashcards());
-
 
             deleteDeck(username, identifier);
             PreparedStatement statement = null;
@@ -69,15 +80,21 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(2, identifier);
             statement.executeUpdate();
 
-            System.out.println("inputDeck DONE");
-
             statement.close();
+
+            System.out.println("inputDeck DONE");
         } catch (SQLException e) {
             System.out.println("inputDeck Failed");
             e.printStackTrace(System.out);
         }
     }
 
+    /**
+     * get a deck from the DB
+     * @param username
+     * @param identifier
+     * @return
+     */
     @Override
     public Deck getDeck(String username, String identifier) {
         System.out.println("getDeck started");
@@ -97,8 +114,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(2, identifier);
             ResultSet resultSet =  statement.executeQuery();
 
-            System.out.println("Got deck");
-
             result = new Deck(identifier);
             while (resultSet.next()) {
                 String cardName = resultSet.getString("cardName");
@@ -108,12 +123,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
-            System.out.println("getDeck DONE");
-
-
-
             resultSet.close();
             statement.close();
+
+            System.out.println("getDeck DONE");
         } catch (SQLException e) {
             System.out.println("getDeck Failed");
             e.printStackTrace(System.out);
@@ -122,6 +135,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
+    /**
+     * delete the specified deck from the DB if it exists
+     * @param username
+     * @param identifier
+     */
     @Override
     public void deleteDeck(String username, String identifier){
         System.out.println("deleteDeck started");
@@ -138,11 +156,18 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.setString(1, identifier);
             statement.executeUpdate();
             statement.close();
-        } catch (SQLException  e) {
-            System.out.println("Delete Failed");
+
+            System.out.println("deleteDeck DONE");
+        } catch (SQLException e) {
+            System.out.println("deleteDeck Failed");
         }
     }
 
+    /**
+     * get a collection of all the decks currently in the DB
+     * @param username
+     * @return
+     */
     @Override
     public Collection getDeckCollection(String username) {
         System.out.println("getDeckCollection started");
@@ -184,6 +209,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
             resultSet.close();
             statement.close();
+
+            System.out.println("getDeckCollection DONE");
         } catch (SQLException e) {
             System.out.println("getDeckCollection Failed");
             e.printStackTrace();
@@ -194,6 +221,11 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
+    /**
+     * add a user to the DB
+     * @param username
+     * @param password
+     */
     @Override
     public void inputUser(String username, String password) {
         System.out.println("inputUser started");
@@ -206,12 +238,19 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.executeUpdate();
 
             statement.close();
+
+            System.out.println("inputUser DONE");
         } catch (SQLException e) {
             System.out.println("inputUser Failed");
             e.printStackTrace();
         }
     }
 
+    /**
+     * get a users password
+     * @param username
+     * @return
+     */
     @Override
     public String getUserPassword(String username) {
         System.out.println("getUserPassword started");
@@ -226,6 +265,8 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 result = resultSet.getString("PASSWORD");
             }
             statement.close();
+
+            System.out.println("getUserPassword DONE");
         } catch (SQLException e) {
             System.out.println("getUserPassword Failed");
             e.printStackTrace();
@@ -233,6 +274,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
         return result;
     }
 
+    /**
+     * remove a user from the DB
+     * @param username
+     */
     @Override
     public void removeUser(String username) {
         System.out.println("removeUser started");
@@ -249,16 +294,21 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.executeUpdate();
 
             statement.close();
+
+            System.out.println("removeUser DONE");
         } catch (SQLException e){
             System.out.println("removeUser Failed");
             e.printStackTrace();
         }
     }
 
+    /**
+     * get a collection of the users in the DB
+     * @return
+     */
     @Override
     public Collection<String> getUserCollection() {
         System.out.println("removeUser started");
-        Collection<String> test;
 
         ArrayList<String> usernames = new ArrayList<>();
 
@@ -274,48 +324,13 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             results.close();
             statement.close();
 
-        } catch (SQLException e){
-            System.out.println("get all users failed Failed");
+            System.out.println("getUserCollection DONE");
+        } catch (SQLException e) {
+            System.out.println("getUserCollection Failed");
             e.printStackTrace();
         }
 
         return usernames;
 
-    }
-
-    private void createTables() {
-        System.out.println("createTables started");
-
-        try (final Connection connection = connection()) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "create table if not exists userlist (" +
-                            "USERNAME varChar(60) not null unique" +
-                            "PASSWORD varChar(60))not null;");
-            statement.execute();
-
-            System.out.println("userlist Created");
-
-            statement = connection.prepareStatement(
-                    "create table if not exists DECKLIST (" +
-                            "USERNAME varChar(60)" +
-                            "deckName varChar(60));");
-            statement.execute();
-
-            System.out.println("DECKLIST Created");
-
-            statement = connection.prepareStatement(
-                    "create table if not exists deck ("
-                            + "deckName varChar(60), "
-                            + "cardName varChar(60), "
-                            + "cardQuestion varChar(60), "
-                            + "cardAnswer varChar(255));");
-            statement.execute();
-
-            System.out.println("deck Created");
-            statement.close();
-
-        } catch (SQLException e) {
-            System.out.println("Failed to create tables");
-        }
     }
 }

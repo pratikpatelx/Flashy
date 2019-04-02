@@ -1,22 +1,15 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,8 +17,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-
-import static comp3350.flashy.R.color.wrongchoice;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
