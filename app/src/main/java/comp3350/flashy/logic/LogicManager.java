@@ -17,8 +17,8 @@ public class LogicManager implements LogicManagerInterface {
 
 
     public LogicManager(){
-        //database = new DatabaseManager(Services.getFlashyPersistence());
-        database = new DatabaseManager(new DatabaseStub());
+        database = new DatabaseManager(Services.getFlashyPersistence());
+        //database = new DatabaseManager(new DatabaseStub());
         userHandler = new UserHandler(database);
 
     }
