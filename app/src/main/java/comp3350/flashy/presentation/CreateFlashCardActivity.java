@@ -45,12 +45,13 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
     ArrayList<String> mcContent;
 
-    private uiHandler uiManager = MainActivity.getHandler();
+    private uiHandler uiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flash_card);
+        uiManager = MainActivity.getHandler();
 
         mcCorrect = findViewById(R.id.correctMC);
         mcWrong1 = findViewById(R.id.wrongMC1);

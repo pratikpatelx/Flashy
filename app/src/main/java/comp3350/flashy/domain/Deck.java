@@ -21,15 +21,15 @@ public class Deck {
 
     public Deck(String name){
         this.name = name;
-        this.cards = new ArrayList();
-        this.curr = -1;
+        cards = new ArrayList();
+        curr = 0;
     }
 
     public Deck(String name, Deck other) {
         this.name = name;
-        this.cards = new ArrayList<Flashcard>();
-        this.cards.addAll(other.getFlashcards());
-        this.validateNames();
+        cards = new ArrayList<>();
+        cards.addAll(other.getFlashcards());
+        validateNames();
     }
 
 
@@ -85,8 +85,8 @@ public class Deck {
      */
     public void addCard(Flashcard noob){
 
-        this.cards.add(noob);
-        this.curr++;
+        cards.add(noob);
+        curr++;
     }
 
 
