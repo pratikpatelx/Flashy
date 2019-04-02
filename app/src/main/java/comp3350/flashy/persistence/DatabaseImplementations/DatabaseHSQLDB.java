@@ -38,7 +38,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     @Override
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        System.out.println("inputDeck started");
 
 
         try (final Connection connection = connection()) {
@@ -51,9 +50,6 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
                 System.out.println(flashcardList.size() + "inputDeck:" + identifier + " " + flashcard.getCardName() + " " + flashcard.getQuestion() + " " + flashcard.getAnswer() + " ");
 
-                /*
-                Update the deck Table
-                 */
                 PreparedStatement statement = connection.prepareStatement(
                         "INSERT INTO DECK (deckName, cardName, cardQuestion, cardAnswer)" +
                                 " values (?, ?, ?, ?);");
@@ -63,9 +59,9 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 statement.setString(4, flashcard.getAnswer());
                 statement.executeUpdate();
 
-                /*
-                Update the decklist Table
-                 */
+
+                // Update the decklist Table
+
                 statement = connection.prepareStatement(
                         "INSERT INTO DECKLIST (username, deckName) values (?,?)");
                 statement.setString(1, username);
@@ -76,11 +72,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                 statement.close();
 
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("inputDeck Failed");
             e.printStackTrace(System.out);
         }
-
     }
 
     @Override

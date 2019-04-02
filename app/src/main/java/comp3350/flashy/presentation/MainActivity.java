@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         pList = ui.getAllProfileNames();
 
-        System.out.println("profiles: " + pList.toString());
-
         profileArrayAdapter = new ArrayAdapter<String>(this, R.layout.profile_list_item, R.id.profileName, pList)
         {
             @Override
@@ -135,12 +133,21 @@ public class MainActivity extends AppCompatActivity {
         return ui;
     }
     public void openDeckMenuActivity(String username, String password){
+        int duration = Toast.LENGTH_LONG;
+        CharSequence showText = "Authentication Failed";
+        Context context = getApplicationContext();
+
         if(ui.Verified(username,password)) {
             ui.setUsername(username);
             Intent intent = new Intent(this, ShowAllDecksActivity.class);
             startActivity(intent);
+            showText = "Welcome "+username.toUpperCase();
+            Toast toast = Toast.makeText(context, showText, duration);
+            toast.show();
         }else
-            Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_LONG).show();
+            showText = "Incorrect Username or Password";
+            Toast toast = Toast.makeText(context, showText, duration);
+            toast.show();
 
     }
     public void openRegistrationActivity(){
