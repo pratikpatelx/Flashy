@@ -1,6 +1,7 @@
 package comp3350.flashy.presentation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -12,16 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import comp3350.flashy.R;
 
 public class NewDeckActivity extends Activity {
-//    private AccessDecks mAccessDecks;
-//    private List<Deck> mDeckList;
-//    private ArrayAdapter<Deck> mDeckArrayAdapter;
-//    private int selectedDeckPosition = -1;
-
     private Button createDeck;
     private Button cancelDeck;
     private EditText input;
@@ -47,8 +44,16 @@ public class NewDeckActivity extends Activity {
         });
 
         createDeck.setOnClickListener(new View.OnClickListener() {
+            CharSequence returnText = "";
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_LONG;
             @Override
             public void onClick(View v) {
+                if (input.getText().toString() == null){
+                    returnText = "Please Enter Deck name";
+                    Toast toast = Toast.makeText(context, returnText, duration);
+                    toast.show();
+                }
                 openCreateDeckActivity();
                 finish();
             }
