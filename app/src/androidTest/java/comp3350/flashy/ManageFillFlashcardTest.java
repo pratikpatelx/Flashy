@@ -1,6 +1,7 @@
 package comp3350.flashy;
 
-import android.support.test.filters.LargeTest;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.matcher.ViewMatchers;import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -34,130 +35,134 @@ public class ManageFillFlashcardTest {
     public void manageFlashcard() {
 
         //add user
-        onView(withId(R.id.addProfile)).perform(click());
-        onView(withId(R.id.Username)).perform(typeText("user123"));
-        onView(withId(R.id.userPassword)).perform(typeText("123"));
-        onView(withId(R.id.regButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.addProfile)).perform(click());
+        onView(ViewMatchers.withId(R.id.Username)).perform(typeText("user123"));
+        onView(ViewMatchers.withId(R.id.userPassword)).perform(typeText("123"));
+        onView(ViewMatchers.withId(R.id.regButton)).perform(click());
 
         //log in
-        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(withId(R.id.profiles)).perform(click());
-        onView(withId(R.id.profilePass)).perform(typeText("123"));
-        onView(withId(R.id.Enter)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
+        onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
+        onView(ViewMatchers.withId(R.id.Enter)).perform(click());
 
         //create deck
-        onView(withId(R.id.createDeck)).perform(click());
-        onView(withId(R.id.deckTitle)).perform(typeText("test deck"));
-        onView(withId(R.id.Enter_Button)).perform(click());
+        onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
+        onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck"));
+        onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
 
 
         //add flashcard and select type
-        onView(withId(R.id.addCard)).perform(click());
-        onView(withId(R.id.createMenu)).perform(click());
+        onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Fill in the blank")).perform(click());
 
         //create flashcard
-        onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("This is a question"));
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Title")).perform(replaceText("Question 1"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.body)).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.saveButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
-        onView(withText("This is a question")).check(matches(withText(containsString("This is a question"))));
+        onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
 
 
 
         //add flashcard and select type
-        onView(withId(R.id.addCard)).perform(click());
-        onView(withId(R.id.createMenu)).perform(click());
+        onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Fill in the blank")).perform(click());
 
         //create flashcard
-        onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("This is another question"));
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Title")).perform(replaceText("Question 2"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.body)).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is another answer"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.saveButton)).perform(click());
+        Espresso.closeSoftKeyboard();
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
-        onView(withText("This is another question")).check(matches(withText(containsString("This is another question"))));
+        onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
 
 
 
         //add flashcard and select type
-        onView(withId(R.id.addCard)).perform(click());
-        onView(withId(R.id.createMenu)).perform(click());
+        onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Fill in the blank")).perform(click());
 
         //create default flashcard
-        onView(withId(R.id.title)).perform(click());
-        onView(withText("Title")).perform(replaceText("This is the last question"));
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Title")).perform(replaceText("Question 3"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.body)).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is the last answer"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.saveButton)).perform(click());
+        Espresso.closeSoftKeyboard();
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flash card has been added to the flash card list
-        onView(withText("This is the last question")).check(matches(withText(containsString("This is the last question"))));
+        onView(withText("Question 3")).check(matches(withText(containsString("Question 3"))));
 
 
 
         //view flashcard
-        onView(withId(R.id.viewCards)).perform(click());
-        onView(withId(R.id.nextButton)).perform(click());
-        onView(withId(R.id.nextButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.viewCards)).perform(click());
+        onView(ViewMatchers.withId(R.id.nextButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.nextButton)).perform(click());
 
 
 
         //edit flashcard (the last flashcard)
-        onView(withId(R.id.modButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.modButton)).perform(click());
 
-        onView(withId(R.id.title)).perform(click());
-        onView(withText("This is the last question")).perform(replaceText("This is an edited question"));
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Question 3")).perform(replaceText("Edited question"));
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.body)).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("This is the last answer")).perform(replaceText("This is an edited answer"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
-        onView(withId(R.id.saveButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been re added
-        onView(withText("This is an edited question")).check(matches(withText(containsString("This is an edited question"))));
+        onView(withText("Edited question")).check(matches(withText(containsString("Edited question"))));
 
 
 
         //delete flashcard
-        onView(withText("This is a question")).perform(click());
-        onView(withId(R.id.delButton)).perform(click());
+        onView(withText("Question 1")).perform(click());
+        onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
         //delete flashcard
-        onView(withText("This is another question")).perform(click());
-        onView(withId(R.id.delButton)).perform(click());
+        onView(withText("Question 2")).perform(click());
+        onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
         //delete flashcard
-        onView(withText("This is an edited question")).perform(click());
-        onView(withId(R.id.delButton)).perform(click());
+        onView(withText("Edited question")).perform(click());
+        onView(ViewMatchers.withId(R.id.delButton)).perform(click());
 
 
 
         //go back
-        onView(withId(R.id.exitFlashList)).perform(click());
+        onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
 
         //delete deck
         onView(withText("test deck")).perform(click());
-        onView(withId(R.id.deleteDeck)).perform(click());
+        onView(ViewMatchers.withId(R.id.deleteDeck)).perform(click());
 
 
         //logout
-        onView(withId(R.id.Back)).perform(click());
+        onView(ViewMatchers.withId(R.id.Back)).perform(click());
 
         //delete profile
-        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(withId(R.id.profiles)).perform(click());
-        onView(withId(R.id.deleteProfile)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
+        onView(ViewMatchers.withId(R.id.deleteProfile)).perform(click());
     }
 }
