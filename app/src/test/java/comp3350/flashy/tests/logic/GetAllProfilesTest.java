@@ -6,10 +6,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.domain.Deck;
+import comp3350.flashy.application.Services;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
-import comp3350.flashy.tests.persistence.DeckStub;
+import comp3350.flashy.persistence.DatabaseManagement.UserHandler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -20,15 +19,15 @@ import static org.mockito.Mockito.when;
 
 public class GetAllProfilesTest {
 
-    private DatabaseManager testDB;
+    private UserHandler testDB;
     private LogicManager testLGC;
     private ArrayList<String> expectedList;
     private Collection<String> testColl;
 
     @Before
     public void setUp() {
-        testDB = mock(DatabaseManager.class);
-        testLGC = spy(new LogicManager());
+        testDB = mock(UserHandler.class);
+        testLGC = spy(new LogicManager(Services.getFlashyPersistence()));
         testColl = new ArrayList<String>() {
             {
                 add("1");

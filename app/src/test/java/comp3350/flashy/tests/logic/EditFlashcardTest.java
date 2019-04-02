@@ -3,12 +3,12 @@ package comp3350.flashy.tests.logic;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,16 +21,16 @@ import static org.mockito.Mockito.when;
 
 public class EditFlashcardTest {
 
-    private DatabaseManager testDB;
+    private DeckHandler testDB;
     private LogicManager testLGC;
     private Deck testDeck;
     private Flashcard testCard;
 
     @Before
     public void setUp() {
-        testDB = mock(DatabaseManager.class);
+        testDB = mock(DeckHandler.class);
         testDeck = mock(Deck.class);
-        testLGC = spy(new LogicManager());
+        testLGC = spy(new LogicManager(Services.getFlashyPersistence()));
         testCard = new Flashcard("name", "newQ", "newA");
 
     }

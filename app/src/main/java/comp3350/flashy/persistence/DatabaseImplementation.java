@@ -20,11 +20,11 @@ public interface DatabaseImplementation {
     /*
     User based methods
      */
-    void inputUser (String username, String password);
+    void inputUser(String username, String password);
 
-    String getUserPassword (String username);
+    String getUserPassword(String username);
 
-    void removeUser (String username);
+    void removeUser(String username);
 
     Collection<String> getUserCollection();
 }

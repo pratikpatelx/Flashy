@@ -2,21 +2,20 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseImplementation;
+import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
+import comp3350.flashy.persistence.DatabaseManagement.UserHandler;
 
 public class LogicManager implements LogicManagerInterface {
-
-    private DatabaseManager database;
+    private DeckHandler deckHandler;
     private UserHandler userHandler;
 
 
-    public LogicManager(){
-        database = new DatabaseManager(Services.getFlashyPersistence());
-        userHandler = new UserHandler(database);
-
+    public LogicManager(DatabaseImplementation flashyPersistence) {
+        userHandler = new UserHandler(flashyPersistence);
+        deckHandler = new DeckHandler(flashyPersistence);
     }
 
     public Deck makeDeck(String deckName){
@@ -25,17 +24,17 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public Deck getDeck(String username, String deckName){
-        return(database.getDeck(username, deckName));
+        return (deckHandler.getDeck(username, deckName));
     }
 
     @Override
     public void insertDeck(String username, Deck updated){
-        database.inputDeck(username, updated.getName(), updated);
+        deckHandler.inputDeck(username, updated.getName(), updated);
     }
 
     @Override
     public void deleteDeck(String username, String deckName){
-        database.removeDeck(username, deckName);
+        deckHandler.removeDeck(username, deckName);
     }
 
     @Override
@@ -47,20 +46,20 @@ public class LogicManager implements LogicManagerInterface {
 
     @Override
     public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
-        Deck currDeck = database.getDeck(username, deckName);
+        Deck currDeck = deckHandler.getDeck(username, deckName);
         if(currDeck == null) {
             currDeck = makeDeck(deckName);
         }
         currDeck.addCard(card);
-        database.inputDeck(username, deckName, currDeck);
+        deckHandler.inputDeck(username, deckName, currDeck);
     }
 
     @Override
     public void editFlashcard(String username, String deckName, Flashcard card) {
-        Deck currDeck = database.getDeck(username, deckName);
+        Deck currDeck = deckHandler.getDeck(username, deckName);
         if(currDeck == null){currDeck = makeDeck(deckName);}
         currDeck.editCard(card);
-        database.inputDeck(username, deckName,currDeck);
+        deckHandler.inputDeck(username, deckName, currDeck);
     }
 
     /**
@@ -76,18 +75,18 @@ public class LogicManager implements LogicManagerInterface {
      * deck requested
      */
     public int queryDeckSize(String username, String deckName){
-        Deck currDeck = database.getDeck(username, deckName);
+        Deck currDeck = deckHandler.getDeck(username, deckName);
         if(currDeck!=null){ return currDeck.getNumCards();}
         return 0;
     }
 
     @Override
     public ArrayList<Deck> getAllDecks(String username){
-        return(new ArrayList<Deck>(database.getDeckCollection(username)));
+        return (new ArrayList<Deck>(deckHandler.getDeckCollection(username)));
     }
 
     public ArrayList<String> getAllProfiles(){
-        return(new ArrayList<String>(database.getUserCollection()));
+        return (new ArrayList<>(userHandler.getUserCollection()));
     }
 
     public ArrayList<String> getNames(String username){
@@ -129,6 +128,7 @@ public class LogicManager implements LogicManagerInterface {
     public boolean removeUserFromDatabase(String username){
         return userHandler.removeUser(username);
     }
+
 
     public boolean verifyUserPassword(String username, String password){
         return userHandler.verifyUser(username,password);

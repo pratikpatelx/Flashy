@@ -2,6 +2,7 @@ package comp3350.flashy.tests.logic;
 
 import org.junit.Test;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
@@ -12,7 +13,7 @@ public class GetandInsertDeckTest {
     @Test
     public void getAndInsertDeckTest() {
         System.out.println("\nrunning GetandInsertDeck test\n");
-        LogicManager lgc = new LogicManager();
+        LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";

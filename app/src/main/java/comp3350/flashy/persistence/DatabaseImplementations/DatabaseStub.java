@@ -1,4 +1,5 @@
 package comp3350.flashy.persistence.DatabaseImplementations;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
@@ -19,14 +20,14 @@ public class DatabaseStub implements DatabaseImplementation {
     @Override
     //TODO ADD CHECK FOR NULL USER
     public void inputDeck(String username, String identifier, Deck inputDeck) {
-        storage.get(username).put(identifier,inputDeck);
+        storage.get(username).put(identifier, inputDeck);
     }
 
     @Override
     public Deck getDeck(String username, String identifier) {
         Deck resultDeck = null;
         Hashtable userDecks = storage.get(username);
-        if (userDecks != null){
+        if (userDecks != null) {
             resultDeck = (Deck) userDecks.get(identifier);
         }
 
@@ -36,18 +37,18 @@ public class DatabaseStub implements DatabaseImplementation {
     @Override
     public void deleteDeck(String username, String identifier) {
         Hashtable userDecks = storage.get(username);
-        if (userDecks != null){
+        if (userDecks != null) {
             userDecks.remove(identifier);
         }
     }
 
     @Override
-    public Collection<String> getDeckCollection(String username){
+    public Collection<String> getDeckCollection(String username) {
         Hashtable userDecks = storage.get(username);
         Collection result = new ArrayList();
 
         Set<String> keys = userDecks.keySet();
-        for(String key: keys) {
+        for (String key : keys) {
             result.add(userDecks.get(key));
         }
 
@@ -57,9 +58,9 @@ public class DatabaseStub implements DatabaseImplementation {
     @Override
     public void inputUser(String username, String password) throws IllegalArgumentException {
 
-        if(userList.containsKey(username)){
+        if (userList.containsKey(username)) {
             throw new IllegalArgumentException();
-       }else {
+        } else {
             userList.put(username, password);
             storage.put(username, new Hashtable<String, Deck>());
         }
@@ -68,7 +69,7 @@ public class DatabaseStub implements DatabaseImplementation {
 
     @Override
     public String getUserPassword(String username) throws IllegalArgumentException {
-        if(userList.containsKey(username))
+        if (userList.containsKey(username))
             return userList.get(username);
         else
             throw new IllegalArgumentException();
@@ -81,12 +82,12 @@ public class DatabaseStub implements DatabaseImplementation {
     }
 
     @Override
-    public Collection<String> getUserCollection(){
+    public Collection<String> getUserCollection() {
 
         Collection result = new ArrayList<String>();
 
 
-        for(String key : userList.keySet()) {
+        for (String key : userList.keySet()) {
             result.add(key);
         }
 

@@ -1,7 +1,6 @@
-package comp3350.flashy.persistence.Codifiers;
+package comp3350.flashy.persistence.Translators;
+
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.persistence.Codifiers.Decoder;
-import comp3350.flashy.persistence.Codifiers.Encoder;
 
 public class DataTranslationLayer {
     private final String delimiter = "|";

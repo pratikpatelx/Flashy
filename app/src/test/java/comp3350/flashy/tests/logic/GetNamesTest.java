@@ -6,9 +6,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.DatabaseManager;
+import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
 import comp3350.flashy.tests.persistence.DeckStub;
 
 import static org.junit.Assert.assertEquals;
@@ -19,15 +20,15 @@ import static org.mockito.Mockito.when;
 
 public class GetNamesTest {
 
-    private DatabaseManager testDB;
+    private DeckHandler testDB;
     private LogicManager testLGC;
     private ArrayList<String> expectedList;
     private Collection<Deck> testColl;
 
     @Before
     public void setUp() {
-        testDB = mock(DatabaseManager.class);
-        testLGC = new LogicManager();
+        testDB = mock(DeckHandler.class);
+        testLGC = new LogicManager(Services.getFlashyPersistence());
         testColl = new ArrayList<>();
         testColl.add(new DeckStub("1"));
         testColl.add(new DeckStub("2"));

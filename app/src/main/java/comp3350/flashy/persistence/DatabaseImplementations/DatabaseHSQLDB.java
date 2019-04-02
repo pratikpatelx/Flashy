@@ -1,11 +1,15 @@
 package comp3350.flashy.persistence.DatabaseImplementations;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Deck;
+import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.DatabaseImplementation;
 
 public class DatabaseHSQLDB implements DatabaseImplementation {
@@ -36,7 +40,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
                     "SA",
                     "");
-        }finally{
+        } finally {
             System.out.println("failed to connect");
         }
 
@@ -45,6 +49,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * put a deck into the DB, overwrite if a duplicate exists
+     *
      * @param username
      * @param identifier
      * @param inputDeck
@@ -91,6 +96,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * get a deck from the DB
+     *
      * @param username
      * @param identifier
      * @return
@@ -109,10 +115,10 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT cardName, cardQuestion, cardAnswer FROM DECK JOIN DECKLIST ON DECK.deckName=DECKLIST.deckName " +
                             "WHERE DECKLIST.username=? " +
-                            "AND DECKLIST.deckName=? ;" );
+                            "AND DECKLIST.deckName=? ;");
             statement.setString(1, username);
             statement.setString(2, identifier);
-            ResultSet resultSet =  statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
             result = new Deck(identifier);
             while (resultSet.next()) {
@@ -137,11 +143,12 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * delete the specified deck from the DB if it exists
+     *
      * @param username
      * @param identifier
      */
     @Override
-    public void deleteDeck(String username, String identifier){
+    public void deleteDeck(String username, String identifier) {
         System.out.println("deleteDeck started");
 
         try (final Connection connection = connection()) {
@@ -165,6 +172,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * get a collection of all the decks currently in the DB
+     *
      * @param username
      * @return
      */
@@ -180,7 +188,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "SELECT DISTINCT * FROM DECKLIST WHERE USERNAME=?;");
             statement.setString(1, username);
 
-            ResultSet resultSet =  statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
             Deck deck = null;
             while (resultSet.next()) {
                 deck = new Deck(resultSet.getString("deckName"));
@@ -188,7 +196,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             }
 
             statement = connection.prepareStatement("SELECT * FROM DECK;");
-            resultSet =  statement.executeQuery();
+            resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 String deckName = resultSet.getString("deckName");
@@ -223,6 +231,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * add a user to the DB
+     *
      * @param username
      * @param password
      */
@@ -248,6 +257,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * get a users password
+     *
      * @param username
      * @return
      */
@@ -276,6 +286,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * remove a user from the DB
+     *
      * @param username
      */
     @Override
@@ -296,7 +307,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
             statement.close();
 
             System.out.println("removeUser DONE");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("removeUser Failed");
             e.printStackTrace();
         }
@@ -304,6 +315,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
 
     /**
      * get a collection of the users in the DB
+     *
      * @return
      */
     @Override
@@ -317,7 +329,7 @@ public class DatabaseHSQLDB implements DatabaseImplementation {
                     "SELECT USERNAME FROM USERACCOUNTS");
             ResultSet results = statement.executeQuery();
 
-            while(results.next()){
+            while (results.next()) {
                 usernames.add(results.getString("USERNAME"));
             }
 

@@ -1,11 +1,11 @@
 package comp3350.flashy.presentation;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
+import comp3350.flashy.application.Services;
+import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.QuizManager;
@@ -25,7 +25,7 @@ public class uiHandler {
     //TODO add checks and error handling.
 
     public uiHandler() {
-        logic = new LogicManager();
+        logic = new LogicManager(Services.getFlashyPersistence());
     }
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database

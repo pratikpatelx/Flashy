@@ -3,9 +3,8 @@ package comp3350.flashy.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 
 import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
-import comp3350.flashy.domain.Flashcard;
 
 public class MainActivity extends AppCompatActivity {
     private Button giveAccess;
@@ -49,15 +47,14 @@ public class MainActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         copyDatabaseToDevice();
-
         ui = new uiHandler();
 
-        register = (Button) findViewById(R.id.addProfile);
-        password = (EditText) findViewById(R.id.profilePass);
-        giveAccess = (Button)findViewById(R.id.Enter);
-        profiles = (ListView) findViewById(R.id.profiles);
-        username = (TextView) findViewById(R.id.selectedUser);
-        deleteUser = (Button) findViewById(R.id.deleteProfile);
+        register = findViewById(R.id.addProfile);
+        password = findViewById(R.id.profilePass);
+        giveAccess = findViewById(R.id.Enter);
+        profiles = findViewById(R.id.profiles);
+        username = findViewById(R.id.selectedUser);
+        deleteUser = findViewById(R.id.deleteProfile);
 
 
         pList = ui.getAllProfileNames();
