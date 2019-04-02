@@ -29,7 +29,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private String name;
     private String body;
     private String title;
-    private int index=0;
+    private int index = 0;
     private int deckSize;
 
     private uiHandler uiManager = MainActivity.getHandler();

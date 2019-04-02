@@ -32,7 +32,7 @@ public class uiHandler {
     public void saveCard(String head, String content, int type) {
         switch(type){
             case 0: logic.putFlashcardInDeck(username, deckName,new Flashcard((deckName +"-"+ deckSize), head, content));
-            //deckSize++;
+            deckSize++;
             break;
             case 1: logic.putFlashcardInDeck(username, deckName,new FillInTheBlanksFlashcard((deckName +"-"+ deckSize), head, content," "));
             break;
@@ -126,6 +126,8 @@ public class uiHandler {
     }
 
     public int getDeckSize() {
+        deckSize = logic.queryDeckSize(username,currDeck.getName());
+
         return deckSize;
     }
 
