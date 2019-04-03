@@ -57,6 +57,7 @@ public class QuizModeTest {
         onView(ViewMatchers.withText("Multiple choice")).perform(click());
 
         //create flashcard
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC3)).perform(typeText("Wrongest answer"));
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));

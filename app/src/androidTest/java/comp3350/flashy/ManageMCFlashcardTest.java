@@ -57,6 +57,7 @@ public class ManageMCFlashcardTest {
         onView(withText("Multiple choice")).perform(click());
 
         //create flashcard
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC3)).perform(typeText("Wrongest answer"));
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
@@ -73,7 +74,7 @@ public class ManageMCFlashcardTest {
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Multiple choice")).perform(click());
-
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC3)).perform(typeText("Wrongest answer"));
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
@@ -90,11 +91,15 @@ public class ManageMCFlashcardTest {
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Multiple choice")).perform(click());
-
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC3)).perform(typeText("Wrongest answer"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC2)).perform(typeText("Wronger answer"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.wrongMC1)).perform(typeText("Wrong answer"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.correctMC)).perform(typeText("Correct answer"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.mcQuestion)).perform(typeText("Question 3"));
         Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
