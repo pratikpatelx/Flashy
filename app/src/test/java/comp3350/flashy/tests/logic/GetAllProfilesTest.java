@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import comp3350.flashy.application.Services;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.UserHandler;
+import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -8,7 +8,7 @@ import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
+import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

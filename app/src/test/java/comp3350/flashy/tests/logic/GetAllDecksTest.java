@@ -9,7 +9,7 @@ import java.util.Collection;
 import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
+import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
 import comp3350.flashy.tests.persistence.DeckStub;
 
 import static org.junit.Assert.assertEquals;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.DatabaseManagement.DeckHandler;
-import comp3350.flashy.persistence.DatabaseManagement.UserHandler;
+import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
+import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 

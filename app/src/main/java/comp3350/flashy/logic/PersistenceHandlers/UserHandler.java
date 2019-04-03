@@ -1,4 +1,4 @@
-package comp3350.flashy.persistence.DatabaseManagement;
+package comp3350.flashy.logic.PersistenceHandlers;
 
 import java.util.Collection;
 
@@ -6,7 +6,6 @@ import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 public class UserHandler {
     private UserDatabaseImplementation userDB;
-
     public UserHandler(UserDatabaseImplementation givenImpl) {
         userDB = givenImpl;
     }
