@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CharSequence returnText;
                 Context context = getApplicationContext();
-                CharSequence showText = "User " + username.getText() + "has been deleted";
+                CharSequence showText = "User " + username.getText() + " has been deleted";
                 int duration = Toast.LENGTH_LONG;
                 //remove user
                 ui.deleteUser(pList.get(selectedPos));

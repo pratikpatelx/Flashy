@@ -38,6 +38,7 @@ public class ManageDeckTest {
         onView(ViewMatchers.withId(R.id.addProfile)).perform(click());
         onView(ViewMatchers.withId(R.id.Username)).perform(typeText("user123"));
         onView(ViewMatchers.withId(R.id.userPassword)).perform(typeText("123"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.regButton)).perform(click());
 
         //log in
@@ -103,7 +104,7 @@ public class ManageDeckTest {
         onView(withText("test deck 2")).check(matches(withText(containsString("test deck 2"))));
 
 
-        //create deck
+       //create deck
         onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
         onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 3"));
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
@@ -131,6 +132,7 @@ public class ManageDeckTest {
 
         //verify if deck has been added to deck list
         onView(withText("test deck 3")).check(matches(withText(containsString("test deck 3"))));
+
 
         //delete a deck
         onView(withText("test deck 1")).perform(click());
