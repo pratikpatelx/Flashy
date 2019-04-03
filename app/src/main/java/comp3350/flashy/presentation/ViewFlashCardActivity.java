@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,35 +13,28 @@ import comp3350.flashy.R;
 
 public class ViewFlashCardActivity extends AppCompatActivity {
 
+    ArrayList<String> mcContent;
+    ArrayList<String> menu;
+    String[] content;
     private TextView textViewFlashBody;
     private TextView textViewFlashTitle;
-
     private TextView mcBody;
     private TextView mcEntry1;
     private TextView mcEntry2;
     private TextView mcEntry3;
     private TextView mcEntry4;
-
     private TextView currentType;
-
     private String name;
     private String body;
     private String title;
     private int index = 0;
     private int deckSize;
-
     private uiHandler uiManager = MainActivity.getHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
     private FloatingActionButton exit;
-
-    private FloatingActionButton  delete;
+    private FloatingActionButton delete;
     private FloatingActionButton modify;
-
-    ArrayList<String> mcContent;
-    ArrayList<String> menu;
-    String[] content;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +43,19 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        textViewFlashBody = (TextView) findViewById(R.id.body);
-        textViewFlashTitle = (TextView) findViewById(R.id.title);
+        textViewFlashBody = findViewById(R.id.body);
+        textViewFlashTitle = findViewById(R.id.title);
         mcBody = findViewById(R.id.mcHead);
         mcEntry1 = findViewById(R.id.mcEntry1);
         mcEntry2 = findViewById(R.id.mcEntry2);
         mcEntry3 = findViewById(R.id.mcEntry3);
         mcEntry4 = findViewById(R.id.mcEntry4);
         currentType = findViewById(R.id.currentType);
-        prev = (FloatingActionButton) findViewById(R.id.prevButton);
-        next = (FloatingActionButton) findViewById(R.id.nextButton);
-        exit = (FloatingActionButton) findViewById(R.id.exitButton);
-        delete = (FloatingActionButton) findViewById(R.id.delButton);
-        modify = (FloatingActionButton) findViewById(R.id.modButton);
+        prev = findViewById(R.id.prevButton);
+        next = findViewById(R.id.nextButton);
+        exit = findViewById(R.id.exitButton);
+        delete = findViewById(R.id.delButton);
+        modify = findViewById(R.id.modButton);
         index = 0;
         deckSize = uiManager.getDeckSize();
         name = uiManager.getDeckName();
@@ -73,7 +64,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
 
 
-        if(extra!=null){
+        if (extra != null) {
             index = uiManager.getIndexByFlashCard(extra.getString("FLASHCARD"));
         }
 
@@ -100,12 +91,12 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(isMultipleChoice()){
+                if (isMultipleChoice()) {
                     mcContent = uiManager.getMCContent(index);
                     openViewFlashCardActivity((name + "-" + index), mcContent);
-                }else{
+                } else {
                     content = uiManager.getContent(index);
-                    openViewFlashCardActivity((name + "-" + index),content[0],content[1]);
+                    openViewFlashCardActivity((name + "-" + index), content[0], content[1]);
                 }
 
                 uiManager.deleteCard(index);
@@ -136,7 +127,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         hideAllTextViews();
         currentType.setText(menu.get(uiManager.getFlashcardTypeByIndex(index)));
 
-        if(isMultipleChoice()){
+        if (isMultipleChoice()) {
             mcContent = uiManager.getMCContent(index);
 
             mcBody.setText(mcContent.get(0));
@@ -151,7 +142,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             mcEntry3.setVisibility(View.VISIBLE);
             mcEntry4.setVisibility(View.VISIBLE);
 
-        }else{
+        } else {
             content = uiManager.getContent(index);
 
             title = content[0];
@@ -175,7 +166,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         textViewFlashTitle.setVisibility(View.INVISIBLE);
     }
 
-    private boolean isMultipleChoice(){
+    private boolean isMultipleChoice() {
         return uiManager.getFlashcardTypeByIndex(index) == 2;
     }
 
@@ -187,7 +178,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
     public void openViewFlashCardActivity(String cardName, String head, String body) {
         Intent intent = new Intent(this, CreateFlashCardActivity.class);
-        intent.putExtra("FLASHCARD",cardName);
+        intent.putExtra("FLASHCARD", cardName);
         intent.putExtra("NAME", head);
         intent.putExtra("BODY", body);
         intent.putExtra("TYPE", uiManager.getFlashcardTypeByIndex(index));
@@ -196,7 +187,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
 
     public void openViewFlashCardActivity(String cardName, ArrayList<String> contents) {
         Intent intent = new Intent(this, CreateFlashCardActivity.class);
-        intent.putExtra("MC-CONTENT",contents);
+        intent.putExtra("MC-CONTENT", contents);
         startActivity(intent);
     }
 

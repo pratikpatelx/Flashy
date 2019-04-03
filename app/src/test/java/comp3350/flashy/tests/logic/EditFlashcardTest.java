@@ -45,8 +45,6 @@ public class EditFlashcardTest {
         when(testLGC.makeDeck(anyString())).thenReturn(testDeck);
 
 
-
-
         testLGC.editFlashcard("", "testDeck", testCard);
 
         verify(testLGC).makeDeck("testDeck");

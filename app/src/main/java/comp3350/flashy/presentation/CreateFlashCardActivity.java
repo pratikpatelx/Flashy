@@ -16,15 +16,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.domain.Flashcard;
 
 public class CreateFlashCardActivity extends AppCompatActivity {
+    ArrayList<String> mcContent;
     private TextView textViewFlashBody;
     private TextView textViewFlashTitle;
-    private ArrayAdapter  menuArrayAdapter;
+    private ArrayAdapter menuArrayAdapter;
     private ArrayList<String> list;
     private int type;
-
     private AlertDialog userInput;
     private String title = "Title";
     private String body = "Example of front side of flash card";
@@ -32,19 +31,14 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private EditText toShow;
     private Spinner menu;
     private boolean modifying = false;
-
     private FloatingActionButton save;
     private FloatingActionButton cancel;
-
     private EditText mcQuestion;
     private EditText mcCorrect;
     private EditText mcWrong1;
     private EditText mcWrong2;
     private EditText mcWrong3;
     private TextView instructionsMC;
-
-    ArrayList<String> mcContent;
-
     private uiHandler uiManager;
 
     @Override
@@ -75,8 +69,8 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         final Bundle extra = getIntent().getExtras();
         String[] card;
 
-        if(extra !=null){
-            if((mcContent =  extra.getStringArrayList("MC-CONTENT")) != null){
+        if (extra != null) {
+            if ((mcContent = extra.getStringArrayList("MC-CONTENT")) != null) {
 
                 mcQuestion.setText(mcContent.get(0));
                 mcCorrect.setText(mcContent.get(1));
@@ -85,7 +79,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
                 mcWrong3.setText(mcContent.get(4));
 
                 type = 2;
-            }else {
+            } else {
                 extra.getString("FLASHCARD");
                 title = extra.getString("NAME");
                 body = extra.getString("BODY");
@@ -103,19 +97,16 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
         list = uiManager.getMenuData();
 
-        menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list)
-        {
+        menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashcardType = (TextView) view.findViewById(R.id.flashListItem);
+                TextView flashcardType = view.findViewById(R.id.flashListItem);
 
                 flashcardType.setTextSize(35);
 
                 flashcardType.setText(list.get(position));
-
-
 
 
                 return view;
@@ -126,18 +117,15 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         menu.setSelection(type);
 
 
-
-
         menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 type = position;
-                if (type == 2){
+                if (type == 2) {
                     showMCInterface();
-                }else
+                } else
                     showStandardInterface();
             }
-
 
 
             @Override
@@ -193,9 +181,9 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(type == 2){
+                if (type == 2) {
                     uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
-                }else
+                } else
                     uiManager.saveCard(title, body, type);
 
                 finish();
@@ -206,11 +194,11 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(modifying){
-                    if(type == 2){
+                if (modifying) {
+                    if (type == 2) {
                         uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
-                    }else
-                        uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"),type);
+                    } else
+                        uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"), type);
 
                 }
 
@@ -246,7 +234,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
         instructionsMC.setVisibility(View.VISIBLE);
     }
 
-    private ArrayList<String> getMCAnswers(){
+    private ArrayList<String> getMCAnswers() {
         ArrayList<String> result = new ArrayList<String>();
 
         result.add(mcCorrect.getText().toString());

@@ -6,11 +6,10 @@ public interface FlashcardInterface {
      */
 
     /**
-     *
      * @return whether the answer is correct or wrong
      */
-    public boolean mark(String response);
+    boolean mark(String response);
 
 
-    public String getCardType();
+    String getCardType();
 }

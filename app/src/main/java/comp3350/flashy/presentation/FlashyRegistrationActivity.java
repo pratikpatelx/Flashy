@@ -2,10 +2,7 @@ package comp3350.flashy.presentation;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,12 +37,12 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
                 returnText = "Please Enter Every Field in Username and Password";
                 int duration = Toast.LENGTH_LONG;
 
-                if(uiManager.registerUser(Username.getText().toString(),password.getText().toString())){
+                if (uiManager.registerUser(Username.getText().toString(), password.getText().toString())) {
                     returnText = "Account Created Sucessfully";
                     Toast toast = Toast.makeText(context, returnText, duration);
                     toast.show();
                     finish();
-                }else {
+                } else {
                     Toast toast = Toast.makeText(context, returnText, duration);
                     toast.show();
                 }

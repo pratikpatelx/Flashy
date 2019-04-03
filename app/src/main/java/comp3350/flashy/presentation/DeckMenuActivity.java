@@ -1,8 +1,8 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +21,9 @@ public class DeckMenuActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-        newDeck = (Button) findViewById(R.id.newDeck);
-        viewDeck = (Button) findViewById(R.id.deckList);
-        logOut = (Button) findViewById(R.id.logOut);
+        newDeck = findViewById(R.id.newDeck);
+        viewDeck = findViewById(R.id.deckList);
+        logOut = findViewById(R.id.logOut);
 
         newDeck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,7 @@ public class DeckMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openCreateNewDeckActivity(){
+    public void openCreateNewDeckActivity() {
         Intent intent = new Intent(this, NewDeckActivity.class);
         startActivity(intent);
     }

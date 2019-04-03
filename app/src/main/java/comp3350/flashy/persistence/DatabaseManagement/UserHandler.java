@@ -2,12 +2,12 @@ package comp3350.flashy.persistence.DatabaseManagement;
 
 import java.util.Collection;
 
-import comp3350.flashy.persistence.DatabaseImplementation;
+import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 public class UserHandler {
-    private DatabaseImplementation userDB;
+    private UserDatabaseImplementation userDB;
 
-    public UserHandler(DatabaseImplementation givenImpl) {
+    public UserHandler(UserDatabaseImplementation givenImpl) {
         userDB = givenImpl;
     }
 
@@ -16,10 +16,10 @@ public class UserHandler {
      *
      * @param username
      */
-    public boolean verifyUser(String username, String password) {
+    public boolean verifyUser(String username, String givenPassword) {
         Boolean result = false;
-        String upassword = userDB.getUserPassword(username);
-        if (upassword != null && upassword.equals(password)) {
+        String password = userDB.getUserPassword(username);
+        if (password != null && password.equals(givenPassword)) {
             result = true;
         }
         return result;
@@ -55,6 +55,11 @@ public class UserHandler {
         }
     }
 
+    /**
+     * Gets a collection of the users in the DB
+     *
+     * @return
+     */
     public Collection<String> getUserCollection() {
         return userDB.getUserCollection();
     }

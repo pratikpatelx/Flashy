@@ -1,7 +1,8 @@
 package comp3350.flashy;
 
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.matcher.ViewMatchers;import android.support.test.filters.LargeTest;
+import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -17,7 +18,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -51,7 +51,6 @@ public class ManageFillFlashcardTest {
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
 
-
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
@@ -69,7 +68,6 @@ public class ManageFillFlashcardTest {
 
         //verify flashcard has been added
         onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
-
 
 
         //add flashcard and select type
@@ -91,7 +89,6 @@ public class ManageFillFlashcardTest {
         onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
 
 
-
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
@@ -111,12 +108,10 @@ public class ManageFillFlashcardTest {
         onView(withText("Question 3")).check(matches(withText(containsString("Question 3"))));
 
 
-
         //view flashcard
         onView(ViewMatchers.withId(R.id.viewCards)).perform(click());
         onView(ViewMatchers.withId(R.id.nextButton)).perform(click());
         onView(ViewMatchers.withId(R.id.nextButton)).perform(click());
-
 
 
         //edit flashcard (the last flashcard)
@@ -135,7 +130,6 @@ public class ManageFillFlashcardTest {
         onView(withText("Edited question")).check(matches(withText(containsString("Edited question"))));
 
 
-
         //delete flashcard
         onView(withText("Question 1")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
@@ -147,7 +141,6 @@ public class ManageFillFlashcardTest {
         //delete flashcard
         onView(withText("Edited question")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
-
 
 
         //go back

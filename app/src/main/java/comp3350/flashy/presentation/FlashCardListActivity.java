@@ -8,15 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import comp3350.flashy.R;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.R;
 
 public class FlashCardListActivity extends AppCompatActivity {
     uiHandler uiManager = MainActivity.getHandler();
@@ -31,34 +30,31 @@ public class FlashCardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card_list);
 
-        TextView title = (TextView) findViewById(R.id.Title);
-        FloatingActionButton exit = (FloatingActionButton)findViewById(R.id.exitFlashList);
-        FloatingActionButton add = (FloatingActionButton) findViewById(R.id.addCard);
-        FloatingActionButton view = (FloatingActionButton) findViewById(R.id.viewCards);
+        TextView title = findViewById(R.id.Title);
+        FloatingActionButton exit = findViewById(R.id.exitFlashList);
+        FloatingActionButton add = findViewById(R.id.addCard);
+        FloatingActionButton view = findViewById(R.id.viewCards);
 
         title.setText(currDeck.getName());
 
         items = uiManager.getAllCards();
 
-        fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items)
-        {
+        fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
 
-                TextView flashCard = (TextView) view.findViewById(R.id.flashListItem);
-
+                TextView flashCard = view.findViewById(R.id.flashListItem);
 
 
                 flashCard.setText(items.get(position).getQuestion());
-
 
 
                 return view;
             }
         };
 
-        ListView listView = (ListView)findViewById(R.id.flashcardList);
+        ListView listView = findViewById(R.id.flashcardList);
         listView.setAdapter(fcArrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,7 +93,7 @@ public class FlashCardListActivity extends AppCompatActivity {
         updateData();
     }
 
-    private void updateData(){
+    private void updateData() {
         items.clear();
         items.addAll(uiManager.getAllCards());
         fcArrayAdapter.notifyDataSetChanged();
@@ -105,7 +101,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
     public void openViewFlashCardActivity(String cardName) {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
-        intent.putExtra("FLASHCARD",cardName);
+        intent.putExtra("FLASHCARD", cardName);
 
         startActivity(intent);
     }
@@ -114,7 +110,6 @@ public class FlashCardListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewFlashCardActivity.class);
         startActivity(intent);
     }
-
 
 
     public void openCreateFlashCardActivity() {

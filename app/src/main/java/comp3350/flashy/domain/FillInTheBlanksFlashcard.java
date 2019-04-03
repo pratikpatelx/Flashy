@@ -10,19 +10,19 @@ public class FillInTheBlanksFlashcard extends Flashcard {
 
     }
 
-    public String getFirstPart () {
+    public String getFirstPart() {
         return firstPart;
     }
 
-    public void setFirstPart(String answer){
+    public void setFirstPart(String answer) {
         this.firstPart = answer;
     }
 
-    public String getCardType () {
+    public String getCardType() {
         return cardType;
     }
 
-    public boolean isFillInTheBlanksFlashcard () {
+    public boolean isFillInTheBlanksFlashcard() {
         return true;
     }
 

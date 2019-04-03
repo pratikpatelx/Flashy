@@ -5,20 +5,20 @@ public class TrueFalseCard extends Flashcard {
     private String truthValue = null;
     private String cardType = "2";
 
-    public TrueFalseCard (String name, String question, String answer, String givenTruthValue) {
+    public TrueFalseCard(String name, String question, String answer, String givenTruthValue) {
         super(name, question, answer);
         truthValue = givenTruthValue;
     }
 
-    public String getTruthValue () {
+    public String getTruthValue() {
         return truthValue;
     }
 
-    public String getCardType () {
+    public String getCardType() {
         return cardType;
     }
 
-    public boolean isTrueFalseFlashcard () {
+    public boolean isTrueFalseFlashcard() {
         return true;
     }
 }

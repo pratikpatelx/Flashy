@@ -3,6 +3,10 @@ package comp3350.flashy.application;
 public class Main {
     private static String dbName = "FlashyDB";
 
+    public static String getDBPathName() {
+        return dbName;
+    }
+
     public static void setDBPathName(final String name) {
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
@@ -14,9 +18,5 @@ public class Main {
             e.printStackTrace();
         }
         dbName = name;
-    }
-
-    public static String getDBPathName() {
-        return dbName;
     }
 }

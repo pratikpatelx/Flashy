@@ -3,7 +3,9 @@ package comp3350.flashy.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import comp3350.flashy.domain.*;
+import comp3350.flashy.domain.FillInTheBlanksFlashcard;
+import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.domain.MultipleChoiceFlashcard;
 
 public class CardPrepper {
 
@@ -13,14 +15,14 @@ public class CardPrepper {
 
     /**
      * prepareFitBcard()
-     *
+     * <p>
      * This method takes a Flashcard object as a parameter, if the Flashcard is not a FitBcard then
      * this method does nothing, otherwise the card is prepared for use in a quiz
      *
      * @param card the card to be prepared
      */
-    public static void prepareFitBcard(Flashcard card){
-        if(card.isFillInTheBlanksFlashcard()) {
+    public static void prepareFitBcard(Flashcard card) {
+        if (card.isFillInTheBlanksFlashcard()) {
             FillInTheBlanksFlashcard curr = (FillInTheBlanksFlashcard) card;
             String[] words = card.getAnswer().split("\\s+|,.!?;:\"");
             int nWords = words.length;
@@ -71,18 +73,15 @@ public class CardPrepper {
             String revision = curr.getAnswer().replace(curr.getFirstPart(), BLANK);
 
 
-
             curr.setAnswer(revision);
         }
     }
 
 
-
-    public static void prepareMultipleChoiceFlashcard(Flashcard card){
+    public static void prepareMultipleChoiceFlashcard(Flashcard card) {
         MultipleChoiceFlashcard mc;
-        if(card.isMultipleChoiceFlashcard()){
+        if (card.isMultipleChoiceFlashcard()) {
             mc = (MultipleChoiceFlashcard) card;
-
 
 
             ArrayList<String> choices = new ArrayList<>(mc.getAnswers());
@@ -95,7 +94,7 @@ public class CardPrepper {
 
             String picked;
 
-            for(int i = 0; i < num; i++){
+            for (int i = 0; i < num; i++) {
                 picked = choices.get(rand.nextInt(choices.size()));
                 choices.remove(picked);
                 noobs.add(picked);

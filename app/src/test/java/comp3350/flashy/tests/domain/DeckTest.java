@@ -7,7 +7,8 @@ import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class DeckTest {
@@ -24,13 +25,13 @@ public class DeckTest {
     }
 
     @Test
-    public void testDeck(){
+    public void testDeck() {
         System.out.println("Running Deck object test");
         assertTrue(deck.getName().equals("testDeck")); //Testing getName method
 
         deck.addCard(card1);
         deck.addCard(card2);
-        assertTrue(deck.getNumCards()==2); //Testing getNumCards method
+        assertTrue(deck.getNumCards() == 2); //Testing getNumCards method
 
         card1.setQuestion("q4");
         deck.editCard(card1);
@@ -39,7 +40,7 @@ public class DeckTest {
         assertTrue(card4.getQuestion().equals(card1.getQuestion())); //Testing getCard and editCard method
 
         deck.deleteCard(card1.getCardName());
-        assertTrue(deck.getNumCards()==1); //Testing deleteCard method
+        assertTrue(deck.getNumCards() == 1); //Testing deleteCard method
 
         deck.addCard(card3);
         deck.validateNames();

@@ -1,13 +1,10 @@
 package comp3350.flashy.domain;
-import android.support.v7.widget.CardView;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 public class Deck {
-
 
 
     private static final String DUMMYNAME = "DUMMY";
@@ -19,7 +16,7 @@ public class Deck {
     private String name;
     private int curr; //This is the index of the currently selected flashcard, the one that is displayed in the GUI
 
-    public Deck(String name){
+    public Deck(String name) {
         this.name = name;
         cards = new ArrayList();
         curr = 0;
@@ -34,10 +31,10 @@ public class Deck {
 
 
     public Collection<Flashcard> getFlashcards() {
-            return cards;
+        return cards;
     }
 
-    public void clearDeck(){
+    public void clearDeck() {
         cards.clear();
     }
 
@@ -48,11 +45,11 @@ public class Deck {
     }
 
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public void setDeckName(String newName){
+    public void setDeckName(String newName) {
         this.name = newName;
         this.validateNames();
     }
@@ -63,17 +60,18 @@ public class Deck {
      * This function will iterate through the cards and ensures each one has the
      * correct name
      */
-    public final void validateNames(){
+    public final void validateNames() {
         String correct;
         Flashcard card;
-        for(int i = 0; i < this.cards.size(); i++){
-            correct = this.name+ "-" + (i);
+        for (int i = 0; i < this.cards.size(); i++) {
+            correct = this.name + "-" + (i);
             card = this.cards.get(i);
-            if(!card.getCardName().equals(correct)){
+            if (!card.getCardName().equals(correct)) {
                 card.setCardName(correct);
             }
         }
     }
+
     /*
      * addCard()
      *
@@ -87,34 +85,30 @@ public class Deck {
      * card creation GUI.
      * This function handles the creation of the simple flashcard
      */
-    public void addCard(Flashcard noob){
+    public void addCard(Flashcard noob) {
 
         cards.add(noob);
         curr++;
     }
 
 
-
     /**
      * deleteCard()
-     *
+     * <p>
      * This method removes the card in the ArrayList specified by the card to be
      * removed.
      *
-     * @param cardName
-     *      The name of the card to be removed
-     *
-     * @return
-     *      a boolean of whether a card was actually removed from the deck
+     * @param cardName The name of the card to be removed
+     * @return a boolean of whether a card was actually removed from the deck
      */
-    public boolean deleteCard(String cardName){
+    public boolean deleteCard(String cardName) {
         boolean success = false;
         int pos = this.findCard(cardName);
-        if(pos >= 0){
+        if (pos >= 0) {
             this.cards.remove(pos);
             this.validateNames();
             success = true;
-            if(this.curr == this.cards.size()-1){
+            if (this.curr == this.cards.size() - 1) {
                 this.curr--;
             }
         }
@@ -128,16 +122,14 @@ public class Deck {
      * to be the same as the parameter changed.
      *
      * @param changed
-     *
-     *
      * @return returns weather or not the card was successfully edited;
      */
 
-    public boolean editCard(Flashcard changed){
+    public boolean editCard(Flashcard changed) {
         boolean success = false;
-        if(cards.size() >= 0){
+        if (cards.size() >= 0) {
             int idx = cards.indexOf(changed);
-            if(idx >= 0){
+            if (idx >= 0) {
                 cards.get(idx).editCard(changed);
                 success = true;
             }
@@ -149,66 +141,61 @@ public class Deck {
 
     /**
      * nextCard()
-     *
+     * <p>
      * Parameters: None
-     *
+     * <p>
      * This function changes the card currently being displayed to the next card
      * in the deck
-     *
+     * <p>
      * This function should be called when the user swipes right on the deck viewer
      * GUI
-     *
-    public void nextCard(){
-        this.curr = (this.curr + 1)%this.cards.size();
-    }
-
-
-
+     * <p>
+     * public void nextCard(){
+     * this.curr = (this.curr + 1)%this.cards.size();
+     * }
+     * <p>
+     * <p>
+     * <p>
      * prevCard()
-     *
+     * <p>
      * Parameters: None
-     *
+     * <p>
      * This function changes the card currently being displayed to the previous card
      * in the deck
-     *
+     * <p>
      * This function should be called when the user swipes left on the deck viewer
      * GUI
-
-    public void prevCard(){
-        if(this.curr == 0){
-            this.curr = this.cards.size()-1;
-        }
-        else{
-            this.curr--;
-        }
-    }
-
-
-    /**
+     * <p>
+     * public void prevCard(){
+     * if(this.curr == 0){
+     * this.curr = this.cards.size()-1;
+     * }
+     * else{
+     * this.curr--;
+     * }
+     * }
+     * <p>
+     * <p>
+     * /**
      * getCard()
-     *
+     * <p>
      * this function returns the Flash object in "deck" with the index equal to "curr"
      * if there are no cards in the deck then then a dummy card will be returned.
      *
-     * @param cardName
-     *      The name of the card to search for
-     *
-     * @return
-     *      the Flashcard object with the specified name the method will return
-     *      a dummy card if it can't find the card requested
+     * @param cardName The name of the card to search for
+     * @return the Flashcard object with the specified name the method will return
+     * a dummy card if it can't find the card requested
      */
-    public Flashcard getCard(String cardName){
+    public Flashcard getCard(String cardName) {
         Flashcard card;
-        if(this.cards.size() == 0){
+        if (this.cards.size() == 0) {
             card = makeDummy();
-        }
-        else{
+        } else {
             this.validateNames();
             int pos = extractNumber(cardName);
-            if(pos >= 0 && pos < this.cards.size()){
+            if (pos >= 0 && pos < this.cards.size()) {
                 card = this.cards.get(pos);
-            }
-            else{
+            } else {
                 card = makeDummy();
             }
         }
@@ -216,32 +203,30 @@ public class Deck {
     }
 
 
-    private int findCard(String cardName){
+    private int findCard(String cardName) {
         int pos = -1;
 
         this.validateNames();
         int number = this.extractNumber(cardName);
-        if(number >= 0 && number < this.cards.size()){
+        if (number >= 0 && number < this.cards.size()) {
             pos = number;
         }
         return pos;
     }
 
 
-    private Flashcard makeDummy(){
+    private Flashcard makeDummy() {
         return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
     }
 
 
-
-    private int extractNumber(String cardName){
+    private int extractNumber(String cardName) {
         int number = -1;
         int pos = cardName.lastIndexOf('-');
-        if(pos >= 0){
-            try{
-                number = Integer.valueOf(cardName.substring(pos+1));
-            }
-            catch(NumberFormatException nfe){
+        if (pos >= 0) {
+            try {
+                number = Integer.valueOf(cardName.substring(pos + 1));
+            } catch (NumberFormatException nfe) {
                 System.err.println("Could not extract card number from " + cardName);
                 System.err.println(nfe.getMessage());
             }
@@ -252,27 +237,26 @@ public class Deck {
 
     /**
      * getNumCards()
+     *
      * @return the number of flashcards in this Deck
      */
-    public int getNumCards(){
+    public int getNumCards() {
         return this.cards.size();
     }
 
 
     /**
      * toString()
-     *
+     * <p>
      * will return a string containing information on the deck
      * along with its contents
      *
      * @return
-     *
-     *
      */
     @Override
-    public String toString(){
+    public String toString() {
         String info = "Deck: " + this.name + "\n";
-        for(int i = 0; i < this.cards.size(); i++){
+        for (int i = 0; i < this.cards.size(); i++) {
             info += cards.get(i) + "\n";
         }
         return info;

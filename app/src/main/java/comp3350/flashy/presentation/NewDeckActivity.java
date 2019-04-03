@@ -4,18 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
 import comp3350.flashy.R;
 
 public class NewDeckActivity extends Activity {
@@ -24,8 +21,9 @@ public class NewDeckActivity extends Activity {
     private EditText input;
     private TextView title;
     private uiHandler uiManager = MainActivity.getHandler();
+
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_creation);
 
@@ -47,9 +45,10 @@ public class NewDeckActivity extends Activity {
             CharSequence returnText = "";
             Context context = getApplicationContext();
             int duration = Toast.LENGTH_LONG;
+
             @Override
             public void onClick(View v) {
-                if (input.getText().toString() == null){
+                if (input.getText().toString() == null) {
                     returnText = "Please Enter Deck name";
                     Toast toast = Toast.makeText(context, returnText, duration);
                     toast.show();
@@ -78,7 +77,7 @@ public class NewDeckActivity extends Activity {
         });
     }
 
-    public void openCreateDeckActivity(){
+    public void openCreateDeckActivity() {
         Intent intent = new Intent(this, FlashCardListActivity.class);
         uiManager.setCurrDeck(input.getText().toString());
         startActivity(intent);

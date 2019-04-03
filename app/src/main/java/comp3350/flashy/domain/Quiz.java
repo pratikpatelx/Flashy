@@ -1,9 +1,9 @@
 package comp3350.flashy.domain;
 
-import comp3350.flashy.logic.CardPrepper;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import comp3350.flashy.logic.CardPrepper;
 
 public class Quiz {
 
@@ -12,7 +12,7 @@ public class Quiz {
 
     private ArrayList<Flashcard> cards;
 
-    public Quiz(Deck deck){
+    public Quiz(Deck deck) {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(deck.getFlashcards());
         this.prepareCards();
@@ -20,12 +20,11 @@ public class Quiz {
     }
 
 
-    private void prepareCards(){
-        for(int i = 0; i < this.cards.size(); i++){
-            if(cards.get(i).isFillInTheBlanksFlashcard()){
+    private void prepareCards() {
+        for (int i = 0; i < this.cards.size(); i++) {
+            if (cards.get(i).isFillInTheBlanksFlashcard()) {
                 CardPrepper.prepareFitBcard(cards.get(i));
-            }
-            else if(cards.get(i).isMultipleChoiceFlashcard()){
+            } else if (cards.get(i).isMultipleChoiceFlashcard()) {
                 CardPrepper.prepareMultipleChoiceFlashcard(cards.get(i));
             }
         }
@@ -34,24 +33,24 @@ public class Quiz {
 
     /********** Accessors ***********/
 
-    public Flashcard getCard(){
+    public Flashcard getCard() {
         return this.cards.get(0);
     }
 
-    public Flashcard takeCard(){
+    public Flashcard takeCard() {
         return this.cards.remove(0);
     }
 
 
     /**
      * placeCard()
-     *      This method places the flashcard card into a random position in the deck
+     * This method places the flashcard card into a random position in the deck
      *
      * @param card the card to be added
      */
-    public void placeCard(Flashcard card){
+    public void placeCard(Flashcard card) {
 
-        if(!this.cards.isEmpty()){
+        if (!this.cards.isEmpty()) {
 //            Random rand = new Random();
 //            int pos = rand.nextInt() % this.cards.size();
 //            this.cards.add(pos, card);
@@ -63,16 +62,16 @@ public class Quiz {
 
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.cards.size();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.cards.isEmpty();
     }
 
 
-    private void shuffle(){
+    private void shuffle() {
         ArrayList<Flashcard> deck = this.cards;
         ArrayList<Flashcard> mixed = new ArrayList<Flashcard>();
         int num = deck.size();
@@ -80,17 +79,13 @@ public class Quiz {
 
         Flashcard picked;
 
-        for(int i = 0; i < num; i++){
+        for (int i = 0; i < num; i++) {
             picked = deck.get(rand.nextInt(deck.size()));
             deck.remove(picked);
             mixed.add(picked);
         }
         this.cards = mixed;
     }
-
-
-
-
 
 
 }

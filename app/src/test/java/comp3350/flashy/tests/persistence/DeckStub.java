@@ -14,16 +14,17 @@ public class DeckStub extends Deck {
     private String secondAnswer = "testA2";
     private String thirdAnswer = "testA3";
 
-    public DeckStub(){
+    public DeckStub() {
         super("testDeck");
         fillStub();
     }
-    public DeckStub(String deckName){
+
+    public DeckStub(String deckName) {
         super(deckName);
         fillStub();
     }
 
-    private void fillStub(){
+    private void fillStub() {
         this.addCard(new Flashcard(firstCardName, question, firstAnswer));
         this.addCard(new Flashcard(secondCardName, question, secondAnswer));
         this.addCard(new Flashcard(thirdCardName, question, thirdAnswer));

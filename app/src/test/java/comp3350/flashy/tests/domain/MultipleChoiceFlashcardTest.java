@@ -1,13 +1,10 @@
 package comp3350.flashy.tests.domain;
 
 
-
-
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
 
@@ -19,18 +16,18 @@ public class MultipleChoiceFlashcardTest {
     private ArrayList<String> answers;
 
     @Before
-    public void setUp(){
-        answers = new ArrayList<String>(){
+    public void setUp() {
+        answers = new ArrayList<String>() {
             {
                 add("1");
                 add("2");
             }
         };
-        card = new MultipleChoiceFlashcard("name","q",answers);
+        card = new MultipleChoiceFlashcard("name", "q", answers);
     }
 
     @Test
-    public void multipleChoiceTest(){
+    public void multipleChoiceTest() {
         System.out.println("Running Multiple Choice Flashcard object test");
         assertTrue(card.getAnswers().equals(answers));
         assertTrue(card.getCardType().equals("2"));

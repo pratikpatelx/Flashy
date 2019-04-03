@@ -51,7 +51,6 @@ public class ManageMCFlashcardTest {
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
 
-
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
@@ -68,7 +67,6 @@ public class ManageMCFlashcardTest {
 
         //verify flashcard has been added
         onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
-
 
 
         //add flashcard and select type
@@ -88,7 +86,6 @@ public class ManageMCFlashcardTest {
         onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
 
 
-
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
@@ -104,7 +101,6 @@ public class ManageMCFlashcardTest {
 
         //verify flash card has been added to the flash card list
         onView(withText("Question 3")).check(matches(withText(containsString("Question 3"))));
-
 
 
         //view flashcard
@@ -128,7 +124,6 @@ public class ManageMCFlashcardTest {
         onView(withText("Edited question")).check(matches(withText(containsString("Edited question"))));
 
 
-
         //delete flashcard
         onView(withText("Question 1")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
@@ -140,7 +135,6 @@ public class ManageMCFlashcardTest {
         //delete flashcard
         onView(withText("Edited question")).perform(click());
         onView(ViewMatchers.withId(R.id.delButton)).perform(click());
-
 
 
         //go back

@@ -6,13 +6,14 @@ import java.util.Hashtable;
 import java.util.Set;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.persistence.DatabaseImplementation;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
-public class DatabaseStub implements DatabaseImplementation {
+public class DeckDatabaseStub implements DeckDatabaseImplementation, UserDatabaseImplementation {
     private Hashtable<String, Hashtable<String, Deck>> storage;
     private Hashtable<String, String> userList;
 
-    public DatabaseStub() {
+    public DeckDatabaseStub() {
         storage = new Hashtable();
         userList = new Hashtable();
     }

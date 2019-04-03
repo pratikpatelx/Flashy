@@ -12,20 +12,20 @@ import static junit.framework.TestCase.assertTrue;
 
 public class FlashcardTest {
 
-    private Flashcard card1,card2;
-    private String name,testQ,testA;
+    private Flashcard card1, card2;
+    private String name, testQ, testA;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         name = "fakeDeck-0";
         testQ = "q1";
         testA = "a1";
-        card1 = new Flashcard(name,testQ,testA);
-        card2 = new Flashcard(name,testQ+"2",testA+"2");
+        card1 = new Flashcard(name, testQ, testA);
+        card2 = new Flashcard(name, testQ + "2", testA + "2");
     }
 
     @Test
-    public void flashcardTest(){
+    public void flashcardTest() {
 
         System.out.println("Running Flashcard object test");
         assertTrue(card1.getAnswer().equals(testA));

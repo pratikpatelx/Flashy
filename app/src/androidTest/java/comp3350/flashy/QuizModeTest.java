@@ -18,7 +18,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -52,7 +51,6 @@ public class QuizModeTest {
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
 
-
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
@@ -69,7 +67,6 @@ public class QuizModeTest {
 
         //verify flashcard has been added
         onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
-
 
 
         //add flashcard and select type
@@ -89,7 +86,6 @@ public class QuizModeTest {
 
         //verify flashcard has been added
         onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
-
 
 
         //add flashcard and select type
@@ -115,7 +111,6 @@ public class QuizModeTest {
         onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
 
 
-
         //start quiz
         onView(withText("test deck")).perform(click());
         onView(ViewMatchers.withId(R.id.startQuiz)).perform(click());
@@ -126,7 +121,6 @@ public class QuizModeTest {
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
-
 
 
         //logout

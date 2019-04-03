@@ -1,12 +1,10 @@
 package comp3350.flashy.presentation;
 
-import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,11 +17,9 @@ import static comp3350.flashy.R.color.wrongchoice;
 
 public class Quiz extends AppCompatActivity {
 
-    private uiHandler uiManager = MainActivity.getHandler();
-
     int state;
     int nextState;
-
+    private uiHandler uiManager = MainActivity.getHandler();
     private TextView stdTitle;
     private TextView stdBody;
     private TextView fitbBody;
@@ -70,33 +66,33 @@ public class Quiz extends AppCompatActivity {
 
         updateContent();
         setOnClickListeners();
-
-
-
     }
 
 
-    private void updateContent(){
-        if(!uiManager.isQuizDone()) {
+    private void updateContent() {
+        if (!uiManager.isQuizDone()) {
 
-            if(uiManager.getNextCardType() != 2) {
+            if (uiManager.getNextCardType() != 2) {
                 content = uiManager.getContent(-1);
                 state = uiManager.getCurrentType();
                 System.out.println(state);
-            }else{
+            } else {
                 contentMC = uiManager.getMCContent(-1);
                 state = 2;
             }
 
 
             //this is the state of the current card.
-            switch(state){
-                case 0: setStandardContent();
-                        break;
-                case 1: setFITBContent();
-                        break;
-                case 2: setMCContent();
-                        break;
+            switch (state) {
+                case 0:
+                    setStandardContent();
+                    break;
+                case 1:
+                    setFITBContent();
+                    break;
+                case 2:
+                    setMCContent();
+                    break;
             }
 
             int[] numbers = uiManager.getQuizInfo();
@@ -104,7 +100,7 @@ public class Quiz extends AppCompatActivity {
             numCorrect.setText(Integer.toString(numbers[1]));
             numWrong.setText(Integer.toString(numbers[2]));
 
-        }else{
+        } else {
             finish();
         }
     }
@@ -178,15 +174,17 @@ public class Quiz extends AppCompatActivity {
         MCChoice4.setBackgroundColor(getResources().getColor(defaultmcanswer));
     }
 
-    private void setOnClickListeners(){
+    private void setOnClickListeners() {
         reveal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                switch(state){
-                    case 0: stdBody.setVisibility(View.VISIBLE);
+                switch (state) {
+                    case 0:
+                        stdBody.setVisibility(View.VISIBLE);
                         break;
-                    case 1: fitbAnswer.setVisibility(View.VISIBLE);
+                    case 1:
+                        fitbAnswer.setVisibility(View.VISIBLE);
                         break;
 
                 }
@@ -245,11 +243,11 @@ public class Quiz extends AppCompatActivity {
     }
 
 
-    private void setBackgrounds(){
+    private void setBackgrounds() {
         int num = 0;
 
-        for (int i = 2; i<contentMC.size();i++){
-            if(contentMC.get(1).equals(contentMC.get(i))){
+        for (int i = 2; i < contentMC.size(); i++) {
+            if (contentMC.get(1).equals(contentMC.get(i))) {
                 num = i;
 
 
@@ -261,14 +259,18 @@ public class Quiz extends AppCompatActivity {
         MCChoice3.setBackgroundColor(getResources().getColor(wrongchoice));
         MCChoice4.setBackgroundColor(getResources().getColor(wrongchoice));
 
-        switch(num){
-            case 2: MCChoice1.setBackgroundColor(getResources().getColor(flashcard_color));
+        switch (num) {
+            case 2:
+                MCChoice1.setBackgroundColor(getResources().getColor(flashcard_color));
                 break;
-            case 3: MCChoice2.setBackgroundColor(getResources().getColor(flashcard_color));
+            case 3:
+                MCChoice2.setBackgroundColor(getResources().getColor(flashcard_color));
                 break;
-            case 4: MCChoice3.setBackgroundColor(getResources().getColor(flashcard_color));
+            case 4:
+                MCChoice3.setBackgroundColor(getResources().getColor(flashcard_color));
                 break;
-            case 5: MCChoice4.setBackgroundColor(getResources().getColor(flashcard_color));
+            case 5:
+                MCChoice4.setBackgroundColor(getResources().getColor(flashcard_color));
                 break;
         }
 

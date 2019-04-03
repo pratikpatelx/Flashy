@@ -1,10 +1,10 @@
 package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
+    private static final String cardType = "0";
     private String cardName;
     private String answer;
     private String question;
-    private static final String cardType = "0";
 
     public Flashcard(String name, String question, String answer) {
         this.cardName = name;
@@ -25,7 +25,6 @@ public class Flashcard implements FlashcardInterface {
         info += "A: " + this.answer + "\n";
         return info;
     }
-
 
 
     /**
@@ -55,18 +54,18 @@ public class Flashcard implements FlashcardInterface {
     public void setCardName(String newName) {
         cardName = newName;
     }
-    
+
     /**
      * editCard()
      * This method will change question and answer to be the same as that of
      * mimic
-     * 
+     *
      * @param mimic
      * @return true if and only if mimic has the same name as this
      */
-    public boolean editCard(Flashcard mimic){
+    public boolean editCard(Flashcard mimic) {
         boolean success = false;
-        if(mimic.equals(this)){
+        if (mimic.equals(this)) {
             this.question = mimic.getQuestion();
             this.answer = mimic.getAnswer();
             success = true;
@@ -74,8 +73,8 @@ public class Flashcard implements FlashcardInterface {
         return success;
     }
 
-    public String getCardType () {
-        return this.cardType;
+    public String getCardType() {
+        return cardType;
     }
 
 
@@ -89,9 +88,8 @@ public class Flashcard implements FlashcardInterface {
     }
 
 
-
     @Override
-    public boolean mark(String response){
+    public boolean mark(String response) {
         return this.answer.equalsIgnoreCase(response);
     }
 
@@ -99,15 +97,15 @@ public class Flashcard implements FlashcardInterface {
         return true;
     }
 
-    public boolean isFillInTheBlanksFlashcard () {
+    public boolean isFillInTheBlanksFlashcard() {
         return false;
     }
 
-    public boolean isTrueFalseFlashcard () {
+    public boolean isTrueFalseFlashcard() {
         return false;
     }
 
-    public boolean isMultipleChoiceFlashcard () {
+    public boolean isMultipleChoiceFlashcard() {
         return false;
     }
 

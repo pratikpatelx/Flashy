@@ -26,21 +26,21 @@ import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
 
 public class MainActivity extends AppCompatActivity {
+    public static uiHandler ui;
+    ArrayList<String> pList;
+    ArrayAdapter<String> profileArrayAdapter;
     private Button giveAccess;
     private Button register;
     private Button deleteUser;
     private EditText password;
     private int selectedPos;
     private TextView username;
-
-
     private ListView profiles;
-    ArrayList<String> pList;
-    ArrayAdapter<String> profileArrayAdapter;
 
-    public static uiHandler ui;
+    public static uiHandler getHandler() {
 
-
+        return ui;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         pList = ui.getAllProfileNames();
 
-        profileArrayAdapter = new ArrayAdapter<String>(this, R.layout.profile_list_item, R.id.profileName, pList)
-        {
+        profileArrayAdapter = new ArrayAdapter<String>(this, R.layout.profile_list_item, R.id.profileName, pList) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         giveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDeckMenuActivity(username.getText().toString(),password.getText().toString());
+                openDeckMenuActivity(username.getText().toString(), password.getText().toString());
             }
         });
 
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CharSequence returnText;
                 Context context = getApplicationContext();
-                CharSequence showText = "User " +username.getText() + "has been deleted";
+                CharSequence showText = "User " + username.getText() + "has been deleted";
                 int duration = Toast.LENGTH_LONG;
                 //remove user
                 ui.deleteUser(pList.get(selectedPos));
@@ -126,39 +124,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateData(){
+    private void updateData() {
         pList.clear();
         pList.addAll(ui.getAllProfileNames());
         profileArrayAdapter.notifyDataSetChanged();
         password.setText("");
     }
 
-    public static uiHandler getHandler() {
-
-        return ui;
-    }
-    public void openDeckMenuActivity(String username, String password){
+    public void openDeckMenuActivity(String username, String password) {
         int duration = Toast.LENGTH_LONG;
         CharSequence showText = "Authentication Failed";
         Context context = getApplicationContext();
 
-        if(ui.Verified(username,password)) {
+        if (ui.Verified(username, password)) {
             ui.setUsername(username);
             Intent intent = new Intent(this, ShowAllDecksActivity.class);
             startActivity(intent);
-            showText = "Welcome "+username.toUpperCase();
+            showText = "Welcome " + username.toUpperCase();
             Toast toast = Toast.makeText(context, showText, duration);
             toast.show();
-        }else
+        } else
             showText = "Incorrect Username or Password";
-            Toast toast = Toast.makeText(context, showText, duration);
-            toast.show();
+        Toast toast = Toast.makeText(context, showText, duration);
+        toast.show();
 
     }
-    public void openRegistrationActivity(){
+
+    public void openRegistrationActivity() {
         Intent intent = new Intent(this, FlashyRegistrationActivity.class);
         startActivity(intent);
     }
+
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 

@@ -8,20 +8,20 @@ public class MultipleChoiceFlashcard extends Flashcard {
     private String cardType = "2";
 
 
-    public MultipleChoiceFlashcard (String name, String question, List<String> answerList) {
-        super(name, question,"");
+    public MultipleChoiceFlashcard(String name, String question, List<String> answerList) {
+        super(name, question, "");
         this.answers = new ArrayList<String>(answerList);
     }
 
-    public void setAnswers (List<String> newAnswers) {
-        this.answers = new ArrayList<String>(newAnswers);
-    }
-
-    public List<String> getAnswers () {
+    public List<String> getAnswers() {
         return answers;
     }
 
-    public String getCardType () {
+    public void setAnswers(List<String> newAnswers) {
+        this.answers = new ArrayList<String>(newAnswers);
+    }
+
+    public String getCardType() {
         return cardType;
     }
 
@@ -30,7 +30,7 @@ public class MultipleChoiceFlashcard extends Flashcard {
         return false;
     }
 
-    public boolean isMultipleChoiceFlashcard () {
+    public boolean isMultipleChoiceFlashcard() {
         return true;
     }
 }

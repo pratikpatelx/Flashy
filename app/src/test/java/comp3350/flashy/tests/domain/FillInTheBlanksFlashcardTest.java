@@ -15,13 +15,13 @@ public class FillInTheBlanksFlashcardTest {
     private FillInTheBlanksFlashcard card;
 
     @Before
-    public void setUp(){
-        card = new FillInTheBlanksFlashcard("fakeDeck-0","q1","a1","p1");
+    public void setUp() {
+        card = new FillInTheBlanksFlashcard("fakeDeck-0", "q1", "a1", "p1");
 
     }
 
     @Test
-    public void fillInTheBlanksTest(){
+    public void fillInTheBlanksTest() {
 
         System.out.println("Running Fill In The Blanks Flashcard object test");
         assertTrue(card.getFirstPart().equals("p1"));

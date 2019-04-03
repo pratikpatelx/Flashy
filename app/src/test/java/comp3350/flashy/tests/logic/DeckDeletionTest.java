@@ -11,11 +11,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-
 public class DeckDeletionTest {
 
     @Test
-    public void DeleteDeckTest(){
+    public void DeleteDeckTest() {
         System.out.println("\nDeleteDeck test\n");
         LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
         String user = "John Doe";
@@ -54,7 +53,7 @@ public class DeckDeletionTest {
 
         lgc.deleteDeck(user, deckBName);
 
-        assertEquals(numDecks-1, lgc.getNames(user).size());
+        assertEquals(numDecks - 1, lgc.getNames(user).size());
         assertEquals(3, lgc.getDeck(user, deckAName).getNumCards());
         System.out.println("DeleteDeck test complete\n");
     }

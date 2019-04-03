@@ -1,10 +1,10 @@
-package comp3350.flashy.persistence;
+package comp3350.flashy.persistence.Interfaces;
 
 import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 
-public interface DatabaseImplementation {
+public interface DeckDatabaseImplementation {
 
     /*
     Deck based methods
@@ -16,15 +16,4 @@ public interface DatabaseImplementation {
     void deleteDeck(String username, String identifier);
 
     Collection getDeckCollection(String username);
-
-    /*
-    User based methods
-     */
-    void inputUser(String username, String password);
-
-    String getUserPassword(String username);
-
-    void removeUser(String username);
-
-    Collection<String> getUserCollection();
 }

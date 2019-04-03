@@ -1,9 +1,9 @@
 package comp3350.flashy.presentation;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +13,15 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
-    private uiHandler uiManager = MainActivity.getHandler();
     ArrayList<String> items;
     int selectedPostion = -1;
+    private uiHandler uiManager = MainActivity.getHandler();
     private TextView deck;
     private TextView username;
     private FloatingActionButton openDeck;
@@ -50,8 +49,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         items = uiManager.getNames();
         selectedPostion = -1;
 
-        fcArrayAdapter = new ArrayAdapter<String>(this, R.layout.deck_list_item, R.id.deck_list_item, items)
-        {
+        fcArrayAdapter = new ArrayAdapter<String>(this, R.layout.deck_list_item, R.id.deck_list_item, items) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -59,7 +57,6 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 final TextView deckItem = view.findViewById(R.id.deck_list_item);
 
                 deckItem.setText(items.get(position));
-
 
 
                 return view;
@@ -71,15 +68,15 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
         listView.setAdapter(fcArrayAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    listView.setItemChecked(position,true);
-                    selectedPostion = position;
-                    fcArrayAdapter.notifyDataSetChanged();
-                    deck.setText(items.get(position));
-                    uiManager.setCurrDeck(items.get(position));
-                }
+                listView.setItemChecked(position, true);
+                selectedPostion = position;
+                fcArrayAdapter.notifyDataSetChanged();
+                deck.setText(items.get(position));
+                uiManager.setCurrDeck(items.get(position));
+            }
 
 
         });
@@ -88,7 +85,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(selectedPostion != -1)
+                if (selectedPostion != -1)
                     openFlashCardListActivity();
 
             }
@@ -98,8 +95,8 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(selectedPostion != -1){
-                    listView.setItemChecked(selectedPostion,false);
+                if (selectedPostion != -1) {
+                    listView.setItemChecked(selectedPostion, false);
                     uiManager.deleteDeck(items.get(selectedPostion));
                     items.remove(selectedPostion);
                     fcArrayAdapter.notifyDataSetChanged();
@@ -120,7 +117,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(selectedPostion != -1)
+                if (selectedPostion != -1)
                     openQuizActivity();
             }
         });
@@ -154,9 +151,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openCreateNewDeckActivity(){
+    public void openCreateNewDeckActivity() {
         Intent intent = new Intent(this, NewDeckActivity.class);
         startActivity(intent);
     }
-    
+
 }

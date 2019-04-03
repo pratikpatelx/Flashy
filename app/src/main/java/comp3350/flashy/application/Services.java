@@ -1,20 +1,31 @@
 package comp3350.flashy.application;
 
-import comp3350.flashy.persistence.DatabaseImplementation;
-import comp3350.flashy.persistence.DatabaseImplementations.DatabaseHSQLDB;
-import comp3350.flashy.persistence.DatabaseImplementations.DatabaseStub;
+import comp3350.flashy.persistence.DatabaseImplementations.HSQLDB.DeckDatabaseHSQLDB;
+import comp3350.flashy.persistence.DatabaseImplementations.HSQLDB.UserDatabaseHSQLDB;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 
 public class Services {
-    private static DatabaseImplementation persistence = null;
+    private static DeckDatabaseImplementation deckPersistence = null;
+    private static UserDatabaseImplementation userPersistence = null;
 
 
-    public static synchronized DatabaseImplementation getFlashyPersistence() {
-        if (persistence == null) {
-            persistence = new DatabaseHSQLDB(Main.getDBPathName());
-            //persistence = new DatabaseStub();
+    public static synchronized DeckDatabaseImplementation getDeckPersistence() {
+        if (deckPersistence == null) {
+            deckPersistence = new DeckDatabaseHSQLDB(Main.getDBPathName());
+            //persistence = new DeckDatabaseStub();
         }
 
-        return persistence;
+        return deckPersistence;
+    }
+
+    public static synchronized UserDatabaseImplementation getUserPersistence() {
+        if (userPersistence == null) {
+            userPersistence = new UserDatabaseHSQLDB(Main.getDBPathName());
+            //persistence = new DeckDatabaseStub();
+        }
+
+        return userPersistence;
     }
 }
