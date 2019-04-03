@@ -49,33 +49,13 @@ public class ManageDeckTest {
         onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
         onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 1"));
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
-        onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
-
-        //verify if deck has been added to deck list
-        onView(withText("test deck 1")).check(matches(withText(containsString("test deck 1"))));
-
-        //create deck
-        onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
-        onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 2"));
-        onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
-        onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
-
-        //verify if deck has been added to deck list
-        onView(withText("test deck 2")).check(matches(withText(containsString("test deck 2"))));
-
-        //create deck
-        onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
-        onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 3"));
-        onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
-
 
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
         onView(withText("Standard")).perform(click());
 
-
-        //create default flashcard
+        //create flashcard
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("Question 1"));
         onView(withText("Save")).perform(click());
@@ -86,11 +66,66 @@ public class ManageDeckTest {
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
-        onView(ViewMatchers.withId(R.id.flashListItem)).check(matches(withText(containsString("Question 1"))));
+        onView(withText("Question 1")).check(matches(withText(containsString("Question 1"))));
 
-        //delete flashcard
-        onView(withText("Question 1")).perform(click());
-        onView(ViewMatchers.withId(R.id.delButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
+
+        //verify if deck has been added to deck list
+        onView(withText("test deck 1")).check(matches(withText(containsString("test deck 1"))));
+
+
+
+        //create deck
+        onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
+        onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 2"));
+        onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
+
+        //add flashcard and select type
+        onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+        //create flashcard
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Title")).perform(replaceText("Question 2"));
+        onView(withText("Save")).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
+        onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Save")).perform(click());
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
+
+        //verify flashcard has been added
+        onView(withText("Question 2")).check(matches(withText(containsString("Question 2"))));
+
+        onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
+
+        //verify if deck has been added to deck list
+        onView(withText("test deck 2")).check(matches(withText(containsString("test deck 2"))));
+
+
+        //create deck
+        onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
+        onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck 3"));
+        onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
+
+        //add flashcard and select type
+        onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        onView(withText("Standard")).perform(click());
+
+        //create flashcard
+        onView(ViewMatchers.withId(R.id.title)).perform(click());
+        onView(withText("Title")).perform(replaceText("Question 3"));
+        onView(withText("Save")).perform(click());
+        onView(ViewMatchers.withId(R.id.body)).perform(click());
+        onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Save")).perform(click());
+        onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
+
+        //verify flashcard has been added
+        onView(withText("Question 3")).check(matches(withText(containsString("Question 3"))));
 
         //go back
         onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
