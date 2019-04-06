@@ -29,6 +29,7 @@ public class PutFlashcardInDeckTest {
     private DataTranslationLayer testDT;
     private Deck testDeck;
     private Flashcard testCard;
+    private ArgumentCaptor<Flashcard> captor;
 
     @Before
     public void setUp(){
@@ -37,14 +38,15 @@ public class PutFlashcardInDeckTest {
         testDH = spy(new DeckHandler(testDB, testDT));
         testDeck = mock(Deck.class);
         testCard = new Flashcard("name","q","a");
+        captor = ArgumentCaptor.forClass(Flashcard.class);
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
+
 
     }
 
     @Test
     public void putFlashCardInDeckTestNull() { //testing null deck
         System.out.println("\nRunning PutFlashCardInDeck - New Deck unit test\n");
-        ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
 
         when(testDH.getDeck("", "testDeck")).thenReturn(null);
         when(testDH.makeDeck(anyString())).thenReturn(testDeck);
@@ -63,10 +65,10 @@ public class PutFlashcardInDeckTest {
     @Test
     public void putFlashCardInDeckTestDeck(){  //testing an existing deck
         System.out.println("\nRunning PutFlashCardInDeck - Existing Deck unit test\n");
-        ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
+
         when(testDH.getDeck("","testDeck")).thenReturn(testDeck);
 
-        testDH.putFlashcardInDeck("", "testDeck",testCard);
+       testDH.putFlashcardInDeck("", "testDeck",testCard);
 
         verify(testDeck).addCard(captor.capture());
         Flashcard result = captor.getValue();

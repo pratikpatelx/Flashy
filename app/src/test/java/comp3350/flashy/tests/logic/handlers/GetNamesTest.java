@@ -1,5 +1,7 @@
 package comp3350.flashy.tests.logic.handlers;
 
+import android.provider.ContactsContract;
+
 import org.junit.Before;
 import org.junit.Test;
 
