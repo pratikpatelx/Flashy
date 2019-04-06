@@ -7,13 +7,15 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckHandler;
 import comp3350.flashy.logic.QuizManager;
+import comp3350.flashy.logic.UserHandler;
 
 public class uiHandler {
 
     private static int deckSize = 0; // this is to hold max index
-    private LogicManager logic;
+    private DeckHandler deckManager;
+    private UserHandler userManager;
     private String username;
     private QuizManager quiz;
     private int quizCardType;
@@ -23,29 +25,30 @@ public class uiHandler {
     //TODO add checks and error handling.
 
     public uiHandler() {
-        logic = new LogicManager(Services.getDeckPersistence(), Services.getUserPersistence());
+        deckManager = new DeckHandler();
+        userManager = new UserHandler();
     }
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database
     public void saveCard(String head, String content, int type) {
         switch (type) {
             case 0:
-                logic.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content));
+                deckManager.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content));
                 deckSize++;
                 break;
             case 1:
-                logic.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " "));
+                deckManager.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " "));
                 break;
         }
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
-        logic.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer));
+        deckManager.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer));
         deckSize++;
     }
 
     public void deleteCard(int index) {
-        logic.removeCard(username, currDeck, (currDeck + "-" + index));
+        deckManager.removeCard(username, currDeck, (currDeck + "-" + index));
         deckSize--;
     }
 
@@ -125,7 +128,7 @@ public class uiHandler {
     }
 
     public int getDeckSize() {
-        deckSize = logic.queryDeckSize(username, currDeck.getName());
+        deckSize = deckManager.queryDeckSize(username, currDeck.getName());
 
         return deckSize;
     }
@@ -135,7 +138,7 @@ public class uiHandler {
     }
 
     public void setCurrDeck(String name) {
-        Deck newDeck = logic.getDeck(username, name);
+        Deck newDeck = deckManager.getDeck(username, name);
 
         if (newDeck != null) {
             currDeck = newDeck;
@@ -144,8 +147,8 @@ public class uiHandler {
             System.out.println("found deck");
         } else {
             currDeck = new Deck(name);
-            logic.insertDeck(username, currDeck);
             deckName = currDeck.getName();
+            deckManager.insertDeck(username, deckName, currDeck);
             deckSize = currDeck.getNumCards();
             System.out.println("created new deck");
         }
@@ -163,38 +166,41 @@ public class uiHandler {
         username = name;
     }
 
+
+    //
+
     public ArrayList<String> getNames() {
-        return logic.getNames(username);
+        return new ArrayList<String>(deckManager.getNames(username));
     }
 
     public ArrayList<Flashcard> getAllCards() {
-        currDeck = logic.getDeck(username, deckName);
+        currDeck = deckManager.getDeck(username, deckName);
 
         return new ArrayList<Flashcard>(currDeck.getFlashcards());
     }
 
     public void deleteDeck(String dName) {
-        logic.deleteDeck(username, dName);
+        deckManager.deleteDeck(username, dName);
     }
 
     public boolean registerUser(String username, String password) {
-        return logic.addUserToDatabase(username, password);
+        return userManager.addUserToDatabase(username, password);
     }
 
     public boolean Verified(String username, String password) {
-        return logic.verifyUserPassword(username, password);
+        return userManager.verifyUserPassword(username, password);
     }
 
     public void deleteUser(String user) {
-        logic.removeUserFromDatabase(user);
+        userManager.removeUserFromDatabase(user);
     }
 
     public ArrayList<String> getAllProfileNames() {
-        return logic.getAllProfiles();
+        return new ArrayList<String>(userManager.getAllProfiles());
     }
 
     public void startQuiz() {
-        quiz = logic.startQuiz(username, deckName);
+        quiz = deckManager.startQuiz(username, deckName);
     }
 
     public void setAnswer(boolean correct) {

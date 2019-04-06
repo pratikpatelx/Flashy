@@ -1,11 +1,16 @@
-package comp3350.flashy.logic.PersistenceHandlers;
+package comp3350.flashy.logic;
 
 import java.util.Collection;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 public class UserHandler {
     private UserDatabaseImplementation userDB;
+
+    public UserHandler(){
+        this(Services.getUserPersistence());
+    }
     public UserHandler(UserDatabaseImplementation givenImpl) {
         userDB = givenImpl;
     }
@@ -15,7 +20,7 @@ public class UserHandler {
      *
      * @param username
      */
-    public boolean verifyUser(String username, String givenPassword) {
+    public boolean verifyUserPassword(String username, String givenPassword) {
         Boolean result = false;
         String password = userDB.getUserPassword(username);
         if (password != null && password.equals(givenPassword)) {
@@ -30,7 +35,7 @@ public class UserHandler {
      * @param username
      * @param password
      */
-    public boolean addUser(String username, String password) {
+    public boolean addUserToDatabase(String username, String password) {
         try {
             userDB.inputUser(username, password);
             return true;
@@ -45,7 +50,7 @@ public class UserHandler {
      * @param username
      * @return
      */
-    public boolean removeUser(String username) {
+    public boolean removeUserFromDatabase(String username) {
         try {
             userDB.removeUser(username);
             return true;
@@ -59,7 +64,7 @@ public class UserHandler {
      *
      * @return
      */
-    public Collection<String> getUserCollection() {
+    public Collection<String> getAllProfiles() {
         return userDB.getUserCollection();
     }
 }
