@@ -6,13 +6,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
-import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
+import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.tests.persistence.DeckStub;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -21,18 +18,16 @@ import static org.mockito.Mockito.when;
 
 public class GetAllDecksTest {
 
-    private DeckHandler testDB;
-    private UserHandler fakeUH;
-    private LogicManager testLGC;
+    private DeckHandler testDH;
+    private DeckDatabaseImplementation testDB;
     private ArrayList<Deck> testList;
     private Collection<Deck> testColl;
     private Deck testDeck;
 
     @Before
     public void setUp() {
-        testDB = mock(DeckHandler.class);
-        fakeUH = mock(UserHandler.class);
-        testLGC = new LogicManager(testDB,fakeUH);
+        testDB = mock(DeckDatabaseImplementation.class);
+        testDH = new DeckHandler(testDB);
         testDeck = new DeckStub();
         testColl = new ArrayList<>();
         testColl.add(testDeck);
@@ -47,7 +42,7 @@ public class GetAllDecksTest {
 
         when(testDB.getDeckCollection("")).thenReturn(testColl);
 
-        ArrayList<Deck> result = testLGC.getAllDecks("");
+        ArrayList<Deck> result = new ArrayList<Deck>(testDH.getAllDecks(""));
         assertTrue("Test failed: Result does not contain testDeck.", result.contains(testDeck));
         testList = new ArrayList<>(testColl);
         assertEquals(testList, result);

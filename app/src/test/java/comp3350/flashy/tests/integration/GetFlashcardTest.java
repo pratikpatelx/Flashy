@@ -3,7 +3,8 @@ package comp3350.flashy.tests.integration;
 import org.junit.Test;
 
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.logic.UserHandler;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,15 +18,16 @@ public class GetFlashcardTest {
     @Test
     public void getFlashcardTest() {
         System.out.println("\n Running getCard test\n");
-        LogicManager lgc = new LogicManager();
+        DeckHandler deckMgr = new DeckHandler();
+        UserHandler uMgr = new UserHandler();
         String user = "John Doe";
-        lgc.addUserToDatabase(user, "");
+        uMgr.addUserToDatabase(user, "");
 
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
         Flashcard newCard = new Flashcard(cardName, "defaultQ", "defaultA");
-        lgc.putFlashcardInDeck(user, "Test_Deck", newCard);
-        assertEquals("getCardTest failed.", newCard, lgc.getDeck(user, deckName).getCard(cardName));
+        deckMgr.putFlashcardInDeck(user, "Test_Deck", newCard);
+        assertEquals("getCardTest failed.", newCard, deckMgr.getDeck(user, deckName).getCard(cardName));
     }
 }
 

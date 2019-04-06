@@ -5,7 +5,8 @@ import org.junit.Test;
 import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.logic.UserHandler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,9 +17,10 @@ public class DeckDeletionTest {
     @Test
     public void DeleteDeckTest() {
         System.out.println("\nDeleteDeck test\n");
-        LogicManager lgc = new LogicManager();
+        DeckHandler deckMgr = new DeckHandler();
+        UserHandler uMgr = new UserHandler();
         String user = "John Doe";
-        lgc.addUserToDatabase(user, "");
+        uMgr.addUserToDatabase(user, "");
         String deckAName = "AlphaDeck";
         String deckBName = "BrovoDeck";
         String cardNameA1 = deckAName + "-" + 0;
@@ -40,21 +42,21 @@ public class DeckDeletionTest {
         Flashcard card4 = new Flashcard(cardNameB2, question, fourthAnswer);
 
 
-        lgc.putFlashcardInDeck(user, deckAName, card0);
-        lgc.putFlashcardInDeck(user, deckAName, card1);
-        lgc.putFlashcardInDeck(user, deckAName, card2);
-        lgc.putFlashcardInDeck(user, deckBName, card3);
-        lgc.putFlashcardInDeck(user, deckBName, card4);
-        int numDecks = lgc.getNames(user).size();
-        assertTrue(lgc.getNames(user).size() >= 2);
+        deckMgr.putFlashcardInDeck(user, deckAName, card0);
+        deckMgr.putFlashcardInDeck(user, deckAName, card1);
+        deckMgr.putFlashcardInDeck(user, deckAName, card2);
+        deckMgr.putFlashcardInDeck(user, deckBName, card3);
+        deckMgr.putFlashcardInDeck(user, deckBName, card4);
+        int numDecks = deckMgr.getNames(user).size();
+        assertTrue(deckMgr.getNames(user).size() >= 2);
 
-        Deck deckB = lgc.getDeck(user, deckBName);
+        Deck deckB = deckMgr.getDeck(user, deckBName);
         assertEquals(2, deckB.getNumCards());
 
-        lgc.deleteDeck(user, deckBName);
+        deckMgr.deleteDeck(user, deckBName);
 
-        assertEquals(numDecks - 1, lgc.getNames(user).size());
-        assertEquals(3, lgc.getDeck(user, deckAName).getNumCards());
+        assertEquals(numDecks - 1, deckMgr.getNames(user).size());
+        assertEquals(3, deckMgr.getDeck(user, deckAName).getNumCards());
         System.out.println("DeleteDeck test complete\n");
     }
 }

@@ -3,36 +3,33 @@ package comp3350.flashy.tests.logic.logicmanager;
 import org.junit.Before;
 import org.junit.Test;
 
-import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
-import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
+import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.tests.persistence.DeckStub;
-import comp3350.flashy.domain.Deck;
-import comp3350.flashy.logic.LogicManager;
 
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class InsertDeckTest {
 
-    private DeckHandler testDB;
-    private LogicManager testLGC;
+    private DeckHandler testDH;
+    private DeckDatabaseImplementation testDB;
+    private DeckStub testDeck;
 
     @Before
     public void setUp(){
-        testDB = mock(DeckHandler.class);
-        testLGC = new LogicManager(testDB,mock(UserHandler.class));
+        testDB = mock(DeckDatabaseImplementation.class);
+        testDH = new DeckHandler(testDB);
+        testDeck = new DeckStub("testDeck");
     }
 
     @Test
     public void insertDeckTest(){
         System.out.println("\nrunning Insert Deck unit test\n");
-        Deck original = new DeckStub("testDeck");
 
-        testLGC.insertDeck("",original);
+        testDH.insertDeck("",testDeck.getName(), testDeck);
 
-        verify(testDB).inputDeck("",original.getName(), original);
+        verify(testDB).inputDeck("","testDeck", testDeck);
         System.out.println("Insert Deck test complete");
 
     }

@@ -3,11 +3,11 @@ package comp3350.flashy.tests.logic.logicmanager;
 import org.junit.Before;
 import org.junit.Test;
 
-import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
-import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
+import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.tests.persistence.DeckStub;
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.logic.LogicManager;
+
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
@@ -17,13 +17,13 @@ import static org.mockito.Mockito.when;
 
 public class GetDeckTest {
 
-    private DeckHandler testDB;
-    private LogicManager testLGC;
+    private DeckHandler testDH;
+    private DeckDatabaseImplementation testDB;
 
     @Before
     public void setUp(){
-        testDB = mock(DeckHandler.class);
-        testLGC = new LogicManager(testDB, mock(UserHandler.class));
+        testDB = mock(DeckDatabaseImplementation.class);
+        testDH = new DeckHandler(testDB);
 
     }
 
@@ -34,7 +34,7 @@ public class GetDeckTest {
 
         when(testDB.getDeck("","testDeck")).thenReturn(original);
 
-        Deck result = testLGC.getDeck("", "testDeck");
+        Deck result = testDH.getDeck("", "testDeck");
         assertNotNull(result);
         assertEquals(result.getCard("testDeck-0"),original.getCard("testDeck-0"));
 
