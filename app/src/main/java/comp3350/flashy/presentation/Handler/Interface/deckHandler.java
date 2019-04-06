@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Handler.InterfaceHandlers;
+package comp3350.flashy.presentation.Handler.Interface;
 
 import java.util.ArrayList;
 
@@ -20,8 +20,6 @@ public class deckHandler {
     public deckHandler(LogicManager lgc){
         logic = lgc;
     }
-
-
 
 
     //retrieve content
@@ -90,6 +88,16 @@ public class deckHandler {
         return logic.getNames(username);
     }
 
+    public ArrayList<String> getMenuData() {
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add("Standard");
+        result.add("Fill in the blank");
+        result.add("Multiple choice");
+
+        return result;
+    }
+
 
 
 
@@ -152,6 +160,5 @@ public class deckHandler {
     public void deleteDeck(String dName) {
         logic.deleteDeck(username, dName);
     }
-
 
 }

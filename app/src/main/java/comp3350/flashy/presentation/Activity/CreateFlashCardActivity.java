@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,8 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
-import comp3350.flashy.presentation.Handler.uiHandler;
+import comp3350.flashy.presentation.Handler.Interface.deckHandler;
 
 public class CreateFlashCardActivity extends AppCompatActivity {
     ArrayList<String> mcContent;
@@ -97,7 +96,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
         }
 
-        list = uiHandler.getMenuData();
+        list = deck.getMenuData();
 
         menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list) {
             @Override

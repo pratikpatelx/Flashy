@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.profileHandler;
+import comp3350.flashy.presentation.Handler.Interface.profileHandler;
 
 public class FlashyRegistrationActivity extends AppCompatActivity {
 

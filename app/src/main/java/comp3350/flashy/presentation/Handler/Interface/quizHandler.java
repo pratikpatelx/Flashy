@@ -1,10 +1,11 @@
-package comp3350.flashy.presentation.Handler.InterfaceHandlers;
+package comp3350.flashy.presentation.Handler.Interface;
 
 import java.util.ArrayList;
 
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
+import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.QuizManager;
 
 
@@ -12,11 +13,17 @@ import comp3350.flashy.logic.QuizManager;
 public class quizHandler {
 
     private QuizManager quiz;
+    private LogicManager logic;
     private int quizCardType;
 
 
-    public quizHandler(QuizManager mngr){
-        quiz = mngr;
+    public quizHandler(LogicManager mngr){
+        logic = mngr;
+    }
+
+
+    public void startQuiz(String Username, String deckName) {
+        quiz =  logic.startQuiz(Username, deckName);
     }
 
 
@@ -36,7 +43,6 @@ public class quizHandler {
         Flashcard curr = quiz.getNextCard();
         quizCardType = Integer.parseInt(curr.getCardType());
 
-
         if (curr.isFillInTheBlanksFlashcard())
             result[2] = ((FillInTheBlanksFlashcard) curr).getFirstPart();
 
@@ -48,14 +54,12 @@ public class quizHandler {
     }
 
     public ArrayList<String> getMCContent(){
-
         MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) quiz.getNextCard();
 
         ArrayList<String> result = new ArrayList<>();
         result.add(card.getQuestion());
         result.add(card.getAnswer());
         result.addAll(card.getAnswers());
-
 
         return result;
     }
@@ -75,4 +79,5 @@ public class quizHandler {
     public void setAnswer(boolean correct) {
         quiz.evaluateAnswer(correct);
     }
+
 }

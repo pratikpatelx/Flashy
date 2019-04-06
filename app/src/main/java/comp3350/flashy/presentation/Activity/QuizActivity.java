@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,17 +10,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.quizHandler;
+import comp3350.flashy.presentation.Handler.Interface.quizHandler;
 
 import static comp3350.flashy.R.color.defaultmcanswer;
 import static comp3350.flashy.R.color.flashcard_color;
 import static comp3350.flashy.R.color.wrongchoice;
 
-public class Quiz extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
     int state;
 
-    private quizHandler quiz = new quizHandler(MainActivity.getHandler().startQuiz());
+
     private TextView stdTitle;
     private TextView stdBody;
     private TextView fitbBody;
@@ -40,6 +40,8 @@ public class Quiz extends AppCompatActivity {
 
     private String[] content;
     private ArrayList<String> contentMC;
+
+    private quizHandler quiz = MainActivity.getHandler().getQuizHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,13 @@ public class Quiz extends AppCompatActivity {
         success = findViewById(R.id.successButton);
         fail = findViewById(R.id.failButton);
         reveal = findViewById(R.id.revealAnswer);
+
+        Bundle info = getIntent().getExtras();
+        String username = info.getString("NAME");
+        String deck = info.getString("DECK");
+
+        quiz.startQuiz(username,deck);
+
 
         updateContent();
         setOnClickListeners();

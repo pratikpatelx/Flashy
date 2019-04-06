@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
+import comp3350.flashy.presentation.Handler.Interface.deckHandler;
 
 public class NewDeckActivity extends Activity {
     private Button createDeck;

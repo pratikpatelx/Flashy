@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import comp3350.flashy.R;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
+import comp3350.flashy.presentation.Handler.Interface.deckHandler;
 
 public class FlashCardListActivity extends AppCompatActivity {
     private deckHandler deck = MainActivity.getHandler().getDeckHandler();

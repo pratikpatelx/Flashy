@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +24,17 @@ import java.util.ArrayList;
 
 import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.profileHandler;
+import comp3350.flashy.presentation.Handler.Interface.profileHandler;
 import comp3350.flashy.presentation.Handler.uiHandler;
 
 public class MainActivity extends AppCompatActivity {
     public static uiHandler ui;
     private profileHandler profile;
+
     ArrayList<String> pList;
     ArrayAdapter<String> profileArrayAdapter;
+
+
     private Button giveAccess;
     private Button register;
     private Button deleteUser;
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.getSupportActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        //initialize app
         copyDatabaseToDevice();
         ui = new uiHandler();
 
@@ -142,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
 
         if (profile.Verified(username, password)) {
-            ui.setUsername(username);
             Intent intent = new Intent(this, ShowAllDecksActivity.class);
+            intent.putExtra("USERNAME",username);
             startActivity(intent);
             showText = "Welcome " + username.toUpperCase();
             Toast toast = Toast.makeText(context, showText, duration);

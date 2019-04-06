@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Handler.InterfaceHandlers;
+package comp3350.flashy.presentation.Handler.Interface;
 
 import java.util.ArrayList;
 
@@ -28,6 +28,4 @@ public class profileHandler {
     public ArrayList<String> getAllProfileNames() {
         return logic.getAllProfiles();
     }
-
-
 }
