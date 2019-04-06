@@ -1,0 +1,1 @@
+Create a new README.md file that briefly explains the purpose of the project, how to run it, and links to other important project documentation (like your VISION.md, ARCHITECTURE.md, and RETROSPECTIVE.md files).
