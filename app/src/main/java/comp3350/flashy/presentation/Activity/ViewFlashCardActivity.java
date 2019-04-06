@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
+import comp3350.flashy.presentation.Handler.Interface.deckHandler;
 
 public class ViewFlashCardActivity extends AppCompatActivity {
 
@@ -60,7 +60,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         index = 0;
         deckSize = deck.getDeckSize();
         name = deck.getDeckName();
-        menu = MainActivity.getHandler().getMenuData();
+        menu = deck.getMenuData();
 
         Bundle extra = getIntent().getExtras();
 

@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Activities;
+package comp3350.flashy.presentation.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
-import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
+import comp3350.flashy.presentation.Handler.Interface.deckHandler;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
@@ -46,6 +46,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         delDeck = findViewById(R.id.deleteDeck);
         Back = findViewById(R.id.Back);
         quiz = findViewById(R.id.startQuiz);
+
+        Bundle info = getIntent().getExtras();
+        handler.setUsername(info.getString("USERNAME"));
 
         items = handler.getNames();
         selectedPostion = -1;
@@ -147,8 +150,9 @@ public class ShowAllDecksActivity extends AppCompatActivity {
     }
 
     public void openQuizActivity() {
-        Intent intent = new Intent(this, Quiz.class);
-        MainActivity.getHandler().startQuiz();
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.putExtra("NAME",handler.getUsername());
+        intent.putExtra("DECK",handler.getDeckName());
         startActivity(intent);
     }
 
