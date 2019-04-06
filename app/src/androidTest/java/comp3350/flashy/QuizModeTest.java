@@ -35,25 +35,34 @@ public class QuizModeTest {
     public void quizMode() {
 
         //add user
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.addProfile)).perform(click());
         onView(ViewMatchers.withId(R.id.Username)).perform(typeText("user123"));
         onView(ViewMatchers.withId(R.id.userPassword)).perform(typeText("123"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.regButton)).perform(click());
 
         //log in
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
         onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.Enter)).perform(click());
 
         //create deck
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.createDeck)).perform(click());
         onView(ViewMatchers.withId(R.id.deckTitle)).perform(typeText("test deck"));
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.Enter_Button)).perform(click());
 
 
         //add flashcard and select type
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withText("Multiple choice")).perform(click());
 
         //create flashcard
@@ -71,18 +80,25 @@ public class QuizModeTest {
 
 
         //add flashcard and select type
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(withText("Standard")).perform(click());
 
         //create flashcard
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("Question 2"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
         Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
@@ -91,17 +107,23 @@ public class QuizModeTest {
 
         //add flashcard and select type
         onView(ViewMatchers.withId(R.id.addCard)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.createMenu)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(withText("Fill in the blank")).perform(click());
 
         //create flashcard
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("Question 3"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
         Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.saveButton)).perform(click());
 
         //verify flashcard has been added
@@ -109,26 +131,37 @@ public class QuizModeTest {
 
 
         //go back
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.exitFlashList)).perform(click());
 
 
         //start quiz
+        Espresso.closeSoftKeyboard();
         onView(withText("test deck")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.startQuiz)).perform(click());
 
         //go through flashcards
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.failButton)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.failButton)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.successButton)).perform(click());
 
 
         //logout
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.Back)).perform(click());
 
         //delete profile
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.deleteProfile)).perform(click());
     }
 }
