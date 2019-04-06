@@ -47,10 +47,6 @@ public class deckHandler {
         return result;
     }
 
-    public QuizManager startQuiz() {
-        return deckM.startQuiz(getUsername(),getDeckName());
-    }
-
     public int getFlashcardTypeByIndex(int index) {
         Flashcard curr = currDeck.getCard(deckName + "-" + index);
 

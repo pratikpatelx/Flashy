@@ -13,9 +13,8 @@ public class QuizManager {
     private int correct;
     private int wrong;
 
-    public QuizManager(Deck quizDeck) {
-
-        this.quiz = new Quiz(quizDeck);
+    public QuizManager(Quiz quiz){
+        this.quiz = quiz;
         this.correct = 0;
         this.wrong = 0;
     }
@@ -64,8 +63,8 @@ public class QuizManager {
     }
 
     /**
-     * @param response weather the user got the question right or not
-     * @return just an echo of responsr
+     * @param response whether the user got the question right or not
+     * @return just an echo of response
      */
     public boolean evaluateAnswer(boolean response) {
         Flashcard curr = this.quiz.takeCard();

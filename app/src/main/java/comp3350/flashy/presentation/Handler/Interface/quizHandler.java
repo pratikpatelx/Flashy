@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
+import comp3350.flashy.domain.Quiz;
 import comp3350.flashy.logic.DeckManager;
 import comp3350.flashy.logic.QuizManager;
 
@@ -23,7 +24,7 @@ public class quizHandler {
 
 
     public void startQuiz(String Username, String deckName) {
-        quiz =  deckM.startQuiz(Username, deckName);
+        quiz = new QuizManager(new Quiz(deckM.startQuiz(Username, deckName)));
     }
 
 
