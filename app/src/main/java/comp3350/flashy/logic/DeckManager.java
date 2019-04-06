@@ -127,7 +127,7 @@ public class DeckManager {
         QuizManager qMngr = null;
 
         if (quizDeck != null) {
-            qMngr = new QuizManager(username, quizDeck);
+            qMngr = new QuizManager(quizDeck);
         }
 
         return qMngr;

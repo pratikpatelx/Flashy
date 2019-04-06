@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckManager;
 import comp3350.flashy.logic.QuizManager;
 
 
@@ -13,17 +13,17 @@ import comp3350.flashy.logic.QuizManager;
 public class quizHandler {
 
     private QuizManager quiz;
-    private LogicManager logic;
+    private DeckManager deckM;
     private int quizCardType;
 
 
-    public quizHandler(LogicManager mngr){
-        logic = mngr;
+    public quizHandler(){
+        deckM = new DeckManager();
     }
 
 
     public void startQuiz(String Username, String deckName) {
-        quiz =  logic.startQuiz(Username, deckName);
+        quiz =  deckM.startQuiz(Username, deckName);
     }
 
 

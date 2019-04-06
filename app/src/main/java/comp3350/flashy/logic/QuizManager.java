@@ -9,13 +9,12 @@ import comp3350.flashy.domain.Quiz;
 
 public class QuizManager {
 
-    private String user;
     private Quiz quiz;
     private int correct;
     private int wrong;
 
-    public QuizManager(String username, Deck quizDeck) {
-        this.user = username;
+    public QuizManager(Deck quizDeck) {
+
         this.quiz = new Quiz(quizDeck);
         this.correct = 0;
         this.wrong = 0;
