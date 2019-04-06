@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,13 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
 
 public class NewDeckActivity extends Activity {
     private Button createDeck;
     private Button cancelDeck;
     private EditText input;
     private TextView title;
-    private uiHandler uiManager = MainActivity.getHandler();
+    private deckHandler deck = MainActivity.getHandler().getDeckHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class NewDeckActivity extends Activity {
 
     public void openCreateDeckActivity() {
         Intent intent = new Intent(this, FlashCardListActivity.class);
-        uiManager.setCurrDeck(input.getText().toString());
+        deck.setCurrDeck(input.getText().toString());
         startActivity(intent);
     }
 

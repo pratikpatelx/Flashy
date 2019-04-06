@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
+import comp3350.flashy.presentation.Handler.uiHandler;
 
 public class CreateFlashCardActivity extends AppCompatActivity {
     ArrayList<String> mcContent;
@@ -39,13 +41,13 @@ public class CreateFlashCardActivity extends AppCompatActivity {
     private EditText mcWrong2;
     private EditText mcWrong3;
     private TextView instructionsMC;
-    private uiHandler uiManager;
+    private deckHandler deck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flash_card);
-        uiManager = MainActivity.getHandler();
+        deck = MainActivity.getHandler().getDeckHandler();
 
         mcCorrect = findViewById(R.id.correctMC);
         mcWrong1 = findViewById(R.id.wrongMC1);
@@ -95,7 +97,7 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
         }
 
-        list = uiManager.getMenuData();
+        list = uiHandler.getMenuData();
 
         menuArrayAdapter = new ArrayAdapter<String>(this, R.layout.flashcard_list_item, R.id.flashListItem, list) {
             @Override
@@ -182,9 +184,9 @@ public class CreateFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (type == 2) {
-                    uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
+                    deck.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
                 } else
-                    uiManager.saveCard(title, body, type);
+                    deck.saveCard(title, body, type);
 
                 finish();
             }
@@ -196,9 +198,9 @@ public class CreateFlashCardActivity extends AppCompatActivity {
 
                 if (modifying) {
                     if (type == 2) {
-                        uiManager.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
+                        deck.saveMCCard(mcQuestion.getText().toString(), getMCAnswers());
                     } else
-                        uiManager.saveCard(extra.getString("NAME"), extra.getString("BODY"), type);
+                        deck.saveCard(extra.getString("NAME"), extra.getString("BODY"), type);
 
                 }
 

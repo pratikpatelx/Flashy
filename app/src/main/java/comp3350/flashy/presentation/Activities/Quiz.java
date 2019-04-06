@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.quizHandler;
 
 import static comp3350.flashy.R.color.defaultmcanswer;
 import static comp3350.flashy.R.color.flashcard_color;
@@ -18,8 +19,8 @@ import static comp3350.flashy.R.color.wrongchoice;
 public class Quiz extends AppCompatActivity {
 
     int state;
-    int nextState;
-    private uiHandler uiManager = MainActivity.getHandler();
+
+    private quizHandler quiz = new quizHandler(MainActivity.getHandler().startQuiz());
     private TextView stdTitle;
     private TextView stdBody;
     private TextView fitbBody;
@@ -70,14 +71,13 @@ public class Quiz extends AppCompatActivity {
 
 
     private void updateContent() {
-        if (!uiManager.isQuizDone()) {
+        if (!quiz.isQuizDone()) {
 
-            if (uiManager.getNextCardType() != 2) {
-                content = uiManager.getContent(-1);
-                state = uiManager.getCurrentType();
-                System.out.println(state);
+            if (quiz.getNextCardType() != 2) {
+                content = quiz.getContent();
+                state = quiz.getCurrentType();
             } else {
-                contentMC = uiManager.getMCContent(-1);
+                contentMC = quiz.getMCContent();
                 state = 2;
             }
 
@@ -95,7 +95,7 @@ public class Quiz extends AppCompatActivity {
                     break;
             }
 
-            int[] numbers = uiManager.getQuizInfo();
+            int[] numbers = quiz.getQuizInfo();
             deckSize.setText(Integer.toString(numbers[0]));
             numCorrect.setText(Integer.toString(numbers[1]));
             numWrong.setText(Integer.toString(numbers[2]));
@@ -195,7 +195,7 @@ public class Quiz extends AppCompatActivity {
         success.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setAnswer(true);
+                quiz.setAnswer(true);
                 updateContent();
 
             }
@@ -204,7 +204,7 @@ public class Quiz extends AppCompatActivity {
         fail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiManager.setAnswer(false);
+                quiz.setAnswer(false);
                 updateContent();
 
             }

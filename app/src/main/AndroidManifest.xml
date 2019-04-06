@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.Quiz"></activity>
+        <activity android:name=".presentation.Activities.Quiz"></activity>
         <activity
-            android:name=".presentation.FlashyRegistrationActivity"
+            android:name=".presentation.Activities.FlashyRegistrationActivity"
             android:label="@string/title_activity_flashy_registration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".presentation.ShowAllDecksActivity" />
+        <activity android:name=".presentation.Activities.ShowAllDecksActivity" />
         <activity
-            android:name=".presentation.FlashCardListActivity"
+            android:name=".presentation.Activities.FlashCardListActivity"
             android:label="title_activity_flash_card_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".presentation.CreateFlashCardActivity" />
-        <activity android:name=".presentation.ViewFlashCardActivity" />
+        <activity android:name=".presentation.Activities.CreateFlashCardActivity" />
+        <activity android:name=".presentation.Activities.ViewFlashCardActivity" />
         <activity android:name=".presentation.DeckMenuActivity" />
-        <activity android:name=".presentation.NewDeckActivity" />
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.Activities.NewDeckActivity" />
+        <activity android:name=".presentation.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

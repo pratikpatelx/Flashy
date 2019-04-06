@@ -10,7 +10,7 @@
     android:paddingTop="20dp"
     android:paddingRight="10dp"
     android:paddingBottom="20dp"
-    tools:context=".presentation.CreateFlashCardActivity">
+    tools:context=".presentation.Activities.CreateFlashCardActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/modButton"
