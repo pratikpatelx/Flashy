@@ -2,6 +2,7 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 
+import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
@@ -13,10 +14,14 @@ public class LogicManager implements LogicManagerInterface {
     private DeckHandler deckHandler;
     private UserHandler userHandler;
 
+    public LogicManager(DeckHandler dhInstance, UserHandler uhInstance){
+        userHandler = uhInstance;
+        deckHandler = dhInstance;
+    }
 
-    public LogicManager(DeckDatabaseImplementation deckPersistence, UserDatabaseImplementation userPersistence) {
-        userHandler = new UserHandler(userPersistence);
-        deckHandler = new DeckHandler(deckPersistence);
+    public LogicManager() {
+        userHandler = new UserHandler(Services.getUserPersistence());
+        deckHandler = new DeckHandler(Services.getDeckPersistence());
     }
 
     public Deck makeDeck(String deckName) {

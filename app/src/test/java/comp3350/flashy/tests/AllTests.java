@@ -3,29 +3,35 @@ package comp3350.flashy.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.FillInTheBlanksFlashcardTest;
 import comp3350.flashy.tests.domain.FlashcardTest;
+import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
-import comp3350.flashy.tests.logic.DeckDeletionTest;
-import comp3350.flashy.tests.logic.EditFlashcardTest;
-import comp3350.flashy.tests.logic.ExampleTest;
-import comp3350.flashy.tests.logic.GetAllDecksTest;
-import comp3350.flashy.tests.logic.GetAllProfilesTest;
-import comp3350.flashy.tests.logic.GetFlashcardTest;
-import comp3350.flashy.tests.logic.GetNamesTest;
-import comp3350.flashy.tests.logic.GetandInsertDeckTest;
-import comp3350.flashy.tests.logic.PutFlashcardIntoDeckTest;
-import comp3350.flashy.tests.logic.RemoveFlashcardTest;
+
+import comp3350.flashy.tests.logic.logicmanager.GetAllDecksTest;
+import comp3350.flashy.tests.logic.logicmanager.GetAllProfilesTest;
+import comp3350.flashy.tests.integration.GetFlashcardTest;
+import comp3350.flashy.tests.logic.logicmanager.GetDeckTest;
+import comp3350.flashy.tests.logic.logicmanager.GetNamesTest;
+import comp3350.flashy.tests.integration.GetandInsertDeckTest;
+import comp3350.flashy.tests.logic.logicmanager.InsertDeckTest;
+import comp3350.flashy.tests.logic.logicmanager.PutFlashcardInDeckTest;
+import comp3350.flashy.tests.integration.RemoveFlashcardTest;
+import comp3350.flashy.tests.integration.DeckDeletionTest;
+import comp3350.flashy.tests.logic.logicmanager.EditFlashcardTest;
+
+
+
 
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ExampleTest.class,
         GetFlashcardTest.class,
-        PutFlashcardIntoDeckTest.class,
         RemoveFlashcardTest.class,
         GetandInsertDeckTest.class,
+        PutFlashcardInDeckTest.class,
+        GetDeckTest.class,
+        InsertDeckTest.class,
         DeckDeletionTest.class,
         EditFlashcardTest.class,
         GetNamesTest.class,
@@ -37,5 +43,4 @@ import comp3350.flashy.tests.logic.RemoveFlashcardTest;
         MultipleChoiceFlashcardTest.class,
 })
 
-public class AllTests {
-}
+public class AllTests {}

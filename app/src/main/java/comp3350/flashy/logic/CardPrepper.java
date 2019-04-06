@@ -28,10 +28,7 @@ public class CardPrepper {
             int nWords = words.length;
             int count = 0;
             int longest = 0;
-
-
             boolean met = false;//has the threshold been met
-
             for (int i = 0; i < nWords; i++) {
                 if (met) {
                     if (words[i].length() >= THRESHOLD) {
@@ -50,9 +47,7 @@ public class CardPrepper {
 
                     }
                 }
-
             }
-
             String[] cands = new String[count];
             count = 0;
             if (met) {

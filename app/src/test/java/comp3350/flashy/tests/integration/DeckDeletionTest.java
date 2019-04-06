@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.integration;
 
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class DeckDeletionTest {
     @Test
     public void DeleteDeckTest() {
         System.out.println("\nDeleteDeck test\n");
-        LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
+        LogicManager lgc = new LogicManager();
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
         String deckAName = "AlphaDeck";

@@ -1,8 +1,7 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.integration;
 
 import org.junit.Test;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
@@ -14,7 +13,7 @@ public class RemoveFlashcardTest {
     @Test
     public void removeCardTest() {
         System.out.println("\nrunning RemoveCard test\n");
-        LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
+        LogicManager lgc = new LogicManager();
         String user = "John Doe";
         lgc.addUserToDatabase(user, "");
         String deckName = "Test_Deck";

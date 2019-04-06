@@ -23,7 +23,7 @@ public class uiHandler {
     //TODO add checks and error handling.
 
     public uiHandler() {
-        logic = new LogicManager(Services.getDeckPersistence(), Services.getUserPersistence());
+        logic = new LogicManager();
     }
 
     //adds cards w/ name (DECKNAME-DECKSIZE++) as to be stored in database

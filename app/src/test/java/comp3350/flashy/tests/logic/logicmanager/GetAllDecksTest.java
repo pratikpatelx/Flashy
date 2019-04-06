@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.logic.logicmanager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +10,7 @@ import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
+import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
 import comp3350.flashy.tests.persistence.DeckStub;
 
 import static org.junit.Assert.assertEquals;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.when;
 public class GetAllDecksTest {
 
     private DeckHandler testDB;
+    private UserHandler fakeUH;
     private LogicManager testLGC;
     private ArrayList<Deck> testList;
     private Collection<Deck> testColl;
@@ -29,7 +31,8 @@ public class GetAllDecksTest {
     @Before
     public void setUp() {
         testDB = mock(DeckHandler.class);
-        testLGC = new LogicManager(Services.getFlashyPersistence());
+        fakeUH = mock(UserHandler.class);
+        testLGC = new LogicManager(testDB,fakeUH);
         testDeck = new DeckStub();
         testColl = new ArrayList<>();
         testColl.add(testDeck);

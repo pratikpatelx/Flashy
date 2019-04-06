@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.logic.logicmanager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +9,9 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.LogicManager;
 import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
+import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,6 +25,7 @@ import static org.mockito.Mockito.when;
 public class EditFlashcardTest {
 
     private DeckHandler testDB;
+    private UserHandler fakeUH;
     private LogicManager testLGC;
     private Deck testDeck;
     private Flashcard testCard;
@@ -30,7 +34,7 @@ public class EditFlashcardTest {
     public void setUp() {
         testDB = mock(DeckHandler.class);
         testDeck = mock(Deck.class);
-        testLGC = spy(new LogicManager(Services.getFlashyPersistence()));
+        testLGC = spy(new LogicManager(testDB, fakeUH));
         testCard = new Flashcard("name", "newQ", "newA");
 
     }
