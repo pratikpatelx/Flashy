@@ -9,6 +9,7 @@ import java.util.Collection;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.DeckHandler;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 import comp3350.flashy.tests.persistence.DeckStub;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +28,7 @@ public class GetAllDecksTest {
     @Before
     public void setUp() {
         testDB = mock(DeckDatabaseImplementation.class);
-        testDH = new DeckHandler(testDB);
+        testDH = new DeckHandler(testDB, mock(DataTranslationLayer.class));
         testDeck = new DeckStub();
         testColl = new ArrayList<>();
         testColl.add(testDeck);

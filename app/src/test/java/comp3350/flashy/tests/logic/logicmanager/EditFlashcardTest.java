@@ -8,6 +8,7 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.logic.DeckHandler;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,14 +25,17 @@ public class EditFlashcardTest {
     private Deck testDeck;
     private Flashcard testCard;
     private DeckDatabaseImplementation testDB;
+    private DataTranslationLayer testDT;
 
     @Before
     public void setUp() {
 
         testDB = mock(DeckDatabaseImplementation.class);
-        testDH = new DeckHandler(testDB);
+        testDT = mock(DataTranslationLayer.class);
+        testDH = spy(new DeckHandler(testDB, testDT));
         testDeck = mock(Deck.class);
         testCard = new Flashcard("name", "newQ", "newA");
+        when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
 
     }
 
@@ -41,7 +45,7 @@ public class EditFlashcardTest {
         ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
 
 
-        when(testDB.getDeck("", "testDeck")).thenReturn(null);
+        when(testDH.getDeck("", "testDeck")).thenReturn(null);
         when(testDH.makeDeck(anyString())).thenReturn(testDeck);
 
 
@@ -63,7 +67,7 @@ public class EditFlashcardTest {
     public void editFlashcardTestDeck() {  //testing an existing deck
         System.out.println("\nRunning Edit Flashcard - Existing Deck unit test\n");
         ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
-        when(testDB.getDeck("", "testDeck")).thenReturn(testDeck);
+        when(testDH.getDeck("", "testDeck")).thenReturn(testDeck);
 
         testDH.editFlashcard("", "testDeck", testCard);
 

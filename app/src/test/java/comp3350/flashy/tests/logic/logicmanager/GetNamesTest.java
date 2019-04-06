@@ -1,5 +1,7 @@
 package comp3350.flashy.tests.logic.logicmanager;
 
+import android.provider.ContactsContract;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +11,13 @@ import java.util.Collection;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.DeckHandler;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 import comp3350.flashy.tests.persistence.DeckStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,7 +31,7 @@ public class GetNamesTest {
     @Before
     public void setUp() {
         testDB = mock(DeckDatabaseImplementation.class);
-        testDH = new DeckHandler(testDB);
+        testDH = spy(new DeckHandler(testDB, mock(DataTranslationLayer.class)));
         testColl = new ArrayList<>();
         testColl.add(new DeckStub("1"));
         testColl.add(new DeckStub("2"));
