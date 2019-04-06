@@ -1,32 +1,32 @@
-+-----------------------------------+-------------------------------------+-------------------------------------+
-|                                   |                                     |                                     |
-|         Presentation              |               Logic                 |             Persistence             |
-+---------------------------------------------------------------------------------------------------------------+
-| * CreateDeckActivity.java         | * LogicManager.java                 | * DatabaseHSQLDB.java               |
-| * CreateFlashCardActivity.java    | * LogicManagerInterface.java        | * DatabaseImplementation.java       |
-|                                   |                                     | * DatabaseManager.java              |
-| * FlashCardListActivity.java      |                                     | * DatabaseStub.java                 |
-| * MainActivity.jaVa               |                                     | * MyDatabase.java                   |
-| * DeckMenuActivity.java           |                                     | * hsqldb.jar                        |
-| * NewDeckActivity.java            |                                     | * MyDatabase.class                  |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-| * ViewFlashCardActivity.java      |                                     |                                     |
-| * uiHandler.java                  |                                     |                                     |
-| * ShowAllDecksActivity.java       |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-|                                   |                                     |                                     |
-+-----------------------------------+-------------------------------------+-------------------------------------+
-|                                                                                                               |
-| Domain                                                                                                        |
-+---------------------------------------------------------------------------------------------------------------+
-|  * Deck.java                                                                                                  |
-|  * Flashcard.java                                                                                             |
-|  * FlashcardInterface.java                                                                                    |
-|                                                                                                               |
-+---------------------------------------------------------------------------------------------------------------+
++----------------------------------------+-------------------------------------+---------------------------------------+
+|                                        |                                     |                                       |
+|              Presentation              |               Logic                 |             Persistence               |
++----------------------------------------------------------------------------------------------------------------------+
+| dir/ Activities                        | * LogicManager.java                 |  dir/ DatabaseImplementations         |
+|    * CreateFlashCardActivity.java      | * LogicManagerInterface.java        |     dir/ HSQLDB                       |
+|    * FlashCardListActivity.java        | * QuizManager.jaVa                  |        * DeckDatabaseHSQLDB.jaVa      |
+|    * FlashyRegistrationActivity.java   | * CardPrepper.java                  |        * UserDatabaseHSQLDB.java      |
+|    * MainActivity.java                 |                                     |     * DeckDatabaseStub.java           |
+|    * NewDeckActivity.java              | dir/ PersistenceHandlers            |  dir/ Interfaces                      |
+|    * Quiz.java                         |         * DeckHandler.jaVa          |     * DatabaseInterface.java          |
+|    * ShowAllDecksActivity.java         |         * UserHandler.java          |     * DeckDatabaseImplementation.jaVa |
+|    * ViewFlashcardActivity.java        |                                     |     * UserDatabaseImplementation.java |
+| dir/ Handler                           |                                     |  dir/ Translator                      |
+|    dir/ Interface                      |                                     |     * DataTranslatorLayer.java        |
+|      * deckHandler.java                |                                     |     * Decoder.jaVa                    |
+|      * profileHandler.java             |                                     |     * Encoder.java                    |
+|      * quizHandlerjava                 |                                     |                                       |
+|    * uiHandler.java                    |                                     |                                       |
+|                                        |                                     |                                       |
+|                                        |                                     |                                       |
+|                                        |                                     |                                       |
+|                                        |                                     |                                       |
++----------------------------------------+-------------------------------------+---------------------------------------+
+|                                                                                                                      |
+|      Domain                                                                                                          |
++----------------------------------------------------------------------------------------------------------------------+
+|       * Deck.java                    * Services.java                                                                 |
+|       * Flashcard.java               * FillInTheBlanksFlashcard.java                                                 |
+|       * FlashcardInterface.java      * MultipleChoiceFlashcard.java                                                  |
+|       * Main.jaVa                    * Quiz.jaVa                                                                     |
++----------------------------------------------------------------------------------------------------------------------+
