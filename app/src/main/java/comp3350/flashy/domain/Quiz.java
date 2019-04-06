@@ -22,13 +22,16 @@ public class Quiz {
 
     private void prepareCards() {
         for (int i = 0; i < this.cards.size(); i++) {
-
-            CardPrepper.prepareCard(cards.get(i));
-            /*if (cards.get(i).isFillInTheBlanksFlashcard()) {
-                CardPrepper.prepareFitBcard(cards.get(i));
-            } else if (cards.get(i).isMultipleChoiceFlashcard()) {
-                CardPrepper.prepareMultipleChoiceFlashcard(cards.get(i));
-            }*/
+            switch (cards.get(i).getCardType()){
+                case "1":
+                    CardPrepper.prepareFitBCard((FillInTheBlanksFlashcard) cards.get(i));
+                    break;
+                case "2":
+                    CardPrepper.prepareMultipleChoiceFlashcard((MultipleChoiceFlashcard) cards.get(i));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

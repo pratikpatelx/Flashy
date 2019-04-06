@@ -1,6 +1,7 @@
 package comp3350.flashy.logic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
@@ -12,20 +13,6 @@ public class CardPrepper {
     private static final String BLANK = "_____";
     private static final int THRESHOLD = 5;
 
-
-
-    public static void prepareCard(Flashcard card){
-        switch (card.getCardType()){
-            case "1":
-                prepareFitBCard((FillInTheBlanksFlashcard) card);
-                break;
-            case "2":
-                prepareMultipleChoiceFlashcard((MultipleChoiceFlashcard) card);
-                break;
-            default:
-                break;
-        }
-    }
 
     /**
      * prepareFitBcard()
@@ -66,20 +53,17 @@ public class CardPrepper {
                 longest = THRESHOLD;
             }
             for (int i = 0; i < nWords; i++) {
-                if (words[i].length() >= THRESHOLD) {
+                if (words[i].length() >= longest) {
                     cands[count] = words[i];
                     count++;
                 }
             }
-
             Random rand = new Random();
             int selected = rand.nextInt(count);
 
             curr.setFirstPart(cands[selected]);
 
-            String revision = curr.getAnswer().replace(curr.getFirstPart(), BLANK);
-
-            curr.setAnswer(revision);
+            curr.setAnswer(curr.getAnswer().replace(curr.getFirstPart(), BLANK));
 
     }
 
