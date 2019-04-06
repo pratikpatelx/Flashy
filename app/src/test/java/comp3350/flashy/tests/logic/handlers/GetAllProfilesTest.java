@@ -1,6 +1,5 @@
-package comp3350.flashy.tests.logic.logicmanager;
+package comp3350.flashy.tests.logic.handlers;
 
-import org.hsqldb.rights.User;
 import org.junit.Before;
 import org.junit.Test;
 

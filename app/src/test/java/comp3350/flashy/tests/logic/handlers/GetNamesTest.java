@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic.logicmanager;
+package comp3350.flashy.tests.logic.handlers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,47 +9,54 @@ import java.util.Collection;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.logic.DeckHandler;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 import comp3350.flashy.tests.persistence.DeckStub;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class GetAllDecksTest {
+public class GetNamesTest {
 
     private DeckHandler testDH;
     private DeckDatabaseImplementation testDB;
-    private ArrayList<Deck> testList;
+    private ArrayList<String> expectedList;
     private Collection<Deck> testColl;
-    private Deck testDeck;
 
     @Before
     public void setUp() {
         testDB = mock(DeckDatabaseImplementation.class);
-        testDH = new DeckHandler(testDB);
-        testDeck = new DeckStub();
+        testDH = spy(new DeckHandler(testDB, mock(DataTranslationLayer.class)));
         testColl = new ArrayList<>();
-        testColl.add(testDeck);
+        testColl.add(new DeckStub("1"));
+        testColl.add(new DeckStub("2"));
     }
 
 
-    //Needs to return a COLLECTION. Need a way to confirm that testCollection cast to a new list is the same as our returned collection cast to list
-
     @Test
-    public void getAllDecksTest() {
-        System.out.println("\nrunning GetAllDecks unit test\n");
+    public void getNamesTest() {
+        System.out.println("\nrunning GetNames unit test\n");
 
         when(testDB.getDeckCollection("")).thenReturn(testColl);
 
-        ArrayList<Deck> result = new ArrayList<Deck>(testDH.getAllDecks(""));
-        assertTrue("Test failed: Result does not contain testDeck.", result.contains(testDeck));
-        testList = new ArrayList<>(testColl);
-        assertEquals(testList, result);
-
+        Collection result = testDH.getNames("");
         verify(testDB).getDeckCollection("");
 
-        System.out.println("GetAllDecks test complete");
+        expectedList = new ArrayList<String>() {
+            {
+                add("1");
+                add("2");
+            }
+        };
+
+        assertEquals(expectedList, result);
+        assertTrue("Test failed: ArrayLists do not match.", expectedList.toString().contentEquals(result.toString()));
+
+
+        System.out.println("GetNames test complete");
 
     }
 }
