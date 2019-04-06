@@ -41,6 +41,7 @@ public class ManageUserProfileTest {
         onView(ViewMatchers.withId(R.id.regButton)).perform(click());
 
         //log in
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
         onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
         onView(ViewMatchers.withId(R.id.Enter)).perform(click());
@@ -84,6 +85,7 @@ public class ManageUserProfileTest {
         onView(ViewMatchers.withId(R.id.regButton)).perform(click());
 
         //log in
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user456"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
         onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
         onView(ViewMatchers.withId(R.id.Enter)).perform(click());
@@ -122,6 +124,7 @@ public class ManageUserProfileTest {
 
         //show unique profile
         //log in
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user123"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
         onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
         onView(ViewMatchers.withId(R.id.Enter)).perform(click());
@@ -136,6 +139,7 @@ public class ManageUserProfileTest {
 
         //show unique profile
         //log in
+        Espresso.closeSoftKeyboard();
         onData(allOf(is(instanceOf(String.class)), is("user456"))).inAdapterView(ViewMatchers.withId(R.id.profiles)).perform(click());
         onView(ViewMatchers.withId(R.id.profilePass)).perform(typeText("123"));
         onView(ViewMatchers.withId(R.id.Enter)).perform(click());

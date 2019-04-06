@@ -119,6 +119,7 @@ public class ManageFlashcardTest {
 
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Question 3")).perform(replaceText("Edited question"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("This is the last answer")).perform(replaceText("This is an edited answer"));

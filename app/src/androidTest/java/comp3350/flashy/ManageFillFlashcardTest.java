@@ -60,6 +60,7 @@ public class ManageFillFlashcardTest {
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Title")).perform(replaceText("Question 1"));
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("Example of front side of a flash card")).perform(replaceText("This is an answer"));
         Espresso.closeSoftKeyboard();
@@ -119,7 +120,9 @@ public class ManageFillFlashcardTest {
 
         onView(ViewMatchers.withId(R.id.title)).perform(click());
         onView(withText("Question 3")).perform(replaceText("Edited question"));
+        Espresso.closeSoftKeyboard();
         onView(withText("Save")).perform(click());
+        Espresso.closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.body)).perform(click());
         onView(withText("This is the last answer")).perform(replaceText("This is an edited answer"));
         Espresso.closeSoftKeyboard();
