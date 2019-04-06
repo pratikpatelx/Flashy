@@ -12,7 +12,7 @@
 |    * ShowAllDecksActivity.java         |         * UserHandler.java          |     * DeckDatabaseImplementation.jaVa |
 |    * ViewFlashcardActivity.java        |                                     |     * UserDatabaseImplementation.java |
 | dir/ Handler                           |                                     |  dir/ Translator                      |
-|    dir/ InterfaceHandlers              |                                     |     * DataTranslatorLayer.java        |
+|    dir/ Interface                      |                                     |     * DataTranslatorLayer.java        |
 |      * deckHandler.java                |                                     |     * Decoder.jaVa                    |
 |      * profileHandler.java             |                                     |     * Encoder.java                    |
 |      * quizHandlerjava                 |                                     |                                       |
