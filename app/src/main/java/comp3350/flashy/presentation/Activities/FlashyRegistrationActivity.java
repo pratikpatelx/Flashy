@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.profileHandler;
 
 public class FlashyRegistrationActivity extends AppCompatActivity {
 
@@ -16,7 +17,8 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
     private Button registration;
     private EditText Username;
     private EditText password;
-    private uiHandler uiManager = MainActivity.getHandler();
+    private profileHandler profile = MainActivity.getHandler().getProfileHandler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class FlashyRegistrationActivity extends AppCompatActivity {
                 returnText = "Please Enter Every Field in Username and Password";
                 int duration = Toast.LENGTH_LONG;
 
-                if (uiManager.registerUser(Username.getText().toString(), password.getText().toString())) {
+                if (profile.registerUser(Username.getText().toString(), password.getText().toString())) {
                     returnText = "Account Created Sucessfully";
                     Toast toast = Toast.makeText(context, returnText, duration);
                     toast.show();

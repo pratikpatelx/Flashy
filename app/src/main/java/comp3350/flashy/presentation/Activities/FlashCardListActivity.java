@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +16,14 @@ import java.util.ArrayList;
 import comp3350.flashy.R;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
 
 public class FlashCardListActivity extends AppCompatActivity {
-    uiHandler uiManager = MainActivity.getHandler();
-    ArrayAdapter<Flashcard> fcArrayAdapter;
-    ArrayList<Flashcard> items;
+    private deckHandler deck = MainActivity.getHandler().getDeckHandler();
+    private ArrayAdapter<Flashcard> fcArrayAdapter;
+    private ArrayList<Flashcard> items;
 
-    private Deck currDeck = uiManager.getCurrDeck();
+    private Deck currDeck = deck.getCurrDeck();
 
 
     @Override
@@ -37,7 +38,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
         title.setText(currDeck.getName());
 
-        items = uiManager.getAllCards();
+        items = deck.getAllCards();
 
         fcArrayAdapter = new ArrayAdapter<Flashcard>(this, R.layout.flashcard_list_item, R.id.flashListItem, items) {
             @Override
@@ -95,7 +96,7 @@ public class FlashCardListActivity extends AppCompatActivity {
 
     private void updateData() {
         items.clear();
-        items.addAll(uiManager.getAllCards());
+        items.addAll(deck.getAllCards());
         fcArrayAdapter.notifyDataSetChanged();
     }
 

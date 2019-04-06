@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
 
 public class ViewFlashCardActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private String title;
     private int index = 0;
     private int deckSize;
-    private uiHandler uiManager = MainActivity.getHandler();
+    private deckHandler deck = MainActivity.getHandler().getDeckHandler();
     private FloatingActionButton prev;
     private FloatingActionButton next;
     private FloatingActionButton exit;
@@ -57,15 +58,15 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         delete = findViewById(R.id.delButton);
         modify = findViewById(R.id.modButton);
         index = 0;
-        deckSize = uiManager.getDeckSize();
-        name = uiManager.getDeckName();
-        menu = uiManager.getMenuData();
+        deckSize = deck.getDeckSize();
+        name = deck.getDeckName();
+        menu = MainActivity.getHandler().getMenuData();
 
         Bundle extra = getIntent().getExtras();
 
 
         if (extra != null) {
-            index = uiManager.getIndexByFlashCard(extra.getString("FLASHCARD"));
+            index = deck.getIndexByFlashCard(extra.getString("FLASHCARD"));
         }
 
         updateContent();
@@ -92,14 +93,14 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (isMultipleChoice()) {
-                    mcContent = uiManager.getMCContent(index);
+                    mcContent = deck.getMCContent(index);
                     openViewFlashCardActivity((name + "-" + index), mcContent);
                 } else {
-                    content = uiManager.getContent(index);
+                    content = deck.getContent(index);
                     openViewFlashCardActivity((name + "-" + index), content[0], content[1]);
                 }
 
-                uiManager.deleteCard(index);
+                deck.deleteCard(index);
                 finish();
             }
         });
@@ -108,7 +109,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                uiManager.deleteCard(index);
+                deck.deleteCard(index);
                 finish();
             }
         });
@@ -125,10 +126,10 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     private void updateContent() {
 
         hideAllTextViews();
-        currentType.setText(menu.get(uiManager.getFlashcardTypeByIndex(index)));
+        currentType.setText(menu.get(deck.getFlashcardTypeByIndex(index)));
 
         if (isMultipleChoice()) {
-            mcContent = uiManager.getMCContent(index);
+            mcContent = deck.getMCContent(index);
 
             mcBody.setText(mcContent.get(0));
             mcEntry1.setText(mcContent.get(1));
@@ -143,7 +144,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
             mcEntry4.setVisibility(View.VISIBLE);
 
         } else {
-            content = uiManager.getContent(index);
+            content = deck.getContent(index);
 
             title = content[0];
             body = content[1];
@@ -167,7 +168,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
     }
 
     private boolean isMultipleChoice() {
-        return uiManager.getFlashcardTypeByIndex(index) == 2;
+        return deck.getFlashcardTypeByIndex(index) == 2;
     }
 
     @Override
@@ -181,7 +182,7 @@ public class ViewFlashCardActivity extends AppCompatActivity {
         intent.putExtra("FLASHCARD", cardName);
         intent.putExtra("NAME", head);
         intent.putExtra("BODY", body);
-        intent.putExtra("TYPE", uiManager.getFlashcardTypeByIndex(index));
+        intent.putExtra("TYPE", deck.getFlashcardTypeByIndex(index));
         startActivity(intent);
     }
 

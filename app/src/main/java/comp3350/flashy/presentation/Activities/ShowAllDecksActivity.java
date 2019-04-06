@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import comp3350.flashy.R;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.deckHandler;
 
 public class ShowAllDecksActivity extends AppCompatActivity {
     ArrayAdapter<String> fcArrayAdapter;
     ArrayList<String> items;
     int selectedPostion = -1;
-    private uiHandler uiManager = MainActivity.getHandler();
+    private deckHandler handler = MainActivity.getHandler().getDeckHandler();
     private TextView deck;
     private TextView username;
     private FloatingActionButton openDeck;
@@ -46,7 +47,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
         Back = findViewById(R.id.Back);
         quiz = findViewById(R.id.startQuiz);
 
-        items = uiManager.getNames();
+        items = handler.getNames();
         selectedPostion = -1;
 
         fcArrayAdapter = new ArrayAdapter<String>(this, R.layout.deck_list_item, R.id.deck_list_item, items) {
@@ -64,7 +65,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
             }
         };
 
-        username.setText(uiManager.getUsername());
+        username.setText(handler.getUsername());
 
         listView.setAdapter(fcArrayAdapter);
 
@@ -75,7 +76,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
                 selectedPostion = position;
                 fcArrayAdapter.notifyDataSetChanged();
                 deck.setText(items.get(position));
-                uiManager.setCurrDeck(items.get(position));
+                handler.setCurrDeck(items.get(position));
             }
 
 
@@ -97,7 +98,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
                 if (selectedPostion != -1) {
                     listView.setItemChecked(selectedPostion, false);
-                    uiManager.deleteDeck(items.get(selectedPostion));
+                    handler.deleteDeck(items.get(selectedPostion));
                     items.remove(selectedPostion);
                     fcArrayAdapter.notifyDataSetChanged();
                     selectedPostion = -1;
@@ -135,7 +136,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         items.clear();
-        items.addAll(uiManager.getNames());
+        items.addAll(handler.getNames());
         fcArrayAdapter.notifyDataSetChanged();
 
     }
@@ -147,7 +148,7 @@ public class ShowAllDecksActivity extends AppCompatActivity {
 
     public void openQuizActivity() {
         Intent intent = new Intent(this, Quiz.class);
-        uiManager.startQuiz();
+        MainActivity.getHandler().startQuiz();
         startActivity(intent);
     }
 

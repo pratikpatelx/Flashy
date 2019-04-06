@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation;
+package comp3350.flashy.presentation.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,9 +24,12 @@ import java.util.ArrayList;
 
 import comp3350.flashy.R;
 import comp3350.flashy.application.Main;
+import comp3350.flashy.presentation.Handler.InterfaceHandlers.profileHandler;
+import comp3350.flashy.presentation.Handler.uiHandler;
 
 public class MainActivity extends AppCompatActivity {
     public static uiHandler ui;
+    private profileHandler profile;
     ArrayList<String> pList;
     ArrayAdapter<String> profileArrayAdapter;
     private Button giveAccess;
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         ui = new uiHandler();
 
+        profile = ui.getProfileHandler();
+
         register = findViewById(R.id.addProfile);
         password = findViewById(R.id.profilePass);
         giveAccess = findViewById(R.id.Enter);
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         deleteUser = findViewById(R.id.deleteProfile);
 
 
-        pList = ui.getAllProfileNames();
+        pList = profile.getAllProfileNames();
 
         profileArrayAdapter = new ArrayAdapter<String>(this, R.layout.profile_list_item, R.id.profileName, pList) {
             @Override
@@ -109,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 CharSequence showText = "User " + username.getText() + " has been deleted";
                 int duration = Toast.LENGTH_LONG;
                 //remove user
-                ui.deleteUser(pList.get(selectedPos));
+                profile.deleteUser(pList.get(selectedPos));
                 Toast toast = Toast.makeText(context, showText, duration);
                 toast.show();
                 updateData();
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateData() {
         pList.clear();
-        pList.addAll(ui.getAllProfileNames());
+        pList.addAll(profile.getAllProfileNames());
         profileArrayAdapter.notifyDataSetChanged();
         password.setText("");
     }
@@ -136,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         CharSequence showText = "Authentication Failed";
         Context context = getApplicationContext();
 
-        if (ui.Verified(username, password)) {
+        if (profile.Verified(username, password)) {
             ui.setUsername(username);
             Intent intent = new Intent(this, ShowAllDecksActivity.class);
             startActivity(intent);
