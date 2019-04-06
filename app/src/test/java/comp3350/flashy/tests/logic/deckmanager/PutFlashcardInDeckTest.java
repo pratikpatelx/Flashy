@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic.managers;
+package comp3350.flashy.tests.logic.deckmanager;
 
 import org.junit.Before;
 import org.junit.Test;

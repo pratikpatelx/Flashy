@@ -11,14 +11,16 @@ import comp3350.flashy.tests.domain.FlashcardTest;
 import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
 
-import comp3350.flashy.tests.logic.managers.GetAllDecksTest;
-import comp3350.flashy.tests.logic.managers.GetAllProfilesTest;
-import comp3350.flashy.tests.logic.managers.GetDeckTest;
-import comp3350.flashy.tests.logic.managers.GetNamesTest;
-import comp3350.flashy.tests.logic.managers.InsertDeckTest;
-import comp3350.flashy.tests.logic.managers.PutFlashcardInDeckTest;
-import comp3350.flashy.tests.logic.managers.EditFlashcardTest;
-import comp3350.flashy.tests.logic.managers.UserManagementTest;
+import comp3350.flashy.tests.logic.deckmanager.GetAllDecksTest;
+import comp3350.flashy.tests.logic.deckmanager.GetDeckTest;
+import comp3350.flashy.tests.logic.deckmanager.GetNamesTest;
+import comp3350.flashy.tests.logic.deckmanager.InsertDeckTest;
+import comp3350.flashy.tests.logic.deckmanager.PutFlashcardInDeckTest;
+import comp3350.flashy.tests.logic.deckmanager.EditFlashcardTest;
+
+import comp3350.flashy.tests.logic.quizmanager.EvaluateAnswerTest;
+import comp3350.flashy.tests.logic.usermanager.GetAllProfilesTest;
+import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -32,18 +34,20 @@ import comp3350.flashy.tests.logic.managers.UserManagementTest;
 
         //Unit Tests
 
-        //Logic Tests
+            //Logic Tests
         PutFlashcardInDeckTest.class,
         GetDeckTest.class,
         InsertDeckTest.class,
-
         EditFlashcardTest.class,
         GetNamesTest.class,
         GetAllDecksTest.class,
+
         GetAllProfilesTest.class,
         UserManagementTest.class,
 
-        //domain object tests
+        EvaluateAnswerTest.class,
+
+            //domain object tests
         DeckTest.class,
         FlashcardTest.class,
         FillInTheBlanksFlashcardTest.class,

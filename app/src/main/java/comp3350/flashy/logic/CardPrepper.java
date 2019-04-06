@@ -13,18 +13,30 @@ public class CardPrepper {
     private static final int THRESHOLD = 5;
 
 
+
+    public static void prepareCard(Flashcard card){
+        switch (card.getCardType()){
+            case "1":
+                prepareFitBCard((FillInTheBlanksFlashcard) card);
+                break;
+            case "2":
+                prepareMultipleChoiceFlashcard((MultipleChoiceFlashcard) card);
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * prepareFitBcard()
      * <p>
      * This method takes a Flashcard object as a parameter, if the Flashcard is not a FitBcard then
      * this method does nothing, otherwise the card is prepared for use in a quiz
      *
-     * @param card the card to be prepared
+     * @param curr the card to be prepared
      */
-    public static void prepareFitBcard(Flashcard card) {
-        if (card.isFillInTheBlanksFlashcard()) {
-            FillInTheBlanksFlashcard curr = (FillInTheBlanksFlashcard) card;
-            String[] words = card.getAnswer().split("\\s+|,.!?;:\"");
+    public static void prepareFitBCard(FillInTheBlanksFlashcard curr) {
+            String[] words = curr.getAnswer().split("\\s+|,.!?;:\"");
             int nWords = words.length;
             int count = 0;
             int longest = 0;
@@ -67,21 +79,15 @@ public class CardPrepper {
 
             String revision = curr.getAnswer().replace(curr.getFirstPart(), BLANK);
 
-
             curr.setAnswer(revision);
-        }
+
     }
 
 
-    public static void prepareMultipleChoiceFlashcard(Flashcard card) {
-        MultipleChoiceFlashcard mc;
-        if (card.isMultipleChoiceFlashcard()) {
-            mc = (MultipleChoiceFlashcard) card;
+    public static void prepareMultipleChoiceFlashcard(MultipleChoiceFlashcard card) {
+            ArrayList<String> choices = new ArrayList<>(card.getAnswers());
 
-
-            ArrayList<String> choices = new ArrayList<>(mc.getAnswers());
-
-            mc.setAnswer(choices.get(0));
+            card.setAnswer(choices.get(0));
 
             ArrayList<String> noobs = new ArrayList<String>();
             int num = choices.size();
@@ -95,9 +101,9 @@ public class CardPrepper {
                 noobs.add(picked);
             }
 
-            mc.setAnswers(noobs);
+            card.setAnswers(noobs);
 
-        }
+
     }
 
 }

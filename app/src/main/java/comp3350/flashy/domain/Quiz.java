@@ -22,11 +22,13 @@ public class Quiz {
 
     private void prepareCards() {
         for (int i = 0; i < this.cards.size(); i++) {
-            if (cards.get(i).isFillInTheBlanksFlashcard()) {
+
+            CardPrepper.prepareCard(cards.get(i));
+            /*if (cards.get(i).isFillInTheBlanksFlashcard()) {
                 CardPrepper.prepareFitBcard(cards.get(i));
             } else if (cards.get(i).isMultipleChoiceFlashcard()) {
                 CardPrepper.prepareMultipleChoiceFlashcard(cards.get(i));
-            }
+            }*/
         }
     }
 
