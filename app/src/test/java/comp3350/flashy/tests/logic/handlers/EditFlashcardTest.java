@@ -6,7 +6,7 @@ import org.mockito.ArgumentCaptor;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.logic.DeckManager;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 public class EditFlashcardTest {
 
-    private DeckHandler testDH;
+    private DeckManager testDH;
     private Deck testDeck;
     private Flashcard testCard;
     private DeckDatabaseImplementation testDB;
@@ -32,7 +32,7 @@ public class EditFlashcardTest {
 
         testDB = mock(DeckDatabaseImplementation.class);
         testDT = mock(DataTranslationLayer.class);
-        testDH = spy(new DeckHandler(testDB, testDT));
+        testDH = spy(new DeckManager(testDB, testDT));
         testDeck = mock(Deck.class);
         testCard = new Flashcard("name", "newQ", "newA");
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);

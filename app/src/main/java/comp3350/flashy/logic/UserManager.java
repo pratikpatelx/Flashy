@@ -5,13 +5,13 @@ import java.util.Collection;
 import comp3350.flashy.application.Services;
 import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
-public class UserHandler {
+public class UserManager {
     private UserDatabaseImplementation userDB;
 
-    public UserHandler(){
+    public UserManager(){
         this(Services.getUserPersistence());
     }
-    public UserHandler(UserDatabaseImplementation givenImpl) {
+    public UserManager(UserDatabaseImplementation givenImpl) {
         userDB = givenImpl;
     }
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.logic.DeckHandler;
+import comp3350.flashy.logic.DeckManager;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 import comp3350.flashy.tests.persistence.DeckStub;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class GetAllDecksTest {
 
-    private DeckHandler testDH;
+    private DeckManager testDH;
     private DeckDatabaseImplementation testDB;
     private ArrayList<Deck> testList;
     private Collection<Deck> testColl;
@@ -28,7 +28,7 @@ public class GetAllDecksTest {
     @Before
     public void setUp() {
         testDB = mock(DeckDatabaseImplementation.class);
-        testDH = new DeckHandler(testDB, mock(DataTranslationLayer.class));
+        testDH = new DeckManager(testDB, mock(DataTranslationLayer.class));
         testDeck = new DeckStub();
         testColl = new ArrayList<>();
         testColl.add(testDeck);

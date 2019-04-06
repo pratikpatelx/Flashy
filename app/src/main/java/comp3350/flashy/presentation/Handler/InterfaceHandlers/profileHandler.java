@@ -2,31 +2,30 @@ package comp3350.flashy.presentation.Handler.InterfaceHandlers;
 
 import java.util.ArrayList;
 
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.UserManager;
 
 //purpose: handle all profile functions in the ui
 public class profileHandler {
 
-    private LogicManager logic;
+    private UserManager userM;
 
-    public profileHandler(LogicManager lgc){
-        logic = lgc;
+    public profileHandler(){ userM = new UserManager();
     }
 
     public boolean registerUser(String username, String password) {
-        return logic.addUserToDatabase(username, password);
+        return userM.addUserToDatabase(username, password);
     }
 
     public boolean Verified(String username, String password) {
-        return logic.verifyUserPassword(username, password);
+        return userM.verifyUserPassword(username, password);
     }
 
     public void deleteUser(String user) {
-        logic.removeUserFromDatabase(user);
+        userM.removeUserFromDatabase(user);
     }
 
     public ArrayList<String> getAllProfileNames() {
-        return logic.getAllProfiles();
+        return new ArrayList<String>(userM.getAllProfiles());
     }
 
 

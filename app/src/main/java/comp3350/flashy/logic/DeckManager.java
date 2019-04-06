@@ -9,12 +9,12 @@ import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 
-public class DeckHandler {
+public class DeckManager {
     private DeckDatabaseImplementation deckStorage;
     private DataTranslationLayer translationLayer;
 
 
-    public DeckHandler(){this(Services.getDeckPersistence(), new DataTranslationLayer());
+    public DeckManager(){this(Services.getDeckPersistence(), new DataTranslationLayer());
     }
 
     /**
@@ -23,7 +23,7 @@ public class DeckHandler {
      * @param givenImpl
      */
 
-    public DeckHandler(DeckDatabaseImplementation givenImpl, DataTranslationLayer layerImpl) {
+    public DeckManager(DeckDatabaseImplementation givenImpl, DataTranslationLayer layerImpl) {
         deckStorage = givenImpl;
         translationLayer = layerImpl;
     }

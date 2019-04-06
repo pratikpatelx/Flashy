@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.logic.UserHandler;
+import comp3350.flashy.logic.UserManager;
 import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class GetAllProfilesTest {
 
-    private UserHandler testUH;
+    private UserManager testUH;
     private UserDatabaseImplementation testDB;
     private ArrayList<String> expectedList;
     private Collection<String> testColl;
@@ -27,7 +27,7 @@ public class GetAllProfilesTest {
     public void setUp() {
 
         testDB = mock(UserDatabaseImplementation.class);
-        testUH = new UserHandler(testDB);
+        testUH = new UserManager(testDB);
         testColl = new ArrayList<String>() {
             {
                 add("1");
