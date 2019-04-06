@@ -5,12 +5,13 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ManageDeckTest.class,
+
         ManageFillFlashcardTest.class,
         ManageFlashcardTest.class,
         ManageMCFlashcardTest.class,
         ManageUserProfileTest.class,
-        QuizModeTest.class
+        QuizModeTest.class,
+        ManageDeckTest.class,
 })
 
 public class AllAcceptanceTests {

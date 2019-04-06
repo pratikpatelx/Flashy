@@ -1,11 +1,11 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.integration;
 
 import org.junit.Test;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.UserManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,9 +14,10 @@ public class RemoveFlashcardTest {
     @Test
     public void removeCardTest() {
         System.out.println("\nrunning RemoveCard test\n");
-        LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
+        DeckManager lgc = new DeckManager();
+        UserManager uMgr = new UserManager();
         String user = "John Doe";
-        lgc.addUserToDatabase(user, "");
+        uMgr.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String cardName0 = deckName + "-" + 0;
         String cardName1 = deckName + "-" + 1;

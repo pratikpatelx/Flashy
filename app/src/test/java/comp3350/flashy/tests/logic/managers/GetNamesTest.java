@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.logic.managers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,29 +6,30 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
-import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 import comp3350.flashy.tests.persistence.DeckStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class GetNamesTest {
 
-    private DeckHandler testDB;
-    private LogicManager testLGC;
+    private DeckManager testDH;
+    private DeckDatabaseImplementation testDB;
     private ArrayList<String> expectedList;
     private Collection<Deck> testColl;
 
     @Before
     public void setUp() {
-        testDB = mock(DeckHandler.class);
-        testLGC = new LogicManager(Services.getFlashyPersistence());
+        testDB = mock(DeckDatabaseImplementation.class);
+        testDH = spy(new DeckManager(testDB, mock(DataTranslationLayer.class)));
         testColl = new ArrayList<>();
         testColl.add(new DeckStub("1"));
         testColl.add(new DeckStub("2"));
@@ -41,7 +42,7 @@ public class GetNamesTest {
 
         when(testDB.getDeckCollection("")).thenReturn(testColl);
 
-        ArrayList<String> result = testLGC.getNames("");
+        Collection result = testDH.getNames("");
         verify(testDB).getDeckCollection("");
 
         expectedList = new ArrayList<String>() {

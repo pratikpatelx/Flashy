@@ -1,11 +1,11 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.integration;
 
 import org.junit.Test;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.UserManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,9 +13,10 @@ public class GetandInsertDeckTest {
     @Test
     public void getAndInsertDeckTest() {
         System.out.println("\nrunning GetandInsertDeck test\n");
-        LogicManager lgc = new LogicManager(Services.getFlashyPersistence());
+        DeckManager deckMgr = new DeckManager();
+        UserManager uMgr = new UserManager();
         String user = "John Doe";
-        lgc.addUserToDatabase(user, "");
+        uMgr.addUserToDatabase(user, "");
         String deckName = "Test_Deck";
         String cardName0 = deckName + "-" + 0;
         String cardName1 = deckName + "-" + 1;
@@ -38,10 +39,10 @@ public class GetandInsertDeckTest {
         sentDeck.addCard(new Flashcard(cardName1, question, a1));
         sentDeck.addCard(new Flashcard(cardName2, question, a2));
 
-        lgc.insertDeck(user, sentDeck);
+        deckMgr.insertDeck(user, deckName, sentDeck);
 
 
-        Deck deck = lgc.getDeck(user, deckName);
+        Deck deck = deckMgr.getDeck(user, deckName);
 
         Flashcard flashcard = deck.getCard(cardName0);
         assertEquals(a0, flashcard.getAnswer());

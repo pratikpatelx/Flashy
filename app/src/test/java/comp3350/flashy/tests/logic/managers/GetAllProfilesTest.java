@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.logic.managers;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,9 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.application.Services;
-import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.logic.PersistenceHandlers.UserHandler;
+import comp3350.flashy.logic.UserManager;
+import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,15 +18,16 @@ import static org.mockito.Mockito.when;
 
 public class GetAllProfilesTest {
 
-    private UserHandler testDB;
-    private LogicManager testLGC;
+    private UserManager testUH;
+    private UserDatabaseImplementation testDB;
     private ArrayList<String> expectedList;
     private Collection<String> testColl;
 
     @Before
     public void setUp() {
-        testDB = mock(UserHandler.class);
-        testLGC = spy(new LogicManager(Services.getFlashyPersistence()));
+
+        testDB = mock(UserDatabaseImplementation.class);
+        testUH = new UserManager(testDB);
         testColl = new ArrayList<String>() {
             {
                 add("1");
@@ -40,7 +40,7 @@ public class GetAllProfilesTest {
     public void getAllProfilesTest() {
         System.out.println("\nrunning GetAllProfiles unit test\n");
         when(testDB.getUserCollection()).thenReturn(testColl);
-        ArrayList<String> result = testLGC.getAllProfiles();
+        Collection result = testUH.getAllProfiles();
         verify(testDB).getUserCollection();
         expectedList = new ArrayList<String>() {
             {

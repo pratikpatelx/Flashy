@@ -6,19 +6,20 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.logic.LogicManager;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.QuizManager;
 
 
 //purpose: Handle all deck activity within the ui
 public class deckHandler {
     private static int deckSize = 0; // this is to hold max index
-    private LogicManager logic;
+    private DeckManager deckM;
     private String username;
     private Deck currDeck;
     private String deckName;
 
-    public deckHandler(LogicManager lgc){
-        logic = lgc;
+    public deckHandler(){
+        deckM = new DeckManager();
     }
 
 
@@ -46,6 +47,10 @@ public class deckHandler {
         return result;
     }
 
+    public QuizManager startQuiz() {
+        return deckM.startQuiz(getUsername(),getDeckName());
+    }
+
     public int getFlashcardTypeByIndex(int index) {
         Flashcard curr = currDeck.getCard(deckName + "-" + index);
 
@@ -65,7 +70,7 @@ public class deckHandler {
     }
 
     public int getDeckSize() {
-        deckSize = logic.queryDeckSize(username, currDeck.getName());
+        deckSize = deckM.queryDeckSize(username, currDeck.getName());
 
         return deckSize;
     }
@@ -79,13 +84,13 @@ public class deckHandler {
     }
 
     public ArrayList<Flashcard> getAllCards() {
-        currDeck = logic.getDeck(username, deckName);
+        currDeck = deckM.getDeck(username, deckName);
 
         return new ArrayList<Flashcard>(currDeck.getFlashcards());
     }
 
     public ArrayList<String> getNames() {
-        return logic.getNames(username);
+        return new ArrayList<String>(deckM.getNames(username));
     }
 
     public ArrayList<String> getMenuData() {
@@ -104,7 +109,7 @@ public class deckHandler {
     //Manipulate Content
 
     public void setCurrDeck(String name) {
-        Deck newDeck = logic.getDeck(username, name);
+        Deck newDeck = deckM.getDeck(username, name);
 
         if (newDeck != null) {
             currDeck = newDeck;
@@ -113,8 +118,8 @@ public class deckHandler {
             System.out.println("found deck");
         } else {
             currDeck = new Deck(name);
-            logic.insertDeck(username, currDeck);
             deckName = currDeck.getName();
+            deckM.insertDeck(username, deckName, currDeck);
             deckSize = currDeck.getNumCards();
             System.out.println("created new deck");
         }
@@ -138,27 +143,27 @@ public class deckHandler {
     public void saveCard(String head, String content, int type) {
         switch (type) {
             case 0:
-                logic.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content));
+                deckM.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content));
                 deckSize++;
                 break;
             case 1:
-                logic.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " "));
+                deckM.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " "));
                 break;
         }
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
-        logic.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer));
+        deckM.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer));
         deckSize++;
     }
 
     public void deleteCard(int index) {
-        logic.removeCard(username, currDeck, (currDeck + "-" + index));
+        deckM.removeCard(username, currDeck, (currDeck + "-" + index));
         deckSize--;
     }
 
     public void deleteDeck(String dName) {
-        logic.deleteDeck(username, dName);
+        deckM.deleteDeck(username, dName);
     }
 
 }

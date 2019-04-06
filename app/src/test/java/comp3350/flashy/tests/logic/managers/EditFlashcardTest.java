@@ -1,14 +1,14 @@
-package comp3350.flashy.tests.logic;
+package comp3350.flashy.tests.logic.managers;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.LogicManager;
-import comp3350.flashy.logic.PersistenceHandlers.DeckHandler;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
+import comp3350.flashy.persistence.Translators.DataTranslationLayer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,17 +21,21 @@ import static org.mockito.Mockito.when;
 
 public class EditFlashcardTest {
 
-    private DeckHandler testDB;
-    private LogicManager testLGC;
+    private DeckManager testDH;
     private Deck testDeck;
     private Flashcard testCard;
+    private DeckDatabaseImplementation testDB;
+    private DataTranslationLayer testDT;
 
     @Before
     public void setUp() {
-        testDB = mock(DeckHandler.class);
+
+        testDB = mock(DeckDatabaseImplementation.class);
+        testDT = mock(DataTranslationLayer.class);
+        testDH = spy(new DeckManager(testDB, testDT));
         testDeck = mock(Deck.class);
-        testLGC = spy(new LogicManager(Services.getFlashyPersistence()));
         testCard = new Flashcard("name", "newQ", "newA");
+        when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
 
     }
 
@@ -41,13 +45,13 @@ public class EditFlashcardTest {
         ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
 
 
-        when(testDB.getDeck("", "testDeck")).thenReturn(null);
-        when(testLGC.makeDeck(anyString())).thenReturn(testDeck);
+        when(testDH.getDeck("", "testDeck")).thenReturn(null);
+        when(testDH.makeDeck(anyString())).thenReturn(testDeck);
 
 
-        testLGC.editFlashcard("", "testDeck", testCard);
+        testDH.editFlashcard("", "testDeck", testCard);
 
-        verify(testLGC).makeDeck("testDeck");
+        verify(testDH).makeDeck("testDeck");
         verify(testDeck).editCard(captor.capture());
         Flashcard result = captor.getValue();
 
@@ -63,18 +67,19 @@ public class EditFlashcardTest {
     public void editFlashcardTestDeck() {  //testing an existing deck
         System.out.println("\nRunning Edit Flashcard - Existing Deck unit test\n");
         ArgumentCaptor<Flashcard> captor = ArgumentCaptor.forClass(Flashcard.class);
-        when(testDB.getDeck("", "testDeck")).thenReturn(testDeck);
+        when(testDH.getDeck("", "testDeck")).thenReturn(testDeck);
 
-        testLGC.editFlashcard("", "testDeck", testCard);
+        testDH.editFlashcard("", "testDeck", testCard);
 
         verify(testDeck).editCard(captor.capture());
+
         Flashcard result = captor.getValue();
 
         assertThat(testCard, is(result));
         assertThat(testCard.getQuestion(), is(result.getQuestion()));
         assertThat(testCard.getAnswer(), is(result.getAnswer()));
 
-        verify(testLGC, never()).makeDeck(anyString());
+        verify(testDH, never()).makeDeck(anyString());
         verify(testDB).inputDeck("", "testDeck", testDeck);
 
         System.out.println("Edit Flashcard - Existing Deck unit test complete\n");
