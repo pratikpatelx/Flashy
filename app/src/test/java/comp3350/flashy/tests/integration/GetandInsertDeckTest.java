@@ -2,11 +2,10 @@ package comp3350.flashy.tests.integration;
 
 import org.junit.Test;
 
-import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.DeckHandler;
-import comp3350.flashy.logic.UserHandler;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.UserManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +13,8 @@ public class GetandInsertDeckTest {
     @Test
     public void getAndInsertDeckTest() {
         System.out.println("\nrunning GetandInsertDeck test\n");
-        DeckHandler deckMgr = new DeckHandler();
-        UserHandler uMgr = new UserHandler();
+        DeckManager deckMgr = new DeckManager();
+        UserManager uMgr = new UserManager();
         String user = "John Doe";
         uMgr.addUserToDatabase(user, "");
         String deckName = "Test_Deck";

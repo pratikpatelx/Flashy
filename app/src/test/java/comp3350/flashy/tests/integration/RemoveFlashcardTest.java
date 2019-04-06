@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.logic.DeckHandler;
-import comp3350.flashy.logic.UserHandler;
+import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.UserManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +14,8 @@ public class RemoveFlashcardTest {
     @Test
     public void removeCardTest() {
         System.out.println("\nrunning RemoveCard test\n");
-        DeckHandler lgc = new DeckHandler();
-        UserHandler uMgr = new UserHandler();
+        DeckManager lgc = new DeckManager();
+        UserManager uMgr = new UserManager();
         String user = "John Doe";
         uMgr.addUserToDatabase(user, "");
         String deckName = "Test_Deck";

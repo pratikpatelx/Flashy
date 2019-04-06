@@ -1,4 +1,4 @@
-package comp3350.flashy.tests.logic.handlers;
+package comp3350.flashy.tests.logic.managers;
 
 import org.junit.Before;
 import org.junit.Test;
