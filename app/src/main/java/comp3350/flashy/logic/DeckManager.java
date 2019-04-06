@@ -122,14 +122,13 @@ public class DeckManager {
      * @return the QuizManager that the presentation layer will use to take the quiz
      * NOTE this method will return null if the deck requested does not exist
      */
-    public QuizManager startQuiz(String username, String quizDeckName) {
+    public Deck startQuiz(String username, String quizDeckName) {
         Deck quizDeck = getDeck(username, quizDeckName);
-        QuizManager qMngr = null;
 
         if (quizDeck != null) {
-            qMngr = new QuizManager(quizDeck);
+            return quizDeck;
         }
 
-        return qMngr;
+        return quizDeck;
     }
 }

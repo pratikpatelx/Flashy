@@ -27,7 +27,7 @@ public class MultipleChoiceFlashcardTest {
     }
 
     @Test
-    public void multipleChoiceTest() {
+    public void multipleChoiceFlashcardTest() {
         System.out.println("Running Multiple Choice Flashcard object test");
         assertTrue(card.getAnswers().equals(answers));
         assertTrue(card.getCardType().equals("2"));
