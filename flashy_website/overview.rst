@@ -28,29 +28,35 @@ Contributors
 | Database Expert
 |	- Implementing and managing a persistent database
 |	- Better communication within a large team
+|	- Working in Android Studio
 |
 | **Budhia, Sanjay**
 | Logic Architect
 |	- Implementing logical components between the UI and database
 |	- Better communication within a large team
+|	- Working in Android Studio
 |
 | **Duque, Kyle**
 | Coordinator & UI Designer
 |	- Designing UI within Android Studio
 |	- Managing documentation of a large project
 |	- Better communication within a large team
+|	- Working in Android Studio
 |
 | **Jasim, Ali**
 | Head UI Designer
 |	- Designing UI within Android Studio
 |	- Better communication within a large team
+|	- Working in Android Studio
 |
 | **Jung, Cameron**
 | Testing Analyst
 |	- Implementing tests in an android application
 |	- Better communication within a large team
+|	- Working in Android Studio
 |
 | **Patel, Pratik Kumar**
 | VP UI Designer
 |	- Designing UI within Android Studio
 |	- Better communication within a large team
+|	- Working in Android Studio
