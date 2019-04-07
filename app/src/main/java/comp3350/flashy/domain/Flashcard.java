@@ -53,6 +53,24 @@ public class Flashcard implements FlashcardInterface {
         return inDeck.concat("-" + this.position);
     }
 
+
+    public int getPosition(){
+        return this.position;
+    }
+
+    public void setPosition(int pos){
+        this.position = pos;
+    }
+
+    public String getInDeck(){
+        return this.inDeck;
+    }
+
+    public void setInDeck(String deckName){
+        this.inDeck = deckName;
+    }
+
+
     /**
      * editCard()
      * This method will change question and answer to be the same as that of
