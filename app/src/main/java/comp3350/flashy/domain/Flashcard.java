@@ -2,7 +2,8 @@ package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
     private static final String cardType = "0";
-    private String inDeck;
+    private String inDeck;//the name of the deck the card is in
+    private int position;//the card's position in the deck
     private String answer;
     private String question;
 
