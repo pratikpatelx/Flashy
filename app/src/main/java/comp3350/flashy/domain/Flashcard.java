@@ -98,7 +98,8 @@ public class Flashcard implements FlashcardInterface {
     public boolean equals(Object o) {
         boolean result = false;
         if (o instanceof Flashcard) {
-            result = this.inDeck.equals(((Flashcard) o).getCardName());
+            result = this.inDeck.equals(((Flashcard) o).getInDeck()) &&
+                    (this.position == ((Flashcard)o).getPosition());
         }
         return result;
     }
