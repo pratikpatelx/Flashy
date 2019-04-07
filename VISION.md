@@ -1,4 +1,4 @@
-## Flashy
+# Flashy
 
 Flashy is an application that allows anyone reviewing study material to create, view, and organize digital flashcards, from anywhere.
 
