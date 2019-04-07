@@ -41,27 +41,6 @@ public class QuizManager {
         return Integer.parseInt(this.quiz.getCard().getCardType());
     }
 
-
-    /**
-     * @param response the user's answer to the current flashcard
-     * @return the next flashcard
-     */
-    public boolean evaluateAnswer(String response) {
-        Flashcard curr = this.quiz.takeCard();
-        boolean correct = false;
-
-        if (curr.mark(response)) {
-            this.correct++;
-            correct = true;
-        } else {
-            //put the card back in the deck if it was wrong
-            this.wrong++;
-            this.quiz.placeCard(curr);
-        }
-
-        return correct;
-    }
-
     /**
      * @param response whether the user got the question right or not
      * @return just an echo of response

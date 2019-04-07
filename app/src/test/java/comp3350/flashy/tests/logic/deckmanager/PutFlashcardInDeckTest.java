@@ -45,26 +45,8 @@ public class PutFlashcardInDeckTest {
     }
 
     @Test
-    public void putFlashCardInDeckTestNull() { //testing null deck
-        System.out.println("\nRunning PutFlashCardInDeck - New Deck unit test\n");
-
-        when(testDH.getDeck("", "testDeck")).thenReturn(null);
-        when(testDH.makeDeck(anyString())).thenReturn(testDeck);
-
-        testDH.putFlashcardInDeck("", "testDeck",testCard);
-
-        verify(testDeck).addCard(captor.capture());
-        Flashcard result = captor.getValue();
-        assertThat(testCard,is(result));
-
-        verify(testDB).inputDeck("", "testDeck", testDeck);
-
-        System.out.println("PutFlashCardInDeck - New Deck unit test complete\n");
-    }
-
-    @Test
-    public void putFlashCardInDeckTestDeck(){  //testing an existing deck
-        System.out.println("\nRunning PutFlashCardInDeck - Existing Deck unit test\n");
+    public void putFlashCardInDeckTestDeck(){
+        System.out.println("\nRunning PutFlashCardInDeck unit test\n");
 
         when(testDH.getDeck("","testDeck")).thenReturn(testDeck);
 
