@@ -3,7 +3,7 @@ Flashy is an application that allows anyone reviewing study material to create, 
 
 ## Website
 1. Download project from GitLab
-2. Navigate to: flashme---group-14/flashy_website/_build/html/
+2. Navigate to: flashme---group-14/flashy_website/_build/html/index.html
 3. Open file: index.html
 
 ## Vision
