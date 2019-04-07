@@ -148,7 +148,7 @@ public class deckHandler {
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
-        deckM.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer));
+        deckM.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer, ));
         deckSize++;
     }
 

@@ -23,7 +23,7 @@ public class MultipleChoiceFlashcardTest {
                 add("2");
             }
         };
-        card = new MultipleChoiceFlashcard("name", "q", answers);
+        card = new MultipleChoiceFlashcard("name", "q", answers, );
     }
 
     @Test

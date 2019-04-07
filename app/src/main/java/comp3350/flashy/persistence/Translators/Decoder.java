@@ -81,7 +81,7 @@ public class Decoder {
             answerList.add(tokenizedString.get(i).substring(0, tokenizedString.get(i).length() - 1));
         }
 
-        return new MultipleChoiceFlashcard(cardName, question, answerList);
+        return new MultipleChoiceFlashcard(cardName, question, answerList, );
     }
 
     /**

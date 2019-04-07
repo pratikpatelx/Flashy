@@ -8,8 +8,8 @@ public class MultipleChoiceFlashcard extends Flashcard {
     private String cardType = "2";
 
 
-    public MultipleChoiceFlashcard(String name, String question, List<String> answerList) {
-        super(name, question, "", );
+    public MultipleChoiceFlashcard(String name, String question, List<String> answerList, int pos) {
+        super(name, question, "", pos);
         this.answers = new ArrayList<String>(answerList);
     }
 

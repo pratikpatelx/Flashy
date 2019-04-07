@@ -61,14 +61,11 @@ public class Deck {
      * correct name
      */
     public final void validateNames() {
-        String correct;
         Flashcard card;
         for (int i = 0; i < this.cards.size(); i++) {
-            correct = this.name + "-" + (i);
             card = this.cards.get(i);
-            if (!card.getCardName().equals(correct)) {
-                card.setCardName(correct);
-            }
+            card.setInDeck(this.name);
+            card.setPosition(i);
         }
     }
 
@@ -216,7 +213,7 @@ public class Deck {
 
 
     private Flashcard makeDummy() {
-        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER, );
+        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
     }
 
 
