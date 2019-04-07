@@ -11,6 +11,7 @@ public class Flashcard implements FlashcardInterface {
         this.inDeck = deckName;
         this.question = question;
         this.answer = answer;
+        this.position = pos;
     }
 
 
@@ -50,10 +51,6 @@ public class Flashcard implements FlashcardInterface {
 
     public String getCardName() {
         return inDeck;
-    }
-
-    public void setCardName(String newName) {
-        inDeck = newName;
     }
 
     /**
