@@ -11,3 +11,7 @@ For this current iteration, we can improve the state of our Manage Deck feature 
 ## Measuring success
 
  We can evaluate the success of the improving this feature by completing successful tests that test the code for the feature thoroughly. We can implement unit tests that ensure that a deck can be created, deleted, edit and viewed. Once these tests pass, we can work on integration tests that would ensure that the database is storing and retrieving the appropriate data. In addition, this would test if the HSQLDB is storing data persistently and functioning as expected. Lastly, we would implement an acceptance test that would the entire feature of managing a deck. This test would act as the user using the presentation layer to manipulate the other two layers and confirm that we got expected results. After these three levels of testing can be successfully passed, the problem we have with the Manage Deck feature can be deemed properly fixed. 
+ 
+## Project Velocity
+
+![](graph.jpg)
