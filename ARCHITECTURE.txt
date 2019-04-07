@@ -7,9 +7,9 @@
 |    * FlashCardListActivity.java        | * QuizManager.jaVa                  |        * DeckDatabaseHSQLDB.jaVa      |
 |    * FlashyRegistrationActivity.java   | * CardPrepper.java                  |        * UserDatabaseHSQLDB.java      |
 |    * MainActivity.java                 |                                     |     * DeckDatabaseStub.java           |
-|    * NewDeckActivity.java              | dir/ PersistenceHandlers            |  dir/ Interfaces                      |
-|    * Quiz.java                         |         * DeckHandler.jaVa          |     * DatabaseInterface.java          |
-|    * ShowAllDecksActivity.java         |         * UserHandler.java          |     * DeckDatabaseImplementation.jaVa |
+|    * NewDeckActivity.java              |                                     |  dir/ Interfaces                      |
+|    * QuizActivity.java                 |                                     |     * DatabaseInterface.java          |
+|    * ShowAllDecksActivity.java         |                                     |     * DeckDatabaseImplementation.jaVa |
 |    * ViewFlashcardActivity.java        |                                     |     * UserDatabaseImplementation.java |
 | dir/ Handler                           |                                     |  dir/ Translator                      |
 |    dir/ Interface                      |                                     |     * DataTranslatorLayer.java        |
