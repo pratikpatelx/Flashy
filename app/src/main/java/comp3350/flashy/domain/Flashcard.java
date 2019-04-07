@@ -6,6 +6,7 @@ public class Flashcard implements FlashcardInterface {
     private String answer;
     private String question;
 
+    
     public Flashcard(String name, String question, String answer) {
         this.cardName = name;
         this.question = question;
