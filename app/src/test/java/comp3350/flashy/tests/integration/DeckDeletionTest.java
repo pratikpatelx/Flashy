@@ -34,11 +34,11 @@ public class DeckDeletionTest {
         String fourthAnswer = "It was a basket of labrador puppies. =D";
 
 
-        Flashcard card0 = new Flashcard(cardNameA1, question, firstAnswer);
-        Flashcard card1 = new Flashcard(cardNameA2, question, secondAnswer);
-        Flashcard card2 = new Flashcard(cardNameA3, question, thirdAnswer);
-        Flashcard card3 = new Flashcard(cardNameB1, question, firstAnswer);
-        Flashcard card4 = new Flashcard(cardNameB2, question, fourthAnswer);
+        Flashcard card0 = new Flashcard(cardNameA1, question, firstAnswer, );
+        Flashcard card1 = new Flashcard(cardNameA2, question, secondAnswer, );
+        Flashcard card2 = new Flashcard(cardNameA3, question, thirdAnswer, );
+        Flashcard card3 = new Flashcard(cardNameB1, question, firstAnswer, );
+        Flashcard card4 = new Flashcard(cardNameB2, question, fourthAnswer, );
 
 
         deckMgr.putFlashcardInDeck(user, deckAName, card0);

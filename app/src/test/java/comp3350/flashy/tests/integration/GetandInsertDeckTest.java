@@ -28,16 +28,16 @@ public class GetandInsertDeckTest {
         String a0 = aStart.concat("schnauzer".concat(aEnd));
         String a1 = aStart.concat("corgi".concat(aEnd));
         String a2 = aStart.concat("wheaten terrier".concat(aEnd));
-        Flashcard card0 = new Flashcard(cardName0, question, a0);
-        Flashcard card1 = new Flashcard(cardName1, question, a1);
-        Flashcard card2 = new Flashcard(cardName2, question, a2);
+        Flashcard card0 = new Flashcard(cardName0, question, a0, );
+        Flashcard card1 = new Flashcard(cardName1, question, a1, );
+        Flashcard card2 = new Flashcard(cardName2, question, a2, );
 
         Deck sentDeck = new Deck(deckName);
 
 
-        sentDeck.addCard(new Flashcard(cardName0, question, a0));
-        sentDeck.addCard(new Flashcard(cardName1, question, a1));
-        sentDeck.addCard(new Flashcard(cardName2, question, a2));
+        sentDeck.addCard(new Flashcard(cardName0, question, a0, ));
+        sentDeck.addCard(new Flashcard(cardName1, question, a1, ));
+        sentDeck.addCard(new Flashcard(cardName2, question, a2, ));
 
         deckMgr.insertDeck(user, deckName, sentDeck);
 

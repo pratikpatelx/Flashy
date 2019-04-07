@@ -138,7 +138,7 @@ public class deckHandler {
     public void saveCard(String head, String content, int type) {
         switch (type) {
             case 0:
-                deckM.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content));
+                deckM.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content, ));
                 deckSize++;
                 break;
             case 1:

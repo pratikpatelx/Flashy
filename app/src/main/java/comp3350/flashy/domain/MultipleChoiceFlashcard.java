@@ -9,7 +9,7 @@ public class MultipleChoiceFlashcard extends Flashcard {
 
 
     public MultipleChoiceFlashcard(String name, String question, List<String> answerList) {
-        super(name, question, "");
+        super(name, question, "", );
         this.answers = new ArrayList<String>(answerList);
     }
 

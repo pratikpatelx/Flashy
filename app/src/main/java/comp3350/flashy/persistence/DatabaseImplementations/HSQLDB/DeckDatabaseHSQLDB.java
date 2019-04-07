@@ -121,7 +121,7 @@ public class DeckDatabaseHSQLDB implements DeckDatabaseImplementation, DatabaseI
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
-                result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer));
+                result.addCard(new Flashcard(cardName, cardQuestion, cardAnswer, ));
                 // System.out.println(new Flashcard(cardName, cardQuestion, cardAnswer));
             }
 
@@ -193,7 +193,7 @@ public class DeckDatabaseHSQLDB implements DeckDatabaseImplementation, DatabaseI
                 String cardName = resultSet.getString("cardName");
                 String cardQuestion = resultSet.getString("cardQuestion");
                 String cardAnswer = resultSet.getString("cardAnswer");
-                Flashcard flashcard = new Flashcard(cardName, cardQuestion, cardAnswer);
+                Flashcard flashcard = new Flashcard(cardName, cardQuestion, cardAnswer, );
 
                 for (int i = 0; i < deckList.size(); i++) {
                     Deck tempDeck = deckList.get(i);

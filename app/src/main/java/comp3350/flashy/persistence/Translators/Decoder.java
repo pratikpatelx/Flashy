@@ -125,7 +125,7 @@ public class Decoder {
     private Flashcard decodeFlashcard(String cardName, String question, ArrayList<String> tokenizedString) {
         String decodedAnswer = tokenizedString.get(1);
 
-        return new Flashcard(cardName, question, decodedAnswer);
+        return new Flashcard(cardName, question, decodedAnswer, );
     }
 
     /**

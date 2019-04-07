@@ -216,7 +216,7 @@ public class Deck {
 
 
     private Flashcard makeDummy() {
-        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER);
+        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER, );
     }
 
 

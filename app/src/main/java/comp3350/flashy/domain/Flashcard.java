@@ -2,13 +2,12 @@ package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
     private static final String cardType = "0";
-    private String cardName;
+    private String inDeck;
     private String answer;
     private String question;
 
-    
-    public Flashcard(String name, String question, String answer) {
-        this.cardName = name;
+    public Flashcard(String deckName, String question, String answer, int pos) {
+        this.inDeck = deckName;
         this.question = question;
         this.answer = answer;
     }
@@ -21,7 +20,7 @@ public class Flashcard implements FlashcardInterface {
      */
     public String toString() {
         String info = "Flashcard: ";
-        info += this.cardName + "\n";
+        info += this.inDeck + "\n";
         info += "Q: " + this.question + "\n";
         info += "A: " + this.answer + "\n";
         return info;
@@ -49,11 +48,11 @@ public class Flashcard implements FlashcardInterface {
     }
 
     public String getCardName() {
-        return cardName;
+        return inDeck;
     }
 
     public void setCardName(String newName) {
-        cardName = newName;
+        inDeck = newName;
     }
 
     /**
@@ -83,7 +82,7 @@ public class Flashcard implements FlashcardInterface {
     public boolean equals(Object o) {
         boolean result = false;
         if (o instanceof Flashcard) {
-            result = this.cardName.equals(((Flashcard) o).getCardName());
+            result = this.inDeck.equals(((Flashcard) o).getCardName());
         }
         return result;
     }

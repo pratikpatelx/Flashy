@@ -34,7 +34,7 @@ public class EditFlashcardTest {
         testDT = mock(DataTranslationLayer.class);
         testDH = spy(new DeckManager(testDB, testDT));
         testDeck = mock(Deck.class);
-        testCard = new Flashcard("name", "newQ", "newA");
+        testCard = new Flashcard("name", "newQ", "newA", );
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
 
     }

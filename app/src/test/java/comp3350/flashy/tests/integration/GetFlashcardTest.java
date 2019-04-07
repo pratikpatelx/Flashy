@@ -25,7 +25,7 @@ public class GetFlashcardTest {
 
         String deckName = "Test_Deck";
         String cardName = deckName + "-" + 0;
-        Flashcard newCard = new Flashcard(cardName, "defaultQ", "defaultA");
+        Flashcard newCard = new Flashcard(cardName, "defaultQ", "defaultA", );
         deckMgr.putFlashcardInDeck(user, "Test_Deck", newCard);
         assertEquals("getCardTest failed.", newCard, deckMgr.getDeck(user, deckName).getCard(cardName));
     }

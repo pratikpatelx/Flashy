@@ -19,9 +19,9 @@ public class DeckTest {
     @Before
     public void setUp() {
         deck = new Deck("testDeck");
-        card1 = new Flashcard("testDeck-0", "q1", "a1");
-        card2 = new Flashcard("testDeck-1", "q2", "a2");
-        card3 = new Flashcard("testDeckwrong  - 123", "q3", "a3");
+        card1 = new Flashcard("testDeck-0", "q1", "a1", );
+        card2 = new Flashcard("testDeck-1", "q2", "a2", );
+        card3 = new Flashcard("testDeckwrong  - 123", "q3", "a3", );
     }
 
     @Test
