@@ -50,7 +50,7 @@ public class Flashcard implements FlashcardInterface {
     }
 
     public String getCardName() {
-        return inDeck;
+        return inDeck.concat("-" + this.position);
     }
 
     /**
