@@ -26,7 +26,7 @@ public class Deck {
         this.name = name;
         cards = new ArrayList<>();
         cards.addAll(other.getFlashcards());
-        validateNames();
+        correctCards();
     }
 
 
@@ -41,7 +41,7 @@ public class Deck {
     public void setDeck(Deck other) {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(other.getFlashcards());
-        this.validateNames();
+        this.correctCards();
     }
 
 
@@ -51,16 +51,16 @@ public class Deck {
 
     public void setDeckName(String newName) {
         this.name = newName;
-        this.validateNames();
+        this.correctCards();
     }
 
 
     /**
-     * validateNames()
+     * correctCards()
      * This function will iterate through the cards and ensures each one has the
      * correct name
      */
-    public final void validateNames() {
+    public final void correctCards() {
         Flashcard card;
         for (int i = 0; i < this.cards.size(); i++) {
             card = this.cards.get(i);
@@ -103,7 +103,7 @@ public class Deck {
         int pos = this.findCard(cardName);
         if (pos >= 0) {
             this.cards.remove(pos);
-            this.validateNames();
+            this.correctCards();
             success = true;
             if (this.curr == this.cards.size() - 1) {
                 this.curr--;
@@ -188,7 +188,7 @@ public class Deck {
         if (this.cards.size() == 0) {
             card = makeDummy();
         } else {
-            this.validateNames();
+            this.correctCards();
             int pos = extractNumber(cardName);
             if (pos >= 0 && pos < this.cards.size()) {
                 card = this.cards.get(pos);
@@ -203,7 +203,7 @@ public class Deck {
     private int findCard(String cardName) {
         int pos = -1;
 
-        this.validateNames();
+        this.correctCards();
         int number = this.extractNumber(cardName);
         if (number >= 0 && number < this.cards.size()) {
             pos = number;

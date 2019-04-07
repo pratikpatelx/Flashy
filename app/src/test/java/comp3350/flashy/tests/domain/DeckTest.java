@@ -43,8 +43,8 @@ public class DeckTest {
         assertTrue(deck.getNumCards() == 1); //Testing deleteCard method
 
         deck.addCard(card3);
-        deck.validateNames();
-        assertTrue(deck.getCard("testDeck-1").getQuestion().equals("q3")); //Testing validateNames method
+        deck.correctCards();
+        assertTrue(deck.getCard("testDeck-1").getQuestion().equals("q3")); //Testing correctCards method
 
         testColl = deck.getFlashcards();
         assertTrue(testColl.contains(card2)); //Testing getFlashcards method
