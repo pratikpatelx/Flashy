@@ -59,7 +59,6 @@ public class NewDeckActivity extends Activity {
             }
         });
 
-        //TODO add force user to input valid things
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

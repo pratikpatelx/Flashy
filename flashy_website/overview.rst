@@ -21,42 +21,44 @@ Users
 
 The typical user group is projected to be students in official educational institutions. However, it should be a helpful application for anyone with something to learn or review, such as music or a new language. Therefore, the application will be accessible for regular humans and its usage of this application should not require any extensive academic or technical knowledge. 
 
-Contributors
+Contributors and Acquired Skills
 ------------
 
 | **Arjunwadkar, Malhar**
 | Database Expert
-|	- Implementing and managing a persistent database
-|	- Better communication within a large team
-|	- Working in Android Studio
+|	- Implementing and managing a persistent database using a framework
+|   - Structuring databases for use in a practical application
+|	- Working with Git, HSQLDB, and Android Studio
 |
 | **Budhia, Sanjay**
-| Logic Architect
+| Logic Architect, Testing
 |	- Implementing logical components between the UI and database
-|	- Better communication within a large team
-|	- Working in Android Studio
+|	- Writing unit and integration testing suites
+|   - Refactoring code to make it testable
+|   - Working with Git, Android Studio, JUnit, and Mockito
 |
 | **Duque, Kyle**
 | Coordinator & UI Designer
 |	- Designing UI within Android Studio
 |	- Managing documentation of a large project
 |	- Better communication within a large team
-|	- Working in Android Studio
+|	- Working with Git and Android Studio
 |
 | **Jasim, Ali**
 | Head UI Designer
 |	- Designing UI within Android Studio
-|	- Better communication within a large team
-|	- Working in Android Studio
+|	- Adapting to new technologies
+|   - Identifying and debugging unexpected issues
+|   - Working with HSQLDB, Git, and Android Studio
 |
 | **Jung, Cameron**
-| Testing Analyst
-|	- Implementing tests in an android application
-|	- Better communication within a large team
-|	- Working in Android Studio
+| Object Designer, Testing
+|	- Writing an automated testing suite for an Android application
+|   - Refactoring and delineating layer responsibilities
+|	- Working with Git, JUnit and Android Studio
 |
 | **Patel, Pratik Kumar**
 | VP UI Designer
 |	- Designing UI within Android Studio
-|	- Better communication within a large team
-|	- Working in Android Studio
+|	- Working with XML, activities and buttons in Android Studio
+|   - Working with Git and Android Studio

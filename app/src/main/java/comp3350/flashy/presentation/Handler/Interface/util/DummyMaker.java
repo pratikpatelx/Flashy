@@ -1,4 +1,4 @@
-package comp3350.flashy.presentation.Handler.Interface;
+package comp3350.flashy.presentation.Handler.Interface.util;
 
 import comp3350.flashy.domain.Flashcard;
 

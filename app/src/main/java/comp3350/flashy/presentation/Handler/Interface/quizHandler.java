@@ -44,7 +44,7 @@ public class quizHandler {
         Flashcard curr = quiz.getNextCard();
         quizCardType = Integer.parseInt(curr.getCardType());
 
-        if (curr.isFillInTheBlanksFlashcard())
+        if (curr.getCardType().equals("1"))
             result[2] = ((FillInTheBlanksFlashcard) curr).getFirstPart();
 
 

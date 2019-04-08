@@ -7,6 +7,7 @@ import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.presentation.Handler.Interface.util.DummyMaker;
 
 
 //purpose: Handle all deck activity within the ui
@@ -168,7 +169,7 @@ public class deckHandler {
     }
 
     public void deleteCard(int index) {
-        deckM.removeCard(username, currDeck, (currDeck + "-" + index));
+        deckM.removeCard(username, currDeck, (deckName + "-" + index));
         deckSize--;
     }
 

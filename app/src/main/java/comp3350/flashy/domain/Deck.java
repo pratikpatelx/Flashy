@@ -38,11 +38,6 @@ public class Deck {
         return this.name;
     }
 
-    public void setDeckName(String newName) {
-        this.name = newName;
-        this.correctCards();
-    }
-
 
     /**
      * correctCards()
@@ -158,21 +153,6 @@ public class Deck {
     }
 
 
-    /**
-     * toString()
-     * <p>
-     * will return a string containing information on the deck
-     * along with its contents
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        String info = "Deck: " + this.name + "\n";
-        for (int i = 0; i < this.cards.size(); i++) {
-            info += cards.get(i) + "\n";
-        }
-        return info;
-    }
+
 
 }

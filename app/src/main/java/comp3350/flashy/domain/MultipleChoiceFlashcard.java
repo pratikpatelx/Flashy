@@ -25,12 +25,4 @@ public class MultipleChoiceFlashcard extends Flashcard {
         return cardType;
     }
 
-    @Override
-    public boolean isRegularFlashcard() {
-        return false;
-    }
-
-    public boolean isMultipleChoiceFlashcard() {
-        return true;
-    }
 }
