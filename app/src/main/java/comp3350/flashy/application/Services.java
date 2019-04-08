@@ -14,7 +14,6 @@ public class Services {
     public static synchronized DeckDatabaseImplementation getDeckPersistence() {
         if (deckPersistence == null) {
             deckPersistence = new DeckDatabaseHSQLDB(Main.getDBPathName());
-            //persistence = new DeckDatabaseStub();
         }
 
         return deckPersistence;
@@ -23,7 +22,6 @@ public class Services {
     public static synchronized UserDatabaseImplementation getUserPersistence() {
         if (userPersistence == null) {
             userPersistence = new UserDatabaseHSQLDB(Main.getDBPathName());
-            //persistence = new DeckDatabaseStub();
         }
 
         return userPersistence;

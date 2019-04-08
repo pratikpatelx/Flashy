@@ -6,7 +6,6 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.domain.TrueFalseCard;
 
 public class Encoder {
     String delimiter;
@@ -72,21 +71,7 @@ public class Encoder {
         return result;
     }
 
-    /**
-     * Encodes a True/False Flashcard
-     * 2|Answer|T/F value|
-     *
-     * @param card
-     * @return
-     */
-    private String encodeTrueFalseFlashcard(TrueFalseCard card) {
-        String result = "";
-        String answer = card.getAnswer();
-        result = result.concat(card.getCardType() + delimiter);
-        result = result.concat(answer + delimiter);
-        result = result.concat(card.getTruthValue() + delimiter);
-        return result;
-    }
+
 
     /**
      * Encodes a Fill in the Blanks Flashcard

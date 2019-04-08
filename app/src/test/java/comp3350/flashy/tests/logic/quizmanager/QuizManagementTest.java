@@ -32,8 +32,6 @@ public class QuizManagementTest {
         when(testCard.getCardType()).thenReturn("0");
         when(testQuizObj.getSize()).thenReturn(1);
         when(testQuizObj.isEmpty()).thenReturn(true);
-        when(testCard.mark("Right")).thenReturn(true);
-        when(testCard.mark("WRONG")).thenReturn(false);
         doNothing().when(testQuizObj).placeCard(testCard);
 
     }

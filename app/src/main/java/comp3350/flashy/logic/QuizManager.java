@@ -1,6 +1,5 @@
 package comp3350.flashy.logic;
 
-import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.Quiz;
 
