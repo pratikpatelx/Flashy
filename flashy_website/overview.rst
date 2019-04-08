@@ -28,7 +28,7 @@ Contributors and Acquired Skills
 | Database Expert
 |	- Implementing and managing a persistent database using a framework
 |   - Structuring databases for use in a practical application
-|	- Working with HSQLDB and Android Studio
+|	- Working with Git, HSQLDB, and Android Studio
 |
 | **Budhia, Sanjay**
 | Logic Architect, Testing
@@ -61,4 +61,4 @@ Contributors and Acquired Skills
 | VP UI Designer
 |	- Designing UI within Android Studio
 |	- Working with XML, activities and buttons in Android Studio
-|
+|   - Working with Git and Android Studio
