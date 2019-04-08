@@ -6,6 +6,10 @@ Study anywhere, anytime
 
 Flashy is an application that allows anyone reviewing study material to create, view, and organize digital flashcards, from anywhere.
 
+Check out our `GitLab`_!
+
+.. _GitLab: https://code.cs.umanitoba.ca/comp3350-winter2019/flashme---group-14
+
 .. image:: _images/1.png
     :width: 30 %
 
