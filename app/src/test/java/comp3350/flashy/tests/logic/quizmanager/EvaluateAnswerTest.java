@@ -34,8 +34,6 @@ public class EvaluateAnswerTest {
         testCard = mock(Flashcard.class);
         testQM = new QuizManager(testQuizObj);
         when(testQuizObj.takeCard()).thenReturn(testCard);
-        when(testCard.mark("Right")).thenReturn(true);
-        when(testCard.mark("WRONG")).thenReturn(false);
         doNothing().when(testQuizObj).placeCard(testCard);
 
     }

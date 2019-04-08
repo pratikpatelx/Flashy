@@ -89,18 +89,9 @@ public class Deck {
      * removed.
      *
      *
-     * @param pos@return a boolean of whether a card was actually removed from the deck
+     * @param cardID
+     * @return a boolean of whether a card was actually removed from the deck
      */
-    public boolean deleteCard(int pos) {
-        boolean success = false;
-        if (pos >= 0) {
-            this.cards.remove(pos);
-            this.correctCards();
-            success = true;
-        }
-        return success;
-    }
-
     public boolean deleteCard(String cardID) {
         boolean success = false;
 
@@ -122,25 +113,10 @@ public class Deck {
      * if there are no cards in the deck then then a dummy card will be returned.
      *
      *
-     * @param pos
+     * @param cardID
      * @return the Flashcard object with the specified name the method will return
      * a dummy card if it can't find the card requested
      */
-    public Flashcard getCard(int pos) {
-        Flashcard card;
-        if (this.cards.size() == 0) {
-            card = makeDummy();
-        } else {
-            if (pos >= 0 && pos < this.cards.size()) {
-                card = this.cards.get(pos);
-            } else {
-                card = makeDummy();
-            }
-        }
-        return card;
-    }
-
-
     public int getPosOfCardFromID(String cardID){
         Flashcard card;
         boolean found = false;
