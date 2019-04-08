@@ -31,7 +31,7 @@ public class Flashcard implements FlashcardInterface {
      */
     public String toString() {
         String info = "Flashcard: ";
-        info += this.inDeck + "\n";
+        info += this.getCardName() + "\n";
         info += "Q: " + this.question + "\n";
         info += "A: " + this.answer + "\n";
         return info;
@@ -59,7 +59,14 @@ public class Flashcard implements FlashcardInterface {
     }
 
     public String getCardName() {
-        return inDeck.concat("-" + this.position);
+        String id;
+        if(this.inDeck.contains("-")){
+            id = this.inDeck;
+        }
+        else{
+            id =inDeck.concat("-" + this.position);
+        }
+        return id;
     }
 
 

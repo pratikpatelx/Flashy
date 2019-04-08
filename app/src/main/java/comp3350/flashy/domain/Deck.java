@@ -7,7 +7,7 @@ import java.util.Collection;
 public class Deck {
 
 
-    private static final String DUMMYNAME = "DUMMY";
+    private static final String DUMMYID = "DUMMY-0";
     private static final String DUMMYQUESTION = "Why did you give me this dummy?";
     private static final String DUMMYANSWER = "There are either no cards in the "
             + "deck or you asked for a specific card that does not exist";
@@ -106,6 +106,19 @@ public class Deck {
         return success;
     }
 
+    public boolean deleteCard(String cardID) {
+        boolean success = false;
+
+        int pos = this.getPosOfCardFromID(cardID);
+
+        if (pos >= 0) {
+            this.cards.remove(pos);
+            this.correctCards();
+            success = true;
+        }
+        return success;
+    }
+
 
     /**
      * editCard()
@@ -156,24 +169,40 @@ public class Deck {
         return card;
     }
 
+
+    public int getPosOfCardFromID(String cardID){
+        Flashcard card;
+        boolean found = false;
+        int i = 0;
+        while(i < this.getNumCards() && !found){
+            card = this.cards.get(i);
+            if(card.getCardName().equals(cardID)){
+                found = true;
+            }
+            else{
+                i++;
+            }
+        }
+        if(!found){
+            i = -1;
+        }
+        return i;
+    }
+
+
     public Flashcard getCard(String id) {
         Flashcard card = null;
         if (this.cards.size() == 0) {
             card = makeDummy();
 
         } else {
-            boolean found = false;
-            int i = 0;
-            while(i < this.getNumCards() && !found){
-                card = this.cards.get(i);
-                if(card.getCardName().equals(id)){
-                    found = true;
-                }
-                i++;
-            }
+            int i = this.getPosOfCardFromID(id);
 
-            if (!found) {
+            if (i < 0) {
                 card = makeDummy();
+            }
+            else{
+                card = this.cards.get(i);
             }
         }
         return card;
@@ -181,7 +210,7 @@ public class Deck {
 
 
     private Flashcard makeDummy() {
-        return new Flashcard(DUMMYNAME, DUMMYQUESTION, DUMMYANSWER, 0);
+        return new Flashcard(DUMMYID, DUMMYQUESTION, DUMMYANSWER, 0);
     }
 
 
