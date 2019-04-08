@@ -8,7 +8,7 @@
 |    * FlashyRegistrationActivity.java   | * CardPrepper.java                  |        * UserDatabaseHSQLDB.java      |
 |    * MainActivity.java                 |                                     |                                       |
 |    * NewDeckActivity.java              |                                     |  dir/ Interfaces                      |
-|    * QuizActivity.java                 |                                     |     * DatabaseInterface.java          |
+|    * QuizActivity.java                 |                                     |                                       |
 |    * ShowAllDecksActivity.java         |                                     |     * DeckDatabaseImplementation.jaVa |
 |    * ViewFlashcardActivity.java        |                                     |     * UserDatabaseImplementation.java |
 | dir/ Handler                           |                                     |  dir/ Translator                      |
