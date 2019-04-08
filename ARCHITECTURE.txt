@@ -6,7 +6,7 @@
 |    * CreateFlashCardActivity.java      | * LogicManagerInterface.java        |     dir/ HSQLDB                       |
 |    * FlashCardListActivity.java        | * QuizManager.jaVa                  |        * DeckDatabaseHSQLDB.jaVa      |
 |    * FlashyRegistrationActivity.java   | * CardPrepper.java                  |        * UserDatabaseHSQLDB.java      |
-|    * MainActivity.java                 |                                     |     * DeckDatabaseStub.java           |
+|    * MainActivity.java                 |                                     |                                       |
 |    * NewDeckActivity.java              |                                     |  dir/ Interfaces                      |
 |    * QuizActivity.java                 |                                     |     * DatabaseInterface.java          |
 |    * ShowAllDecksActivity.java         |                                     |     * DeckDatabaseImplementation.jaVa |
