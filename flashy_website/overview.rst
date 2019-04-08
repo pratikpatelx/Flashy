@@ -22,20 +22,20 @@ Users
 The typical user group is projected to be students in official educational institutions. However, it should be a helpful application for anyone with something to learn or review, such as music or a new language. Therefore, the application will be accessible for regular humans and its usage of this application should not require any extensive academic or technical knowledge. 
 
 Contributors and Acquired Skills
-------------
+--------------------------------
 
 | **Arjunwadkar, Malhar**
 | Database Expert
 |	- Implementing and managing a persistent database using a framework
-|   - Structuring databases for use in a practical application
+|	- Structuring databases for use in a practical application
 |	- Working with Git, HSQLDB, and Android Studio
 |
 | **Budhia, Sanjay**
 | Logic Architect, Testing
 |	- Implementing logical components between the UI and database
 |	- Writing unit and integration testing suites
-|   - Refactoring code to make it testable
-|   - Working with Git, Android Studio, JUnit, and Mockito
+|	- Refactoring code to make it testable
+|	- Working with Git, Android Studio, JUnit, and Mockito
 |
 | **Duque, Kyle**
 | Coordinator & UI Designer
@@ -48,17 +48,17 @@ Contributors and Acquired Skills
 | Head UI Designer
 |	- Designing UI within Android Studio
 |	- Adapting to new technologies
-|   - Identifying and debugging unexpected issues
-|   - Working with HSQLDB, Git, and Android Studio
+|	- Identifying and debugging unexpected issues
+|	- Working with HSQLDB, Git, and Android Studio
 |
 | **Jung, Cameron**
 | Object Designer, Testing
 |	- Writing an automated testing suite for an Android application
-|   - Refactoring and delineating layer responsibilities
+|	- Refactoring and delineating layer responsibilities
 |	- Working with Git, JUnit and Android Studio
 |
 | **Patel, Pratik Kumar**
 | VP UI Designer
 |	- Designing UI within Android Studio
 |	- Working with XML, activities and buttons in Android Studio
-|   - Working with Git and Android Studio
+|	- Working with Git and Android Studio
