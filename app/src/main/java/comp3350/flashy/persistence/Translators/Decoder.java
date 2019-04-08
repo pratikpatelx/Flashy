@@ -111,7 +111,7 @@ public class Decoder {
         String decodedAnswer = tokenizedString.get(1);
 
 
-        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, "");
+        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, "", );
     }
 
     /**

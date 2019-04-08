@@ -7,6 +7,7 @@ import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
 import comp3350.flashy.logic.DeckManager;
+import comp3350.flashy.logic.CardIDHelper;
 
 
 //purpose: Handle all deck activity within the ui
@@ -29,7 +30,7 @@ public class deckHandler {
         Flashcard curr;
         String[] result = new String[3];
 
-        curr = currDeck.getCard(deckName + "-" + index);
+        curr = currDeck.getCard(index);
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
 
@@ -39,7 +40,7 @@ public class deckHandler {
     public ArrayList<String> getMCContent(int index) {
         ArrayList<String> result = new ArrayList<>();
 
-        MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) currDeck.getCard(deckName + "-" + index);
+        MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) currDeck.getCard(index);
         result.add(card.getQuestion());
         result.addAll(card.getAnswers());
 
@@ -47,7 +48,7 @@ public class deckHandler {
     }
 
     public int getFlashcardTypeByIndex(int index) {
-        Flashcard curr = currDeck.getCard(deckName + "-" + index);
+        Flashcard curr = currDeck.getCard(index);
 
         return Integer.parseInt(curr.getCardType());
     }
@@ -55,7 +56,7 @@ public class deckHandler {
 
     //note to self: do a better job...
     public int getIndexByFlashCard(String name) {
-        Flashcard curr = currDeck.getCard(name);
+        Flashcard curr = currDeck.getCard(CardIDHelper.retrieveNumber(name));
 
         //change this when changing (deckName + index) to (deckName +"-"+ index)
         String[] token = curr.getCardName().split("-");
@@ -138,17 +139,17 @@ public class deckHandler {
     public void saveCard(String head, String content, int type) {
         switch (type) {
             case 0:
-                deckM.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content, ));
+                deckM.putFlashcardInDeck(username, deckName, new Flashcard((deckName + "-" + deckSize), head, content, deckSize));
                 deckSize++;
                 break;
             case 1:
-                deckM.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " "));
+                deckM.putFlashcardInDeck(username, deckName, new FillInTheBlanksFlashcard((deckName + "-" + deckSize), head, content, " ", deckSize));
                 break;
         }
     }
 
     public void saveMCCard(String question, ArrayList<String> answer) {
-        deckM.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer, ));
+        deckM.putFlashcardInDeck(username, deckName, new MultipleChoiceFlashcard((deckName + "-" + deckSize), question, answer, deckSize));
         deckSize++;
     }
 

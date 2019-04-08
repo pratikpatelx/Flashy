@@ -98,11 +98,13 @@ public class DeckManager {
         insertDeck(username, deckName, currDeck);
     }
 
-    public Deck removeCard(String username, Deck curr, String cardName) {
-        curr.deleteCard(cardName);
+    public Deck removeCard(String username, Deck curr, String cardID) {
+        curr.deleteCard(this.getPosition(cardID));
         insertDeck(username, curr.getName(), curr);
         return curr;
     }
+
+
 
 
 
@@ -113,6 +115,17 @@ public class DeckManager {
         }
         currDeck.editCard(card);
         insertDeck(username, deckName, currDeck);
+    }
+
+
+    /**
+     *
+     * @param encoded this is a system generated String that contains a number
+     * @return the number encoded
+     */
+    private int getPosition(String encoded){
+        String[] token = encoded.split("-");
+        return Integer.parseInt(token[1]);
     }
 
 
