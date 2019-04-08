@@ -37,7 +37,7 @@ public class PutFlashcardInDeckTest {
         testDT = mock(DataTranslationLayer.class);
         testDH = spy(new DeckManager(testDB, testDT));
         testDeck = mock(Deck.class);
-        testCard = new Flashcard("name","q","a", );
+        testCard = new Flashcard("name","q","a");
         captor = ArgumentCaptor.forClass(Flashcard.class);
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
         when(testDH.getDeck("","testDeck")).thenReturn(testDeck);

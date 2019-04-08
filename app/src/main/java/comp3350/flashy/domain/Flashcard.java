@@ -15,6 +15,15 @@ public class Flashcard implements FlashcardInterface {
     }
 
 
+    public Flashcard(String deckName, String question, String answer) {
+        this.inDeck = deckName;
+        this.question = question;
+        this.answer = answer;
+        this.position = 0;
+    }
+
+
+
     /**
      * toString
      * <p>

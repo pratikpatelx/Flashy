@@ -81,6 +81,8 @@ public class Deck {
      * This function handles the creation of the simple flashcard
      */
     public void addCard(Flashcard noob) {
+        noob.setInDeck(this.name);
+        noob.setPosition(this.getNumCards());
         cards.add(noob);
     }
 
@@ -141,6 +143,20 @@ public class Deck {
      * a dummy card if it can't find the card requested
      */
     public Flashcard getCard(int pos) {
+        Flashcard card;
+        if (this.cards.size() == 0) {
+            card = makeDummy();
+        } else {
+            if (pos >= 0 && pos < this.cards.size()) {
+                card = this.cards.get(pos);
+            } else {
+                card = makeDummy();
+            }
+        }
+        return card;
+    }
+
+    public Flashcard getCard(String id) {
         Flashcard card;
         if (this.cards.size() == 0) {
             card = makeDummy();

@@ -6,7 +6,7 @@ public class TrueFalseCard extends Flashcard {
     private String cardType = "2";
 
     public TrueFalseCard(String name, String question, String answer, String givenTruthValue) {
-        super(name, question, answer, );
+        super(name, question, answer, 0);
         truthValue = givenTruthValue;
     }
 

@@ -10,6 +10,12 @@ public class FillInTheBlanksFlashcard extends Flashcard {
 
     }
 
+    public FillInTheBlanksFlashcard(String name, String question, String answer, String givenFirstPart) {
+        super(name, question, answer, 0);
+        firstPart = givenFirstPart;
+
+    }
+
     public String getFirstPart() {
         return firstPart;
     }

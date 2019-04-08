@@ -35,11 +35,11 @@ public class DeckTest {
 
         card1.setQuestion("q4");
         deck.editCard(card1);
-        card4 = deck.getCard("testDeck-0");
+        card4 = deck.getCard(0);
         assertEquals(card4,(card1));
         assertEquals(card4.getQuestion(),(card1.getQuestion())); //Testing getCard and editCard method
 
-        deck.deleteCard(card1.getCardName());
+        deck.deleteCard(card1.getPosition());
         assertEquals(1,deck.getNumCards()); //Testing deleteCard method
 
         deck.addCard(card3);

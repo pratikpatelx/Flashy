@@ -54,7 +54,7 @@ public class Encoder {
             answer = encodeFlashcard(flashcard);
         }
 
-        return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer, );
+        return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer);
     }
 
     /**

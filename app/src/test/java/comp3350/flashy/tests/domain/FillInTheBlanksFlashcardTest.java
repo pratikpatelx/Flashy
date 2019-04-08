@@ -17,7 +17,7 @@ public class FillInTheBlanksFlashcardTest {
 
     @Before
     public void setUp() {
-        card = new FillInTheBlanksFlashcard("fakeDeck-0", "q1", "a1", "p1", );
+        card = new FillInTheBlanksFlashcard("fakeDeck-0", "q1", "a1", "p1", 0);
 
     }
 

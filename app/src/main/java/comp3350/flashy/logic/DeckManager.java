@@ -1,13 +1,14 @@
 package comp3350.flashy.logic;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 import comp3350.flashy.persistence.Translators.DataTranslationLayer;
+import comp3350.flashy.logic.CardIDHelper;
 
 public class DeckManager {
     private DeckDatabaseImplementation deckStorage;
@@ -62,9 +63,9 @@ public class DeckManager {
      * @return
      */
 
-    public List getNames(String username) {
+    public List<String> getNames(String username) {
         ArrayList<Deck> temp = new ArrayList<Deck>(deckStorage.getDeckCollection(username));
-        List result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<String>();
         for (Deck i: temp) {
             result.add(i.getName());
         }
@@ -87,7 +88,7 @@ public class DeckManager {
     }
 
     public Deck removeCard(String username, Deck curr, String cardName) {
-        curr.deleteCard(cardName);
+        curr.deleteCard(CardIDHelper.retrieveNumber(cardName));
         insertDeck(username,curr);
         return curr;
     }
