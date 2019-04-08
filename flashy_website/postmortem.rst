@@ -5,6 +5,7 @@ What would you do differently, if you had the chance to start over?
 -------------------------------------------------------------------
 
 One of the main changes we would make if we had a chance to start over would be to spend more time learning the new technology required for this project immediately. Having to familiarize ourselves with Git and Android Studio as well as implementing a persistent HSQLDB was a major challenge in our development process. Having a solid grasp of the semantics of these various pieces of technology and their functions before jumping into implementation would have been a more efficient use of development time. Taking the time to fully understand the technology before trying to implement an application feature in an unfamiliar environment would have a helped a great deal in the design process as well. 
+
 Another part of our approach that we would like to do differently is simply coming to a conclusive consensus more efficiently. We spent far too much time debating various design possibilities and solutions to different issues, and this was definitely a major roadblock in our design process. Different ideas without a clear decision creates issues of inconsistency that make it difficult to make further design decisions or identify how best to proceed, given that foundational uncertainty. If we had the chance to start over, creating a concrete timeline of when a feature's implementation and development must begin and thus forcing a point at which its design must be chosen would make our process far more efficient.
  
 
