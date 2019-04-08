@@ -2,7 +2,6 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
@@ -15,8 +14,7 @@ public class DeckManager {
     private DataTranslationLayer translationLayer;
 
 
-    public DeckManager(){
-        this(Services.getDeckPersistence(), new DataTranslationLayer());
+    public DeckManager(){this(Services.getDeckPersistence(), new DataTranslationLayer());
     }
 
     /**

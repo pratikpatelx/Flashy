@@ -81,7 +81,7 @@ public class Decoder {
             answerList.add(tokenizedString.get(i).substring(0, tokenizedString.get(i).length() - 1));
         }
 
-        return new MultipleChoiceFlashcard(cardName, question, answerList);
+        return new MultipleChoiceFlashcard(cardName, question, answerList, );
     }
 
     /**
@@ -111,7 +111,7 @@ public class Decoder {
         String decodedAnswer = tokenizedString.get(1);
 
 
-        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, "");
+        return new FillInTheBlanksFlashcard(cardName, question, decodedAnswer, "", );
     }
 
     /**
@@ -125,7 +125,7 @@ public class Decoder {
     private Flashcard decodeFlashcard(String cardName, String question, ArrayList<String> tokenizedString) {
         String decodedAnswer = tokenizedString.get(1);
 
-        return new Flashcard(cardName, question, decodedAnswer);
+        return new Flashcard(cardName, question, decodedAnswer, );
     }
 
     /**
