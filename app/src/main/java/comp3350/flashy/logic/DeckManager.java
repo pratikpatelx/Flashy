@@ -1,7 +1,6 @@
 package comp3350.flashy.logic;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import comp3350.flashy.application.Services;
@@ -63,7 +62,6 @@ public class DeckManager {
      * @param username
      * @return
      */
-
     public List getNames(String username) {
         ArrayList<Deck> temp = new ArrayList<Deck>(deckStorage.getDeckCollection(username));
         List result = new ArrayList<String>();
@@ -73,6 +71,13 @@ public class DeckManager {
         return result;
     }
 
+    /**
+     * Gets the size of the specified deck, linked to the specified username
+     *
+     * @param username
+     * @param deckName
+     * @return
+     */
     public int queryDeckSize(String username, String deckName) {
         Deck curr = this.getDeck(username, deckName);
 
@@ -82,12 +87,25 @@ public class DeckManager {
         return 0;
     }
 
+    /**
+     * Puts a flashcard with the given name into the deck, linked to the given username
+     * @param username
+     * @param deckName
+     * @param card
+     */
     public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = getDeck(username, deckName);
         currDeck.addCard(card);
         insertDeck(username, currDeck);
     }
 
+    /**
+     * Removes a card from the deck, linked to the given username
+     * @param username
+     * @param curr
+     * @param cardName
+     * @return
+     */
     public Deck removeCard(String username, Deck curr, String cardName) {
         curr.deleteCard(cardName);
         insertDeck(username,curr);
