@@ -40,8 +40,6 @@ public class QuizManagementTest {
 
     @Test
     public void QuizManagementTest(){
-        System.out.println("\nRunning Quiz Management unit test\n");
-
         assertEquals(testQM.getCorrect(), 0);
         assertEquals(testQM.getWrong(), 0);
 

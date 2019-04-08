@@ -38,9 +38,7 @@ public void setUp() {
 
 @Test
 public void prepareFitBCardTest() {
-		System.out.println("Running Prepare FITB card unit test");
-
-		testPrep.prepareFitBCard(testCard);
+		CardPrepper.prepareFitBCard(testCard);
 
 		verify(testCard).setAnswer(captor.capture());
 		verify(testCard, times(2)).getAnswer();

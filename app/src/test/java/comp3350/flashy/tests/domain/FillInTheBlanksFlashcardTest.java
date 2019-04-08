@@ -9,6 +9,7 @@ import org.junit.Test;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class FillInTheBlanksFlashcardTest {
 
@@ -23,10 +24,8 @@ public class FillInTheBlanksFlashcardTest {
     @Test
     public void fillInTheBlanksTest() {
 
-        System.out.println("Running Fill In The Blanks Flashcard object test");
-        assertTrue(card.getFirstPart().equals("p1"));
-
-        assertTrue(card.getCardType().equals("1"));
+        assertEquals(card.getFirstPart(),"p1");
+        assertEquals(card.getCardType(),"1");
         assertTrue(card.isFillInTheBlanksFlashcard());
 
         System.out.println("Fill In The Blanks Flashcard object test complete.");

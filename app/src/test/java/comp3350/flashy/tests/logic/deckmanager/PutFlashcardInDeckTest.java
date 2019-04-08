@@ -40,25 +40,23 @@ public class PutFlashcardInDeckTest {
         testCard = new Flashcard("name","q","a");
         captor = ArgumentCaptor.forClass(Flashcard.class);
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
+        when(testDH.getDeck("","testDeck")).thenReturn(testDeck);
+        when(testDeck.getName()).thenReturn("testDeck");
 
 
     }
 
     @Test
     public void putFlashCardInDeckTestDeck(){
-        System.out.println("\nRunning PutFlashCardInDeck unit test\n");
 
-        when(testDH.getDeck("","testDeck")).thenReturn(testDeck);
-
-       testDH.putFlashcardInDeck("", "testDeck",testCard);
+        testDH.putFlashcardInDeck("", "testDeck",testCard);
 
         verify(testDeck).addCard(captor.capture());
         Flashcard result = captor.getValue();
         assertThat(testCard,is(result));
-
         verify(testDB).inputDeck("", "testDeck", testDeck);
 
-        System.out.println("PutFlashCardInDeck - Existing Deck unit test complete\n");
+        System.out.println("PutFlashCardInDeck unit test complete");
 
     }
 }

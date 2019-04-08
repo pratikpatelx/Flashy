@@ -34,15 +34,10 @@ public class DeckDatabaseHSQLDB implements DeckDatabaseImplementation, DatabaseI
      */
     private Connection connection() throws SQLException {
         Connection result;
-        try {
             result = DriverManager.getConnection(
                     "jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
                     "SA",
                     "");
-        } finally {
-            System.out.println("failed to connect");
-        }
-
         return result;
     }
 

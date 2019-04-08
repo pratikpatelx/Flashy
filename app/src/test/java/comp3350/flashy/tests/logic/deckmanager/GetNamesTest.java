@@ -33,29 +33,27 @@ public class GetNamesTest {
         testColl = new ArrayList<>();
         deck1 = mock(Deck.class);
         deck2 = mock(Deck.class);
-        when(deck1.getName()).thenReturn("1");
-        when(deck2.getName()).thenReturn("2");
         testColl.add(deck1);
         testColl.add(deck2);
+
+        when(deck1.getName()).thenReturn("1");
+        when(deck2.getName()).thenReturn("2");
+        when(testDB.getDeckCollection("")).thenReturn(testColl);
+
     }
 
 
     @Test
     public void getNamesTest() {
-        System.out.println("\nrunning GetNames unit test\n");
-
-        when(testDB.getDeckCollection("")).thenReturn(testColl);
-
         Collection result = testDH.getNames("");
-        verify(testDB).getDeckCollection("");
 
+        verify(testDB).getDeckCollection("");
         expectedList = new ArrayList<String>() {
             {
                 add("1");
                 add("2");
             }
         };
-
         assertEquals(expectedList, result);
         assertTrue("Test failed: ArrayLists do not match.", expectedList.toString().contentEquals(result.toString()));
         verify(deck1).getName();

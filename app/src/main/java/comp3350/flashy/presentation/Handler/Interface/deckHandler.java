@@ -113,8 +113,7 @@ public class deckHandler {
             System.out.println("found deck");
         } else {
             currDeck = new Deck(name);
-            deckName = currDeck.getName();
-            deckM.insertDeck(username, deckName, currDeck);
+            deckM.insertDeck(username,currDeck);
             deckSize = currDeck.getNumCards();
             System.out.println("created new deck");
         }

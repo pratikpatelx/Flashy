@@ -8,7 +8,8 @@ import java.util.Collection;
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 
 public class DeckTest {
@@ -26,25 +27,24 @@ public class DeckTest {
 
     @Test
     public void testDeck() {
-        System.out.println("Running Deck object test");
-        assertTrue(deck.getName().equals("testDeck")); //Testing getName method
+        assertEquals(deck.getName(),("testDeck")); //Testing getName method
 
         deck.addCard(card1);
         deck.addCard(card2);
-        assertTrue(deck.getNumCards() == 2); //Testing getNumCards method
+        assertEquals(2,deck.getNumCards()); //Testing getNumCards method
 
         card1.setQuestion("q4");
         deck.editCard(card1);
         card4 = deck.getCard("testDeck-0");
-        assertTrue(card4.equals(card1));
-        assertTrue(card4.getQuestion().equals(card1.getQuestion())); //Testing getCard and editCard method
+        assertEquals(card4,(card1));
+        assertEquals(card4.getQuestion(),(card1.getQuestion())); //Testing getCard and editCard method
 
         deck.deleteCard(card1.getCardName());
-        assertTrue(deck.getNumCards() == 1); //Testing deleteCard method
+        assertEquals(1,deck.getNumCards()); //Testing deleteCard method
 
         deck.addCard(card3);
         deck.validateNames();
-        assertTrue(deck.getCard("testDeck-1").getQuestion().equals("q3")); //Testing validateNames method
+        assertEquals(deck.getCard("testDeck-1").getQuestion(),("q3")); //Testing validateNames method
 
         testColl = deck.getFlashcards();
         assertTrue(testColl.contains(card2)); //Testing getFlashcards method

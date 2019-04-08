@@ -44,8 +44,6 @@ public class QuizTest {
 
     @Test
     public void quizTest(){
-        System.out.println("Running Quiz object unit test \n");
-
         testQuiz = new Quiz(testDeck);
 
         assertEquals(testQuiz.getSize(),2);
@@ -65,8 +63,6 @@ public class QuizTest {
         verify(testCard).getCardType();
         verify(testCard2).getCardType();
         verify(testDeck).getFlashcards();
-
-
 
         System.out.println("Quiz object unit test complete. \n");
     }

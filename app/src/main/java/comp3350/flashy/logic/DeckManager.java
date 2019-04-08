@@ -2,6 +2,7 @@ package comp3350.flashy.logic;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import comp3350.flashy.application.Services;
 import comp3350.flashy.domain.Deck;
@@ -14,7 +15,8 @@ public class DeckManager {
     private DataTranslationLayer translationLayer;
 
 
-    public DeckManager(){this(Services.getDeckPersistence(), new DataTranslationLayer());
+    public DeckManager(){
+        this(Services.getDeckPersistence(), new DataTranslationLayer());
     }
 
     /**
@@ -31,11 +33,10 @@ public class DeckManager {
     /**
      * puts a deck into the DB and associates it with the given username
      * @param username
-     * @param identifier
      * @param inputDeck
      */
-    public void insertDeck(String username, String identifier, Deck inputDeck) {
-        deckStorage.inputDeck(username, identifier, translationLayer.encodeDeck(inputDeck));
+    public void insertDeck(String username, Deck inputDeck) {
+        deckStorage.inputDeck(username, inputDeck.getName(), translationLayer.encodeDeck(inputDeck));
     }
 
     /**
@@ -58,19 +59,16 @@ public class DeckManager {
     }
 
     /**
-     * Gets a collection of the decks associated with the user in the DB
+     * Gets a List of the decks associated with the user in the DB
      * @param username
      * @return
      */
-    public Collection getAllDecks(String username) {
-        return deckStorage.getDeckCollection(username);
-    }
-    public Collection getNames(String username) {
-        ArrayList<Deck> temp = new ArrayList<Deck>(getAllDecks(username));
-        Collection result = new ArrayList<Deck>();
 
-        for (int i = 0; i < temp.size(); i++) {
-            result.add(temp.get(i).getName());
+    public List getNames(String username) {
+        ArrayList<Deck> temp = new ArrayList<Deck>(deckStorage.getDeckCollection(username));
+        List result = new ArrayList<String>();
+        for (Deck i: temp) {
+            result.add(i.getName());
         }
         return result;
     }
@@ -87,12 +85,12 @@ public class DeckManager {
     public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = getDeck(username, deckName);
         currDeck.addCard(card);
-        insertDeck(username, deckName, currDeck);
+        insertDeck(username, currDeck);
     }
 
     public Deck removeCard(String username, Deck curr, String cardName) {
         curr.deleteCard(cardName);
-        insertDeck(username, curr.getName(), curr);
+        insertDeck(username,curr);
         return curr;
     }
 

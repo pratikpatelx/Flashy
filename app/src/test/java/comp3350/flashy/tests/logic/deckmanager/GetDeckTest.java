@@ -33,16 +33,16 @@ public class GetDeckTest {
         testDeck = mock(Deck.class);
         testCard = mock(Flashcard.class);
 
-    }
-
-    @Test
-    public void getDeckTest(){
-        System.out.println("\nrunning Get Deck unit test\n");
-
         when(testDeck.getName()).thenReturn("testDeck");
         when(testDeck.getCard("testDeck-0")).thenReturn(mock(Flashcard.class));
         when(testDB.getDeck("","testDeck")).thenReturn(testDeck);
         when(testDT.decodeDeck(testDeck)).thenReturn(testDeck);
+
+    }
+
+    @Test
+    public void getDeckTest(){
+
 
         Deck result = testDH.getDeck("", "testDeck");
 

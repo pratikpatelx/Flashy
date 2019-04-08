@@ -9,9 +9,6 @@ import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
 import comp3350.flashy.tests.domain.QuizTest;
 
-import comp3350.flashy.tests.integration.DeckIntegration;
-
-import comp3350.flashy.tests.integration.UserIntegration;
 import comp3350.flashy.tests.logic.cardprepper.PrepareFitBCardTest;
 import comp3350.flashy.tests.logic.cardprepper.PrepareMultipleChoiceFlashCardTest;
 import comp3350.flashy.tests.logic.deckmanager.GetDeckTest;
@@ -28,14 +25,9 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        //Integration tests
-
-        DeckIntegration.class,
-        UserIntegration.class,
-
         //Unit Tests
 
-            //Logic Tests
+        //Logic Tests
         PutFlashcardInDeckTest.class,
         GetDeckTest.class,
         InsertAndDeleteDeckTest.class,
@@ -52,7 +44,7 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
         PrepareFitBCardTest.class,
         PrepareMultipleChoiceFlashCardTest.class,
 
-            //domain object tests
+        //domain object tests
         DeckTest.class,
         FlashcardTest.class,
         FillInTheBlanksFlashcardTest.class,
@@ -60,4 +52,4 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
         QuizTest.class,
 })
 
-public class AllTests {}
+public class AllUnitTests {}
