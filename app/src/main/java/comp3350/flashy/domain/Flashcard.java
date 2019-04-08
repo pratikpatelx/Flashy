@@ -2,15 +2,26 @@ package comp3350.flashy.domain;
 
 public class Flashcard implements FlashcardInterface {
     private static final String cardType = "0";
-    private String cardName;
+    private String inDeck;//the name of the deck the card is in
+    private int position;//the card's position in the deck
     private String answer;
     private String question;
 
-    public Flashcard(String name, String question, String answer) {
-        this.cardName = name;
+    public Flashcard(String deckName, String question, String answer, int pos) {
+        this.inDeck = deckName;
         this.question = question;
         this.answer = answer;
+        this.position = pos;
     }
+
+
+    public Flashcard(String deckName, String question, String answer) {
+        this.inDeck = deckName;
+        this.question = question;
+        this.answer = answer;
+        this.position = 0;
+    }
+
 
 
     /**
@@ -20,7 +31,7 @@ public class Flashcard implements FlashcardInterface {
      */
     public String toString() {
         String info = "Flashcard: ";
-        info += this.cardName + "\n";
+        info += this.inDeck + "\n";
         info += "Q: " + this.question + "\n";
         info += "A: " + this.answer + "\n";
         return info;
@@ -48,12 +59,26 @@ public class Flashcard implements FlashcardInterface {
     }
 
     public String getCardName() {
-        return cardName;
+        return inDeck.concat("-" + this.position);
     }
 
-    public void setCardName(String newName) {
-        cardName = newName;
+
+    public int getPosition(){
+        return this.position;
     }
+
+    public void setPosition(int pos){
+        this.position = pos;
+    }
+
+    public String getInDeck(){
+        return this.inDeck;
+    }
+
+    public void setInDeck(String deckName){
+        this.inDeck = deckName;
+    }
+
 
     /**
      * editCard()
@@ -82,7 +107,8 @@ public class Flashcard implements FlashcardInterface {
     public boolean equals(Object o) {
         boolean result = false;
         if (o instanceof Flashcard) {
-            result = this.cardName.equals(((Flashcard) o).getCardName());
+            result = this.inDeck.equals(((Flashcard) o).getInDeck()) &&
+                    (this.position == ((Flashcard)o).getPosition());
         }
         return result;
     }
