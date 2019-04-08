@@ -33,9 +33,10 @@ public class FlashcardTest {
         assertEquals(card1.getCardName(),(name));
         assertEquals(card1.getCardType(),("0"));
 
+        card1.setAnswer(card2.getAnswer());
 
         assertEquals(card1.getAnswer(),(card2.getAnswer()));
-        assertEquals(card1.getAnswer(),(card2.getAnswer()));
+        assertTrue(card1.equals(card1));
 
         System.out.println("Flashcard object test complete.");
     }

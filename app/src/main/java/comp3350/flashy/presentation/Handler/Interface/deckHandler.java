@@ -12,6 +12,9 @@ import comp3350.flashy.logic.DeckManager;
 //purpose: Handle all deck activity within the ui
 public class deckHandler {
     private static int deckSize = 0; // this is to hold max index
+
+
+
     private DeckManager deckM;
     private String username;
     private Deck currDeck;
@@ -22,6 +25,8 @@ public class deckHandler {
     }
 
 
+
+
     //retrieve content
 
     //this returns the the head and body of the flashcard
@@ -30,6 +35,12 @@ public class deckHandler {
         String[] result = new String[3];
 
         curr = currDeck.getCard(deckName + "-" + index);
+
+        if(curr == null){
+            curr = DummyMaker.makeDummy();
+        }
+
+
         result[0] = curr.getQuestion();
         result[1] = curr.getAnswer();
 
@@ -40,6 +51,7 @@ public class deckHandler {
         ArrayList<String> result = new ArrayList<>();
 
         MultipleChoiceFlashcard card = (MultipleChoiceFlashcard) currDeck.getCard(deckName + "-" + index);
+
         result.add(card.getQuestion());
         result.addAll(card.getAnswers());
 
@@ -48,6 +60,10 @@ public class deckHandler {
 
     public int getFlashcardTypeByIndex(int index) {
         Flashcard curr = currDeck.getCard(deckName + "-" + index);
+
+        if(curr == null){
+            curr = DummyMaker.makeDummy();
+        }
 
         return Integer.parseInt(curr.getCardType());
     }

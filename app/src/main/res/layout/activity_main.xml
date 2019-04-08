@@ -19,7 +19,6 @@
         android:fadingEdge="horizontal|vertical|none"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profilePass"
