@@ -10,7 +10,11 @@ public class Services {
     private static DeckDatabaseImplementation deckPersistence = null;
     private static UserDatabaseImplementation userPersistence = null;
 
-
+    /**
+     * returns a singleton instance of the DeckDatabaseImplementation
+     *
+     * @return
+     */
     public static synchronized DeckDatabaseImplementation getDeckPersistence() {
         if (deckPersistence == null) {
             deckPersistence = new DeckDatabaseHSQLDB(Main.getDBPathName());
@@ -19,6 +23,10 @@ public class Services {
         return deckPersistence;
     }
 
+    /**
+     * Returns a singleton instance of the UserDatabaseImplementation
+     * @return
+     */
     public static synchronized UserDatabaseImplementation getUserPersistence() {
         if (userPersistence == null) {
             userPersistence = new UserDatabaseHSQLDB(Main.getDBPathName());

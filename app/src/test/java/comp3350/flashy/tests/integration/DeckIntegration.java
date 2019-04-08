@@ -89,7 +89,7 @@ public class DeckIntegration {
         assertEquals(1,testDeck.getNumCards());
         Deck result = deckM.removeCard(user,testDeck,"testDeck-0");
         assertEquals(0,result.getNumCards());
-        assertEquals("DUMMY-0",result.getCard("testDeck-0").getCardName());
+        assertEquals(null, result.getCard("testDeck-0"));
         System.out.println("Remove Card Integration test complete.");
     }
 
