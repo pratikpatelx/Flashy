@@ -6,7 +6,6 @@ import java.util.Collection;
 
 public class Deck {
 
-
     private static final String DUMMYID = "DUMMY-0";
     private static final String DUMMYQUESTION = "Why did you give me this dummy?";
     private static final String DUMMYANSWER = "There are either no cards in the "
