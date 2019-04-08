@@ -47,7 +47,7 @@ Features
 Regular Flashcards
 ------------------
 
-Users are able to create and manage flashcards with a front and back. The front of the flashcard will display the user's question and the back will display the user's answer. Users will be able to edit or delete this flashcard at their will.
+Users are able to create and manage flashcards with a front and back. The front of the flashcard will display the user's question and the back will display the user's answer. Users will be able to edit or delete this flashcard at will.
 
 .. raw:: html 
 
@@ -61,7 +61,7 @@ Users are able to create and manage flashcards with a front and back. The front 
 Multiple Choice Flashcards
 --------------------------
 
-Users are able to create and manage a flashcard with up to 4 possible answers. The front of the flashcard will display the user's question along with the 4 possible answers. The one correct answer will be displayed on the back of the flashcard. Users will be able to edit or delete this flashcard at their will. 
+Users are able to create and manage a flashcard with up to 4 possible answers. The front of the flashcard will display the user's question along with the 4 possible answers. The one correct answer will be displayed on the back of the flashcard. Users will be able to edit or delete this flashcard at will. 
 
 .. raw:: html 
 
@@ -75,7 +75,7 @@ Users are able to create and manage a flashcard with up to 4 possible answers. T
 Fill-in-the-blank Flashcards
 ----------------------------
 
-Users will be able to create and manage a fill-in-the-blank flashcard where one word of the flashcard's question will be hidden. The user will be able to create a question and choose which one of the words will be hidden with the answer on the back of the flashcard. Users will be able to edit or delete this flashcard at their will.
+Users will be able to create and manage a fill-in-the-blank flashcard where one word of the flashcard's question will be hidden. The user will be able to create a question and choose which one of the words will be hidden with the answer on the back of the flashcard. Users will be able to edit or delete this flashcard at will.
 
 .. raw:: html 
 
@@ -89,7 +89,7 @@ Users will be able to create and manage a fill-in-the-blank flashcard where one 
 Flashcard Decks
 ---------------
 
-Users will be able to create and manage decks consisting of different types of flashcards. Users will be able to create a deck and name it whatever they like. This allows the users to keep there flashcards organized. Users will also be able edit and delete their decks at their will.
+Users will be able to create and manage decks consisting of different types of flashcards. Users will be able to create a deck and name it whatever they like. This allows the users to keep their flashcards organized. Users will also be able edit and delete their decks at will.
 
 .. raw:: html 
 
@@ -103,7 +103,7 @@ Users will be able to create and manage decks consisting of different types of f
 Quiz Mode
 ---------
 
-Users will be able to take a quiz with a deck of flashcards of their choosing. This will allow the user to test themselves on how much they know the material of their flashcards. Quiz mode will keep track of how many correct and incorrect answers the user gave. This will indicate how well the user knows the material and if they need to continue studying the deck.
+Users will be able to take a quiz with a deck of flashcards of their choosing. This will allow the user to test themselves on how much they know the material of their flashcards. Quiz Mode will keep track of how many correct and incorrect answers the user gave. This will indicate how well the user knows the material and if they need to continue studying the deck.
 
 .. raw:: html 
 
@@ -114,10 +114,10 @@ Users will be able to take a quiz with a deck of flashcards of their choosing. T
 
 .. _user:
 
-User profiles
+User Profiles
 -------------
 
-Users will be able to create and manage different user profiles. This will allow the user to manage which decks of flashcards they have access to incase there are more than one user per device. Also, the user account are password protected so users can ensure the safety of their precious stuy material.
+Users will be able to create and manage different user profiles. This will allow the user to manage which decks of flashcards they have access to in case there happens to be more than one user on a given device. The user accounts are also password protected so users can ensure the security of their precious study material.
 
 .. raw:: html 
 
