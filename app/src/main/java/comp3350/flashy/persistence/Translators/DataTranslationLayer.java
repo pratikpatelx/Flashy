@@ -7,10 +7,21 @@ public class DataTranslationLayer {
     private Encoder dataEncoder = new Encoder(delimiter);
     private Decoder dataDecoder = new Decoder(delimiter);
 
+    /**
+     * Calls the appropriate function in the Encoder to encode the deck
+     *
+     * @param deck
+     * @return
+     */
     public Deck encodeDeck(Deck deck) {
         return dataEncoder.encodeDeck(deck);
     }
 
+    /**
+     * Calls the appropriate function in the Decoder to decode the deck
+     * @param deck
+     * @return
+     */
     public Deck decodeDeck(Deck deck) {
         return dataDecoder.decodeDeck(deck);
     }
