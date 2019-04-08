@@ -31,10 +31,6 @@ public class Deck {
         return cards;
     }
 
-    public void clearDeck() {
-        cards.clear();
-    }
-
     public void setDeck(Deck other) {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(other.getFlashcards());
@@ -120,30 +116,6 @@ public class Deck {
 
 
     /**
-     * editCard()
-     * This method will change the card with the same name as the parameter changed
-     * to be the same as the parameter changed.
-     *
-     * @param changed
-     * @return returns weather or not the card was successfully edited;
-     */
-
-    public boolean editCard(Flashcard changed) {
-        boolean success = false;
-        if (cards.size() >= 0) {
-            int idx = cards.indexOf(changed);
-            if (idx >= 0) {
-                cards.get(idx).editCard(changed);
-                success = true;
-            }
-
-        }
-        return success;
-    }
-
-
-
-     /**
      * getCard()
      * <p>
      * this function returns the Flashcard object in this deck at the position equal to "pos"

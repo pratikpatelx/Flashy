@@ -27,7 +27,7 @@ public class Flashcard implements FlashcardInterface {
     /**
      * toString
      * <p>
-     * A function useful for testing
+     * A function useful for debugging
      */
     public String toString() {
         String info = "Flashcard: ";
@@ -87,24 +87,6 @@ public class Flashcard implements FlashcardInterface {
     }
 
 
-    /**
-     * editCard()
-     * This method will change question and answer to be the same as that of
-     * mimic
-     *
-     * @param mimic
-     * @return true if and only if mimic has the same name as this
-     */
-    public boolean editCard(Flashcard mimic) {
-        boolean success = false;
-        if (mimic.equals(this)) {
-            this.question = mimic.getQuestion();
-            this.answer = mimic.getAnswer();
-            success = true;
-        }
-        return success;
-    }
-
     public String getCardType() {
         return cardType;
     }
@@ -118,12 +100,6 @@ public class Flashcard implements FlashcardInterface {
                     (this.position == ((Flashcard)o).getPosition());
         }
         return result;
-    }
-
-
-    @Override
-    public boolean mark(String response) {
-        return this.answer.equalsIgnoreCase(response);
     }
 
     public boolean isRegularFlashcard() {

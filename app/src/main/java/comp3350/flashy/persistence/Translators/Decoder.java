@@ -7,7 +7,6 @@ import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.FillInTheBlanksFlashcard;
 import comp3350.flashy.domain.Flashcard;
 import comp3350.flashy.domain.MultipleChoiceFlashcard;
-import comp3350.flashy.domain.TrueFalseCard;
 
 public class Decoder {
     String delimiter = null;
@@ -82,21 +81,6 @@ public class Decoder {
         }
 
         return new MultipleChoiceFlashcard(cardName, question, answerList);
-    }
-
-    /**
-     * Decode a True/False Flashcard
-     *
-     * @param cardName
-     * @param question
-     * @param tokenizedString
-     * @return
-     */
-    private Flashcard decodeTrueFalseFlashcard(String cardName, String question, ArrayList<String> tokenizedString) {
-        String decodedAnswer = tokenizedString.get(1);
-        String truthValue = tokenizedString.get(2);
-
-        return new TrueFalseCard(cardName, question, decodedAnswer, truthValue);
     }
 
     /**
