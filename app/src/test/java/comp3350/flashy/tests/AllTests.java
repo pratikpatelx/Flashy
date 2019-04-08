@@ -1,8 +1,5 @@
 package comp3350.flashy.tests;
 
-//TODO: Fix integration tests with new logic layer, write quiz&cardprepper unit tests
-
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -11,15 +8,16 @@ import comp3350.flashy.tests.domain.FlashcardTest;
 import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
 
+import comp3350.flashy.tests.domain.QuizTest;
 import comp3350.flashy.tests.logic.cardprepper.PrepareFitBCardTest;
 import comp3350.flashy.tests.logic.cardprepper.PrepareMultipleChoiceFlashCardTest;
 import comp3350.flashy.tests.logic.deckmanager.GetAllDecksTest;
 import comp3350.flashy.tests.logic.deckmanager.GetDeckTest;
 import comp3350.flashy.tests.logic.deckmanager.GetNamesTest;
-import comp3350.flashy.tests.logic.deckmanager.InsertDeckTest;
+import comp3350.flashy.tests.logic.deckmanager.InsertAndDeleteDeckTest;
 import comp3350.flashy.tests.logic.deckmanager.PutFlashcardInDeckTest;
-import comp3350.flashy.tests.logic.deckmanager.EditFlashcardTest;
-
+import comp3350.flashy.tests.logic.deckmanager.QueryDeckSizeTest;
+import comp3350.flashy.tests.logic.deckmanager.RemoveCardTest;
 import comp3350.flashy.tests.logic.quizmanager.EvaluateAnswerTest;
 import comp3350.flashy.tests.logic.quizmanager.QuizManagementTest;
 import comp3350.flashy.tests.logic.usermanager.GetAllProfilesTest;
@@ -40,10 +38,11 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
             //Logic Tests
         PutFlashcardInDeckTest.class,
         GetDeckTest.class,
-        InsertDeckTest.class,
-        EditFlashcardTest.class,
+        InsertAndDeleteDeckTest.class,
         GetNamesTest.class,
         GetAllDecksTest.class,
+        RemoveCardTest.class,
+        QueryDeckSizeTest.class,
 
         GetAllProfilesTest.class,
         UserManagementTest.class,
@@ -59,6 +58,7 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
         FlashcardTest.class,
         FillInTheBlanksFlashcardTest.class,
         MultipleChoiceFlashcardTest.class,
+        QuizTest.class,
 })
 
 public class AllTests {}

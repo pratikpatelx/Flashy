@@ -28,10 +28,6 @@ public class DeckManager {
         translationLayer = layerImpl;
     }
 
-    public Deck makeDeck(String deckName) {
-        return new Deck(deckName);
-    }
-
     /**
      * puts a deck into the DB and associates it with the given username
      * @param username
@@ -69,7 +65,6 @@ public class DeckManager {
     public Collection getAllDecks(String username) {
         return deckStorage.getDeckCollection(username);
     }
-
     public Collection getNames(String username) {
         ArrayList<Deck> temp = new ArrayList<Deck>(getAllDecks(username));
         Collection result = new ArrayList<Deck>();
@@ -77,23 +72,20 @@ public class DeckManager {
         for (int i = 0; i < temp.size(); i++) {
             result.add(temp.get(i).getName());
         }
-
         return result;
     }
 
     public int queryDeckSize(String username, String deckName) {
-        Deck currDeck = getDeck(username, deckName);
-        if (currDeck != null) {
-            return currDeck.getNumCards();
+        Deck curr = this.getDeck(username, deckName);
+
+        if (curr != null) {
+            return curr.getNumCards();
         }
         return 0;
     }
 
     public void putFlashcardInDeck(String username, String deckName, Flashcard card) {
         Deck currDeck = getDeck(username, deckName);
-        if (currDeck == null) {
-            currDeck = makeDeck(deckName);
-        }
         currDeck.addCard(card);
         insertDeck(username, deckName, currDeck);
     }
@@ -105,30 +97,4 @@ public class DeckManager {
     }
 
 
-
-    public void editFlashcard(String username, String deckName, Flashcard card) {
-        Deck currDeck = getDeck(username, deckName);
-        if (currDeck == null) {
-            currDeck = makeDeck(deckName);
-        }
-        currDeck.editCard(card);
-        insertDeck(username, deckName, currDeck);
-    }
-
-
-    /**
-     * @param username     the name of the account taking the quiz
-     * @param quizDeckName the name of the deck to make a quiz with
-     * @return the QuizManager that the presentation layer will use to take the quiz
-     * NOTE this method will return null if the deck requested does not exist
-     */
-    public Deck startQuiz(String username, String quizDeckName) {
-        Deck quizDeck = getDeck(username, quizDeckName);
-
-        if (quizDeck != null) {
-            return quizDeck;
-        }
-
-        return quizDeck;
-    }
 }

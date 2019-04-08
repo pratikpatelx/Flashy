@@ -24,7 +24,7 @@ public class quizHandler {
 
 
     public void startQuiz(String Username, String deckName) {
-        quiz = new QuizManager(new Quiz(deckM.startQuiz(Username, deckName)));
+        quiz = new QuizManager(new Quiz(deckM.getDeck(Username, deckName)));
     }
 
 
