@@ -13,12 +13,12 @@
 |    * ViewFlashcardActivity.java        |                                     |     * Decoder.jaVa                    |
 | dir/ Handler                           |                                     |     * Encoder.java                    |
 |    dir/ Interface                      |                                     |                                       |
+|       dir/ Util                        |                                     |                                       |
+|          * DummyMaker.jaVa             |                                     |                                       |
 |      * deckHandler.java                |                                     |                                       |
 |      * profileHandler.java             |                                     |                                       |
-|      * DummyMaker.jaVa                 |                                     |                                       |
 |      * quizHandlerjava                 |                                     |                                       |
 |    * uiHandler.java                    |                                     |                                       |
-|                                        |                                     |                                       |
 |                                        |                                     |                                       |
 |                                        |                                     |                                       |
 +----------------------------------------+-------------------------------------+---------------------------------------+
