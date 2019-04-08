@@ -27,10 +27,6 @@ public class Deck {
         return cards;
     }
 
-    public void clearDeck() {
-        cards.clear();
-    }
-
     public void setDeck(Deck other) {
         this.cards = new ArrayList<Flashcard>();
         this.cards.addAll(other.getFlashcards());
@@ -89,18 +85,9 @@ public class Deck {
      * removed.
      *
      *
-     * @param pos@return a boolean of whether a card was actually removed from the deck
+     * @param cardID
+     * @return a boolean of whether a card was actually removed from the deck
      */
-    public boolean deleteCard(int pos) {
-        boolean success = false;
-        if (pos >= 0) {
-            this.cards.remove(pos);
-            this.correctCards();
-            success = true;
-        }
-        return success;
-    }
-
     public boolean deleteCard(String cardID) {
         boolean success = false;
 
@@ -116,30 +103,6 @@ public class Deck {
 
 
     /**
-     * editCard()
-     * This method will change the card with the same name as the parameter changed
-     * to be the same as the parameter changed.
-     *
-     * @param changed
-     * @return returns weather or not the card was successfully edited;
-     */
-
-    public boolean editCard(Flashcard changed) {
-        boolean success = false;
-        if (cards.size() >= 0) {
-            int idx = cards.indexOf(changed);
-            if (idx >= 0) {
-                cards.get(idx).editCard(changed);
-                success = true;
-            }
-
-        }
-        return success;
-    }
-
-
-
-     /**
      * getCard()
      * <p>
      * this function returns the Flashcard object in this deck at the position equal to "pos"
@@ -150,21 +113,6 @@ public class Deck {
      * @return the Flashcard object with the specified name the method will return
      * a dummy card if it can't find the card requested
      */
-//    public Flashcard getCard(int pos) {
-//        Flashcard card;
-//        if (this.cards.size() == 0) {
-//            card = makeDummy();
-//        } else {
-//            if (pos >= 0 && pos < this.cards.size()) {
-//                card = this.cards.get(pos);
-//            } else {
-//                card = makeDummy();
-//            }
-//        }
-//        return card;
-//    }
-
-
     public int getPosOfCardFromID(String cardID){
         Flashcard card;
         boolean found = false;
