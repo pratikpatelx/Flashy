@@ -6,10 +6,6 @@ import java.util.Collection;
 
 public class Deck {
 
-    private static final String DUMMYID = "DUMMY-0";
-    private static final String DUMMYQUESTION = "Why did you give me this dummy?";
-    private static final String DUMMYANSWER = "There are either no cards in the "
-            + "deck or you asked for a specific card that does not exist";
 
     private ArrayList<Flashcard> cards;
     private String name;
@@ -150,23 +146,23 @@ public class Deck {
      * if there are no cards in the deck then then a dummy card will be returned.
      *
      *
-     * @param pos
+     * @param
      * @return the Flashcard object with the specified name the method will return
      * a dummy card if it can't find the card requested
      */
-    public Flashcard getCard(int pos) {
-        Flashcard card;
-        if (this.cards.size() == 0) {
-            card = makeDummy();
-        } else {
-            if (pos >= 0 && pos < this.cards.size()) {
-                card = this.cards.get(pos);
-            } else {
-                card = makeDummy();
-            }
-        }
-        return card;
-    }
+//    public Flashcard getCard(int pos) {
+//        Flashcard card;
+//        if (this.cards.size() == 0) {
+//            card = makeDummy();
+//        } else {
+//            if (pos >= 0 && pos < this.cards.size()) {
+//                card = this.cards.get(pos);
+//            } else {
+//                card = makeDummy();
+//            }
+//        }
+//        return card;
+//    }
 
 
     public int getPosOfCardFromID(String cardID){
@@ -191,26 +187,17 @@ public class Deck {
 
     public Flashcard getCard(String id) {
         Flashcard card = null;
-        if (this.cards.size() == 0) {
-            card = makeDummy();
 
-        } else {
+        if (this.cards.size() != 0) {
             int i = this.getPosOfCardFromID(id);
-
-            if (i < 0) {
-                card = makeDummy();
-            }
-            else{
-                card = this.cards.get(i);
-            }
+            card = this.cards.get(i);
         }
+
         return card;
     }
 
 
-    private Flashcard makeDummy() {
-        return new Flashcard(DUMMYID, DUMMYQUESTION, DUMMYANSWER, 0);
-    }
+
 
 
     /**
