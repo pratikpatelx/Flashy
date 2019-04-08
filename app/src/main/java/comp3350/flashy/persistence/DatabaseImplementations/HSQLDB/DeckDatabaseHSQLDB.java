@@ -10,10 +10,9 @@ import java.util.Collection;
 
 import comp3350.flashy.domain.Deck;
 import comp3350.flashy.domain.Flashcard;
-import comp3350.flashy.persistence.Interfaces.DatabaseInterface;
 import comp3350.flashy.persistence.Interfaces.DeckDatabaseImplementation;
 
-public class DeckDatabaseHSQLDB implements DeckDatabaseImplementation, DatabaseInterface {
+public class DeckDatabaseHSQLDB implements DeckDatabaseImplementation {
 
     private final String dbPath;
 

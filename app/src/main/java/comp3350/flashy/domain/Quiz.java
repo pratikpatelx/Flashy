@@ -56,11 +56,6 @@ public class Quiz {
     public void placeCard(Flashcard card) {
 
         if (!this.cards.isEmpty()) {
-//            Random rand = new Random();
-//            int pos = rand.nextInt() % this.cards.size();
-//            this.cards.add(pos, card);
-//        }
-//        else{
             this.cards.add(card);
         }
 

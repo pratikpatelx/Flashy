@@ -4,8 +4,10 @@ public class FillInTheBlanksFlashcard extends Flashcard {
     String firstPart = null;
     String cardType = "1";
 
+
+
     public FillInTheBlanksFlashcard(String name, String question, String answer, String givenFirstPart) {
-        super(name, question, answer);
+        super(name, question, answer, 0);
         firstPart = givenFirstPart;
 
     }

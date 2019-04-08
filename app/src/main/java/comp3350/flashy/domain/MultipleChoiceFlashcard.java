@@ -7,11 +7,11 @@ public class MultipleChoiceFlashcard extends Flashcard {
     private ArrayList answers;
     private String cardType = "2";
 
-
     public MultipleChoiceFlashcard(String name, String question, List<String> answerList) {
-        super(name, question, "");
+        super(name, question, "",0);
         this.answers = new ArrayList<String>(answerList);
     }
+
 
     public List<String> getAnswers() {
         return answers;

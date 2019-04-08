@@ -8,10 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import comp3350.flashy.persistence.Interfaces.DatabaseInterface;
 import comp3350.flashy.persistence.Interfaces.UserDatabaseImplementation;
 
-public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseInterface {
+public class UserDatabaseHSQLDB implements UserDatabaseImplementation {
 
     private final String dbPath;
 

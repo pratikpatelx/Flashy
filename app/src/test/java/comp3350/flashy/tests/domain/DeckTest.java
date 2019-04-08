@@ -34,16 +34,15 @@ public class DeckTest {
         assertEquals(2,deck.getNumCards()); //Testing getNumCards method
 
         card1.setQuestion("q4");
-        deck.editCard(card1);
         card4 = deck.getCard("testDeck-0");
         assertEquals(card4,(card1));
-        assertEquals(card4.getQuestion(),(card1.getQuestion())); //Testing getCard and editCard method
+        assertEquals(card4.getQuestion(),(card1.getQuestion())); //Testing getCard method
 
         deck.deleteCard(card1.getCardName());
         assertEquals(1,deck.getNumCards()); //Testing deleteCard method
 
         deck.addCard(card3);
-        deck.validateNames();
+        deck.correctCards();
         assertEquals(deck.getCard("testDeck-1").getQuestion(),("q3")); //Testing validateNames method
 
         testColl = deck.getFlashcards();
