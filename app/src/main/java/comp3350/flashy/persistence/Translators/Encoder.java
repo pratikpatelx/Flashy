@@ -43,15 +43,18 @@ public class Encoder {
     private Flashcard encodeCard(Flashcard flashcard) {
         String answer = "";
 
-        if (flashcard.isRegularFlashcard()) {
-            answer = encodeFlashcard(flashcard);
-        } else if (flashcard.isMultipleChoiceFlashcard()) {
-            answer = encodeMultipleChoiceFlashcard((MultipleChoiceFlashcard) flashcard);
-        } else if (flashcard.isFillInTheBlanksFlashcard()) {
-            answer = encodeFillInTheBlankFlashcard((FillInTheBlanksFlashcard) flashcard);
-        } else if (flashcard.isTrueFalseFlashcard()) {
-            answer = encodeFlashcard(flashcard);
+        switch (flashcard.getCardType()) {
+            case "0":
+                answer = encodeFlashcard(flashcard);
+                break;
+            case "1":
+                answer = encodeFillInTheBlankFlashcard((FillInTheBlanksFlashcard) flashcard);
+                break;
+            case "2":
+                answer = encodeMultipleChoiceFlashcard((MultipleChoiceFlashcard)flashcard);
+                break;
         }
+
 
         return new Flashcard(flashcard.getCardName(), flashcard.getQuestion(), answer);
     }

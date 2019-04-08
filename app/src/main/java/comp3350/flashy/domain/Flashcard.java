@@ -102,21 +102,4 @@ public class Flashcard implements FlashcardInterface {
         return result;
     }
 
-    public boolean isRegularFlashcard() {
-        return true;
-    }
-
-    public boolean isFillInTheBlanksFlashcard() {
-        return false;
-    }
-
-    public boolean isTrueFalseFlashcard() {
-        return false;
-    }
-
-    public boolean isMultipleChoiceFlashcard() {
-        return false;
-    }
-
-
 }

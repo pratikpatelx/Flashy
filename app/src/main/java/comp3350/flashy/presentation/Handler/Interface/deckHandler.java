@@ -168,7 +168,7 @@ public class deckHandler {
     }
 
     public void deleteCard(int index) {
-        deckM.removeCard(username, currDeck, (currDeck + "-" + index));
+        deckM.removeCard(username, currDeck, (deckName + "-" + index));
         deckSize--;
     }
 
