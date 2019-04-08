@@ -7,11 +7,13 @@ import comp3350.flashy.tests.domain.FillInTheBlanksFlashcardTest;
 import comp3350.flashy.tests.domain.FlashcardTest;
 import comp3350.flashy.tests.domain.DeckTest;
 import comp3350.flashy.tests.domain.MultipleChoiceFlashcardTest;
-
 import comp3350.flashy.tests.domain.QuizTest;
+
+import comp3350.flashy.tests.integration.DeckIntegration;
+
+import comp3350.flashy.tests.integration.UserIntegration;
 import comp3350.flashy.tests.logic.cardprepper.PrepareFitBCardTest;
 import comp3350.flashy.tests.logic.cardprepper.PrepareMultipleChoiceFlashCardTest;
-import comp3350.flashy.tests.logic.deckmanager.GetAllDecksTest;
 import comp3350.flashy.tests.logic.deckmanager.GetDeckTest;
 import comp3350.flashy.tests.logic.deckmanager.GetNamesTest;
 import comp3350.flashy.tests.logic.deckmanager.InsertAndDeleteDeckTest;
@@ -26,12 +28,10 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        //integration tests
-        /*
-        GetFlashcardTest.class,
-        RemoveFlashcardTest.class,
-        GetandInsertDeckTest.class,
-        DeckDeletionTest.class,*/
+        //Integration tests
+
+        DeckIntegration.class,
+        UserIntegration.class,
 
         //Unit Tests
 
@@ -40,7 +40,6 @@ import comp3350.flashy.tests.logic.usermanager.UserManagementTest;
         GetDeckTest.class,
         InsertAndDeleteDeckTest.class,
         GetNamesTest.class,
-        GetAllDecksTest.class,
         RemoveCardTest.class,
         QueryDeckSizeTest.class,
 

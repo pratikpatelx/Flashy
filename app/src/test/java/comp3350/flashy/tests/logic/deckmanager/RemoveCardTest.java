@@ -31,23 +31,21 @@ public class RemoveCardTest {
         testDeck = mock(Deck.class);
         when(testDeck.getName()).thenReturn("testDeck");
         when(testDeck.deleteCard("testDeck-0")).thenReturn(true);
-        doNothing().when(testDH).insertDeck("","testDeck",testDeck);
+        doNothing().when(testDH).insertDeck("",testDeck);
 
 
     }
 
     @Test
     public void removeCardTest(){
-        System.out.println("\nrunning Remove Card unit test\n");
-
         Deck result = testDH.removeCard("",testDeck,"testDeck-0");
 
         assertEquals(result,testDeck);
 
         verify(testDeck).deleteCard("testDeck-0");
-        verify(testDH).insertDeck("","testDeck",testDeck);
+        verify(testDH).insertDeck("",testDeck);
 
-        System.out.println("Remove Card test complete\n");
+        System.out.println("Remove Card test complete");
 
     }
 }

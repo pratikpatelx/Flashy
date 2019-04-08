@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import comp3350.flashy.domain.Flashcard;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class FlashcardTest {
@@ -27,17 +28,16 @@ public class FlashcardTest {
     @Test
     public void flashcardTest() {
 
-        System.out.println("Running Flashcard object test");
-        assertTrue(card1.getAnswer().equals(testA));
-        assertTrue(card1.getQuestion().equals(testQ));
-        assertTrue(card1.getCardName().equals(name));
-        assertTrue(card1.getCardType().equals("0"));
+        assertEquals(card1.getAnswer(),(testA));
+        assertEquals(card1.getQuestion(),(testQ));
+        assertEquals(card1.getCardName(),(name));
+        assertEquals(card1.getCardType(),("0"));
 
         assertTrue(card1.mark(testA));
 
         card1.editCard(card2);
-        assertTrue(card1.getAnswer().equals(card2.getAnswer()));
-        assertTrue(card1.getAnswer().equals(card2.getAnswer()));
+        assertEquals(card1.getAnswer(),(card2.getAnswer()));
+        assertEquals(card1.getAnswer(),(card2.getAnswer()));
 
         System.out.println("Flashcard object test complete.");
     }

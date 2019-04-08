@@ -22,7 +22,6 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      */
     public UserDatabaseHSQLDB(String dbPath) {
         this.dbPath = dbPath;
-        System.out.println(dbPath);
     }
 
     /**
@@ -32,16 +31,14 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      * @throws SQLException
      */
     private Connection connection() throws SQLException {
-        System.out.println("Connection called");
+
         Connection result;
-        try {
+
             result = DriverManager.getConnection(
                     "jdbc:hsqldb:file:" + dbPath + ";shutdown=true",
                     "SA",
                     "");
-        } finally {
-            System.out.println("failed to connect");
-        }
+
 
         return result;
     }
@@ -54,7 +51,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      */
     @Override
     public void inputUser(String username, String password) {
-        System.out.println("inputUser started");
+
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
@@ -64,8 +61,6 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
             statement.executeUpdate();
 
             statement.close();
-
-            System.out.println("inputUser DONE");
         } catch (SQLException e) {
             System.out.println("inputUser Failed");
             e.printStackTrace();
@@ -80,7 +75,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      */
     @Override
     public String getUserPassword(String username) {
-        System.out.println("getUserPassword started");
+
 
         String result = null;
         try (final Connection connection = connection()) {
@@ -93,7 +88,6 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
             }
             statement.close();
 
-            System.out.println("getUserPassword DONE");
         } catch (SQLException e) {
             System.out.println("getUserPassword Failed");
             e.printStackTrace();
@@ -108,7 +102,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      */
     @Override
     public void removeUser(String username) {
-        System.out.println("removeUser started");
+
 
         try (final Connection connection = connection()) {
             PreparedStatement statement = connection.prepareStatement(
@@ -122,8 +116,6 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
             statement.executeUpdate();
 
             statement.close();
-
-            System.out.println("removeUser DONE");
         } catch (SQLException e) {
             System.out.println("removeUser Failed");
             e.printStackTrace();
@@ -137,7 +129,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
      */
     @Override
     public Collection<String> getUserCollection() {
-        System.out.println("removeUser started");
+
 
         ArrayList<String> usernames = new ArrayList<>();
 
@@ -153,7 +145,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseImplementation, DatabaseI
             results.close();
             statement.close();
 
-            System.out.println("getUserCollection DONE");
+
         } catch (SQLException e) {
             System.out.println("getUserCollection Failed");
             e.printStackTrace();

@@ -41,11 +41,8 @@ public class EvaluateAnswerTest {
     }
 
     @Test
-    public void EvaluateAnswerTest(){
-
-        System.out.println("\nRunning Evaluate Answer unit test\n");
-
-        assert(testQM.getCorrect() == 0);
+    public void evaluateAnswerTest(){
+        assertTrue(testQM.getCorrect() == 0);
 
         assertTrue(testQM.evaluateAnswer(true));
         assertFalse(testQM.evaluateAnswer(false));

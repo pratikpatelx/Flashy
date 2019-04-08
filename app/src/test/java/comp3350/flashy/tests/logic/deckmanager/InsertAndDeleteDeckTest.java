@@ -34,12 +34,10 @@ public class InsertAndDeleteDeckTest {
 
     @Test
     public void insertDeckTest(){
-        System.out.println("\nrunning Insert Deck unit test\n");
-
         when(testDeck.getName()).thenReturn("testDeck");
         when(testDT.encodeDeck(testDeck)).thenReturn(testDeck);
 
-        testDH.insertDeck("",testDeck.getName(), testDeck);
+        testDH.insertDeck("",testDeck);
 
         verify(testDB).inputDeck("","testDeck", testDeck);
         verify(testDeck).getName();
@@ -50,14 +48,12 @@ public class InsertAndDeleteDeckTest {
 
     @Test
     public void deleteDeckTest(){
-        System.out.println("\nrunning Delete Deck unit test\n");
-
         doNothing().when(testDB).deleteDeck("","testDeck");
 
         testDH.deleteDeck("","testDeck");
 
         verify(testDB).deleteDeck("","testDeck");
 
-        System.out.println("Delete Deck test complete\n");
+        System.out.println("Delete Deck test complete");
     }
 }

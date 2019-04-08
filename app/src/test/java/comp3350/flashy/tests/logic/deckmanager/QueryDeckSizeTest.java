@@ -43,8 +43,6 @@ public class QueryDeckSizeTest {
 
     @Test
     public void queryDeckSizeTest(){
-        System.out.println("\nrunning Query Deck Size unit test\n");
-
         int result = testDH.queryDeckSize("","testDeck");
         assertEquals(69, result);
 
@@ -54,7 +52,7 @@ public class QueryDeckSizeTest {
         verify(testDeck).getNumCards();
         verify(testDH, times(2)).getDeck(anyString(),anyString());
 
-        System.out.println("Query Deck Size test complete\n");
+        System.out.println("Query Deck Size test complete");
 
     }
 }

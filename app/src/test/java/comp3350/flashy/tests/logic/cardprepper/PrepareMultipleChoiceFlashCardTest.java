@@ -42,12 +42,13 @@ public class PrepareMultipleChoiceFlashCardTest {
 
     @Test
     public void prepareMultipleChoiceFlashcardTest(){
-        System.out.println("Running Prepare Multiple Choice Card unit test");
-        testPrep.prepareMultipleChoiceFlashcard(testCard);
+        CardPrepper.prepareMultipleChoiceFlashcard(testCard);
+
         verify(testCard).setAnswer(strCaptor.capture());
         assertEquals("a1",strCaptor.getValue());
         verify(testCard).setAnswers(listCaptor.capture());
         assertTrue(listCaptor.getValue().contains("a2"));
+
         System.out.println("Prepare Multiple Choice Card unit test complete");
     }
 }

@@ -35,11 +35,12 @@ public class UserManagementTest {
     @Test
     public void userManagementTest(){
 
-        System.out.println("Running User Management Unit Test");
-
         testUH.addUserToDatabase(user,password);
+
         assertTrue("Test Failed: Accurate password not recognized", testUH.verifyUserPassword(user,password));
+
         assertFalse("Test Failed: Incorrect password passed", testUH.verifyUserPassword(user,"*******"));
+
         testUH.removeUserFromDatabase(user);
 
         verify(testDB, description("Test Failed: DB Input method not called")).inputUser(user,password);

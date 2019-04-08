@@ -28,18 +28,17 @@ public class GetAllProfilesTest {
 
         testDB = mock(UserDatabaseImplementation.class);
         testUH = new UserManager(testDB);
-        testColl = new ArrayList<String>() {
-            {
-                add("1");
-                add("2");
-            }
-        };
+        testColl = new ArrayList<String>();
+        testColl.add("1");
+        testColl.add("2");
+
+        when(testDB.getUserCollection()).thenReturn(testColl);
     }
 
     @Test
     public void getAllProfilesTest() {
-        System.out.println("\nrunning GetAllProfiles unit test\n");
-        when(testDB.getUserCollection()).thenReturn(testColl);
+
+
         Collection result = testUH.getAllProfiles();
         verify(testDB).getUserCollection();
         expectedList = new ArrayList<String>() {
