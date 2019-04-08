@@ -6,18 +6,18 @@
 |    * CreateFlashCardActivity.java      | * LogicManagerInterface.java        |     dir/ HSQLDB                       |
 |    * FlashCardListActivity.java        | * QuizManager.jaVa                  |        * DeckDatabaseHSQLDB.jaVa      |
 |    * FlashyRegistrationActivity.java   | * CardPrepper.java                  |        * UserDatabaseHSQLDB.java      |
-|    * MainActivity.java                 |                                     |                                       |
-|    * NewDeckActivity.java              |                                     |  dir/ Interfaces                      |
-|    * QuizActivity.java                 |                                     |                                       |
-|    * ShowAllDecksActivity.java         |                                     |     * DeckDatabaseImplementation.jaVa |
-|    * ViewFlashcardActivity.java        |                                     |     * UserDatabaseImplementation.java |
-| dir/ Handler                           |                                     |  dir/ Translator                      |
-|    dir/ Interface                      |                                     |     * DataTranslatorLayer.java        |
-|      * deckHandler.java                |                                     |     * Decoder.jaVa                    |
-|      * profileHandler.java             |                                     |     * Encoder.java                    |
+|    * MainActivity.java                 |                                     |  dir/ Interfaces                      |
+|    * NewDeckActivity.java              |                                     |     * DeckDatabaseImplementation.jaVa |
+|    * QuizActivity.java                 |                                     |     * UserDatabaseImplementation.java |
+|    * ShowAllDecksActivity.java         |                                     |  dir/ Translator                      |
+|    * ViewFlashcardActivity.java        |                                     |     * DataTranslatorLayer.java        |
+| dir/ Handler                           |                                     |     * Decoder.jaVa                    |
+|    dir/ Interface                      |                                     |     * Encoder.java                    |
+|      * deckHandler.java                |                                     |                                       |
+|      * profileHandler.java             |                                     |                                       |
+|      * DummyMaker.jaVa                 |                                     |                                       |
 |      * quizHandlerjava                 |                                     |                                       |
 |    * uiHandler.java                    |                                     |                                       |
-|                                        |                                     |                                       |
 |                                        |                                     |                                       |
 |                                        |                                     |                                       |
 |                                        |                                     |                                       |
